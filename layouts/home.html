@@ -1,0 +1,17 @@
+{{ define "main" }}
+<section class="hero">
+  <img class="hero-logo" src="{{ "images/logo.png" | relURL }}" alt="Open Blues logo" width="368" height="195">
+  <h1>A DIY blues &amp; fusion dance festival in a Polish palace</h1>
+  <p class="hero-dates">{{ site.Params.eventDatesHuman }} · Piotrowice Nyskie Palace, Poland</p>
+  <p class="hero-tagline">Blues &amp; Fusion. Live music. 100% DIY.</p>
+  <p class="hero-cta">
+    <a class="btn" href="{{ site.Params.registerURL }}">Register&nbsp;✒️</a>
+    <a class="btn btn-outline" href="{{ "booklet/" | relURL }}">2026 Info Booklet</a>
+  </p>
+  <p class="hero-note">You're lucky! Early Bird discounts are on!</p>
+</section>
+
+<article class="prose">
+  {{ .Content }}
+</article>
+{{ end }}

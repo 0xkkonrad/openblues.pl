@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ "/" | relURL }}">
+      <img src="{{ "images/logo.png" | relURL }}" alt="Open Blues" width="92" height="49">
+    </a>
+    <nav aria-label="Main">
+      <a href="{{ "/" | relURL }}#about">About</a>
+      <a href="{{ "/" | relURL }}#venue">Venue</a>
+      <a href="{{ "/" | relURL }}#faq">FAQ</a>
+      <a href="{{ "booklet/" | relURL }}">Info&nbsp;Booklet</a>
+      <a class="btn btn-small" href="{{ site.Params.registerURL }}">Register</a>
+    </nav>
+  </header>
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <footer class="footer">
+    <p>
+      <a href="https://unlicense.org/">UNLICENSE</a> — feel free to use anything found here ·
+      Isabella Larsen &amp; Konrad Urban · Hosting sponsored by <a href="https://peanut.me">Peanut</a>
+    </p>
+  </footer>
+</body>
+</html>

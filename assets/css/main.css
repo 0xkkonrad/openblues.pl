@@ -1,0 +1,191 @@
+:root {
+  --orange: #e87511;
+  --orange-dark: #c95f06;
+  --ink: #2b241c;
+  --muted: #7a6f61;
+  --cream: #fdf8f2;
+  --line: #f0e4d5;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Lato", system-ui, -apple-system, sans-serif;
+  font-size: 1.06rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: #fff;
+}
+
+a { color: var(--orange-dark); }
+a:hover { color: var(--orange); }
+
+img { max-width: 100%; height: auto; }
+
+/* ---------- top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  max-width: 62rem;
+  margin: 0 auto;
+  padding: .8rem 1.2rem;
+}
+
+.topbar nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .2rem .4rem;
+}
+
+.topbar nav a {
+  text-decoration: none;
+  color: var(--ink);
+  font-weight: 700;
+  padding: .35rem .6rem;
+  border-radius: .4rem;
+}
+
+.topbar nav a:hover { background: var(--cream); color: var(--orange-dark); }
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  background: var(--orange);
+  color: #fff !important;
+  font-weight: 900;
+  text-decoration: none;
+  padding: .75rem 1.6rem;
+  border-radius: 2rem;
+  letter-spacing: .02em;
+}
+
+.btn:hover { background: var(--orange-dark); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--orange-dark) !important;
+  border: 2px solid var(--orange);
+}
+
+.btn-outline:hover { background: var(--cream); }
+
+.btn-small { padding: .4rem 1rem; }
+.topbar nav a.btn-small:hover { background: var(--orange-dark); color: #fff; }
+
+/* ---------- hero ---------- */
+.hero {
+  text-align: center;
+  background: linear-gradient(var(--cream), #fff);
+  border-top: 1px solid var(--line);
+  padding: 3.5rem 1.2rem 3rem;
+}
+
+.hero-logo { margin-bottom: 1rem; }
+
+.hero h1 {
+  font-family: "Annie Use Your Telescope", cursive;
+  font-weight: 400;
+  font-size: clamp(1.9rem, 4.5vw, 3rem);
+  line-height: 1.15;
+  margin: 0 auto .8rem;
+  max-width: 34ch;
+}
+
+.hero-dates {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--orange-dark);
+  margin: .2rem 0;
+}
+
+.hero-tagline { color: var(--muted); margin: .2rem 0 1.6rem; }
+
+.hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem; margin: 0 0 .9rem; }
+
+.hero-note {
+  font-family: "Annie Use Your Telescope", cursive;
+  font-size: 1.3rem;
+  color: var(--orange);
+  margin: 0;
+}
+
+/* ---------- prose ---------- */
+.prose {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 1rem 1.2rem 3rem;
+}
+
+.prose h1 {
+  font-family: "Annie Use Your Telescope", cursive;
+  font-weight: 400;
+  font-size: 2.6rem;
+  margin: 2rem 0 .2rem;
+}
+
+.prose .subtitle { color: var(--muted); font-size: 1.15rem; margin-top: 0; }
+
+.prose h2 {
+  font-family: "Annie Use Your Telescope", cursive;
+  font-weight: 400;
+  font-size: 2.1rem;
+  color: var(--orange-dark);
+  margin: 3rem 0 .6rem;
+  border-bottom: 2px solid var(--line);
+  padding-bottom: .2rem;
+}
+
+.prose h3 { font-size: 1.15rem; margin: 1.6rem 0 .3rem; }
+.prose h3 + p { margin-top: .3rem; }
+
+.prose blockquote {
+  margin: 1.2rem 0;
+  padding: .2rem 1.2rem;
+  border-left: 4px solid var(--orange);
+  background: var(--cream);
+  border-radius: 0 .5rem .5rem 0;
+  font-style: italic;
+  color: #4d4438;
+}
+
+.prose table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.prose th, .prose td {
+  text-align: left;
+  padding: .5rem .8rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.prose thead:has(th:empty) { display: none; }
+
+.prose iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: 0;
+  border-radius: .6rem;
+  margin: 1.2rem 0;
+}
+
+.cta-final { text-align: center; margin: 3rem 0 1rem; }
+
+/* ---------- footer ---------- */
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--cream);
+  text-align: center;
+  color: var(--muted);
+  font-size: .9rem;
+  padding: 1.4rem 1.2rem;
+}
+
+.footer a { color: var(--muted); }
