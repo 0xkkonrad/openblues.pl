@@ -12,7 +12,7 @@ enableGitInfo = false
 
 [params]
   description = "Open Blues is a non-profit, 100% DIY blues & fusion dance festival at a historic palace in Piotrowice Nyskie, Poland. Live music, community-led workshops, communal vegan cooking. 27–31 August 2026."
-  ogImage = "images/palace-aerial.jpg"
+  ogImage = "images/og-palace.jpg"
   registerURL = "https://forms.gle/Y9bHtPcDKLdtcGGj6"
   eventStart = "2026-08-27"
   eventEnd = "2026-08-31"

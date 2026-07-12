@@ -69,6 +69,7 @@ Here is what Anna & Jim have to say about their home:
 
 <div class="gallery">
 <img src="images/gallery/dancing-long-exposure.jpg" alt="Couples dancing blues in the palace ballroom to live piano, long exposure" loading="lazy" width="1054" height="1400">
+<img src="images/gallery/palace-golden-hour.jpg" alt="Piotrowice Nyskie Palace at golden hour, tower and red roofs in evening light" loading="lazy" width="1400" height="934">
 <img src="images/gallery/dinner-under-trees.jpg" alt="Communal dinner at a long table under the trees in the palace park" loading="lazy" width="1400" height="788">
 <img src="images/gallery/live-music.jpg" alt="Musician playing guitar and singing at Open Blues" loading="lazy" width="1054" height="1400">
 <img src="images/gallery/palace-across-park.jpg" alt="Piotrowice Nyskie Palace seen across the park" loading="lazy" width="1054" height="1400">
