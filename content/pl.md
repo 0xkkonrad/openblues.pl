@@ -3,6 +3,7 @@ title: "Open Blues — festiwal tańca blues i fusion w Polsce"
 subtitle: "27–31 sierpnia 2026 · Pałac w Piotrowicach Nyskich"
 description: "Open Blues to niekomercyjny festiwal tańca blues i fusion w duchu DIY, w zabytkowym pałacu w Piotrowicach Nyskich. Muzyka na żywo, warsztaty tworzone przez uczestników, wspólne gotowanie. 27–31 sierpnia 2026."
 url: /pl/
+htmlLang: pl
 ---
 
 <p><a class="btn" href="https://forms.gle/Y9bHtPcDKLdtcGGj6">Rejestracja ✒️</a></p>
@@ -48,7 +49,7 @@ Staramy się mieć 5–10% bufora, który reinwestujemy w kolejne edycje.
 
 ### Jakie są warsztaty i kto uczy?
 
-To festiwal DIY — program tworzą uczestnicy i klaruje się bardzo późno, więc nie ogłaszamy warsztatów z wyprzedzeniem. Chcesz coś poprowadzić? Odezwij się! Open Blues przyciąga świetnych tancerzy i tancerki z całego świata.
+To festiwal DIY — program tworzą uczestnicy i klaruje się bardzo późno, więc nie ogłaszamy warsztatów z wyprzedzeniem. Chcesz coś poprowadzić? [Odezwij się](mailto:openbluespoland@gmail.com)! Open Blues przyciąga świetnych tancerzy i tancerki z całego świata.
 
 ### Czy mogę przyjechać wcześniej lub zostać dłużej?
 

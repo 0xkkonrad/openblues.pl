@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Params.htmlLang | default "en" }}">
 <head>
   {{ partial "head.html" . }}
 </head>
@@ -8,18 +8,25 @@
     <a class="brand" href="{{ "/" | relURL }}">
       <img src="{{ "images/logo.png" | relURL }}" alt="Open Blues" width="92" height="49">
     </a>
+    {{ if eq .RelPermalink "/pl/" -}}
+    <nav aria-label="Główna">
+      <a href="#o-festiwalu">O&nbsp;festiwalu</a>
+      <a href="#miejsce">Miejsce</a>
+      <a href="#faq">FAQ</a>
+      <a href="{{ "booklet/" | relURL }}">Informator</a>
+      <a href="{{ "/" | relURL }}" lang="en">EN</a>
+      <a class="btn btn-small" href="{{ site.Params.registerURL }}">Rejestracja</a>
+    </nav>
+    {{- else -}}
     <nav aria-label="Main">
       <a href="{{ "/" | relURL }}#about">About</a>
       <a href="{{ "/" | relURL }}#venue">Venue</a>
       <a href="{{ "/" | relURL }}#faq">FAQ</a>
       <a href="{{ "booklet/" | relURL }}">Info&nbsp;Booklet</a>
-      {{ if eq .RelPermalink "/pl/" -}}
-      <a href="{{ "/" | relURL }}" lang="en">EN</a>
-      {{- else -}}
       <a href="{{ "pl/" | relURL }}" lang="pl">PL</a>
-      {{- end }}
       <a class="btn btn-small" href="{{ site.Params.registerURL }}">Register</a>
     </nav>
+    {{- end }}
   </header>
 
   <main>
@@ -30,6 +37,9 @@
     <p class="support-ua">
       🇺🇦 Please support Ukraine — <a href="https://u24.gov.ua/">United24</a> ·
       <a href="https://savelife.in.ua/en/">Come Back Alive</a>
+    </p>
+    <p>
+      <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a>
     </p>
     <p>
       <a href="https://unlicense.org/">UNLICENSE</a> — feel free to use anything found here ·

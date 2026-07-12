@@ -1,7 +1,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {{- $isHome := .IsHome }}
-{{- $title := cond $isHome site.Title (printf "%s — Open Blues" .Title) }}
+{{- $title := site.Title }}
+{{- if not $isHome }}
+  {{- $title = .Title }}
+  {{- if not (strings.Contains .Title "Open Blues") }}{{ $title = printf "%s — Open Blues" .Title }}{{ end }}
+{{- end }}
 {{- $desc := .Params.description | default site.Params.description }}
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $desc }}">

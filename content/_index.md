@@ -105,7 +105,7 @@ We try to have a 5–10% buffer, which we reinvest into the next editions.
 
 ### What are the workshops and who are the teachers?
 
-This is a DIY festival and all activities are community-led, so we usually only find out very late and there are many changes — we don't advertise the exact workshops before the festival. If you'd like to lead a workshop, get in touch! Open Blues attracts top dancers from all over the world.
+This is a DIY festival and all activities are community-led, so we usually only find out very late and there are many changes — we don't advertise the exact workshops before the festival. If you'd like to lead a workshop, [get in touch](mailto:openbluespoland@gmail.com)! Open Blues attracts top dancers from all over the world.
 
 ### Can I arrive earlier or stay longer?
 

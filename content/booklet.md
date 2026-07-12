@@ -17,7 +17,7 @@ The venue consists of the beautiful palace and two big barns. The palace has man
 
 Please join the [WhatsApp transport group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX) if you are looking for a ride or happy to share your journey.
 
-## Accommodation & food
+## Accommodation & food {#accommodation-food}
 
 Please bring your own towels and toiletries.
 
