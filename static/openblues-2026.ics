@@ -1,0 +1,14 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Open Blues//openblues.pl//EN
+BEGIN:VEVENT
+UID:openblues-2026@openblues.pl
+DTSTAMP:20260712T000000Z
+DTSTART;VALUE=DATE:20260827
+DTEND;VALUE=DATE:20260901
+SUMMARY:Open Blues 2026
+LOCATION:Piotrowice Nyskie Palace\, Poland
+DESCRIPTION:DIY blues & fusion dance festival — https://openblues.pl
+URL:https://openblues.pl
+END:VEVENT
+END:VCALENDAR

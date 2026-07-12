@@ -14,6 +14,27 @@ Whatever your dance passion is, bring it to Open Blues if you think it might enr
 
 {{< youtube id=NkRzrqZHu9A loading=lazy title="Open Blues — festival aftermovie" >}}
 
+## What people say
+
+<div class="quotes">
+<figure>
+<blockquote>You arrive as a guest and by Saturday you're running a workshop, stirring a pot, or sitting in with the band.</blockquote>
+<figcaption>E., Berlin</figcaption>
+</figure>
+<figure>
+<blockquote>Dancing till sunrise in a half-renovated ballroom, live piano bouncing off bare brick. Nothing else comes close.</blockquote>
+<figcaption>A., London</figcaption>
+</figure>
+<figure>
+<blockquote>The only festival where I learned as much in the kitchen as on the dance floor.</blockquote>
+<figcaption>M., Hamburg</figcaption>
+</figure>
+<figure>
+<blockquote>I flew in from the other side of the world knowing nobody. I left with a family.</blockquote>
+<figcaption>N., Kuala Lumpur</figcaption>
+</figure>
+</div>
+
 ## Venue
 
 [Piotrowice Nyskie Palace](https://goo.gl/maps/S4sGDLpj19hnzjvH6) is in Silesia, in south-west Poland. The nearest airports are Wrocław (PL), Ostrava (CZ), Pardubice (CZ), Katowice (PL) and Brno (CZ). The nearest transportation hub is Nysa, a 20-minute drive from the Palace.
@@ -28,15 +49,31 @@ Here is what Anna & Jim have to say about their home:
 
 {{< youtube id=XOdqjNxYHM8 loading=lazy title="Live music at Open Blues" >}}
 
+## Impressions
+
+<div class="gallery">
+<img src="images/gallery/dancing-long-exposure.jpg" alt="Couples dancing blues in the palace ballroom to live piano, long exposure" loading="lazy" width="1054" height="1400">
+<img src="images/gallery/dinner-under-trees.jpg" alt="Communal dinner at a long table under the trees in the palace park" loading="lazy" width="1400" height="788">
+<img src="images/gallery/live-music.jpg" alt="Musician playing guitar and singing at Open Blues" loading="lazy" width="1054" height="1400">
+<img src="images/gallery/palace-across-park.jpg" alt="Piotrowice Nyskie Palace seen across the park" loading="lazy" width="1054" height="1400">
+<img src="images/gallery/night-party-ballroom.jpg" alt="Night dance party in the palace ballroom" loading="lazy" width="1050" height="1400">
+<img src="images/gallery/workshop-ballroom.jpg" alt="Workshop space in the ballroom" loading="lazy" width="1400" height="753">
+<img src="images/gallery/group-photo-stairwell.jpg" alt="Open Blues participants waving from the palace stairwell" loading="lazy" width="1400" height="1050">
+<img src="images/gallery/country-road.jpg" alt="Country road to Piotrowice Nyskie at dusk" loading="lazy" width="1400" height="1050">
+<img src="images/gallery/sparrow.jpg" alt="A participant holding a sparrow chick found at the farm" loading="lazy" width="1054" height="1400">
+</div>
+
 ## Food
 
 We cook all of our food together. All food is vegan or vegetarian.
 
 There is a small shop but no supermarket in the village; the nearest one is a 15-minute drive away.
 
-## Financials
+## Your cost
 
-We run this non-profit. Our costs are roughly this:
+Open Blues is not something you buy — there is no ticket and nobody makes money here. We simply share the real expenses: you pay for your own bed, your food and drinks, and a slice of the fixed costs like the venue and the bands. The average cost per attendee comes out at around €120 for the whole festival.
+
+Roughly where the money goes:
 
 | | |
 |---|---|

@@ -13,6 +13,11 @@
       <a href="{{ "/" | relURL }}#venue">Venue</a>
       <a href="{{ "/" | relURL }}#faq">FAQ</a>
       <a href="{{ "booklet/" | relURL }}">Info&nbsp;Booklet</a>
+      {{ if eq .RelPermalink "/pl/" -}}
+      <a href="{{ "/" | relURL }}" lang="en">EN</a>
+      {{- else -}}
+      <a href="{{ "pl/" | relURL }}" lang="pl">PL</a>
+      {{- end }}
       <a class="btn btn-small" href="{{ site.Params.registerURL }}">Register</a>
     </nav>
   </header>

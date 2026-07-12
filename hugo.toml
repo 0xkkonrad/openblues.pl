@@ -1,5 +1,5 @@
 baseURL = "https://openblues.pl/"
-languageCode = "en"
+locale = "en"
 title = "Open Blues — DIY Blues & Fusion Dance Festival in Poland"
 
 # Relative asset URLs so the site works both at

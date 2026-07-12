@@ -7,6 +7,11 @@
 <meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ .Permalink }}">
 <meta name="theme-color" content="#e87511">
+{{- if or .IsHome (eq .RelPermalink "/pl/") }}
+<link rel="alternate" hreflang="en" href="{{ "/" | absURL }}">
+<link rel="alternate" hreflang="pl" href="{{ "pl/" | absURL }}">
+<link rel="alternate" hreflang="x-default" href="{{ "/" | absURL }}">
+{{- end }}
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Open Blues">
@@ -59,14 +64,6 @@
     "name": "Open Blues",
     "url": "https://openblues.pl/"
   },
-  "offers": {
-    "@type": "Offer",
-    "url": {{ site.Params.registerURL | jsonify }},
-    "price": "120",
-    "priceCurrency": "EUR",
-    "availability": "https://schema.org/InStock"
-  },
-  "isAccessibleForFree": false,
   "url": "https://openblues.pl/"
 }
 </script>
