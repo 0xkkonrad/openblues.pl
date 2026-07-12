@@ -10,24 +10,24 @@ Status legend: `TODO` not started · `SUBMITTED` waiting on moderation · `LIVE`
 
 | # | Venue | Scene | Route | Cost | Status | Next action |
 |---|-------|-------|-------|------|--------|-------------|
-| 1 | [BluesCal.com](https://bluescal.com/) | Blues (global) | Self-serve form, no account | Free | TODO | Submit via shared DanceCal form (#1–3 = one submission) |
-| 2 | [FusionCal.com](https://fusioncal.com/) | Fusion (global) | Same shared form | Free | TODO | Covered by #1 submission (tick Fusion) |
-| 3 | [DanceCal.com](https://dancecal.com/) | Blues/Lindy/Balboa/Solo Jazz/Fusion umbrella | Same shared form | Free | TODO | Covered by #1 submission |
-| 4 | [SwingPlanIt](https://www.swingplanit.com/) | Swing worldwide, Blues category | Self-serve form, math captcha | Free | TODO | Submit; allow 7 days to appear |
-| 5 | [swingfestivals.com](https://www.swingfestivals.com/) | Swing worldwide, Blues filter | Email hello@swingfestivals.com | Free | TODO | Send listing email (no form exists) |
-| 6 | [Swing Calendar](https://swingcalendar.com/en/) | Swing worldwide, Blues subtype | Account (Organizer role) + form | Free | TODO | Register account, create event |
-| 7 | [fusion-dancing.eu](https://fusion-dancing.eu/) | Fusion (Europe) | Discord / GitHub / email | Free | TODO | Decide fusion-share pitch, then submit |
-| 8 | [WhereCanWeDance](https://www.wherecanwedance.com/events/open-blues) | Multi-style (Blues+Fusion tags) | Account-gated | Free | VERIFY | Already listed — claim it, fill empty fields |
-| 9 | [Blues in Europe Calendar](https://www.annettedances.com/blues-in-europe-calendar/) | Blues (Europe, curated) | Message the maintainer | Free | VERIFY | Already listed — check entry, send corrections |
-| 10 | [Swing Wings calendar](https://www.swingwings.cz/calendar/) | Czech swing+blues (Brno) | Email marek@swingwings.cz | Free | TODO | Send listing email |
-| 11 | Blues Dancing in Poland (FB group) | Polish blues | FB account + join group | Free | BLOCKED | Needs a Facebook account |
-| 12 | Blues Dance in Krakow / KOLIBR (FB group) | Kraków blues | FB account + join group | Free | BLOCKED | Needs a Facebook account |
-| 13 | Krakow Fusion Dance Community (FB group) | Kraków fusion | FB account + join group | Free | BLOCKED | Needs a Facebook account |
-| 14 | Fusion Dance Europe (FB group) | Pan-European fusion | FB account + join group | Free | BLOCKED | Needs a Facebook account |
-| 15 | European Fusion Dancing Discord | European fusion | Join Discord, post event | Free | TODO | Doubles as the #7 submission route |
-| 16 | Lindy Hop in Cracow (FB group) | Kraków swing | FB account + join group | Free | BLOCKED | Crossover crowd; check group promo rules |
-| 17 | Fusion Dance Vienna (FB group) | Vienna fusion | FB account + join group | Free | BLOCKED | Existence confirmed, activity not |
-| 18 | Kraków Blues Happenings (FB page) | Kraków blues | Message the page | Free | TODO | Ask for a share (goodwill, not a form) |
+| 1 | [BluesCal.com](https://bluescal.com/) | Blues (global) | Self-serve form, no account | Free | SUBMITTED | Watch calendar for the listing to appear |
+| 2 | [FusionCal.com](https://fusioncal.com/) | Fusion (global) | Same shared form | Free | SUBMITTED | Covered by #1 submission (Fusion ticked) |
+| 3 | [DanceCal.com](https://dancecal.com/) | Blues/Lindy/Balboa/Solo Jazz/Fusion umbrella | Same shared form | Free | SUBMITTED | Covered by #1 submission |
+| 4 | [SwingPlanIt](https://www.swingplanit.com/) | Swing worldwide, Blues category | Self-serve form, math captcha | Free | SUBMITTED | Weekly publish cycle: check around 19 Jul |
+| 5 | [swingfestivals.com](https://www.swingfestivals.com/) | Swing worldwide, Blues filter | Email hello@swingfestivals.com | Free | SUBMITTED | Emailed 12 Jul; watch openbluespoland inbox |
+| 6 | [Swing Calendar](https://swingcalendar.com/en/) | Swing worldwide, Blues subtype | Account (Organizer role) + form | Free | SUBMITTED | "Waiting for approval" on My Events; watch inbox |
+| 7 | [fusion-dancing.eu](https://fusion-dancing.eu/) | Fusion (Europe) | Discord / GitHub / email | Free | SUBMITTED | Emailed events@ 12 Jul; watch inbox |
+| 8 | [WhereCanWeDance](https://www.wherecanwedance.com/events/open-blues) | Multi-style (Blues+Fusion tags) | Account-gated | Free | LIVE | Fill registration/social URLs: needs login to owner account 1444 |
+| 9 | [Blues in Europe Calendar](https://www.annettedances.com/blues-in-europe-calendar/) | Blues (Europe, curated) | Message the maintainer | Free | LIVE | None: entry verified correct, links openblues.pl |
+| 10 | [Swing Wings calendar](https://www.swingwings.cz/calendar/) | Czech swing+blues (Brno) | Email marek@swingwings.cz | Free | SUBMITTED | Emailed 12 Jul; watch inbox |
+| 11 | Blues Dancing in Poland (FB group) | Polish blues | FB account + join group | Free | BLOCKED | Konrad: join + post (PL copy below) |
+| 12 | Blues Dance in Krakow / KOLIBR (FB group) | Kraków blues | FB account + join group | Free | BLOCKED | Konrad: join + post (PL copy below) |
+| 13 | Krakow Fusion Dance Community (FB group) | Kraków fusion | FB account + join group | Free | BLOCKED | Konrad: join + post (PL or EN copy below) |
+| 14 | Fusion Dance Europe (FB group) | Pan-European fusion | FB account + join group | Free | BLOCKED | Konrad: join + post (EN copy below) |
+| 15 | European Fusion Dancing Discord | European fusion | Join Discord, post event | Free | BLOCKED | Konrad: post (copy below); calendar itself already covered by #7 email |
+| 16 | Lindy Hop in Cracow (FB group) | Kraków swing | FB account + join group | Free | BLOCKED | Konrad: check group promo rules, then post |
+| 17 | Fusion Dance Vienna (FB group) | Vienna fusion | FB account + join group | Free | BLOCKED | Lowest priority; existence confirmed, activity not |
+| 18 | Kraków Blues Happenings (FB page) | Kraków blues | Message the page | Free | BLOCKED | Konrad: message the page asking for a share |
 
 ## Submission data pack
 
@@ -93,14 +93,14 @@ Rule reminder for SwingPlanIt's description field: no web links, no teacher name
   1. **Discord** (preferred): the European Fusion Dancing Discord — `discord.gg/28ej3V2vQG` — events added there are auto-proposed to the site (pipeline confirmed live via automated GitHub commits).
   2. GitHub issue/PR on `fusion-dancing-eu/fusion-dancing-eu.github.io`.
   3. Email `events[at]fusion-dancing.eu`.
-- **Eligibility (the one real hurdle):** events must be multi-day AND "dedicate at least roughly half their resources to Fusion dancing" — single-evening socials get pointed to local scene pages. Open Blues qualifies on duration; **decide how to honestly present the fusion share of the program before submitting** (the festival is literally named "Open Blues & Fusion" on Annette's calendar, and the crowdsourced format means the split isn't fixed).
+- **Eligibility (the one real hurdle):** events must be multi-day AND "dedicate at least roughly half their resources to Fusion dancing" — single-evening socials get pointed to local scene pages. Open Blues qualifies on duration; the fusion share is honestly fuzzy because the program is crowdsourced. Submitted 12 Jul via the email route; whether it meets their bar is now the moderators' call.
 - **Maintained:** merged event PRs dated 2026-07-05 to -08; calendar lists 2026–27 events including Berlin Blues & Fusion Experience.
 
 ### 8. WhereCanWeDance — wherecanwedance.com ⚠️ already listed
 
 - **What:** Global multi-style directory with dedicated Blues and Fusion calendars (plus out-of-scope styles).
-- **State:** Open Blues is **already listed** at [wherecanwedance.com/events/open-blues](https://www.wherecanwedance.com/events/open-blues) (event id 5400): dates 2026-08-27→31, address Piotrowice Nyskie 54, styles Blues + Fusion, tags Festival + Social, links to openblues.pl. Created by user account **1444** (Organizer role) — **find out whether that's us** (a co-organizer?) or a stranger; if unknown, contact the site to claim it.
-- **Remaining work:** fill the empty fields — ticket_url, facebook_url, instagram_url, meetup_url, tiktok_url are all null. Set ticket_url to the registration form.
+- **State:** Open Blues is **already listed** at [wherecanwedance.com/events/open-blues](https://www.wherecanwedance.com/events/open-blues) (event id 5400). Re-verified 12 Jul: live and accurate (dates 2026-08-27→31, address Piotrowice Nyskie 54, styles Blues + Fusion, tags Festival + Social, links to openblues.pl). Created by user account **1444** (Organizer role) — **find out whether that's us** (a co-organizer?) or a stranger; if unknown, contact the site to claim it.
+- **Remaining work:** fill the empty fields — ticket_url, facebook_url, instagram_url, meetup_url, tiktok_url are all null. Set ticket_url to the registration form. Blocked on logging in as account 1444.
 - **How (new events generally):** "Add new event" at /suggest_event, free login required.
 - **Caveat:** their Blues calendar is thin (only 2 upcoming events at check time), so blues-scene reach here is limited — low effort anyway since the listing exists.
 
@@ -109,7 +109,7 @@ Rule reminder for SwingPlanIt's description field: no web links, no teacher name
 ### 9. Blues in Europe Calendar (annettedances.com) ⚠️ already listed
 
 - **What:** Community member Annette's curated calendar of ALL weekend-long-or-longer blues dance events in Europe & UK, explicitly including Blues & Fusion events. Best geographic fit of anything found; dense listings through Dec 2026 into 2027, covering Vienna, Berlin, Brno and Poland.
-- **State:** it **already lists "Open Blues & Fusion near Wrocław, August 27–31"** — dates match. Action: check the entry's link and details, message her with corrections (point the entry at openblues.pl).
+- **State:** it **already lists "Open Blues & Fusion near Wrocław, August 27–31"**. Re-verified 12 Jul: the entry links to openblues.pl with correct dates. No action needed.
 - **How:** no form — "send me a quick message if you're missing your (or someone else's) event" via the site's contact link. Free, informal.
 
 ### 10. Swing Wings calendar (swingwings.cz)
@@ -120,7 +120,7 @@ Rule reminder for SwingPlanIt's description field: no web links, no teacher name
 
 ## Tier 3 — Community channels (Facebook / Discord)
 
-Existence of all these groups is confirmed; their activity levels, member counts, and posting rules are NOT verifiable without a logged-in Facebook account — the research agents hit login walls. Someone with a Facebook account (Konrad or a co-organizer) needs to join and post. A Facebook event page would help in all of them; decide whether to create one first. Free everywhere.
+Existence of all these groups is confirmed; their activity levels, member counts, and posting rules are NOT verifiable without a logged-in Facebook account — the research agents hit login walls. Someone with a Facebook account (Konrad or a co-organizer) needs to join and post; draft post copy is in the "Ready-to-paste copy" section below. A Facebook event page would help in all of them; decide whether to create one first. Free everywhere.
 
 | Channel | Link | Why |
 |---------|------|-----|
@@ -145,13 +145,57 @@ Not covered by this research (verified gap, needs a follow-up pass if we care): 
 
 ## Open questions
 
-1. **WhereCanWeDance account 1444** — who created our listing? If not us, how do we claim/edit it?
-2. **fusion-dancing.eu fusion-share bar** — is "roughly half the program is fusion" an honest description of Open Blues? Konrad to decide the pitch.
-3. **Facebook event page** — create one (helps every Tier 3 channel and some Tier 1 optional fields) or stay web-only?
-4. **Facebook posting** — the whole Tier 3 block is gated on a personal FB account joining these groups; whose?
+1. **WhereCanWeDance account 1444** — who created our listing? If not us, how do we claim/edit it? This is the only blocker for filling the empty registration/social fields.
+2. **Facebook event page** — create one (helps every Tier 3 channel) or stay web-only? The draft copy below works for either.
+3. **Tier 3 posting** — gated on Konrad's personal Facebook and Discord accounts.
+
+~~fusion-dancing.eu fusion-share pitch~~ — resolved by submitting via email on 12 Jul; their moderators decide.
+
+## Ready-to-paste copy (drafts)
+
+Written to the messaging policy: cost-sharing, never "price"/"ticket". Adjust freely.
+
+### English — Facebook groups (#14, #13, #16, #17) and the event page description
+
+> **Open Blues 2026: DIY blues & fusion festival in a Polish palace, 27–31 August**
+>
+> Open Blues is back: five days at Piotrowice Nyskie Palace in south-west Poland, an hour from Wrocław and within easy reach of Prague, Berlin, Vienna and Kraków.
+>
+> It's a non-profit, do-it-yourself festival. The organisers handle the venue and logistics; the workshops, live music and cooking come from the people who attend. Expect social dancing until sunrise in a half-renovated palace ballroom, shared meals, and classes taught by attendees and guest teachers. Whatever your dance passion is, you can bring it and lead a session.
+>
+> Instead of a ticket, everyone shares the festival's real costs: you pay for your own bed and food plus a share of the fixed costs, on average around €120 for the whole five days.
+>
+> Info: https://openblues.pl
+> Register: https://forms.gle/Y9bHtPcDKLdtcGGj6
+> Questions: openbluespoland@gmail.com
+
+### Polish — Facebook groups (#11, #12, #13)
+
+> **Open Blues 2026: festiwal DIY bluesa i fusion w pałacu, 27–31 sierpnia**
+>
+> Open Blues wraca: pięć dni w Pałacu w Piotrowicach Nyskich na Opolszczyźnie, godzinę drogi od Wrocławia.
+>
+> To niekomercyjny festiwal DIY. Organizatorzy ogarniają pałac i logistykę, a warsztaty, muzyka na żywo i gotowanie są tworzone przez uczestników. Tańczymy do wschodu słońca w pałacowej sali balowej, jemy wspólne posiłki, a zajęcia prowadzą uczestnicy i zaproszeni nauczyciele. Masz taneczną pasję? Przywieź ją i poprowadź warsztat.
+>
+> Zamiast biletu dzielimy się realnymi kosztami: płacisz za swoje łóżko i jedzenie plus część kosztów stałych, średnio ok. 120 € za całość.
+>
+> Info: https://openblues.pl
+> Rejestracja: https://forms.gle/Y9bHtPcDKLdtcGGj6
+
+### Discord — European Fusion Dancing (#15), short
+
+> Hi! We're organising **Open Blues 2026**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 27–31 Aug. Workshops are crowdsourced from attendees, live music, dancing till sunrise. Cost-sharing instead of tickets, on average ~€120 for the five days. https://openblues.pl — happy to answer questions. (Calendar listing already sent to events@fusion-dancing.eu.)
 
 ## Log
 
 | Date | Venue | Action | Result |
 |------|-------|--------|--------|
 | 2026-07-12 | (all) | Deep research: verified 8 registries live, 2 pre-existing listings found, 1 dead site flagged | Tracker created |
+| 2026-07-12 | DanceCal family (#1–3) | Submitted via shared bluescal.com/Submit/ form: Blues + Fusion, Exchange, Poland | Awaiting moderation |
+| 2026-07-12 | SwingPlanIt (#4) | Submitted via event form: Camp, Blues (no Fusion in taxonomy) | Awaiting weekly publish (~19 Jul) |
+| 2026-07-12 | swingfestivals.com (#5) | Emailed hello@swingfestivals.com from openbluespoland@gmail.com, signed Konrad | Awaiting reply |
+| 2026-07-12 | Swing Calendar (#6) | Account created, event submitted | "Waiting for approval" on My Events; confirmation email in inbox |
+| 2026-07-12 | fusion-dancing.eu (#7) | Emailed events@fusion-dancing.eu, signed Konrad | Awaiting reply |
+| 2026-07-12 | Swing Wings (#10) | Emailed marek@swingwings.cz, signed Konrad | Awaiting reply |
+| 2026-07-12 | WhereCanWeDance (#8) | Re-verified existing listing | Live and accurate; field-fill blocked on account 1444 |
+| 2026-07-12 | annettedances (#9) | Re-verified existing entry | Live, correct dates, links openblues.pl; done |
