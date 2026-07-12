@@ -153,15 +153,15 @@ Not covered by this research (verified gap, needs a follow-up pass if we care): 
 
 ## Ready-to-paste copy (drafts)
 
-Written to the messaging policy: cost-sharing, never "price"/"ticket". Adjust freely.
+Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed the subagent AI-tell cold read on 12 Jul (fixes applied; "na Opolszczyźnie" geography verified). The Facebook headlines are plain text on purpose: Facebook doesn't render Markdown bold, so asterisks would paste literally. Adjust freely.
 
 ### English — Facebook groups (#14, #13, #16, #17) and the event page description
 
-> **Open Blues 2026: DIY blues & fusion festival in a Polish palace, 27–31 August**
+> Open Blues 2026: DIY blues & fusion festival in a Polish palace, 27–31 August
 >
-> Open Blues is back: five days at Piotrowice Nyskie Palace in south-west Poland, an hour from Wrocław and within easy reach of Prague, Berlin, Vienna and Kraków.
+> Open Blues is back: five days at Piotrowice Nyskie Palace in south-west Poland, an hour from Wrocław and about three hours from Kraków, Prague and Vienna.
 >
-> It's a non-profit, do-it-yourself festival. The organisers handle the venue and logistics; the workshops, live music and cooking come from the people who attend. Expect social dancing until sunrise in a half-renovated palace ballroom, shared meals, and classes taught by attendees and guest teachers. Whatever your dance passion is, you can bring it and lead a session.
+> It's a non-profit, do-it-yourself festival. We handle the venue and logistics; the workshops, live music and cooking come from everyone who shows up. There's social dancing until sunrise in the half-renovated palace ballroom, and we cook and eat together. Classes are taught by whoever comes, plus a few guest teachers. If there's something you love dancing or teaching, bring it and run a session.
 >
 > Instead of a ticket, everyone shares the festival's real costs: you pay for your own bed and food plus a share of the fixed costs, on average around €120 for the whole five days.
 >
@@ -171,20 +171,22 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Adjust fr
 
 ### Polish — Facebook groups (#11, #12, #13)
 
-> **Open Blues 2026: festiwal DIY bluesa i fusion w pałacu, 27–31 sierpnia**
+> Open Blues 2026: oddolny festiwal bluesa i fusion w pałacu, 27–31 sierpnia
 >
-> Open Blues wraca: pięć dni w Pałacu w Piotrowicach Nyskich na Opolszczyźnie, godzinę drogi od Wrocławia.
+> Open Blues wraca: pięć dni w pałacu w Piotrowicach Nyskich na Opolszczyźnie, godzinę drogi od Wrocławia.
 >
-> To niekomercyjny festiwal DIY. Organizatorzy ogarniają pałac i logistykę, a warsztaty, muzyka na żywo i gotowanie są tworzone przez uczestników. Tańczymy do wschodu słońca w pałacowej sali balowej, jemy wspólne posiłki, a zajęcia prowadzą uczestnicy i zaproszeni nauczyciele. Masz taneczną pasję? Przywieź ją i poprowadź warsztat.
+> To niekomercyjny festiwal DIY. Jako organizatorzy ogarniamy pałac i logistykę, a warsztaty, muzykę na żywo i gotowanie robią sami uczestnicy. Tańczymy do wschodu słońca w na wpół wyremontowanej sali balowej, gotujemy i jemy razem, a zajęcia prowadzą uczestnicy i zaproszeni nauczyciele. Jest coś, co kochasz tańczyć albo czego chcesz uczyć? Poprowadź z tego warsztat.
 >
-> Zamiast biletu dzielimy się realnymi kosztami: płacisz za swoje łóżko i jedzenie plus część kosztów stałych, średnio ok. 120 € za całość.
+> Zamiast biletu dzielimy się realnymi kosztami: płacisz za nocleg i jedzenie plus część kosztów stałych, średnio ok. 120 € za całość.
 >
 > Info: https://openblues.pl
 > Rejestracja: https://forms.gle/Y9bHtPcDKLdtcGGj6
+> Pytania: openbluespoland@gmail.com
 
 ### Discord — European Fusion Dancing (#15), short
 
-> Hi! We're organising **Open Blues 2026**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 27–31 Aug. Workshops are crowdsourced from attendees, live music, dancing till sunrise. Cost-sharing instead of tickets, on average ~€120 for the five days. https://openblues.pl — happy to answer questions. (Calendar listing already sent to events@fusion-dancing.eu.)
+> Hi! We're organising **Open Blues 2026**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 27–31 Aug. Attendee-taught workshops, live music, dancing till sunrise. Cost-sharing instead of tickets, on average ~€120 for the five days. https://openblues.pl
+> Happy to answer questions! (Mods: calendar listing already sent to events@fusion-dancing.eu.)
 
 ## Log
 
@@ -199,3 +201,4 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Adjust fr
 | 2026-07-12 | Swing Wings (#10) | Emailed marek@swingwings.cz, signed Konrad | Awaiting reply |
 | 2026-07-12 | WhereCanWeDance (#8) | Re-verified existing listing | Live and accurate; field-fill blocked on account 1444 |
 | 2026-07-12 | annettedances (#9) | Re-verified existing entry | Live, correct dates, links openblues.pl; done |
+| 2026-07-12 | (drafts) | Subagent AI-tell cold read of FB/Discord copy | Fixes applied: first-person voice, PL calques removed, FB markdown stripped, city overclaim cut |
