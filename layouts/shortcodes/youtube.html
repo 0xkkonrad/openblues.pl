@@ -1,0 +1,25 @@
+{{- /* Lite facade overriding Hugo's built-in youtube shortcode: self-hosted
+       thumbnail + play button; real iframe (youtube-nocookie.com) only on click. */ -}}
+{{- $id := .Get "id" | default (.Get 0) -}}
+{{- $title := .Get "title" | default "YouTube video" -}}
+<div class="yt-lite" data-id="{{ $id }}">
+  <button type="button" aria-label="Play: {{ $title }}">
+    <img src="{{ printf "images/yt/%s.jpg" $id | relURL }}" alt="{{ $title }}" loading="lazy" width="800" height="450">
+    <span class="yt-play" aria-hidden="true"></span>
+  </button>
+</div>
+{{- if not (.Page.Store.Get "ytLiteJS") }}{{ .Page.Store.Set "ytLiteJS" true }}
+<script>
+document.addEventListener("click", function (e) {
+  var btn = e.target.closest(".yt-lite button");
+  if (!btn) return;
+  var wrap = btn.parentNode;
+  var iframe = document.createElement("iframe");
+  iframe.src = "https://www.youtube-nocookie.com/embed/" + wrap.dataset.id + "?autoplay=1";
+  iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen";
+  iframe.allowFullscreen = true;
+  iframe.title = btn.getAttribute("aria-label");
+  wrap.replaceChild(iframe, btn);
+});
+</script>
+{{- end }}

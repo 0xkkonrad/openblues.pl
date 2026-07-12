@@ -68,16 +68,16 @@ Here is what Anna & Jim have to say about their home:
 ## Impressions
 
 <div class="gallery">
-<img src="images/gallery/dancing-long-exposure.jpg" alt="Couples dancing blues in the palace ballroom to live piano, long exposure" loading="lazy" width="1054" height="1400">
-<img src="images/gallery/palace-golden-hour.jpg" alt="Piotrowice Nyskie Palace at golden hour, tower and red roofs in evening light" loading="lazy" width="1400" height="934">
-<img src="images/gallery/dinner-under-trees.jpg" alt="Communal dinner at a long table under the trees in the palace park" loading="lazy" width="1400" height="788">
-<img src="images/gallery/live-music.jpg" alt="Musician playing guitar and singing at Open Blues" loading="lazy" width="1054" height="1400">
-<img src="images/gallery/palace-across-park.jpg" alt="Piotrowice Nyskie Palace seen across the park" loading="lazy" width="1054" height="1400">
-<img src="images/gallery/night-party-ballroom.jpg" alt="Night dance party in the palace ballroom" loading="lazy" width="1050" height="1400">
-<img src="images/gallery/workshop-ballroom.jpg" alt="Workshop space in the ballroom" loading="lazy" width="1400" height="753">
-<img src="images/gallery/group-photo-stairwell.jpg" alt="Open Blues participants waving from the palace stairwell" loading="lazy" width="1400" height="1050">
-<img src="images/gallery/country-road.jpg" alt="Country road to Piotrowice Nyskie at dusk" loading="lazy" width="1400" height="1050">
-<img src="images/gallery/sparrow.jpg" alt="A participant holding a sparrow chick found at the farm" loading="lazy" width="1054" height="1400">
+<img src="images/gallery/dancing-long-exposure.jpg" alt="Couples dancing blues in the palace ballroom to live piano, long exposure" loading="lazy" width="678" height="900">
+<img src="images/gallery/palace-golden-hour.jpg" alt="Piotrowice Nyskie Palace at golden hour, tower and red roofs in evening light" loading="lazy" width="900" height="600">
+<img src="images/gallery/dinner-under-trees.jpg" alt="Communal dinner at a long table under the trees in the palace park" loading="lazy" width="900" height="506">
+<img src="images/gallery/live-music.jpg" alt="Musician playing guitar and singing at Open Blues" loading="lazy" width="678" height="900">
+<img src="images/gallery/palace-across-park.jpg" alt="Piotrowice Nyskie Palace seen across the park" loading="lazy" width="678" height="900">
+<img src="images/gallery/night-party-ballroom.jpg" alt="Night dance party in the palace ballroom" loading="lazy" width="675" height="900">
+<img src="images/gallery/workshop-ballroom.jpg" alt="Workshop space in the ballroom" loading="lazy" width="900" height="484">
+<img src="images/gallery/group-photo-stairwell.jpg" alt="Open Blues participants waving from the palace stairwell" loading="lazy" width="900" height="675">
+<img src="images/gallery/country-road.jpg" alt="Country road to Piotrowice Nyskie at dusk" loading="lazy" width="900" height="675">
+<img src="images/gallery/sparrow.jpg" alt="A participant holding a sparrow chick found at the farm" loading="lazy" width="678" height="900">
 </div>
 
 ## Food
