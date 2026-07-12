@@ -12,13 +12,23 @@ Blues & fusion. Muzyka na żywo. 100% DIY. Językiem festiwalu jest angielski �
 
 ## O festiwalu
 
-Open Blues to niekomercyjny festiwal w duchu „zrób to sam". Organizatorzy zajmują się wynajmem pałacu, rejestracją, grafikiem i częścią logistyki — ale muzyka, warsztaty, gotowanie i cała reszta powstają siłami uczestników.
+Open Blues to niekomercyjny festiwal w duchu „zrób to sam". Organizatorzy zajmują się wynajmem pałacu, rejestracją, grafikiem i częścią logistyki — ale muzyka, warsztaty, gotowanie i cała reszta powstają siłami uczestników. Nazwę traktujemy dosłownie: program jest otwarty na to, co przywieziesz.
 
-Dlaczego nie robimy klasycznego formatu z gwiazdorskimi nauczycielami i podziałem na poziomy? Bo takich wydarzeń są w Europie setki i świetnie zaspokajają potrzebę nauki „z góry na dół" (u nas też pojawiają się znakomici nauczyciele!). Za mało jest natomiast poziomej wymiany między społecznościami poza samym parkietem — i właśnie to chcemy zmienić.
+Dlaczego nie robimy klasycznego formatu z gwiazdorskimi nauczycielami i podziałem na poziomy? Bo takich wydarzeń są w Europie setki i świetnie zaspokajają potrzebę nauki „z góry na dół" (świetni nauczyciele i tak do nas przyjeżdżają, tyle że jako uczestnicy). Za mało jest natomiast poziomej wymiany między społecznościami poza samym parkietem — i właśnie to chcemy zmienić.
 
 Masz taneczną pasję? Przywieź ją na Open Blues, jeśli myślisz, że wzbogaci społeczność. Możesz poprowadzić krótką, 30-minutową miniaturę albo większy, 90-minutowy warsztat — samodzielnie lub z przyjaciółmi, z instrumentami albo bez, jako przestrzeń do eksperymentów albo klasyczne zajęcia.
 
+Jedno z nas mówi o tym w filmie tak:
+
+> Nie ma u nas podziału na nauczycieli i uczniów. Jesteśmy po prostu taką jedną wielką, miękką masą i każdy może coś od siebie dorzucić.
+
 {{< youtube id=NkRzrqZHu9A title="Open Blues — film festiwalowy" >}}
+
+## Czy Open Blues jest dla ciebie?
+
+Przyjedź, jeśli chcesz poprowadzić warsztat, jakiego jeszcze nie było, ugotować kolację dla całego festiwalu, zatańczyć, kiedy na scenie grają twoi znajomi, wystroić się na sobotnią uroczystą kolację i zasnąć na pałacowym strychu.
+
+Odpuść, jeśli szukasz sztywnego grafiku, zajęć z podziałem na poziomy, hotelowej wygody i kogoś, kto pozmywa za ciebie. Nic straconego! Takich festiwali jest w Europie mnóstwo i sami na nie jeździmy.
 
 ## Co mówią uczestnicy
 
@@ -59,11 +69,11 @@ Masz taneczną pasję? Przywieź ją na Open Blues, jeśli myślisz, że wzbogac
 
 ## Miejsce
 
-[Pałac w Piotrowicach Nyskich](https://goo.gl/maps/S4sGDLpj19hnzjvH6) leży na Opolszczyźnie, w południowo-zachodniej Polsce. Najbliższe lotniska to Wrocław, Ostrawa, Pardubice, Katowice i Brno. Najbliższy węzeł komunikacyjny to Nysa, 20 minut samochodem od pałacu.
-
 Początki pałacu sięgają około 1300 roku. Po dekadach powojennego niszczenia kupiło go polsko-brytyjskie małżeństwo — Anna i Jim — którzy z ogromną miłością go odnawiają i udostępniają gościom oraz wydarzeniom kulturalnym. To ich dom; dom, którym chcą się dzielić. Pałac ma surowy, niedokończony charakter, który zaprasza do eksperymentowania. Pamiętaj tylko o uszanowaniu prywatności gospodarzy!
 
 W pałacu są freski, renesansowe stropy i sgraffito, a w działającej kaplicy (to wiejski kościół) — barokowy ołtarz. W 2012 roku trwająca renowacja znalazła się na krótkiej liście nagrody Europa Nostra / Unii Europejskiej za ochronę dziedzictwa kulturowego.
+
+[Pałac w Piotrowicach Nyskich](https://goo.gl/maps/S4sGDLpj19hnzjvH6) leży na Opolszczyźnie, w południowo-zachodniej Polsce. Najbliższe lotniska to Wrocław, Ostrawa, Pardubice, Katowice i Brno. Najbliższy węzeł komunikacyjny to Nysa, 20 minut samochodem od pałacu.
 
 {{< youtube id=XOdqjNxYHM8 title="Muzyka na żywo na Open Blues" >}}
 

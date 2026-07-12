@@ -4,15 +4,25 @@ title: "Open Blues — Dance in Poland"
 
 ## About
 
-Open Blues is a non-profit do-it-yourself festival. The main organisers deal with renting the venue, registrations, scheduling and some logistics, but music, workshops, cooking and merriment is crowdsourced!
+Open Blues is a non-profit do-it-yourself festival. The main organisers deal with renting the venue, registrations, scheduling and some logistics, but music, workshops, cooking and merriment is crowdsourced! We mean the name literally: the programme is open to whatever you bring.
 
 Why don't we follow the usual workshop format, invite some star teachers and segregate dancers beginner to advanced?
 
-The simple answer is this: there are hundreds of such events in Europe anyway, and they are all very good at satisfying the need for top-down instruction (and we'll have some star teachers at Open Blues too!). Yet, there is little horizontal and inter-community exchange outside of the social dance floor. Let's fix this!
+The simple answer is this: there are hundreds of such events in Europe anyway, and they are all very good at satisfying the need for top-down instruction (great teachers still come to Open Blues, but as participants). Yet, there is little horizontal and inter-community exchange outside of the social dance floor. Let's fix this!
 
 Whatever your dance passion is, bring it to Open Blues if you think it might enrich the community. You can request a very limited time frame (e.g. 30 minutes) or a bigger workshop (e.g. 90 minutes), you can lead it on your own or with your friends, with instruments or without, you can create a space for experimentation or give a traditional class.
 
+One of us puts it like this in the film below:
+
+> We don't have a teacher-student division. We are just kind of one mushy big thing together, and that means that everyone can bring something in.
+
 {{< youtube id=NkRzrqZHu9A loading=lazy title="Open Blues — festival aftermovie" >}}
+
+## Is Open Blues for you?
+
+Come if you want to teach a workshop that has never been tried before, cook dinner for the whole festival, dance to a band your friends sit in with, dress up for Saturday's fancy dinner and fall asleep in a palace attic.
+
+Skip it if you want a fixed schedule, classes sorted by level, hotel comfort and someone else doing the dishes. No hard feelings! There are plenty of good festivals for that, and we go to them too.
 
 ## What people say
 
@@ -53,8 +63,6 @@ Whatever your dance passion is, bring it to Open Blues if you think it might enr
 
 ## Venue
 
-[Piotrowice Nyskie Palace](https://goo.gl/maps/S4sGDLpj19hnzjvH6) is in Silesia, in south-west Poland. The nearest airports are Wrocław (PL), Ostrava (CZ), Pardubice (CZ), Katowice (PL) and Brno (CZ). The nearest transportation hub is Nysa, a 20-minute drive from the Palace.
-
 Open Blues takes place at a beautiful and historically rich palace, which fell into disrepair during the Soviet rule over Poland 1945–89. It was bought by a Polish-British couple, Anna and Jim, who are now renovating it with much love. They make it available for visitors and cultural events. This unfinished palace is their home; a home they want to share. The palace has a raw feel that invites experimentation, so feel free to explore. However, remember to respect Anna's and Jim's privacy!
 
 Here is what Anna & Jim have to say about their home:
@@ -62,6 +70,8 @@ Here is what Anna & Jim have to say about their home:
 > The house dates from around 1300, but with a rebuild every 100 years or so, it's hard to say which bit was built when. Architectural historians and archaeologists love the questions this building asks, and we don't yet have all the answers. There are frescoes, glorious Renaissance painted ceilings, and sgraffito (a plaster technique). The working chapel (it's the village church, Mass twice a week) has an impressive baroque altar-piece, recently restored.
 >
 > In 2012, our ongoing restoration was short-listed for a prestigious Europa Nostra / European Union Award for the Protection of Cultural Heritage (the only Polish project so honoured). There is still work in progress, so we didn't win. Nonetheless, we are proud of getting close, and we love to talk about our Big House Project with guests.
+
+[The Palace](https://goo.gl/maps/S4sGDLpj19hnzjvH6) is in Silesia, in south-west Poland. The nearest airports are Wrocław (PL), Ostrava (CZ), Pardubice (CZ), Katowice (PL) and Brno (CZ). The nearest transportation hub is Nysa, a 20-minute drive away.
 
 {{< youtube id=XOdqjNxYHM8 loading=lazy title="Live music at Open Blues" >}}
 
