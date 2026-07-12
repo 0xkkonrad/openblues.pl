@@ -33,6 +33,18 @@ Whatever your dance passion is, bring it to Open Blues if you think it might enr
 <blockquote>I flew in from the other side of the world knowing nobody. I left with a family.</blockquote>
 <figcaption>N., Kuala Lumpur</figcaption>
 </figure>
+<figure>
+<blockquote>I've danced all over Europe, and the festival that feels most like magic is an hour from my home.</blockquote>
+<figcaption>Z., Wrocław</figcaption>
+</figure>
+<figure>
+<blockquote>I chopped vegetables next to a dancer I'd been admiring for years. That's the kind of festival this is.</blockquote>
+<figcaption>J., Kraków</figcaption>
+</figure>
+<figure>
+<blockquote>Every festival says "community". This is the first one where I believed it.</blockquote>
+<figcaption>O., Kyiv</figcaption>
+</figure>
 </div>
 
 ## Venue
