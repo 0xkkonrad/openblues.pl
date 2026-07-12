@@ -27,8 +27,8 @@ Push to `main` — GitHub Actions builds and deploys to GitHub Pages
 (`.github/workflows/hugo.yml`).
 
 Until DNS for `openblues.pl` is pointed at GitHub Pages, the site is
-previewable at <https://0xkkonrad.github.io/OpenBlues.pl/> (relative URLs make
-both hosts work).
+previewable at <http://kkonrad.com/OpenBlues.pl/> (the 0xkkonrad user site maps
+to kkonrad.com; relative URLs make both hosts work).
 
 ### DNS cut-over (when ready)
 
