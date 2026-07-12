@@ -237,3 +237,6 @@ img { max-width: 100%; height: auto; }
 }
 
 .footer a { color: var(--muted); }
+
+.footer .support-ua { color: var(--ink); margin-bottom: .5rem; }
+.footer .support-ua a { color: var(--orange-dark); }

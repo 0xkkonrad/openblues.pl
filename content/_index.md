@@ -38,8 +38,12 @@ Whatever your dance passion is, bring it to Open Blues if you think it might enr
 <figcaption>Z., Wrocław</figcaption>
 </figure>
 <figure>
-<blockquote>I chopped vegetables next to a dancer I'd been admiring for years. That's the kind of festival this is.</blockquote>
+<blockquote>I didn't know I enjoyed chopping vegetables as much as I do dancing.</blockquote>
 <figcaption>J., Kraków</figcaption>
+</figure>
+<figure>
+<blockquote>Dressing up for the fancy dinner on Saturday and wandering those palace halls — I felt like I'd slipped into another century.</blockquote>
+<figcaption>L., Vienna</figcaption>
 </figure>
 <figure>
 <blockquote>Every festival says "community". This is the first one where I believed it.</blockquote>
