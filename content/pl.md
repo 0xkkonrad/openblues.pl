@@ -94,7 +94,7 @@ W pałacu są freski, renesansowe stropy i sgraffito, a w działającej kaplicy 
 
 ## Jedzenie
 
-Gotujemy wszyscy razem. Całe jedzenie jest wegańskie lub wegetariańskie. We wsi jest mały sklep, ale bez supermarketu — najbliższy jest 15 minut samochodem.
+Gotujemy wszyscy razem. Całe jedzenie jest wegańskie lub wegetariańskie. We wsi jest mały sklep, a w sąsiednim Kałkowie market Dino — kilka minut samochodem.
 
 ## Twój koszt
 

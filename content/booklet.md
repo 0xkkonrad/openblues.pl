@@ -27,7 +27,7 @@ Please bring your own towels and toiletries.
 
 You can also see some [photos and a map of the rooms](https://drive.google.com/drive/folders/1UjaHtaAsgg4d1-sJKw_yTm31MKXZylHs).
 
-Food is included during the festival (Thursday dinner to Monday breakfast snacks). If you're extending your stay: there is a small and poorly stocked village shop a 5-minute walk from the venue.
+Food is included during the festival (Thursday dinner to Monday breakfast snacks). If you're extending your stay: there is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
 Showers and toilets can be used throughout the castle.
 

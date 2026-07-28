@@ -94,7 +94,7 @@ Here is what Anna & Jim have to say about their home:
 
 We cook all of our food together. All food is vegan or vegetarian.
 
-There is a small shop but no supermarket in the village; the nearest one is a 15-minute drive away.
+There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
 ## Your cost
 
