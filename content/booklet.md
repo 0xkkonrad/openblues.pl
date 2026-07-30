@@ -31,6 +31,8 @@ Food is included during the festival (Thursday dinner to Monday breakfast snacks
 
 Showers and toilets can be used throughout the castle.
 
+There is generally decent Wi-Fi in several rooms.
+
 ## DIY, tasks & chores
 
 This is a DIY festival. Please be as helpful as can be and actively look for things to help with. This might be helping carry speakers, rearranging the chairs or perhaps getting new toilet paper rolls.
