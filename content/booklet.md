@@ -71,8 +71,6 @@ If you can't bring Euros, use 4.50 PLN = 1 EUR as the conversion rate for PLN (s
 
 Join the festival WhatsApp group: [chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX)
 
-There is also the [Open Blues Handbook](https://docs.google.com/document/d/1YRBOp2k8IDRYcioM3OEXjw3VMCEYbBLFdx2SfT089BU/edit) — a helpful handbook mostly for the Committee and core helpers.
-
 ## Checklist
 
 - Filled out [Accommodation Form](https://docs.google.com/spreadsheets/d/1UESfyCfU6n0c33zt_BTZE1tNmqlg1YIJFWDsFVNf83Y/edit?usp=sharing) if you booked a bed or double bed
