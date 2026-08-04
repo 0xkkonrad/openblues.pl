@@ -48,8 +48,9 @@ Calculate the cash part of your contribution by choosing one item from each rele
 | No alcoholic drinks | €0 |
 | A little | €10 |
 | An average amount | €35 |
+| Lots | €45 |
 
-An optional donation can be added. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
+An optional donation of €10, €25, €50, €100, €150 or another amount can be added. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
 
 There is also a non-refundable **€50 Reservation Payment** for shared fixed costs. Transfer details are in the registration form. The remaining amount is brought in cash.
 
@@ -63,13 +64,13 @@ There is a small shop in the village, and a Dino supermarket in Kałków, the ne
 
 ## How registration works
 
-For 2026 we are keeping the current Google registration form. It requires a Google account because the Reservation Payment receipt upload is mandatory.
+Registration uses Tally, so no account or sign-in is required. Uploading a Reservation Payment receipt is still mandatory.
 
 The sequence is:
 
 1. Calculate the cash amount for your stay, Sunday night and drinks.
 2. Transfer the non-refundable **€50 Reservation Payment** using the details inside the form.
-3. Upload the receipt and submit the form. The automatic confirmation reserves your place, repeats the cash amount to bring and links to this guide.
+3. Upload the receipt and submit the form. The on-screen confirmation records your registration, repeats the cash amount to bring and links to this guide.
 4. If you chose a single or shared double bed, complete the accommodation form sent after registration.
 5. Bring the remaining amount in cash. If you cannot come, you may find someone to take your place and ask us to update the registration.
 
@@ -199,4 +200,4 @@ We all cook together as a communal activity. All communal food is vegan and is i
 
 The best option is by car, or sharing a ride with someone who drives. Join the [WhatsApp transport group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX) to find someone. The invite is public, and other members can see your phone number and any WhatsApp profile information you make visible. Alternatively, you can travel by train to Nysa and ask to be picked up by someone at the festival, or get a taxi from Nysa (around €30–50).
 
-<p class="cta-final"><a class="btn" href="https://forms.gle/Y9bHtPcDKLdtcGGj6">Register for Open Blues 2026 ✒️</a></p>
+<p class="cta-final"><a class="btn" href="https://tally.so/r/68Y72P">Register for Open Blues 2026 ✒️</a></p>

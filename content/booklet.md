@@ -50,13 +50,13 @@ The programme grows from the participants. Mark “yes” or “maybe” in regi
 
 ## Payments and registration
 
-For 2026 we are keeping the current [Open Blues registration form](https://forms.gle/Y9bHtPcDKLdtcGGj6). It requires a Google account because uploading a Reservation Payment receipt is mandatory.
+Registration uses the [Open Blues Tally form](https://tally.so/r/68Y72P), so no account or sign-in is required. Uploading a Reservation Payment receipt is still mandatory.
 
 Registration works like this:
 
 1. Calculate the cash amount for your stay, Sunday night and drinks using the tables below.
 2. Transfer the non-refundable **€50 Reservation Payment** using the details inside the form.
-3. Upload the receipt and submit the form. The automatic confirmation reserves your place, repeats the cash amount to bring and links back to this guide.
+3. Upload the receipt and submit the form. The on-screen confirmation records your registration, repeats the cash amount to bring and links back to this guide.
 4. If you chose a single or shared double bed, complete the accommodation form sent to you after registration.
 5. Bring the remaining amount in cash. If you cannot come, you may find someone to take your place and ask us to update the registration.
 
@@ -81,8 +81,9 @@ Registration works like this:
 | No alcoholic drinks | €0 |
 | A little | €10 |
 | An average amount | €35 |
+| Lots | €45 |
 
-You may add an optional donation.
+You may add an optional donation of €10, €25, €50, €100, €150 or another amount.
 
 If you can't bring euros, use **€1 = 4.50 PLN** as the conversion rate.
 
@@ -114,7 +115,7 @@ The invite is public, and other members can see your phone number and any WhatsA
 
 - Filled out the accommodation form sent after registration if you chose a single or shared double bed
 - Sheets or sleeping bag (if you chose a mattress)
-- Right amount of cash (see your registration confirmation email)
+- Right amount of cash (see the amount you saved from the registration confirmation screen)
 - Dress-to-impress outfit for Saturday
 - Earplugs
 - Towel and toiletries
