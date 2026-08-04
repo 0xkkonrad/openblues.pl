@@ -60,6 +60,7 @@ async function routePicker(page, { integrationReady = false, roster = emptyRoste
   await page.route('https://docs.google.com/spreadsheets/**', async (route) => {
     if (failRoster) return route.abort('failed');
     const requested = new URL(route.request().url());
+    assert.equal(requested.searchParams.get('tq'), 'select A,B,E');
     const tqx = requested.searchParams.get('tqx') || '';
     const callback = tqx.match(/responseHandler:([A-Za-z0-9_$]+)/)?.[1] || 'openBluesAccommodationRosterV1';
     await route.fulfill({
@@ -224,6 +225,28 @@ async function run() {
     await assertLaunchGate(invalidPage);
     await invalidContext.close();
 
+    const misleadingHeaderContext = await browser.newContext({ viewport: { width: 1024, height: 900 } });
+    const misleadingHeaderPage = await misleadingHeaderContext.newPage();
+    await openPicker(misleadingHeaderPage, {
+      integrationReady: true,
+      roster: {
+        version: '0.6',
+        status: 'ok',
+        table: {
+          cols: [
+            { id: 'A', label: 'claim_key', type: 'string' },
+            { id: 'B', label: 'spot_id', type: 'string' },
+            { id: 'I', label: 'Public roster (I agree that this public display name may appear)', type: 'boolean' }
+          ],
+          rows: [{ c: [{ v: firstClaimKey }, { v: firstSpotId }, { v: true }] }]
+        }
+      }
+    });
+    await misleadingHeaderPage.locator('[data-roster-retry]:visible').waitFor();
+    assert.match(await misleadingHeaderPage.locator('[data-live-message]').textContent(), /unexpected data/i);
+    await assertLaunchGate(misleadingHeaderPage);
+    await misleadingHeaderContext.close();
+
     // A previously successful page must fail closed while a returning tab
     // refreshes. Hold the second roster response to inspect the in-flight state.
     const staleContext = await browser.newContext({ viewport: { width: 1024, height: 900 } });
@@ -248,6 +271,7 @@ async function run() {
         await secondRequestReleased;
       }
       const requested = new URL(route.request().url());
+      assert.equal(requested.searchParams.get('tq'), 'select A,B,E');
       const callback = (requested.searchParams.get('tqx') || '').match(/responseHandler:([A-Za-z0-9_$]+)/)?.[1];
       await route.fulfill({
         status: 200,

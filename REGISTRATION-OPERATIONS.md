@@ -47,7 +47,7 @@ This model prevents two ordinary submissions for the same place. It does not pro
 1. In Tally form `rjQKYM`, open **Integrations → Google Sheets**.
 2. Connect spreadsheet `Open Blues 2026 — Public Accommodation Roster`, tab `Claims`, and export existing submissions.
 3. Confirm that the public JSONP contains separate `claim_key`, `spot_id` and `Public display name` columns. Tally currently writes the display name in column E after the descriptive `room` and `place` fields; the picker resolves fields by header, not by a fixed column letter.
-4. Keep Tally's nine-column integration schema intact. The additional columns contain only the same public room/place context, self-attestation and consent shown in the claim form; the picker ignores them and trusts only a known roster key plus `Public display name`.
+4. Keep Tally's nine-column integration schema intact. Tally restores deleted integration columns on the next submission. The browser query projects only A, B and E (`claim_key`, `spot_id`, `Public display name`), and the parser accepts those exact headers only. The source's additional columns contain only the same public room/place context, self-attestation and consent shown in the claim form.
 5. Verify the 31 existing `seed_v1_...` occupant rows remain in `Claims` and the `public_display_name` cells in `Inventory` remain empty. This migration was completed on 4 August 2026; do not let the connection overwrite it.
 6. Submit one disposable test claim, verify the sync in a signed-out JSONP request, and remove its row.
 7. Set `roster.integration_ready: true` in `data/accommodation.yaml`, deploy, and verify a real claim in a signed-out browser.

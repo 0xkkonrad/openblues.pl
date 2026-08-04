@@ -312,6 +312,10 @@
     var endpoint = new URL("https://docs.google.com/spreadsheets/d/" + encodeURIComponent(rosterSheetId) + "/gviz/tq");
     endpoint.searchParams.set("sheet", rosterSheetName);
     endpoint.searchParams.set("headers", "1");
+    // Tally's Sheets integration owns a wider nine-column row. Request only
+    // the public roster projection so browser clients receive no redundant
+    // attestation or consent columns.
+    endpoint.searchParams.set("tq", "select A,B,E");
     endpoint.searchParams.set("tqx", "out:json;responseHandler:" + callbackName);
     endpoint.searchParams.set("_", String(Date.now()));
 
@@ -377,14 +381,10 @@
       return normaliseHeader(column && (column.label || column.id));
     });
     var claimKeyIndex = findHeader(headers, function (header) {
-      return header === "claimkey" || header.endsWith("claimkey") || header.indexOf("claimkey") !== -1;
+      return header === "claimkey";
     });
     var publicNameIndex = findHeader(headers, function (header) {
-      return header === "publicname" || header === "displayname" || header === "publicdisplayname" ||
-        (header.indexOf("public") !== -1 && header.indexOf("name") !== -1) ||
-        (header.indexOf("display") !== -1 && header.indexOf("name") !== -1) ||
-        (header.indexOf("show") !== -1 && header.indexOf("name") !== -1) ||
-        (header.indexOf("roommap") !== -1 && header.indexOf("name") !== -1);
+      return header === "publicdisplayname";
     });
     var statusIndex = findHeader(headers, function (header) {
       return header === "claimstatus" || header === "rosterstatus";
