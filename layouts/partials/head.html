@@ -1,5 +1,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+{{- if eq .Kind "404" }}
+<base href="{{ site.BaseURL }}">
+{{- end }}
 {{- $isHome := .IsHome }}
 {{- $title := site.Title }}
 {{- if not $isHome }}
@@ -9,6 +12,12 @@
 {{- $desc := .Params.description | default site.Params.description }}
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $desc }}">
+{{- with .Params.robots }}
+<meta name="robots" content="{{ . }}">
+{{- end }}
+{{- with .Params.referrerPolicy }}
+<meta name="referrer" content="{{ . }}">
+{{- end }}
 <link rel="canonical" href="{{ .Permalink }}">
 <meta name="theme-color" content="#e87511">
 <meta property="og:type" content="website">
@@ -35,13 +44,22 @@
 <link rel="stylesheet" href="{{ .RelPermalink }}">
 {{- end }}
 
+{{- if .Params.accommodationPicker }}
+  {{- with resources.Get "css/accommodation.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- end }}
+  {{- with resources.Get "js/accommodation.js" | minify | fingerprint }}
+<script src="{{ .RelPermalink }}" defer></script>
+  {{- end }}
+{{- end }}
+
 {{- if $isHome }}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": ["Festival", "DanceEvent"],
   "name": "Open Blues 2026",
-  "description": {{ site.Params.description | jsonify }},
+  "description": {{ site.Params.description | jsonify | safeJS }},
   "startDate": "{{ site.Params.eventStart }}",
   "endDate": "{{ site.Params.eventEnd }}",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -52,6 +70,7 @@
     "name": "Piotrowice Nyskie Palace",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Piotrowice Nyskie 54",
       "addressLocality": "Piotrowice Nyskie",
       "addressRegion": "Opole Voivodeship",
       "addressCountry": "PL"

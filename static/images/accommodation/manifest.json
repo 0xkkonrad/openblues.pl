@@ -1,0 +1,245 @@
+{
+  "version": 1,
+  "format": "webp",
+  "quality": 82,
+  "metadata": "stripped during transcode",
+  "assignmentNotes": {
+    "opposite-right": "No unambiguous source photo was supplied. Do not reuse another room's image."
+  },
+  "images": {
+    "BALLROOM_.jpg": {
+      "slug": "ballroom",
+      "source": { "width": 2016, "height": 1134 },
+      "variants": [
+        { "src": "/images/accommodation/ballroom-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/ballroom-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/ballroom-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Barn Entrance_.jpg": {
+      "slug": "barn-entrance",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/barn-entrance-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/barn-entrance-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/barn-entrance-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Barn.jpg": {
+      "slug": "barn",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/barn-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/barn-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/barn-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Castle, Downstairs, A.jpg": {
+      "slug": "castle-downstairs-a",
+      "source": { "width": 2048, "height": 1572 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-a-480.webp", "width": 480, "height": 368 },
+        { "src": "/images/accommodation/castle-downstairs-a-960.webp", "width": 960, "height": 736 },
+        { "src": "/images/accommodation/castle-downstairs-a-1440.webp", "width": 1440, "height": 1106 }
+      ]
+    },
+    "Castle, Downstairs, A1.jpg": {
+      "slug": "castle-downstairs-a1",
+      "source": { "width": 1744, "height": 968 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-a1-480.webp", "width": 480, "height": 266 },
+        { "src": "/images/accommodation/castle-downstairs-a1-960.webp", "width": 960, "height": 532 },
+        { "src": "/images/accommodation/castle-downstairs-a1-1440.webp", "width": 1440, "height": 800 }
+      ]
+    },
+    "Castle, Downstairs, A2.jpg": {
+      "slug": "castle-downstairs-a2",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-a2-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/castle-downstairs-a2-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/castle-downstairs-a2-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Castle, Downstairs, A3(1).jpg": {
+      "slug": "castle-downstairs-a3-alt",
+      "source": { "width": 2327, "height": 1473 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-a3-alt-480.webp", "width": 480, "height": 304 },
+        { "src": "/images/accommodation/castle-downstairs-a3-alt-960.webp", "width": 960, "height": 608 },
+        { "src": "/images/accommodation/castle-downstairs-a3-alt-1440.webp", "width": 1440, "height": 912 }
+      ]
+    },
+    "Castle, Downstairs, A3.jpg": {
+      "slug": "castle-downstairs-a3",
+      "source": { "width": 1896, "height": 988 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-a3-480.webp", "width": 480, "height": 250 },
+        { "src": "/images/accommodation/castle-downstairs-a3-960.webp", "width": 960, "height": 500 },
+        { "src": "/images/accommodation/castle-downstairs-a3-1440.webp", "width": 1440, "height": 750 }
+      ]
+    },
+    "Castle, Downstairs, A_.jpg": {
+      "slug": "castle-downstairs-a-alt",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-a-alt-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/castle-downstairs-a-alt-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/castle-downstairs-a-alt-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Castle, Downstairs, B.jpg": {
+      "slug": "castle-downstairs-b",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-b-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/castle-downstairs-b-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/castle-downstairs-b-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Castle, Downstairs, B1.jpg": {
+      "slug": "castle-downstairs-b1",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-b1-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/castle-downstairs-b1-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/castle-downstairs-b1-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Castle, Downstairs, B2.jpg": {
+      "slug": "castle-downstairs-b2",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-b2-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/castle-downstairs-b2-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/castle-downstairs-b2-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Castle, Downstairs, C.jpg": {
+      "slug": "castle-downstairs-c",
+      "source": { "width": 1600, "height": 746 },
+      "variants": [
+        { "src": "/images/accommodation/castle-downstairs-c-480.webp", "width": 480, "height": 224 },
+        { "src": "/images/accommodation/castle-downstairs-c-960.webp", "width": 960, "height": 448 },
+        { "src": "/images/accommodation/castle-downstairs-c-1440.webp", "width": 1440, "height": 672 }
+      ]
+    },
+    "Castle, Upstairs, 1.jpg": {
+      "slug": "castle-upstairs-1",
+      "source": { "width": 1600, "height": 952 },
+      "variants": [
+        { "src": "/images/accommodation/castle-upstairs-1-480.webp", "width": 480, "height": 286 },
+        { "src": "/images/accommodation/castle-upstairs-1-960.webp", "width": 960, "height": 572 },
+        { "src": "/images/accommodation/castle-upstairs-1-1440.webp", "width": 1440, "height": 856 }
+      ]
+    },
+    "Castle, Upstairs, 2.jpg": {
+      "slug": "castle-upstairs-2",
+      "source": { "width": 1600, "height": 939 },
+      "variants": [
+        { "src": "/images/accommodation/castle-upstairs-2-480.webp", "width": 480, "height": 282 },
+        { "src": "/images/accommodation/castle-upstairs-2-960.webp", "width": 960, "height": 564 },
+        { "src": "/images/accommodation/castle-upstairs-2-1440.webp", "width": 1440, "height": 846 }
+      ]
+    },
+    "Castle, Upstairs, 3.jpg": {
+      "slug": "castle-upstairs-3",
+      "source": { "width": 1600, "height": 653 },
+      "variants": [
+        { "src": "/images/accommodation/castle-upstairs-3-480.webp", "width": 480, "height": 196 },
+        { "src": "/images/accommodation/castle-upstairs-3-960.webp", "width": 960, "height": 392 },
+        { "src": "/images/accommodation/castle-upstairs-3-1440.webp", "width": 1440, "height": 588 }
+      ]
+    },
+    "Castle, Upstairs, 4.jpg": {
+      "slug": "castle-upstairs-4",
+      "source": { "width": 1600, "height": 811 },
+      "variants": [
+        { "src": "/images/accommodation/castle-upstairs-4-480.webp", "width": 480, "height": 244 },
+        { "src": "/images/accommodation/castle-upstairs-4-960.webp", "width": 960, "height": 486 },
+        { "src": "/images/accommodation/castle-upstairs-4-1440.webp", "width": 1440, "height": 730 }
+      ]
+    },
+    "Castle, Upstairs, 5_.jpg": {
+      "slug": "castle-upstairs-5",
+      "source": { "width": 1512, "height": 2688 },
+      "variants": [
+        { "src": "/images/accommodation/castle-upstairs-5-480.webp", "width": 480, "height": 854 },
+        { "src": "/images/accommodation/castle-upstairs-5-960.webp", "width": 960, "height": 1706 },
+        { "src": "/images/accommodation/castle-upstairs-5-1440.webp", "width": 1440, "height": 2560 }
+      ]
+    },
+    "Castle, Upstairs, 6_.jpg": {
+      "slug": "castle-upstairs-6",
+      "source": { "width": 1512, "height": 2688 },
+      "variants": [
+        { "src": "/images/accommodation/castle-upstairs-6-480.webp", "width": 480, "height": 854 },
+        { "src": "/images/accommodation/castle-upstairs-6-960.webp", "width": 960, "height": 1706 },
+        { "src": "/images/accommodation/castle-upstairs-6-1440.webp", "width": 1440, "height": 2560 }
+      ]
+    },
+    "Castle, Upstairs_ small room.jpg": {
+      "slug": "castle-upstairs-small-room",
+      "source": { "width": 1600, "height": 872 },
+      "variants": [
+        { "src": "/images/accommodation/castle-upstairs-small-room-480.webp", "width": 480, "height": 262 },
+        { "src": "/images/accommodation/castle-upstairs-small-room-960.webp", "width": 960, "height": 524 },
+        { "src": "/images/accommodation/castle-upstairs-small-room-1440.webp", "width": 1440, "height": 784 }
+      ]
+    },
+    "Opposite, Downstairs, 1_.jpg": {
+      "slug": "opposite-downstairs-1",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/opposite-downstairs-1-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/opposite-downstairs-1-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/opposite-downstairs-1-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Opposite, Downstairs, 2_.jpg": {
+      "slug": "opposite-downstairs-2",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/opposite-downstairs-2-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/opposite-downstairs-2-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/opposite-downstairs-2-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Opposite, Upstairs, 1_(1).jpg": {
+      "slug": "opposite-upstairs-1-alt",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/opposite-upstairs-1-alt-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/opposite-upstairs-1-alt-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/opposite-upstairs-1-alt-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Opposite, Upstairs, 1_.jpg": {
+      "slug": "opposite-upstairs-1",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/opposite-upstairs-1-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/opposite-upstairs-1-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/opposite-upstairs-1-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Opposite, Upstairs, 2_.jpg": {
+      "slug": "opposite-upstairs-2",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/opposite-upstairs-2-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/opposite-upstairs-2-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/opposite-upstairs-2-1440.webp", "width": 1440, "height": 810 }
+      ]
+    },
+    "Opposite, Upstairs, 3_.jpg": {
+      "slug": "opposite-upstairs-3",
+      "source": { "width": 2688, "height": 1512 },
+      "variants": [
+        { "src": "/images/accommodation/opposite-upstairs-3-480.webp", "width": 480, "height": 270 },
+        { "src": "/images/accommodation/opposite-upstairs-3-960.webp", "width": 960, "height": 540 },
+        { "src": "/images/accommodation/opposite-upstairs-3-1440.webp", "width": 1440, "height": 810 }
+      ]
+    }
+  }
+}

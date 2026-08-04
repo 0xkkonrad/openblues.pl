@@ -40,7 +40,7 @@ Copy-paste facts for every form. Messaging policy applies everywhere: Open Blues
 - **Styles:** Blues + Fusion (where Fusion isn't offered, e.g. SwingPlanIt: Blues)
 - **Event type:** Exchange (DanceCal-family taxonomy) / Camp (SwingPlanIt taxonomy — residential, food and beds on site)
 - **Website:** https://openblues.pl
-- **Registration:** https://forms.gle/Y9bHtPcDKLdtcGGj6
+- **Registration:** https://tally.so/r/68Y72P
 - **Contact email:** openbluespoland@gmail.com
 - **Teachers field:** "Community-led — workshops are crowdsourced from attendees, plus guest teachers" (no fixed lineup; SwingPlanIt forbids teacher names inside the description, use its separate field)
 - **Facebook event:** none — several venues like linking one; decide whether to create one before the FB-group round (#11–14, 16–17)
@@ -163,10 +163,10 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 >
 > It's a non-profit, do-it-yourself festival. We handle the venue and logistics; the workshops, live music and cooking come from everyone who shows up. There's social dancing until sunrise in the half-renovated palace ballroom, and we cook and eat together. Classes are taught by whoever comes, plus a few guest teachers. If there's something you love dancing or teaching, bring it and run a session.
 >
-> Instead of a ticket, everyone shares the festival's real costs: you pay for your own bed and food plus a share of the fixed costs, on average around €120 for the whole five days.
+> Instead of a ticket, everyone shares the festival's real costs. A full Thursday–Monday stay starts at €130; a mattress place with average drinks is €205, including the €50 reservation.
 >
 > Info: https://openblues.pl
-> Register: https://forms.gle/Y9bHtPcDKLdtcGGj6
+> Register: https://tally.so/r/68Y72P
 > Questions: openbluespoland@gmail.com
 
 ### Polish — Facebook groups (#11, #12, #13)
@@ -177,15 +177,15 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 >
 > To niekomercyjny festiwal DIY. Jako organizatorzy ogarniamy pałac i logistykę, a warsztaty, muzykę na żywo i gotowanie robią sami uczestnicy. Tańczymy do wschodu słońca w na wpół wyremontowanej sali balowej, gotujemy i jemy razem, a zajęcia prowadzą uczestnicy i zaproszeni nauczyciele. Jest coś, co kochasz tańczyć albo czego chcesz uczyć? Poprowadź z tego warsztat.
 >
-> Zamiast biletu dzielimy się realnymi kosztami: płacisz za nocleg i jedzenie plus część kosztów stałych, średnio ok. 120 € za całość.
+> Zamiast biletu dzielimy się realnymi kosztami. Pełny pobyt od czwartku do poniedziałku zaczyna się od 130 €; miejsce na materacu ze średnim pakietem napojów kosztuje 205 €, wliczając rezerwację 50 €.
 >
 > Info: https://openblues.pl
-> Rejestracja: https://forms.gle/Y9bHtPcDKLdtcGGj6
+> Rejestracja: https://tally.so/r/68Y72P
 > Pytania: openbluespoland@gmail.com
 
 ### Discord — European Fusion Dancing (#15), short
 
-> Hi! We're organising **Open Blues 2026**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 27–31 Aug. Attendee-taught workshops, live music, dancing till sunrise. Cost-sharing instead of tickets, on average ~€120 for the five days. https://openblues.pl
+> Hi! We're organising **Open Blues 2026**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 27–31 Aug. Attendee-taught workshops, live music, dancing till sunrise. Cost-sharing instead of tickets; a full stay starts at €130. https://openblues.pl
 > Happy to answer questions! (Mods: calendar listing already sent to events@fusion-dancing.eu.)
 
 ## Log

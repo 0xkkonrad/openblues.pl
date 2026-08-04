@@ -10,6 +10,8 @@ Hugo site deployed on GitHub Pages.
 
 - `content/_index.md` — landing page (about, venue, food, financials, FAQ)
 - `content/booklet.md` — the Info Booklet as a web page (`/booklet/`)
+- `REGISTRATION-OPERATIONS.md` — adopted 2026 registration and bed-booking operating decision
+- `qa/` — accommodation browser, accessibility and link smoke tests (`npm install --prefix qa && npm exec --prefix qa playwright install chromium && npm test --prefix qa`)
 - `layouts/` — minimal custom theme (no external theme dependency)
 - `static/images/` — logo, favicons, palace aerial (og image)
 - `static/CNAME` — custom domain for GitHub Pages
@@ -26,15 +28,8 @@ hugo server
 Push to `main` — GitHub Actions builds and deploys to GitHub Pages
 (`.github/workflows/hugo.yml`).
 
-Until DNS for `openblues.pl` is pointed at GitHub Pages, the site is
-previewable at <http://kkonrad.com/OpenBlues.pl/> (the 0xkkonrad user site maps
-to kkonrad.com; relative URLs make both hosts work).
-
-### DNS cut-over (when ready)
-
-1. In the domain registrar: apex `A` records → `185.199.108.153`, `185.199.109.153`,
-   `185.199.110.153`, `185.199.111.153` (and optionally `www` CNAME → `0xkkonrad.github.io`).
-2. Repo Settings → Pages → custom domain `openblues.pl`, enforce HTTPS.
+The deployed site is <https://openblues.pl/>. GitHub Pages uses the custom
+domain from `static/CNAME`, and HTTPS is enforced.
 
 ## License
 

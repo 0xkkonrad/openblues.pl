@@ -1,5 +1,7 @@
 ---
 title: "Open Blues — Dance in Poland"
+aliases:
+  - /home/
 ---
 
 ## At a glance
@@ -8,7 +10,7 @@ title: "Open Blues — Dance in Poland"
 <div><strong>When</strong><span>27–31 August 2026</span></div>
 <div><strong>Where</strong><span>Piotrowice Nyskie Palace, Poland</span></div>
 <div><strong>Format</strong><span>Blues & fusion, live music and a community-led programme</span></div>
-<div><strong>Typical cost</strong><span>Around €120 for the whole festival</span></div>
+<div><strong>Example totals</strong><span>€130 tent/no alcohol · €205 mattress/average drinks, including reservation</span></div>
 <div><strong>Staying over</strong><span>Shared bed, mattress, tent or floor</span></div>
 <div><strong>Getting there</strong><span>Ride share, or train/taxi via Nysa</span></div>
 </div>
@@ -21,20 +23,24 @@ Open Blues is open to anyone who is comfortable with its DIY format. There is no
 
 Come if you want to teach a workshop that has never been tried before, cook dinner for the whole festival, dance to a band your friends sit in with, dress up for Saturday's fancy dinner and fall asleep in a palace attic.
 
-Skip it if you want a fixed schedule, classes sorted by level, hotel comfort and someone else doing the dishes. No hard feelings! There are plenty of good festivals for that, and we go to them too.
+Open Blues may not be the right fit if you prefer a fixed schedule, classes sorted by level, hotel-style accommodation or a fully staffed event. That is completely fine: there are many good festivals with that format, and we go to them too.
 
 ## Your cost
 
-Open Blues is a private, cost-shared gathering made by its participants. Nobody is paid and nobody profits. Everyone covers their own share of the real expenses: their sleeping arrangement and communal food, their drinks, and a slice of fixed costs such as the venue and bands. The average cost per participant is around €120 for the whole gathering, but your total depends on your choices.
+Open Blues is a private, cost-shared gathering made by its participants. Nobody is paid and nobody profits. Everyone covers their own share of the real expenses: their sleeping arrangement and communal food, their drinks, and a slice of fixed costs such as the venue and bands.
+
+Your total is the **€50 Reservation Payment plus the cash choices below**. Representative totals, before any optional donation, are €90 for a tent or floor on Thursday, Friday and Saturday nights, leaving Sunday and drinking no alcohol; €130 for the full Thursday-to-Monday stay in a tent or on the floor with no alcohol; €165 for that full stay with average drinks; and €205 for the full stay on a mattress with average drinks.
 
 Calculate the cash part of your contribution by choosing one item from each relevant table:
 
-| Thursday–Sunday sleeping arrangement | Your cost |
+The first table covers three nights: **Thursday, Friday and Saturday**. Add a Sunday-night option only if you are sleeping at the venue on Sunday night and leaving on Monday.
+
+| Thursday, Friday & Saturday nights | Your cost |
 |---|---:|
 | Tent or your own floor setup | €40 |
 | Mattress, without sheets | €60 |
-| Shared double bed, per person | €100 |
-| Single bed | €150 |
+| Shared sleeping place for two — bed or large mattress, per person | €100 |
+| Single sleeping place — bed or large mattress | €150 |
 
 | Sunday night | Your cost |
 |---|---:|
@@ -54,11 +60,15 @@ An optional donation of €10, €25, €50, €100, €150 or another amount ca
 
 There is also a non-refundable **€50 Reservation Payment** for shared fixed costs. Transfer details are in the registration form. The remaining amount is brought in cash.
 
+If you registered while an earlier Sunday-night price was shown, the original Sunday-night amount in your confirmation remains valid. Bring that confirmed amount; it will not be recalculated at the current price.
+
 ## Food and accommodation
 
 We cook all communal food together, and it is all vegan. Food is included from Thursday dinner through Monday breakfast.
 
-Sleeping options include a shared bed, a mattress you arrange yourself, or space for your tent or sleeping setup on the floor. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
+Sleeping options include a paid bed option, a mattress you arrange yourself, or space for your tent or sleeping setup on the floor. A paid bed option guarantees a sleeping place prepared with sheets and a pillow, but it may be a conventional bed or a large mattress. Rooms are shared; it does not guarantee a bed frame or a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
+
+If you paid for a shared or single sleeping place, complete registration first and then [see the rooms, find friends and claim your exact place](/accommodation/). Your paid category is already guaranteed; no separate approval is required.
 
 There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -71,7 +81,7 @@ The sequence is:
 1. Calculate the cash amount for your stay, Sunday night and drinks.
 2. Transfer the non-refundable **€50 Reservation Payment** using the details inside the form.
 3. Upload the receipt and submit the form. The on-screen confirmation records your registration, repeats the cash amount to bring and links to this guide.
-4. If you chose a single or shared double bed, complete the accommodation form sent after registration.
+4. If you chose a single or shared sleeping place, use the accommodation picker linked on the confirmation to see who is in each room and claim an exact place.
 5. Bring the remaining amount in cash. If you cannot come, you may find someone to take your place and ask us to update the registration.
 
 [See the complete payment, arrival and accommodation details](/booklet/#payments-and-registration).
@@ -166,7 +176,9 @@ This is a DIY gathering and all activities are community-led, so the programme t
 
 ### Can I arrive earlier or stay longer?
 
-Standard reception opens on Thursday at 18:00, followed by the welcome at 18:30, dinner at 19:00 and the party at 20:00. Monday ends with communal cleaning and departures. An additional night before or after the gathering costs €20–50 depending on your sleeping arrangement and does not include food; arrange it directly with the hosts.
+Standard reception opens on Thursday at 18:00, followed by the welcome at 18:30, dinner at 19:00 and the party at 20:00. If you expect to arrive later, email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before travelling so the organisers know when to expect you. Monday includes breakfast and communal cleaning; the programme finishes at **12:00 noon**, followed by departures.
+
+An additional night before or after the gathering costs €20–50 depending on your sleeping arrangement and does not include food. It must be agreed before arrival: email the organisers, who will coordinate the stay with the hosts.
 
 ### Can I bring pets or children?
 
@@ -198,6 +210,8 @@ We all cook together as a communal activity. All communal food is vegan and is i
 
 ### How can I get there?
 
-The best option is by car, or sharing a ride with someone who drives. Join the [WhatsApp transport group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX) to find someone. The invite is public, and other members can see your phone number and any WhatsApp profile information you make visible. Alternatively, you can travel by train to Nysa and ask to be picked up by someone at the festival, or get a taxi from Nysa (around €30–50).
+The venue is [Piotrowice Nyskie Palace, Piotrowice Nyskie 54, Poland](https://goo.gl/maps/S4sGDLpj19hnzjvH6). The easiest option is to drive or share a ride. Join the [WhatsApp transport group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX) to offer or request a place; the invite is public, and other members can see your phone number and any WhatsApp profile information you make visible.
+
+The nearest rail hub is Nysa, about a 20-minute drive from the palace. From there, arrange a participant pickup in the transport group or take a taxi (usually around €30–50). If you are driving, use the palace map pin rather than only the village name, and ask in the transport group or email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) for the current on-site parking instructions before setting off.
 
 <p class="cta-final"><a class="btn" href="https://tally.so/r/68Y72P">Register for Open Blues 2026 ✒️</a></p>

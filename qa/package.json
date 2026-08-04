@@ -1,0 +1,14 @@
+{
+  "name": "openblues-accommodation-qa",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:browser && npm run test:accessibility && npm run test:smoke",
+    "test:browser": "node accommodation-browser.js",
+    "test:accessibility": "node accommodation-accessibility.js",
+    "test:smoke": "node site-smoke.js"
+  },
+  "devDependencies": {
+    "axe-core": "4.10.3",
+    "playwright": "1.62.1"
+  }
+}
