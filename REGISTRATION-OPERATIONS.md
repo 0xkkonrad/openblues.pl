@@ -63,7 +63,8 @@ Do not depend on deleting a Tally response to release its duplicate lock.
 
 ### After the festival
 
-- Remove the public Claims data no later than **15 September 2026**, matching the consent shown in the claim form. Honor earlier removal requests by email. Participant names are deliberately absent from the Git repository, so clearing this feed removes them from the public picker without leaving them in commit history.
+- Remove every populated Claims row and all nine integration columns no later than **15 September 2026**, matching the consent shown in the claim form. Participant names are deliberately absent from the Git repository, so clearing this feed removes them from the public picker without leaving them in commit history.
+- For an earlier public-name removal request, blank only that row's `Public display name` cell in column E and retain its roster key row. Deleting a current claimant's whole row would make the picker treat the place as available again.
 - Remove the picker from navigation and delete or archive the accommodation page.
 - Tally's free plan does not provide automatic submission retention for this form, so deletion is a manual organizer task.
 
