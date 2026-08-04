@@ -8,25 +8,13 @@
     <a class="brand" href="{{ "/" | relURL }}">
       <img src="{{ "images/logo.png" | relURL }}" alt="Open Blues" width="92" height="49">
     </a>
-    {{ if eq .RelPermalink "/pl/" -}}
-    <nav aria-label="Główna">
-      <a href="#o-festiwalu">O&nbsp;festiwalu</a>
-      <a href="#miejsce">Miejsce</a>
-      <a href="#faq">FAQ</a>
-      <a href="{{ "booklet/" | relURL }}">Informator</a>
-      <a href="{{ "/" | relURL }}" lang="en">EN</a>
-      <a class="btn btn-small" href="{{ site.Params.registerURL }}">Rejestracja</a>
-    </nav>
-    {{- else -}}
     <nav aria-label="Main">
       <a href="{{ "/" | relURL }}#about">About</a>
-      <a href="{{ "/" | relURL }}#venue">Venue</a>
+      <a href="{{ "/" | relURL }}#your-cost">Cost</a>
+      <a href="{{ "booklet/" | relURL }}">Stay&nbsp;&amp;&nbsp;travel</a>
       <a href="{{ "/" | relURL }}#faq">FAQ</a>
-      <a href="{{ "booklet/" | relURL }}">Info&nbsp;Booklet</a>
-      <a href="{{ "pl/" | relURL }}" lang="pl">PL</a>
       <a class="btn btn-small" href="{{ site.Params.registerURL }}">Register</a>
     </nav>
-    {{- end }}
   </header>
 
   <main>

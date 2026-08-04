@@ -11,19 +11,9 @@
 <meta name="description" content="{{ $desc }}">
 <link rel="canonical" href="{{ .Permalink }}">
 <meta name="theme-color" content="#e87511">
-{{- if or .IsHome (eq .RelPermalink "/pl/") }}
-<link rel="alternate" hreflang="en" href="{{ "/" | absURL }}">
-<link rel="alternate" hreflang="pl" href="{{ "pl/" | absURL }}">
-<link rel="alternate" hreflang="x-default" href="{{ "/" | absURL }}">
-{{- end }}
-
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Open Blues">
-{{- $isPL := eq .RelPermalink "/pl/" }}
-<meta property="og:locale" content="{{ cond $isPL "pl_PL" "en_US" }}">
-{{- if or .IsHome $isPL }}
-<meta property="og:locale:alternate" content="{{ cond $isPL "en_US" "pl_PL" }}">
-{{- end }}
+<meta property="og:locale" content="en_US">
 <meta property="og:title" content="{{ $title }}">
 <meta property="og:description" content="{{ $desc }}">
 <meta property="og:url" content="{{ .Permalink }}">

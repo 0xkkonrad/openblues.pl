@@ -11,7 +11,7 @@ disableKinds = ["taxonomy", "term", "rss", "section"]
 enableGitInfo = false
 
 [params]
-  description = "A non-profit, 100% DIY blues & fusion dance festival at a historic Polish palace. Live music, community-run workshops, communal cooking. 27–31 August 2026."
+  description = "A private, cost-shared, 100% DIY blues & fusion dance gathering at a historic Polish palace. Live music, community-run workshops, communal cooking. 27–31 August 2026."
   ogImage = "images/og-palace.jpg"
   registerURL = "https://forms.gle/Y9bHtPcDKLdtcGGj6"
   eventStart = "2026-08-27"
