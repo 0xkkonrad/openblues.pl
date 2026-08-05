@@ -1,6 +1,6 @@
 # Open Blues 2026 registration and accommodation operations
 
-**Status:** the shared Google Sheet is the only accommodation read/write system. The website is a static room and venue guide.
+**Status:** cutover completed on 5 August 2026. The shared Google Sheet is the only accommodation read/write system, and the website is a static room and venue guide. The old accommodation Tally is closed, the ordinary registration form uses the new Sheet wording, and anonymous access has been removed from both legacy accommodation workbooks; those files remain restricted recovery records with `RETIRED — DO NOT USE` names.
 
 ## Current decision
 
