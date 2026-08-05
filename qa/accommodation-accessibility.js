@@ -22,8 +22,7 @@ async function run() {
             table: {
               cols: [
                 { id: 'A', label: 'claim_key', type: 'string' },
-                { id: 'B', label: 'spot_id', type: 'string' },
-                { id: 'E', label: 'Public display name', type: 'string' }
+                { id: 'B', label: 'spot_id', type: 'string' }
               ],
               rows: []
             }

@@ -31,19 +31,19 @@
   </section>
 
   <noscript>
-    <div class="ac-noscript">Enable JavaScript to see names and claim a place.</div>
+    <div class="ac-noscript">Enable JavaScript to check availability and claim a place.</div>
   </noscript>
 
   <section class="ac-discovery" aria-labelledby="find-heading">
     <div class="ac-discovery-heading">
       <h2 id="find-heading">Find a room</h2>
-      <p>Names shown with permission.</p>
+      <p>Participant names are hidden.</p>
     </div>
 
     <form class="ac-filters" data-filters role="search">
       <label class="ac-search">
         <span>Search</span>
-        <input type="search" inputmode="search" autocomplete="off" placeholder="Name or room" data-friend-search>
+        <input type="search" inputmode="search" autocomplete="off" placeholder="Room" data-room-search-input>
       </label>
       <label>
         <span>Building</span>
@@ -187,7 +187,6 @@
                         <li class="ac-slot ac-slot-{{ $slot.status }}" data-slot data-spot-id="{{ $slot.id }}" data-room-label="{{ $room.label }}" data-place-label="{{ $placeLabel }}" data-initial-status="{{ $slot.status }}" data-status="{{ $slot.status }}"{{ with $rosterKey }} data-roster-key="{{ . }}"{{ end }}{{ with $slot.claim_key }} data-claim-key="{{ . }}"{{ end }}>
                           <div class="ac-slot-copy">
                             {{- if gt $slotCount 1 }}<span class="ac-place-label">Place {{ add $slotIndex 1 }}</span>{{ end }}
-                            <strong data-occupant></strong>
                             <span data-slot-status>
                               {{- if eq $slot.status "occupied" -}}Claimed
                               {{- else if eq $slot.status "available" -}}Available

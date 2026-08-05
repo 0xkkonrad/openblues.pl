@@ -438,8 +438,6 @@
 .ac-slot + .ac-slot { border-top: 1px dashed #dfd5c9; }
 .ac-slot-copy { display: flex; min-width: 0; flex-direction: column; }
 .ac-place-label { color: var(--ac-muted); font-size: .62rem; font-weight: 900; text-transform: uppercase; }
-.ac-slot-copy strong { overflow-wrap: anywhere; color: var(--ac-blue); font-size: .85rem; line-height: 1.2; }
-.ac-slot-copy strong:empty { display: none; }
 .ac-slot-copy [data-slot-status] { color: var(--ac-muted); font-size: .68rem; line-height: 1.2; }
 .ac-slot-occupied { background: var(--ac-blue-bg); }
 .ac-slot-available { background: var(--ac-green-bg); }

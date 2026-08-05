@@ -30,7 +30,7 @@
   var liveMessage = picker.querySelector("[data-live-message]");
   var retryButton = picker.querySelector("[data-roster-retry]");
   var totalAvailable = picker.querySelector("[data-total-available]");
-  var friendSearch = picker.querySelector("[data-friend-search]");
+  var roomSearch = picker.querySelector("[data-room-search-input]");
   var buildingFilter = picker.querySelector("[data-building-filter]");
   var floorFilter = picker.querySelector("[data-floor-filter]");
   var availableFilter = picker.querySelector("[data-available-filter]");
@@ -133,9 +133,9 @@
   }
 
   function wireFilters() {
-    [friendSearch, buildingFilter, floorFilter, availableFilter].forEach(function (control) {
+    [roomSearch, buildingFilter, floorFilter, availableFilter].forEach(function (control) {
       if (!control) return;
-      control.addEventListener(control === friendSearch ? "input" : "change", applyFilters);
+      control.addEventListener(control === roomSearch ? "input" : "change", applyFilters);
     });
 
     if (filters) {
@@ -181,7 +181,7 @@
   }
 
   function applyFilters() {
-    var query = normalise(friendSearch ? friendSearch.value : "");
+    var query = normalise(roomSearch ? roomSearch.value : "");
     var building = buildingFilter ? buildingFilter.value : "all";
     var floor = floorFilter ? floorFilter.value : "all";
     var availableOnly = Boolean(availableFilter && availableFilter.checked);
@@ -190,14 +190,11 @@
 
     rooms.forEach(function (room) {
       var roomMatch = normalise(room.dataset.roomSearch).indexOf(query) !== -1;
-      var occupantMatch = Array.prototype.some.call(room.querySelectorAll("[data-occupant]"), function (node) {
-        return normalise(node.textContent).indexOf(query) !== -1;
-      });
-      var nameMatch = !query || roomMatch || occupantMatch;
+      var searchMatch = !query || roomMatch;
       var buildingMatch = building === "all" || room.dataset.building === building;
       var floorMatch = floor === "all" || room.dataset.floor === floor;
       var hasAvailable = Boolean(room.querySelector('[data-slot][data-status="available"]'));
-      var visible = nameMatch && buildingMatch && floorMatch && (!availableOnly || hasAvailable);
+      var visible = searchMatch && buildingMatch && floorMatch && (!availableOnly || hasAvailable);
       room.hidden = !visible;
       if (visible) shown += 1;
     });
@@ -261,16 +258,14 @@
     claimableSlots.forEach(function (slot) { disableClaim(slot, label); });
   }
 
-  function setSlotState(slot, status, displayName) {
+  function setSlotState(slot, status) {
     ["available", "occupied", "blocked", "reserved-unknown"].forEach(function (state) {
       slot.classList.remove("ac-slot-" + state);
     });
     slot.dataset.status = status;
     slot.classList.add("ac-slot-" + status);
 
-    var occupant = slot.querySelector("[data-occupant]");
     var statusText = slot.querySelector("[data-slot-status]");
-    if (occupant) occupant.textContent = status === "occupied" ? displayName : "";
     if (statusText) statusText.textContent = status === "occupied" ? "Claimed" : "Available";
 
     if (status === "available" && integrationReady) enableClaim(slot);
@@ -332,10 +327,10 @@
     var endpoint = new URL("https://docs.google.com/spreadsheets/d/" + encodeURIComponent(rosterSheetId) + "/gviz/tq");
     endpoint.searchParams.set("sheet", rosterSheetName);
     endpoint.searchParams.set("headers", "1");
-    // Tally's Sheets integration owns a wider nine-column row. Request only
-    // the public roster projection so browser clients receive no redundant
-    // attestation or consent columns.
-    endpoint.searchParams.set("tq", "select A,B,E");
+    // Privacy invariant: request occupancy keys only. Never add Tally's name
+    // column (E) to this public response; raw participant values must not reach
+    // a visitor's browser.
+    endpoint.searchParams.set("tq", "select A,B");
     endpoint.searchParams.set("tqx", "out:json;responseHandler:" + callbackName);
     endpoint.searchParams.set("_", String(Date.now()));
 
@@ -360,11 +355,11 @@
       rosterReady = integrationReady;
 
       rosterSlots.forEach(function (slot) {
-        var claim = claims.get(slot.dataset.rosterKey);
+        var claimed = claims.has(slot.dataset.rosterKey);
         if (slot.dataset.initialStatus === "occupied") {
-          setSlotState(slot, "occupied", claim ? claim.displayName : "");
+          setSlotState(slot, "occupied");
         } else {
-          setSlotState(slot, claim ? "occupied" : "available", claim ? claim.displayName : "");
+          setSlotState(slot, claimed ? "occupied" : "available");
         }
       });
 
@@ -403,28 +398,22 @@
     var claimKeyIndex = findHeader(headers, function (header) {
       return header === "claimkey";
     });
-    var publicNameIndex = findHeader(headers, function (header) {
-      return header === "publicdisplayname";
-    });
     var statusIndex = findHeader(headers, function (header) {
       return header === "claimstatus" || header === "rosterstatus";
     });
 
     if (claimKeyIndex < 0) throw new Error("No claim_key column");
-    if (publicNameIndex < 0) throw new Error("No public display name column");
 
     var claims = new Map();
     payload.table.rows.forEach(function (row, rowIndex) {
       var cells = row && Array.isArray(row.c) ? row.c : [];
       var claimKey = cellValue(cells, claimKeyIndex);
-      var displayName = cellValue(cells, publicNameIndex);
       var claimStatus = normalise(cellValue(cells, statusIndex));
-      var hasRelevantValue = Boolean(claimKey || displayName);
-      if (!hasRelevantValue) return;
+      if (!claimKey) return;
 
       // The roster key is the only authoritative binding. Claimable places use
-      // their Tally claim_key; seeded occupants use non-claimable seed keys so
-      // names stay out of Git and can be deleted from the public roster later.
+      // their Tally claim_key and seeded occupants use non-claimable seed keys.
+      // Participant-entered names are neither requested nor parsed.
       // Every descriptive hidden field is editable URL context and never binds
       // a row to a place. Unknown/rotated/QA keys cannot affect inventory.
       if (!claimKey || !slotByRosterKey.has(claimKey)) {
@@ -441,7 +430,7 @@
         console.warn("Ignoring duplicate accommodation claim row", rowIndex + 2);
         return;
       }
-      claims.set(claimKey, { displayName: displayName.slice(0, 60) });
+      claims.set(claimKey, true);
     });
     return claims;
   }

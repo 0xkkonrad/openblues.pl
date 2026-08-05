@@ -30,8 +30,31 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: qa/package-lock.json
+      - name: Install QA dependencies
+        working-directory: qa
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
       - name: Build
         run: hugo --minify --gc
+      - name: Test rendered site
+        run: |
+          python3 -m http.server 8777 --directory public >/tmp/openblues-qa-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for attempt in $(seq 1 20); do
+            curl --fail --silent http://127.0.0.1:8777/accommodation/ >/dev/null && break
+            sleep 1
+          done
+          OPENBLUES_PREVIEW_URL=http://127.0.0.1:8777/accommodation/ \
+          OPENBLUES_PREVIEW_ORIGIN=http://127.0.0.1:8777 \
+            npm test --prefix qa
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

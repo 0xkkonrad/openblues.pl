@@ -2,9 +2,9 @@ schema_version: 1
 snapshot_at_utc: "2026-08-04T19:16:49Z"
 
 # claim_key is the versioned Tally uniqueness key for an open place. Occupied
-# places use non-claimable seed_v1 roster keys so participant names can live in
-# the deletable public feed instead of Git. Other hidden fields are descriptive
-# context only; they never bind a roster row to a place.
+# places use non-claimable seed_v1 roster keys so participant data stays out of
+# Git. The public picker reads occupancy keys only and never requests participant
+# names. Other hidden fields are context only; they never bind a roster row.
 claim_form:
   tally_form_id: "rjQKYM"
   fields:
