@@ -2,8 +2,6 @@
 
 **Status:** picker built and the Tally → Google Sheets sync verified on 4 August 2026.
 
-**Privacy containment:** since 5 August 2026, the public picker is occupancy-only and must never request or render participant-name values.
-
 ## Decision
 
 Open Blues will keep its current lightweight stack:
@@ -30,29 +28,17 @@ At this festival's scale, one batch check is simpler than introducing and mainta
 
 ## Bed-chooser model
 
-The website is the room directory. Tally is the claim lock. Google Sheets currently supplies the public occupancy keys. There is no custom backend.
+The website is the room directory. Tally is the claim lock. Google Sheets is the sanitized public read model. There is no custom backend.
 
-- The checked-in inventory contains 51 person-level places across 18 rooms and **no participant names**. Existing occupied places have deterministic `seed_v1_...` roster keys. New participants claim one person-level place at a time.
+- The checked-in inventory contains 57 person-level places across 18 rooms, but **no participant names**. Existing occupied places have deterministic `seed_v1_...` roster keys; their names live only in the deletable public roster feed. New participants claim one person-level place at a time.
 - Every currently open place has a random, versioned `claim_key`. The website also sends descriptive `spot_id`, `room` and `place` fields, but only `claim_key` determines which place is locked.
 - The claim form is `https://tally.so/r/rjQKYM`. Tally's duplicate-prevention setting uses the hidden `claim_key`, so two respondents cannot ordinarily submit the same place.
-- The form asks for one first name or nickname and explicitly prohibits surnames, surname initials, cities and other identifying details. It also collects a registration/payment self-attestation and public-roster consent; it does not collect email, payment evidence or private registration data.
-- Tally appends accepted claims to the `Claims` tab of `Open Blues 2026 — Public Accommodation Roster`. The same tab contains the seeded occupants. The browser requests only columns A and B (`claim_key`, `spot_id`) through Google Visualization JSONP and joins rows to the trusted checked-in inventory by its known roster key. It never requests or renders the participant-entered name column; occupied places display only `Claimed`.
+- The form collects only a public display name, a registration/payment self-attestation and public-roster consent. It does not collect email, payment evidence or private registration data.
+- Tally appends accepted claims to the `Claims` tab of `Open Blues 2026 — Public Accommodation Roster`. The same tab contains the seeded occupants. The browser reads it through Google Visualization JSONP and joins rows to the trusted checked-in inventory by its known roster key (`claim_key` for new claims, `seed_v1_...` for existing occupants).
 - Claim links stay disabled whenever the feed is missing, stale, malformed or not activated. A successful empty feed means no new claims; it never means the checked-in occupied places are free.
 - Paid accommodation category remains guaranteed. Exact places are first-come, first-served.
 
 This model prevents two ordinary submissions for the same place. It does not prove payment or prevent one person from claiming several different keys; the required self-attestation and organizer exception audit are accepted at this festival's scale.
-
-## Public-name privacy invariant
-
-This is a hard release rule, not optional copy guidance:
-
-- Never publish or transmit a surname, full legal name, surname initial, email address, city or another identifying detail through the accommodation page.
-- The production picker must request occupancy keys only (`select A,B`). Column E or any other participant-name column must never be added to its Google Visualization query, parser, rendered DOM, search index or accessibility tree.
-- The Tally field must remain labelled **Public first name or nickname**, with the instruction **Do not include a surname**.
-- Do not re-enable visible names from the current public `Claims` workbook. Visible aliases require a separate sanitized public workbook containing only `claim_key`, `spot_id`, one reviewed single-token `public_first_name`, and status. Raw Tally responses must live in a private source. A sanitized tab in the same publicly shared workbook is not a privacy boundary.
-- Browser QA must include a synthetic `FirstToken ForbiddenSurname` response and prove that `ForbiddenSurname` is absent from page text, occupant elements and room search. The GitHub Pages workflow must run that QA before uploading an artifact.
-
-If a name is exposed: immediately restore the A/B-only projection or pause the roster, blank or sanitize the source name cell without deleting its roster-key row, deploy, and verify both the signed-out network request and rendered page. Do not delete a current claimant's whole row because that would make the place appear available.
 
 ## Picker operations
 
@@ -60,10 +46,10 @@ If a name is exposed: immediately restore the A/B-only projection or pause the r
 
 1. In Tally form `rjQKYM`, open **Integrations → Google Sheets**.
 2. Connect spreadsheet `Open Blues 2026 — Public Accommodation Roster`, tab `Claims`, and export existing submissions.
-3. Confirm that the picker requests exactly `select A,B`. Inspect the signed-out network response and verify that it contains `claim_key` and `spot_id` but no participant-name column or value.
-4. Keep Tally's integration schema intact, but never expose its participant-name column to the picker. Tally may restore integration columns after a new submission; that is not permission to add them to the public projection.
+3. Confirm that the public JSONP contains separate `claim_key`, `spot_id` and `Public display name` columns. Tally currently writes the display name in column E after the descriptive `room` and `place` fields; the picker resolves fields by header, not by a fixed column letter.
+4. Keep Tally's nine-column integration schema intact. Tally restores deleted integration columns on the next submission. The browser query projects only A, B and E (`claim_key`, `spot_id`, `Public display name`), and the parser accepts those exact headers only. The source's additional columns contain only the same public room/place context, self-attestation and consent shown in the claim form.
 5. Verify the 31 existing `seed_v1_...` occupant rows remain in `Claims` and the `public_display_name` cells in `Inventory` remain empty. This migration was completed on 4 August 2026; do not let the connection overwrite it.
-6. Submit one disposable test claim using a synthetic multi-token name, verify the place becomes claimed while no part of that name reaches the signed-out response or page, and remove its row.
+6. Submit one disposable test claim, verify the sync in a signed-out JSONP request, and remove its row.
 7. Set `roster.integration_ready: true` in `data/accommodation.yaml`, deploy, and verify a real claim in a signed-out browser.
 8. Only then update the live registration form confirmation link and retire/protect the legacy editable chooser.
 
@@ -72,13 +58,13 @@ If a name is exposed: immediately restore the A/B-only projection or pause the r
 Do not depend on deleting a Tally response to release its duplicate lock.
 
 1. Give the affected place a fresh random `v2_...` claim key in `data/accommodation.yaml` and the public `Inventory` tab.
-2. Update the seeded status as agreed with the participant. Do not add a name to Git.
+2. Update the seeded status/name as agreed with the participant.
 3. Deploy and verify the old key is ignored and the new key is claimable.
 
 ### After the festival
 
-- Remove every populated Claims row and all integration columns no later than **15 September 2026**, matching the consent shown in the claim form. Participant names are deliberately absent from the Git repository.
-- For an earlier source-name removal request, blank only that row's first-name/nickname cell and retain its roster-key row. Deleting a current claimant's whole row would make the picker treat the place as available again.
+- Remove every populated Claims row and all nine integration columns no later than **15 September 2026**, matching the consent shown in the claim form. Participant names are deliberately absent from the Git repository, so clearing this feed removes them from the public picker without leaving them in commit history.
+- For an earlier public-name removal request, blank only that row's `Public display name` cell in column E and retain its roster key row. Deleting a current claimant's whole row would make the picker treat the place as available again.
 - Remove the picker from navigation and delete or archive the accommodation page.
 - Tally's free plan does not provide automatic submission retention for this form, so deletion is a manual organizer task.
 

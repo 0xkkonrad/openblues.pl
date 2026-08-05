@@ -30,7 +30,7 @@
   var liveMessage = picker.querySelector("[data-live-message]");
   var retryButton = picker.querySelector("[data-roster-retry]");
   var totalAvailable = picker.querySelector("[data-total-available]");
-  var roomSearch = picker.querySelector("[data-room-search-input]");
+  var friendSearch = picker.querySelector("[data-friend-search]");
   var buildingFilter = picker.querySelector("[data-building-filter]");
   var floorFilter = picker.querySelector("[data-floor-filter]");
   var availableFilter = picker.querySelector("[data-available-filter]");
@@ -48,7 +48,7 @@
   allSlots.forEach(function (slot) {
     var spotId = cleanValue(slot.dataset.spotId);
     if (!spotId || slotBySpotId.has(spotId)) {
-      setConfigurationError("Room data error. Claims are paused.");
+      setConfigurationError("The room inventory contains a duplicate or incomplete place ID.");
       return;
     }
     slotBySpotId.set(spotId, slot);
@@ -57,7 +57,7 @@
   rosterSlots.forEach(function (slot) {
     var rosterKey = cleanValue(slot.dataset.rosterKey);
     if (!rosterKey || slotByRosterKey.has(rosterKey)) {
-      setConfigurationError("Room data error. Claims are paused.");
+      setConfigurationError("The room inventory contains a duplicate or incomplete roster key.");
       return;
     }
     slotByRosterKey.set(rosterKey, slot);
@@ -66,7 +66,7 @@
   claimableSlots.forEach(function (slot) {
     var claimKey = cleanValue(slot.dataset.claimKey);
     if (!claimKey || slotByClaimKey.has(claimKey) || claimKey !== cleanValue(slot.dataset.rosterKey)) {
-      setConfigurationError("Room data error. Claims are paused.");
+      setConfigurationError("The room inventory contains a duplicate or incomplete claim key.");
       return;
     }
     slotByClaimKey.set(claimKey, slot);
@@ -91,7 +91,7 @@
   });
 
   if (configurationLooksValid()) loadRoster();
-  else setConfigurationError("Claims are paused.");
+  else setConfigurationError("Live availability is not configured, so claiming is paused.");
 
   function positiveInteger(value, fallback) {
     var parsed = Number.parseInt(value, 10);
@@ -133,9 +133,9 @@
   }
 
   function wireFilters() {
-    [roomSearch, buildingFilter, floorFilter, availableFilter].forEach(function (control) {
+    [friendSearch, buildingFilter, floorFilter, availableFilter].forEach(function (control) {
       if (!control) return;
-      control.addEventListener(control === roomSearch ? "input" : "change", applyFilters);
+      control.addEventListener(control === friendSearch ? "input" : "change", applyFilters);
     });
 
     if (filters) {
@@ -147,15 +147,11 @@
 
   function wireMapLinks() {
     mapLinks.forEach(function (link) {
-      link.addEventListener("click", function (event) {
+      link.addEventListener("click", function () {
         var room = document.getElementById("room-" + link.dataset.mapRoom);
-        if (!room || room.hidden) {
-          event.preventDefault();
-          return;
-        }
-        window.setTimeout(function () {
-          room.focus({ preventScroll: true });
-        }, 0);
+        if (!room || !room.hidden || !filters) return;
+        filters.reset();
+        applyFilters();
       });
     });
   }
@@ -170,54 +166,48 @@
 
         var fallback = document.createElement("div");
         fallback.className = "ac-photo-fallback";
-        fallback.setAttribute("aria-hidden", "true");
+        fallback.setAttribute("aria-label", "No photo is available for this room");
         var icon = document.createElement("span");
         icon.setAttribute("aria-hidden", "true");
         icon.textContent = "⌂";
+        var note = document.createElement("small");
+        note.textContent = "Photo coming soon";
         fallback.appendChild(icon);
+        fallback.appendChild(note);
         container.appendChild(fallback);
       }, { once: true });
     });
   }
 
   function applyFilters() {
-    var query = normalise(roomSearch ? roomSearch.value : "");
+    var query = normalise(friendSearch ? friendSearch.value : "");
     var building = buildingFilter ? buildingFilter.value : "all";
     var floor = floorFilter ? floorFilter.value : "all";
     var availableOnly = Boolean(availableFilter && availableFilter.checked);
-    var filterActive = Boolean(query || building !== "all" || floor !== "all" || availableOnly);
     var shown = 0;
 
     rooms.forEach(function (room) {
-      var roomMatch = normalise(room.dataset.roomSearch).indexOf(query) !== -1;
-      var searchMatch = !query || roomMatch;
+      var nameMatch = !query || Array.prototype.some.call(room.querySelectorAll("[data-occupant]"), function (node) {
+        return normalise(node.textContent).indexOf(query) !== -1;
+      });
       var buildingMatch = building === "all" || room.dataset.building === building;
       var floorMatch = floor === "all" || room.dataset.floor === floor;
       var hasAvailable = Boolean(room.querySelector('[data-slot][data-status="available"]'));
-      var visible = searchMatch && buildingMatch && floorMatch && (!availableOnly || hasAvailable);
+      var visible = nameMatch && buildingMatch && floorMatch && (!availableOnly || hasAvailable);
       room.hidden = !visible;
       if (visible) shown += 1;
     });
 
     mapLinks.forEach(function (link) {
       var linkedRoom = document.getElementById("room-" + link.dataset.mapRoom);
-      var matches = Boolean(linkedRoom && !linkedRoom.hidden);
-      link.hidden = filterActive && !matches;
-      link.classList.toggle("ac-map-match", filterActive && matches);
-    });
-
-    Array.prototype.slice.call(picker.querySelectorAll(".ac-map-floor")).forEach(function (mapFloor) {
-      mapFloor.hidden = filterActive && !mapFloor.querySelector("[data-map-room]:not([hidden])");
-    });
-    Array.prototype.slice.call(picker.querySelectorAll(".ac-map-building")).forEach(function (mapBuilding) {
-      mapBuilding.hidden = filterActive && !mapBuilding.querySelector("[data-map-room]:not([hidden])");
+      link.classList.toggle("ac-map-match", Boolean(linkedRoom && !linkedRoom.hidden && (query || building !== "all" || floor !== "all" || availableOnly)));
     });
 
     if (resultCount) {
       if (shown === rooms.length && !query && building === "all" && floor === "all" && !availableOnly) {
-        resultCount.textContent = rooms.length + " rooms";
+        resultCount.textContent = "Showing all " + rooms.length + " rooms";
       } else {
-        resultCount.textContent = shown + " of " + rooms.length + " rooms";
+        resultCount.textContent = "Showing " + shown + " of " + rooms.length + (shown === 1 ? " room" : " rooms");
       }
     }
     if (noResults) noResults.hidden = shown !== 0;
@@ -251,22 +241,24 @@
     action.rel = "noopener noreferrer";
     action.setAttribute("aria-disabled", "false");
     action.removeAttribute("tabindex");
-    action.textContent = "Claim";
+    action.textContent = "Claim this place";
   }
 
   function disableAllClaims(label) {
     claimableSlots.forEach(function (slot) { disableClaim(slot, label); });
   }
 
-  function setSlotState(slot, status) {
+  function setSlotState(slot, status, displayName) {
     ["available", "occupied", "blocked", "reserved-unknown"].forEach(function (state) {
       slot.classList.remove("ac-slot-" + state);
     });
     slot.dataset.status = status;
     slot.classList.add("ac-slot-" + status);
 
+    var occupant = slot.querySelector("[data-occupant]");
     var statusText = slot.querySelector("[data-slot-status]");
-    if (statusText) statusText.textContent = status === "occupied" ? "Claimed" : "Available";
+    if (occupant) occupant.textContent = status === "occupied" ? (displayName || "Claimed") : "";
+    if (statusText) statusText.textContent = status === "occupied" ? "Claimed in live roster" : "Available now";
 
     if (status === "available" && integrationReady) enableClaim(slot);
     else if (status === "available") disableClaim(slot, "Opening soon");
@@ -277,24 +269,17 @@
     var openTotal = 0;
     rooms.forEach(function (room) {
       var available = room.querySelectorAll('[data-slot][data-status="available"]').length;
-      var held = room.dataset.roomStatus === "held";
       var roomCount = room.querySelector("[data-room-availability]");
       var mapLink = picker.querySelector('[data-map-room="' + room.dataset.roomId + '"]');
       var mapCount = mapLink ? mapLink.querySelector("[data-map-availability]") : null;
       openTotal += available;
 
       if (roomCount) {
-        roomCount.textContent = held ? "Held" : (available > 0 ? available + " available" : "Full");
-        roomCount.classList.toggle("ac-room-count-full", !held && available === 0);
-        roomCount.classList.toggle("ac-room-count-held", held);
+        roomCount.textContent = available > 0 ? available + " open" : "Full";
+        roomCount.classList.toggle("ac-room-count-full", available === 0);
       }
-      if (mapCount) mapCount.textContent = held ? "Held" : (available > 0 ? available + " available" : "Full");
-      if (mapLink) {
-        mapLink.classList.toggle("ac-map-full", !held && available === 0);
-        mapLink.classList.toggle("ac-map-held", held);
-        mapLink.setAttribute("aria-label", room.dataset.roomSearch + " — " +
-          (held ? "held" : (available > 0 ? available + " available" : "full")));
-      }
+      if (mapCount) mapCount.textContent = available > 0 ? available + " open" : "full";
+      if (mapLink) mapLink.classList.toggle("ac-map-full", available === 0);
     });
     if (totalAvailable) totalAvailable.textContent = String(openTotal);
   }
@@ -310,7 +295,7 @@
   function loadRoster() {
     if (requestInFlight || document.hidden) return;
     if (!configurationLooksValid()) {
-      setConfigurationError("Claims are paused.");
+      setConfigurationError("Live availability is not configured, so claiming is paused.");
       return;
     }
 
@@ -321,16 +306,16 @@
     // claim while refreshing so a backgrounded tab cannot expose stale links.
     rosterReady = false;
     disableAllClaims("Checking…");
-    setLiveState("checking", integrationReady ? "Checking availability…" : "Claims opening soon…", false);
+    setLiveState("checking", integrationReady ? "Checking the latest claims…" : "Checking the room list… Claiming opens after the roster connection is verified.", false);
 
     window[callbackName] = receiveRoster;
     var endpoint = new URL("https://docs.google.com/spreadsheets/d/" + encodeURIComponent(rosterSheetId) + "/gviz/tq");
     endpoint.searchParams.set("sheet", rosterSheetName);
     endpoint.searchParams.set("headers", "1");
-    // Privacy invariant: request occupancy keys only. Never add Tally's name
-    // column (E) to this public response; raw participant values must not reach
-    // a visitor's browser.
-    endpoint.searchParams.set("tq", "select A,B");
+    // Tally's Sheets integration owns a wider nine-column row. Request only
+    // the public roster projection so browser clients receive no redundant
+    // attestation or consent columns.
+    endpoint.searchParams.set("tq", "select A,B,E");
     endpoint.searchParams.set("tqx", "out:json;responseHandler:" + callbackName);
     endpoint.searchParams.set("_", String(Date.now()));
 
@@ -339,12 +324,12 @@
     requestScript.referrerPolicy = "no-referrer";
     requestScript.src = endpoint.href;
     requestScript.onerror = function () {
-      failRoster("Can’t check availability. Claims are paused.");
+      failRoster("We couldn’t verify live availability, so claiming is paused. Try again.");
     };
     document.head.appendChild(requestScript);
 
     requestTimer = window.setTimeout(function () {
-      failRoster("Can’t check availability. Claims are paused.");
+      failRoster("The live check took too long, so claiming is paused. Try again.");
     }, requestTimeout);
   }
 
@@ -355,11 +340,11 @@
       rosterReady = integrationReady;
 
       rosterSlots.forEach(function (slot) {
-        var claimed = claims.has(slot.dataset.rosterKey);
+        var claim = claims.get(slot.dataset.rosterKey);
         if (slot.dataset.initialStatus === "occupied") {
-          setSlotState(slot, "occupied");
+          setSlotState(slot, "occupied", claim ? claim.displayName : "Claimed");
         } else {
-          setSlotState(slot, claimed ? "occupied" : "available");
+          setSlotState(slot, claim ? "occupied" : "available", claim ? claim.displayName : "");
         }
       });
 
@@ -369,16 +354,16 @@
       var available = picker.querySelectorAll('[data-slot][data-claim-key][data-status="available"]').length;
       var checkedTime = new Date(lastSuccessfulCheck).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       if (integrationReady) {
-        setLiveState("ready", available + " available · checked " + checkedTime, false);
+        setLiveState("ready", "Checked at " + checkedTime + " · " + available + (available === 1 ? " place is" : " places are") + " available now.", false);
       } else {
         disableAllClaims("Opening soon");
-        setLiveState("checking", "Availability checked · claims opening soon", false);
+        setLiveState("checking", "Room list checked at " + checkedTime + ". Claiming opens after the roster connection is verified.", false);
       }
       finishRequest();
       schedulePoll();
     } catch (error) {
       console.warn("Accommodation roster rejected:", error.message);
-      failRoster("Can’t check availability. Claims are paused.");
+      failRoster("The live roster returned unexpected data, so claiming is paused. Try again later.");
     }
   }
 
@@ -398,22 +383,28 @@
     var claimKeyIndex = findHeader(headers, function (header) {
       return header === "claimkey";
     });
+    var publicNameIndex = findHeader(headers, function (header) {
+      return header === "publicdisplayname";
+    });
     var statusIndex = findHeader(headers, function (header) {
       return header === "claimstatus" || header === "rosterstatus";
     });
 
     if (claimKeyIndex < 0) throw new Error("No claim_key column");
+    if (publicNameIndex < 0) throw new Error("No public display name column");
 
     var claims = new Map();
     payload.table.rows.forEach(function (row, rowIndex) {
       var cells = row && Array.isArray(row.c) ? row.c : [];
       var claimKey = cellValue(cells, claimKeyIndex);
+      var displayName = cellValue(cells, publicNameIndex);
       var claimStatus = normalise(cellValue(cells, statusIndex));
-      if (!claimKey) return;
+      var hasRelevantValue = Boolean(claimKey || displayName);
+      if (!hasRelevantValue) return;
 
       // The roster key is the only authoritative binding. Claimable places use
-      // their Tally claim_key and seeded occupants use non-claimable seed keys.
-      // Participant-entered names are neither requested nor parsed.
+      // their Tally claim_key; seeded occupants use non-claimable seed keys so
+      // names stay out of Git and can be deleted from the public roster later.
       // Every descriptive hidden field is editable URL context and never binds
       // a row to a place. Unknown/rotated/QA keys cannot affect inventory.
       if (!claimKey || !slotByRosterKey.has(claimKey)) {
@@ -430,7 +421,7 @@
         console.warn("Ignoring duplicate accommodation claim row", rowIndex + 2);
         return;
       }
-      claims.set(claimKey, true);
+      claims.set(claimKey, { displayName: displayName.slice(0, 60) });
     });
     return claims;
   }

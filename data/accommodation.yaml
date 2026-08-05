@@ -1,10 +1,10 @@
 schema_version: 1
-snapshot_at_utc: "2026-08-04T19:16:49Z"
+snapshot_at_utc: "2026-08-04T09:22:00Z"
 
 # claim_key is the versioned Tally uniqueness key for an open place. Occupied
-# places use non-claimable seed_v1 roster keys so participant data stays out of
-# Git. The public picker reads occupancy keys only and never requests participant
-# names. Other hidden fields are context only; they never bind a roster row.
+# places use non-claimable seed_v1 roster keys so participant names can live in
+# the deletable public feed instead of Git. Other hidden fields are descriptive
+# context only; they never bind a roster row to a place.
 claim_form:
   tally_form_id: "rjQKYM"
   fields:
@@ -152,6 +152,12 @@ rooms:
           - id: castle-downstairs-a1-spot-d
             status: available
             claim_key: v1_3a3f049d220e2b11b1278715e28239cf
+      - label: Single bed 2
+        kind: single-bed
+        slots:
+          - id: castle-downstairs-a1-spot-e
+            status: available
+            claim_key: v1_22446f48523eb40b97dcb977328c0461
 
   - id: castle-downstairs-a2
     building: castle
@@ -177,6 +183,12 @@ rooms:
           - id: castle-downstairs-a2-spot-d
             status: occupied
             roster_key: seed_v1_284f6c68223759941bfddc083fb9cbf1
+      - label: Single bed 2
+        kind: single-bed
+        slots:
+          - id: castle-downstairs-a2-spot-e
+            status: available
+            claim_key: v1_e37ffc09c1f5e031be3c613f026341fe
 
   - id: castle-downstairs-a3
     building: castle
@@ -226,6 +238,19 @@ rooms:
             roster_key: seed_v1_c005ed454898ef303be887de3771d343
           - id: castle-downstairs-b1-spot-c
             status: blocked
+      - label: Mattress 1
+        kind: mattress
+        slots:
+          - id: castle-downstairs-b1-spot-d
+            status: available
+            claim_key: v1_00ee8170ac0287d29745d6dac9f2ba46
+      - label: Mattress 2
+        kind: mattress
+        slots:
+          - id: castle-downstairs-b1-spot-e
+            status: available
+            claim_key: v1_837761b46fc9e7d23258bb74fa25aeb9
+
   - id: castle-downstairs-b2
     building: castle
     building_label: Castle
@@ -234,8 +259,6 @@ rooms:
     short_label: B2
     label: Castle · Downstairs · B2
     photo_base: castle-downstairs-b2
-    availability_state: held
-    availability_note: Both places on the double bed are on hold while we confirm an earlier reservation.
     units:
       - label: Double bed
         kind: double-bed
@@ -431,6 +454,13 @@ rooms:
           - id: castle-upstairs-6-spot-c
             status: occupied
             roster_key: seed_v1_b5ca16d85676d945f72f7069852fbed8
+      - label: Single bed
+        kind: single-bed
+        slots:
+          - id: castle-upstairs-6-spot-d
+            status: available
+            claim_key: v1_91aa2d3c242cc1b0d1d6397d637b4b49
+
   - id: opposite-right-upstairs-new
     building: opposite-right
     building_label: Opposite right
@@ -448,10 +478,16 @@ rooms:
       - label: Single bed 2
         kind: single-bed
         slots:
+          - id: opposite-right-upstairs-new-spot-c
+            status: available
+            claim_key: v1_ccccda49584dd789978d272949f2dbd4
+      - label: Single bed 3
+        kind: single-bed
+        slots:
           - id: opposite-right-upstairs-new-spot-d
             status: available
             claim_key: v1_4f1e87e57a4dd37f4f232a4fcc1a500c
-      - label: Single bed 3
+      - label: Single bed 4
         kind: single-bed
         slots:
           - id: opposite-right-upstairs-new-spot-e

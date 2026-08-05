@@ -1,6 +1,14 @@
 {{ define "main" }}
 {{- $inventory := hugo.Data.accommodation -}}
 {{- $rooms := $inventory.rooms -}}
+{{- $availableTotal := 0 -}}
+{{- range $rooms -}}
+  {{- range .units -}}
+    {{- range .slots -}}
+      {{- if eq .status "available" }}{{ $availableTotal = add $availableTotal 1 }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 
 <article
   class="ac-picker"
@@ -19,31 +27,60 @@
   data-roster-poll="{{ $inventory.roster.poll_interval_ms }}">
 
   <header class="ac-hero">
-    <p class="ac-eyebrow">Open Blues 2026</p>
-    <h1>Choose your place</h1>
-    <p class="ac-intro">Registered and paid? Pick a place below. Sharing a double bed or sofa? Each person claims one place.</p>
+    <div class="ac-hero-copy">
+      <p class="ac-eyebrow">Open Blues 2026 · paid bed options</p>
+      <h1>Find your people.<br>Pick your place.</h1>
+      <p class="ac-intro">See who is in each room, browse the sleeping places and claim one without editing a shared spreadsheet.</p>
+    </div>
+    <div class="ac-hero-summary" aria-label="Accommodation snapshot">
+      <strong data-total-available>{{ $availableTotal }}</strong>
+      <span>places in the latest snapshot</span>
+      <small>Live claims are checked before the claim links unlock.</small>
+    </div>
   </header>
 
-  <section class="ac-live ac-live-checking" data-live-panel aria-label="Live availability">
+  <section class="ac-live ac-live-checking" data-live-panel aria-labelledby="live-status-heading">
     <span class="ac-live-dot" aria-hidden="true"></span>
-    <p data-live-message role="status" aria-live="polite">{{ if $inventory.roster.integration_ready }}Checking availability…{{ else }}Claims opening soon…{{ end }}</p>
+    <div>
+      <h2 id="live-status-heading">Live availability</h2>
+      <p data-live-message role="status" aria-live="polite">{{ if $inventory.roster.integration_ready }}Checking the latest claims…{{ else }}Checking the room list… Claiming opens after the roster connection is verified.{{ end }}</p>
+    </div>
     <button class="ac-retry" type="button" data-roster-retry hidden>Retry</button>
   </section>
 
   <noscript>
-    <div class="ac-noscript">Enable JavaScript to check availability and claim a place.</div>
+    <div class="ac-noscript">
+      <strong>Live claiming needs JavaScript.</strong>
+      The room structure is shown below, but public names and claim links only load after a fresh conflict check. Enable JavaScript or email <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a>.
+    </div>
   </noscript>
+
+  <section class="ac-steps" aria-labelledby="how-heading">
+    <div>
+      <p class="ac-section-kicker">Before you choose</p>
+      <h2 id="how-heading">Three small steps</h2>
+    </div>
+    <ol>
+      <li><span>1</span><p><strong>Register first.</strong> This picker is for people who selected and paid for a single or shared sleeping place.</p></li>
+      <li><span>2</span><p><strong>Find a room.</strong> Search a public display name or browse by building and floor.</p></li>
+      <li><span>3</span><p><strong>Claim one place.</strong> Tally gives the final confirmation. A click here does not hold it.</p></li>
+    </ol>
+    <p class="ac-shared-note"><strong>Coming with someone?</strong> Places on a double bed or sofa are claimed separately, one registered person at a time. Choose two available places on the same piece of furniture if you want to share it.</p>
+  </section>
 
   <section class="ac-discovery" aria-labelledby="find-heading">
     <div class="ac-discovery-heading">
-      <h2 id="find-heading">Find a room</h2>
-      <p>Participant names are hidden.</p>
+      <div>
+        <p class="ac-section-kicker">Explore the rooms</p>
+        <h2 id="find-heading">Who’s sleeping where?</h2>
+      </div>
+      <p>Only the display names people agreed to publish are shown here.</p>
     </div>
 
     <form class="ac-filters" data-filters role="search">
       <label class="ac-search">
-        <span>Search</span>
-        <input type="search" inputmode="search" autocomplete="off" placeholder="Room" data-room-search-input>
+        <span>Find a friend</span>
+        <input type="search" inputmode="search" autocomplete="off" placeholder="Type a name…" data-friend-search>
       </label>
       <label>
         <span>Building</span>
@@ -64,32 +101,32 @@
       </label>
       <label class="ac-checkbox">
         <input type="checkbox" data-available-filter>
-        <span>Available only</span>
+        <span>Rooms with an available place</span>
       </label>
-      <button type="reset" class="ac-clear" data-filter-reset>Reset</button>
-      <p class="ac-results" data-result-count role="status" aria-live="polite">{{ len $rooms }} rooms</p>
+      <button type="reset" class="ac-clear" data-filter-reset>Clear filters</button>
+      <p class="ac-results" data-result-count role="status" aria-live="polite">Showing all {{ len $rooms }} rooms</p>
     </form>
   </section>
 
   <nav class="ac-map" aria-labelledby="overview-heading">
-    <h2 id="overview-heading">Jump to a room</h2>
+    <div class="ac-map-heading">
+      <div>
+        <p class="ac-section-kicker">Room overview</p>
+        <h2 id="overview-heading">The sleeping buildings</h2>
+      </div>
+      <p>This is a simple orientation diagram, not a floor plan. Select a room to jump to its details.</p>
+    </div>
     <div class="ac-map-buildings">
       {{- range $building := slice
-        (dict "id" "opposite" "label" "Opposite building")
         (dict "id" "castle" "label" "Castle")
+        (dict "id" "opposite" "label" "Opposite building")
         (dict "id" "opposite-right" "label" "Opposite right") -}}
         {{- $buildingRooms := where $rooms "building" $building.id -}}
         <section class="ac-map-building ac-map-building-{{ $building.id }}" aria-labelledby="map-{{ $building.id }}">
           <h3 id="map-{{ $building.id }}">{{ $building.label }}</h3>
-          {{- $floors := slice
+          {{- range $floor := slice
             (dict "id" "upstairs" "label" "Upstairs")
             (dict "id" "downstairs" "label" "Downstairs") -}}
-          {{- if eq $building.id "castle" -}}
-            {{- $floors = slice
-              (dict "id" "downstairs" "label" "Downstairs")
-              (dict "id" "upstairs" "label" "Upstairs") -}}
-          {{- end -}}
-          {{- range $floor := $floors -}}
             {{- $floorRooms := where $buildingRooms "floor" $floor.id -}}
             {{- if $floorRooms -}}
               <div class="ac-map-floor">
@@ -97,15 +134,10 @@
                 <div class="ac-map-room-row">
                   {{- range $floorRooms -}}
                     {{- $roomAvailable := 0 -}}
-                    {{- $roomHeld := eq (default "" .availability_state) "held" -}}
                     {{- range .units }}{{ range .slots }}{{ if eq .status "available" }}{{ $roomAvailable = add $roomAvailable 1 }}{{ end }}{{ end }}{{ end -}}
-                    <a
-                      href="#room-{{ .id }}"
-                      data-map-room="{{ .id }}"
-                      class="{{ if $roomHeld }}ac-map-held{{ else if eq $roomAvailable 0 }}ac-map-full{{ end }}"
-                      aria-label="{{ .label }} — {{ if $roomHeld }}held{{ else if gt $roomAvailable 0 }}{{ $roomAvailable }} available{{ else }}full{{ end }}">
+                    <a href="#room-{{ .id }}" data-map-room="{{ .id }}">
                       <strong>{{ .short_label }}</strong>
-                      <span data-map-availability>{{ if $roomHeld }}Held{{ else if gt $roomAvailable 0 }}{{ $roomAvailable }} available{{ else }}Full{{ end }}</span>
+                      <span data-map-availability>{{ if gt $roomAvailable 0 }}{{ $roomAvailable }} open{{ else }}full{{ end }}</span>
                     </a>
                   {{- end -}}
                 </div>
@@ -117,90 +149,81 @@
     </div>
   </nav>
 
-  <section class="ac-rooms" aria-label="Room details">
+  <section class="ac-rooms" aria-labelledby="rooms-heading">
+    <div class="ac-rooms-heading">
+      <p class="ac-section-kicker">Rooms and places</p>
+      <h2 id="rooms-heading">Choose where you’ll wake up</h2>
+    </div>
+
     <div class="ac-no-results" data-no-results hidden>
-      <p><strong>No rooms found.</strong> Reset the filters.</p>
+      <strong>No matching rooms.</strong>
+      <p>Try another name or clear one of the filters.</p>
     </div>
 
     <div class="ac-room-list" data-room-list>
       {{- range $rooms -}}
         {{- $room := . -}}
         {{- $roomAvailable := 0 -}}
-        {{- $roomHeld := eq (default "" .availability_state) "held" -}}
         {{- range .units }}{{ range .slots }}{{ if eq .status "available" }}{{ $roomAvailable = add $roomAvailable 1 }}{{ end }}{{ end }}{{ end -}}
-        <article
-          class="ac-room{{ if $roomHeld }} ac-room-held{{ end }}"
-          id="room-{{ .id }}"
-          data-room
-          data-room-id="{{ .id }}"
-          data-room-status="{{ default "standard" .availability_state }}"
-          data-room-search="{{ .label }}"
-          data-building="{{ .building }}"
-          data-floor="{{ .floor }}"
-          tabindex="-1">
-          <header class="ac-room-header">
-            <div class="ac-room-photo">
-              {{- $photoExists := false -}}
-              {{- with .photo_base -}}
-                {{- $photoExists = fileExists (printf "static/images/accommodation/%s-960.webp" .) -}}
-              {{- end -}}
-              {{- if $photoExists -}}
-                <picture data-room-photo>
-                  <source media="(max-width: 560px)" srcset="{{ printf "images/accommodation/%s-480.webp" .photo_base | relURL }}">
-                  <source srcset="{{ printf "images/accommodation/%s-480.webp" .photo_base | relURL }} 480w, {{ printf "images/accommodation/%s-960.webp" .photo_base | relURL }} 960w" sizes="112px">
-                  <img src="{{ printf "images/accommodation/%s-480.webp" .photo_base | relURL }}" alt="" loading="lazy" decoding="async">
-                </picture>
-              {{- else -}}
-                <div class="ac-photo-fallback" aria-hidden="true"><span>⌂</span></div>
-              {{- end -}}
-            </div>
-
-            <div class="ac-room-title">
-              <p>{{ .building_label }} · {{ .floor_label }}</p>
-              <h3>{{ .short_label }}</h3>
-            </div>
-            <span class="ac-room-count{{ if $roomHeld }} ac-room-count-held{{ else if eq $roomAvailable 0 }} ac-room-count-full{{ end }}" data-room-availability>{{ if $roomHeld }}Held{{ else if gt $roomAvailable 0 }}{{ $roomAvailable }} available{{ else }}Full{{ end }}</span>
-          </header>
+        <article class="ac-room" id="room-{{ .id }}" data-room data-room-id="{{ .id }}" data-building="{{ .building }}" data-floor="{{ .floor }}">
+          <div class="ac-room-photo">
+            {{- $photoExists := false -}}
+            {{- with .photo_base -}}
+              {{- $photoExists = fileExists (printf "static/images/accommodation/%s-960.webp" .) -}}
+            {{- end -}}
+            {{- if $photoExists -}}
+              <picture data-room-photo>
+                <source media="(max-width: 560px)" srcset="{{ printf "images/accommodation/%s-480.webp" .photo_base | relURL }}">
+                <source srcset="{{ printf "images/accommodation/%s-960.webp" .photo_base | relURL }} 960w, {{ printf "images/accommodation/%s-1440.webp" .photo_base | relURL }} 1440w" sizes="(max-width: 760px) 100vw, 40vw">
+                <img src="{{ printf "images/accommodation/%s-960.webp" .photo_base | relURL }}" alt="Sleeping space in {{ .label }}" loading="lazy" decoding="async">
+              </picture>
+            {{- else -}}
+              <div class="ac-photo-fallback" aria-label="No photo is available for this room">
+                <span aria-hidden="true">⌂</span>
+                <small>Photo coming soon</small>
+              </div>
+            {{- end -}}
+          </div>
 
           <div class="ac-room-body">
-            {{- with .availability_note }}
-              <p class="ac-room-note" data-room-note>{{ . }}</p>
-            {{- end }}
+            <header class="ac-room-header">
+              <div>
+                <p>{{ .building_label }} · {{ .floor_label }}</p>
+                <h3>{{ .short_label }}</h3>
+              </div>
+              <span class="ac-room-count{{ if eq $roomAvailable 0 }} ac-room-count-full{{ end }}" data-room-availability>{{ if gt $roomAvailable 0 }}{{ $roomAvailable }} open{{ else }}Full{{ end }}</span>
+            </header>
 
             <div class="ac-units">
               {{- range .units -}}
                 {{- $unit := . -}}
                 {{- $slotCount := len .slots -}}
-                <section class="ac-unit" data-unit data-unit-kind="{{ .kind }}"{{ if $roomHeld }} hidden{{ end }}>
+                <section class="ac-unit" data-unit data-unit-kind="{{ .kind }}">
                   <h4>{{ .label }}</h4>
-                  {{- if $roomHeld -}}
-                    <ol>
-                      {{- range $slotIndex, $slot := .slots -}}
-                        <li data-slot data-spot-id="{{ $slot.id }}" data-room-label="{{ $room.label }}" data-place-label="{{ $unit.label }} · Place {{ add $slotIndex 1 }}" data-initial-status="{{ $slot.status }}" data-status="{{ $slot.status }}"></li>
-                      {{- end -}}
-                    </ol>
-                  {{- else -}}
-                    <ol>
-                      {{- range $slotIndex, $slot := .slots -}}
-                        {{- $placeLabel := cond (gt $slotCount 1) (printf "%s · Place %d" $unit.label (add $slotIndex 1)) $unit.label -}}
-                        {{- $rosterKey := default $slot.claim_key $slot.roster_key -}}
-                        <li class="ac-slot ac-slot-{{ $slot.status }}" data-slot data-spot-id="{{ $slot.id }}" data-room-label="{{ $room.label }}" data-place-label="{{ $placeLabel }}" data-initial-status="{{ $slot.status }}" data-status="{{ $slot.status }}"{{ with $rosterKey }} data-roster-key="{{ . }}"{{ end }}{{ with $slot.claim_key }} data-claim-key="{{ . }}"{{ end }}>
-                          <div class="ac-slot-copy">
-                            {{- if gt $slotCount 1 }}<span class="ac-place-label">Place {{ add $slotIndex 1 }}</span>{{ end }}
-                            <span data-slot-status>
-                              {{- if eq $slot.status "occupied" -}}Claimed
-                              {{- else if eq $slot.status "available" -}}Available
-                              {{- else -}}Unavailable
-                              {{- end -}}
-                            </span>
-                          </div>
-                          {{- if eq $slot.status "available" -}}
-                            <a class="ac-claim" data-claim-action aria-label="Claim {{ $placeLabel }} in {{ $room.label }}" aria-disabled="true" tabindex="-1">Checking…</a>
-                          {{- end -}}
-                        </li>
-                      {{- end -}}
-                    </ol>
-                  {{- end -}}
+                  <ol>
+                    {{- range $slotIndex, $slot := .slots -}}
+                      {{- $placeLabel := cond (gt $slotCount 1) (printf "%s · Place %d" $unit.label (add $slotIndex 1)) $unit.label -}}
+                      {{- $rosterKey := default $slot.claim_key $slot.roster_key -}}
+                      <li class="ac-slot ac-slot-{{ $slot.status }}" data-slot data-spot-id="{{ $slot.id }}" data-room-label="{{ $room.label }}" data-place-label="{{ $placeLabel }}" data-initial-status="{{ $slot.status }}" data-status="{{ $slot.status }}"{{ with $rosterKey }} data-roster-key="{{ . }}"{{ end }}{{ with $slot.claim_key }} data-claim-key="{{ . }}"{{ end }}>
+                        <div class="ac-slot-copy">
+                          <span class="ac-place-label">{{ if gt $slotCount 1 }}Place {{ add $slotIndex 1 }}{{ else }}One place{{ end }}</span>
+                          <strong data-occupant>{{ if eq $slot.status "occupied" }}Claimed{{ end }}</strong>
+                          <span data-slot-status>
+                            {{- if eq $slot.status "occupied" -}}Staying here
+                            {{- else if eq $slot.status "available" -}}Available in snapshot
+                            {{- else if eq $slot.status "reserved-unknown" -}}Not currently bookable
+                            {{- else -}}Unavailable
+                            {{- end -}}
+                          </span>
+                        </div>
+                        {{- if eq $slot.status "available" -}}
+                          <a class="ac-claim" data-claim-action aria-disabled="true" tabindex="-1">Checking…</a>
+                        {{- else -}}
+                          <span class="ac-slot-marker" aria-hidden="true">{{ if eq $slot.status "occupied" }}●{{ else }}—{{ end }}</span>
+                        {{- end -}}
+                      </li>
+                    {{- end -}}
+                  </ol>
                 </section>
               {{- end -}}
             </div>
@@ -211,7 +234,9 @@
   </section>
 
   <footer class="ac-footer-note">
-    <p><strong>Need to change your place?</strong> Email <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a>.</p>
+    <h2>Need to change a claim?</h2>
+    <p>Do not submit another place. Email <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a> so the old place can be released safely.</p>
+    <p>Public display names will be removed by 15 September 2026. You can ask for yours to be removed earlier at the same address.</p>
   </footer>
 </article>
 {{ end }}

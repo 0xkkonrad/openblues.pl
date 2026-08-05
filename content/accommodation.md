@@ -1,6 +1,6 @@
 ---
-title: "Choose your place — Open Blues 2026"
-description: "Choose an available sleeping place for Open Blues 2026."
+title: "Choose your sleeping place — Open Blues 2026"
+description: "See the Open Blues 2026 rooms, find friends and claim an available sleeping place."
 url: /accommodation/
 type: accommodation
 layout: single

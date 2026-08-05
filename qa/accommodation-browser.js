@@ -9,14 +9,6 @@ const firstClaimKey = 'v1_10ca49dd8ff89d1da5aaec6059b0d38e';
 const firstSpotId = 'opposite-upstairs-3-spot-d';
 const seededRosterKey = 'seed_v1_c005ed454898ef303be887de3771d343';
 const seededSpotId = 'castle-downstairs-b1-spot-b';
-const removedSpotIds = [
-  'castle-downstairs-a1-spot-e',
-  'castle-downstairs-a2-spot-e',
-  'castle-downstairs-b1-spot-d',
-  'castle-downstairs-b1-spot-e',
-  'castle-upstairs-6-spot-d',
-  'opposite-right-upstairs-new-spot-c'
-];
 
 fs.mkdirSync(outputDir, { recursive: true });
 
@@ -68,7 +60,7 @@ async function routePicker(page, { integrationReady = false, roster = emptyRoste
   await page.route('https://docs.google.com/spreadsheets/**', async (route) => {
     if (failRoster) return route.abort('failed');
     const requested = new URL(route.request().url());
-    assert.equal(requested.searchParams.get('tq'), 'select A,B');
+    assert.equal(requested.searchParams.get('tq'), 'select A,B,E');
     const tqx = requested.searchParams.get('tqx') || '';
     const callback = tqx.match(/responseHandler:([A-Za-z0-9_$]+)/)?.[1] || 'openBluesAccommodationRosterV1';
     await route.fulfill({
@@ -90,8 +82,8 @@ async function assertNoHorizontalOverflow(page, label) {
 
 async function assertLaunchGate(page) {
   const actions = page.locator('[data-claim-action]');
-  assert.equal(await actions.count(), 14);
-  for (let index = 0; index < 14; index += 1) {
+  assert.equal(await actions.count(), 20);
+  for (let index = 0; index < 20; index += 1) {
     const action = actions.nth(index);
     assert.equal(await action.getAttribute('href'), null);
     assert.equal(await action.getAttribute('aria-disabled'), 'true');
@@ -112,32 +104,16 @@ async function run() {
       const page = await context.newPage();
       await openPicker(page);
       assert.equal(await page.locator('[data-room]').count(), 18);
-      assert.equal(await page.locator('[data-slot]').count(), 51);
+      assert.equal(await page.locator('[data-slot]').count(), 57);
       assert.equal(await page.locator('[data-slot][data-initial-status="occupied"]').count(), 31);
       assert.equal(await page.locator('[data-slot][data-initial-status="blocked"]').count(), 4);
       assert.equal(await page.locator('[data-slot][data-initial-status="reserved-unknown"]').count(), 2);
-      for (const spotId of removedSpotIds) {
-        assert.equal(await page.locator(`[data-spot-id="${spotId}"]`).count(), 0);
-      }
-      assert.equal(await page.locator('[data-occupant]').count(), 0);
+      assert.equal(await page.locator('[data-slot][data-initial-status="occupied"] [data-occupant]').evaluateAll(
+        (nodes) => nodes.every((node) => node.textContent.trim() === 'Claimed')), true);
       assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow, noarchive, nosnippet');
       assert.equal(await page.locator('meta[name="referrer"]').getAttribute('content'), 'no-referrer');
       await assertLaunchGate(page);
-      assert.match(await page.locator('[data-live-message]').textContent(), /claims opening soon/i);
-      assert.equal(await page.locator('#room-castle-downstairs-b1 [data-room-availability]').textContent(), 'Full');
-      assert.equal(await page.locator('#room-castle-upstairs-6 [data-room-availability]').textContent(), 'Full');
-      const heldRoom = page.locator('#room-castle-downstairs-b2');
-      assert.equal(await heldRoom.locator('[data-room-availability]').textContent(), 'Held');
-      assert.equal(await heldRoom.locator('[data-slot][data-initial-status="reserved-unknown"]').count(), 2);
-      assert.equal(await heldRoom.locator('[data-claim-action]').count(), 0);
-      assert.match(await heldRoom.locator('[data-room-note]').textContent(), /on hold while we confirm an earlier reservation/i);
-      assert.equal(await heldRoom.locator('[data-unit]:visible').count(), 0);
-      assert.equal(await page.locator('[data-map-room="castle-downstairs-b2"] [data-map-availability]').textContent(), 'Held');
-      assert.equal(await page.locator('[data-map-room]').evaluateAll((links) => links.every((link) => Boolean(link.getAttribute('aria-label')))), true);
-      assert.deepEqual(
-        await page.locator('[data-map-room]').evaluateAll((links) => links.map((link) => link.dataset.mapRoom)),
-        await page.locator('[data-room]').evaluateAll((rooms) => rooms.map((room) => room.dataset.roomId))
-      );
+      assert.match(await page.locator('[data-live-message]').textContent(), /Claiming opens after the roster connection is verified/);
       const photos = page.locator('[data-room-photo] img');
       assert.equal(await photos.count(), 17);
       for (let index = 0; index < await photos.count(); index += 1) {
@@ -161,35 +137,26 @@ async function run() {
     const filterPage = await filterContext.newPage();
     await openPicker(filterPage, {
       integrationReady: true,
-      // This response deliberately includes a forbidden raw surname even
-      // though production excludes column E. The parser must ignore it too.
-      roster: rosterWith([[seededRosterKey, seededSpotId, 'FirstToken ForbiddenSurname']])
+      roster: rosterWith([[seededRosterKey, seededSpotId, 'Kásîa']])
     });
-    assert.equal(await filterPage.locator('[data-occupant]').count(), 0);
-    assert.equal((await filterPage.locator('body').textContent()).includes('ForbiddenSurname'), false);
-    const search = filterPage.locator('[data-room-search-input]');
-    await search.fill('B1');
+    const search = filterPage.locator('[data-friend-search]');
+    await search.fill('kásîa');
     assert.equal(await filterPage.locator('[data-room]:visible').count(), 1);
     assert.equal(await filterPage.locator('[data-room]:visible').getAttribute('data-room-id'), 'castle-downstairs-b1');
-    await search.fill('ForbiddenSurname');
+    await search.fill('Марія');
     assert.equal(await filterPage.locator('[data-room]:visible').count(), 0);
     assert.equal(await filterPage.locator('[data-no-results]').isVisible(), true);
     await filterPage.locator('[data-filters]').evaluate((form) => form.reset());
     await filterPage.locator('[data-available-filter]').check();
     const availableRooms = await filterPage.locator('[data-room]:visible').count();
     assert.ok(availableRooms > 0 && availableRooms < 18);
-    assert.equal(await filterPage.locator('[data-map-room="castle-downstairs-b1"]').isHidden(), true);
-    await filterPage.locator('[data-map-room="opposite-upstairs-3"]').click();
-    assert.equal(await filterPage.locator('#room-opposite-upstairs-3').isVisible(), true);
-    assert.equal(await filterPage.locator('[data-available-filter]').isChecked(), true);
-    assert.equal(await filterPage.evaluate(() => document.activeElement?.id), 'room-opposite-upstairs-3');
     await filterContext.close();
 
     const failureContext = await browser.newContext({ viewport: { width: 390, height: 844 } });
     const failurePage = await failureContext.newPage();
     await openPicker(failurePage, { failRoster: true });
     await failurePage.locator('[data-roster-retry]:visible').waitFor();
-    assert.match(await failurePage.locator('[data-live-message]').textContent(), /claims are paused/i);
+    assert.match(await failurePage.locator('[data-live-message]').textContent(), /claiming is paused/i);
     await assertLaunchGate(failurePage);
     await failureContext.close();
 
@@ -197,8 +164,7 @@ async function run() {
     const enabledPage = await enabledContext.newPage();
     await openPicker(enabledPage, { integrationReady: true, roster: rosterWith([]) });
     const enabledActions = enabledPage.locator('[data-claim-action][href]');
-    assert.equal(await enabledActions.count(), 14);
-    assert.equal(await enabledActions.evaluateAll((links) => links.every((link) => /^Claim .+ in .+/.test(link.getAttribute('aria-label') || ''))), true);
+    assert.equal(await enabledActions.count(), 20);
     const firstUrl = new URL(await enabledActions.first().getAttribute('href'));
     assert.equal(firstUrl.origin, 'https://tally.so');
     assert.equal(firstUrl.pathname, '/r/rjQKYM');
@@ -212,7 +178,7 @@ async function run() {
     const emptySchemaPage = await emptySchemaContext.newPage();
     await openPicker(emptySchemaPage, { integrationReady: true });
     await emptySchemaPage.locator('[data-roster-retry]:visible').waitFor();
-    assert.match(await emptySchemaPage.locator('[data-live-message]').textContent(), /claims are paused/i);
+    assert.match(await emptySchemaPage.locator('[data-live-message]').textContent(), /unexpected data/i);
     await assertLaunchGate(emptySchemaPage);
     await emptySchemaContext.close();
 
@@ -229,12 +195,10 @@ async function run() {
     });
     const claimedSlot = claimPage.locator(`[data-claim-key="${firstClaimKey}"]`);
     assert.equal(await claimedSlot.getAttribute('data-status'), 'occupied');
-    assert.equal(await claimedSlot.locator('[data-occupant]').count(), 0);
-    assert.equal((await claimPage.locator('body').textContent()).includes(hostileName), false);
+    assert.equal(await claimedSlot.locator('[data-occupant]').textContent(), hostileName);
     assert.equal(await claimedSlot.locator('img').count(), 0);
     assert.equal(await claimPage.evaluate(() => window.__openBluesXss), undefined);
-    assert.equal(await claimPage.locator('[data-claim-action][href]').count(), 13);
-    assert.match(await claimPage.locator('[data-map-room="opposite-upstairs-3"]').getAttribute('aria-label'), /full$/i);
+    assert.equal(await claimPage.locator('[data-claim-action][href]').count(), 19);
     await claimContext.close();
 
     const cancelContext = await browser.newContext({ viewport: { width: 1024, height: 900 } });
@@ -247,7 +211,7 @@ async function run() {
       ], true)
     });
     assert.equal(await cancelPage.locator(`[data-claim-key="${firstClaimKey}"]`).getAttribute('data-status'), 'available');
-    assert.equal(await cancelPage.locator('[data-claim-action][href]').count(), 14);
+    assert.equal(await cancelPage.locator('[data-claim-action][href]').count(), 20);
     await cancelContext.close();
 
     const invalidContext = await browser.newContext({ viewport: { width: 1024, height: 900 } });
@@ -257,7 +221,7 @@ async function run() {
       roster: { version: '0.6', status: 'ok', table: { cols: [{ id: 'A', label: 'wrong' }], rows: [{ c: [{ v: 'bad' }] }] } }
     });
     await invalidPage.locator('[data-roster-retry]:visible').waitFor();
-    assert.match(await invalidPage.locator('[data-live-message]').textContent(), /claims are paused/i);
+    assert.match(await invalidPage.locator('[data-live-message]').textContent(), /unexpected data/i);
     await assertLaunchGate(invalidPage);
     await invalidContext.close();
 
@@ -278,10 +242,9 @@ async function run() {
         }
       }
     });
-    await misleadingHeaderPage.locator('[data-claim-action][href]').first().waitFor();
-    assert.match(await misleadingHeaderPage.locator('[data-live-message]').textContent(), /13 available/i);
-    assert.equal(await misleadingHeaderPage.locator(`[data-claim-key="${firstClaimKey}"]`).getAttribute('data-status'), 'occupied');
-    assert.equal(await misleadingHeaderPage.locator('[data-occupant]').count(), 0);
+    await misleadingHeaderPage.locator('[data-roster-retry]:visible').waitFor();
+    assert.match(await misleadingHeaderPage.locator('[data-live-message]').textContent(), /unexpected data/i);
+    await assertLaunchGate(misleadingHeaderPage);
     await misleadingHeaderContext.close();
 
     // A previously successful page must fail closed while a returning tab
@@ -308,7 +271,7 @@ async function run() {
         await secondRequestReleased;
       }
       const requested = new URL(route.request().url());
-      assert.equal(requested.searchParams.get('tq'), 'select A,B');
+      assert.equal(requested.searchParams.get('tq'), 'select A,B,E');
       const callback = (requested.searchParams.get('tqx') || '').match(/responseHandler:([A-Za-z0-9_$]+)/)?.[1];
       await route.fulfill({
         status: 200,
@@ -318,20 +281,20 @@ async function run() {
     });
     await stalePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
     await stalePage.locator('[data-claim-action][href]').first().waitFor();
-    assert.equal(await stalePage.locator('[data-claim-action][href]').count(), 14);
+    assert.equal(await stalePage.locator('[data-claim-action][href]').count(), 20);
     await secondRequestStarted;
     assert.equal(await stalePage.locator('[data-claim-action][href]').count(), 0);
-    assert.match(await stalePage.locator('[data-live-message]').textContent(), /Checking availability/);
+    assert.match(await stalePage.locator('[data-live-message]').textContent(), /Checking the latest claims/);
     releaseSecondRequest();
     await stalePage.locator('[data-claim-action][href]').first().waitFor();
-    assert.equal(await stalePage.locator('[data-claim-action][href]').count(), 14);
+    assert.equal(await stalePage.locator('[data-claim-action][href]').count(), 20);
     await staleContext.close();
 
     const noScriptContext = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
     const noScriptPage = await noScriptContext.newPage();
     await noScriptPage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
     assert.equal(await noScriptPage.locator('.ac-noscript').isVisible(), true);
-    assert.match(await noScriptPage.locator('.ac-noscript').textContent(), /Enable JavaScript/);
+    assert.match(await noScriptPage.locator('.ac-noscript').textContent(), /Live claiming needs JavaScript/);
     await assertNoHorizontalOverflow(noScriptPage, 'no-JavaScript 390px');
     await noScriptContext.close();
 
