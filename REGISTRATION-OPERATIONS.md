@@ -30,7 +30,7 @@ At this festival's scale, one batch check is simpler than introducing and mainta
 
 The website is the room directory. Tally is the claim lock. Google Sheets is the sanitized public read model. There is no custom backend.
 
-- The checked-in inventory contains 57 person-level places across 18 rooms, but **no participant names**. Existing occupied places have deterministic `seed_v1_...` roster keys; their names live only in the deletable public roster feed. New participants claim one person-level place at a time.
+- The checked-in inventory contains 51 person-level places across 18 rooms, but **no participant names**. Existing occupied places have deterministic `seed_v1_...` roster keys; their names live only in the deletable public roster feed. New participants claim one person-level place at a time.
 - Every currently open place has a random, versioned `claim_key`. The website also sends descriptive `spot_id`, `room` and `place` fields, but only `claim_key` determines which place is locked.
 - The claim form is `https://tally.so/r/rjQKYM`. Tally's duplicate-prevention setting uses the hidden `claim_key`, so two respondents cannot ordinarily submit the same place.
 - The form collects only a public display name, a registration/payment self-attestation and public-roster consent. It does not collect email, payment evidence or private registration data.

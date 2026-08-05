@@ -19,11 +19,20 @@ async function run() {
           contentType: 'application/javascript; charset=utf-8',
           body: `${callback}(${JSON.stringify({
             status: 'ok',
-            table: { cols: [{ id: 'Col0', label: '', type: 'string' }], rows: [] }
+            table: {
+              cols: [
+                { id: 'A', label: 'claim_key', type: 'string' },
+                { id: 'B', label: 'spot_id', type: 'string' },
+                { id: 'E', label: 'Public display name', type: 'string' }
+              ],
+              rows: []
+            }
           })});`
         });
       });
       await page.goto(baseUrl, { waitUntil: 'networkidle' });
+      assert.match(await page.locator('[data-live-message]').textContent(), /14 available/i);
+      assert.equal(await page.locator('[data-claim-action][href]').count(), 14);
       await page.addScriptTag({ content: axeSource });
       const results = await page.evaluate(async () => window.axe.run(document, {
         runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa', 'wcag21aa'] },
@@ -38,7 +47,7 @@ async function run() {
       assert.deepEqual(summary, [], `${width}px accessibility violations:\n${JSON.stringify(summary, null, 2)}`);
       await context.close();
     }
-    process.stdout.write('PASS: axe WCAG 2.0 A/AA and 2.1 AA scan completed at 4 viewports.\n');
+    process.stdout.write('PASS: ready-state axe WCAG 2.0 A/AA and 2.1 AA scan completed at 4 viewports.\n');
   } finally {
     await browser.close();
   }

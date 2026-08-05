@@ -48,7 +48,7 @@
   allSlots.forEach(function (slot) {
     var spotId = cleanValue(slot.dataset.spotId);
     if (!spotId || slotBySpotId.has(spotId)) {
-      setConfigurationError("The room inventory contains a duplicate or incomplete place ID.");
+      setConfigurationError("Room data error. Claims are paused.");
       return;
     }
     slotBySpotId.set(spotId, slot);
@@ -57,7 +57,7 @@
   rosterSlots.forEach(function (slot) {
     var rosterKey = cleanValue(slot.dataset.rosterKey);
     if (!rosterKey || slotByRosterKey.has(rosterKey)) {
-      setConfigurationError("The room inventory contains a duplicate or incomplete roster key.");
+      setConfigurationError("Room data error. Claims are paused.");
       return;
     }
     slotByRosterKey.set(rosterKey, slot);
@@ -66,7 +66,7 @@
   claimableSlots.forEach(function (slot) {
     var claimKey = cleanValue(slot.dataset.claimKey);
     if (!claimKey || slotByClaimKey.has(claimKey) || claimKey !== cleanValue(slot.dataset.rosterKey)) {
-      setConfigurationError("The room inventory contains a duplicate or incomplete claim key.");
+      setConfigurationError("Room data error. Claims are paused.");
       return;
     }
     slotByClaimKey.set(claimKey, slot);
@@ -91,7 +91,7 @@
   });
 
   if (configurationLooksValid()) loadRoster();
-  else setConfigurationError("Live availability is not configured, so claiming is paused.");
+  else setConfigurationError("Claims are paused.");
 
   function positiveInteger(value, fallback) {
     var parsed = Number.parseInt(value, 10);
@@ -147,11 +147,15 @@
 
   function wireMapLinks() {
     mapLinks.forEach(function (link) {
-      link.addEventListener("click", function () {
+      link.addEventListener("click", function (event) {
         var room = document.getElementById("room-" + link.dataset.mapRoom);
-        if (!room || !room.hidden || !filters) return;
-        filters.reset();
-        applyFilters();
+        if (!room || room.hidden) {
+          event.preventDefault();
+          return;
+        }
+        window.setTimeout(function () {
+          room.focus({ preventScroll: true });
+        }, 0);
       });
     });
   }
@@ -166,14 +170,11 @@
 
         var fallback = document.createElement("div");
         fallback.className = "ac-photo-fallback";
-        fallback.setAttribute("aria-label", "No photo is available for this room");
+        fallback.setAttribute("aria-hidden", "true");
         var icon = document.createElement("span");
         icon.setAttribute("aria-hidden", "true");
         icon.textContent = "⌂";
-        var note = document.createElement("small");
-        note.textContent = "Photo coming soon";
         fallback.appendChild(icon);
-        fallback.appendChild(note);
         container.appendChild(fallback);
       }, { once: true });
     });
@@ -184,12 +185,15 @@
     var building = buildingFilter ? buildingFilter.value : "all";
     var floor = floorFilter ? floorFilter.value : "all";
     var availableOnly = Boolean(availableFilter && availableFilter.checked);
+    var filterActive = Boolean(query || building !== "all" || floor !== "all" || availableOnly);
     var shown = 0;
 
     rooms.forEach(function (room) {
-      var nameMatch = !query || Array.prototype.some.call(room.querySelectorAll("[data-occupant]"), function (node) {
+      var roomMatch = normalise(room.dataset.roomSearch).indexOf(query) !== -1;
+      var occupantMatch = Array.prototype.some.call(room.querySelectorAll("[data-occupant]"), function (node) {
         return normalise(node.textContent).indexOf(query) !== -1;
       });
+      var nameMatch = !query || roomMatch || occupantMatch;
       var buildingMatch = building === "all" || room.dataset.building === building;
       var floorMatch = floor === "all" || room.dataset.floor === floor;
       var hasAvailable = Boolean(room.querySelector('[data-slot][data-status="available"]'));
@@ -200,14 +204,23 @@
 
     mapLinks.forEach(function (link) {
       var linkedRoom = document.getElementById("room-" + link.dataset.mapRoom);
-      link.classList.toggle("ac-map-match", Boolean(linkedRoom && !linkedRoom.hidden && (query || building !== "all" || floor !== "all" || availableOnly)));
+      var matches = Boolean(linkedRoom && !linkedRoom.hidden);
+      link.hidden = filterActive && !matches;
+      link.classList.toggle("ac-map-match", filterActive && matches);
+    });
+
+    Array.prototype.slice.call(picker.querySelectorAll(".ac-map-floor")).forEach(function (mapFloor) {
+      mapFloor.hidden = filterActive && !mapFloor.querySelector("[data-map-room]:not([hidden])");
+    });
+    Array.prototype.slice.call(picker.querySelectorAll(".ac-map-building")).forEach(function (mapBuilding) {
+      mapBuilding.hidden = filterActive && !mapBuilding.querySelector("[data-map-room]:not([hidden])");
     });
 
     if (resultCount) {
       if (shown === rooms.length && !query && building === "all" && floor === "all" && !availableOnly) {
-        resultCount.textContent = "Showing all " + rooms.length + " rooms";
+        resultCount.textContent = rooms.length + " rooms";
       } else {
-        resultCount.textContent = "Showing " + shown + " of " + rooms.length + (shown === 1 ? " room" : " rooms");
+        resultCount.textContent = shown + " of " + rooms.length + " rooms";
       }
     }
     if (noResults) noResults.hidden = shown !== 0;
@@ -241,7 +254,7 @@
     action.rel = "noopener noreferrer";
     action.setAttribute("aria-disabled", "false");
     action.removeAttribute("tabindex");
-    action.textContent = "Claim this place";
+    action.textContent = "Claim";
   }
 
   function disableAllClaims(label) {
@@ -257,8 +270,8 @@
 
     var occupant = slot.querySelector("[data-occupant]");
     var statusText = slot.querySelector("[data-slot-status]");
-    if (occupant) occupant.textContent = status === "occupied" ? (displayName || "Claimed") : "";
-    if (statusText) statusText.textContent = status === "occupied" ? "Claimed in live roster" : "Available now";
+    if (occupant) occupant.textContent = status === "occupied" ? displayName : "";
+    if (statusText) statusText.textContent = status === "occupied" ? "Claimed" : "Available";
 
     if (status === "available" && integrationReady) enableClaim(slot);
     else if (status === "available") disableClaim(slot, "Opening soon");
@@ -269,17 +282,24 @@
     var openTotal = 0;
     rooms.forEach(function (room) {
       var available = room.querySelectorAll('[data-slot][data-status="available"]').length;
+      var held = room.dataset.roomStatus === "held";
       var roomCount = room.querySelector("[data-room-availability]");
       var mapLink = picker.querySelector('[data-map-room="' + room.dataset.roomId + '"]');
       var mapCount = mapLink ? mapLink.querySelector("[data-map-availability]") : null;
       openTotal += available;
 
       if (roomCount) {
-        roomCount.textContent = available > 0 ? available + " open" : "Full";
-        roomCount.classList.toggle("ac-room-count-full", available === 0);
+        roomCount.textContent = held ? "Held" : (available > 0 ? available + " available" : "Full");
+        roomCount.classList.toggle("ac-room-count-full", !held && available === 0);
+        roomCount.classList.toggle("ac-room-count-held", held);
       }
-      if (mapCount) mapCount.textContent = available > 0 ? available + " open" : "full";
-      if (mapLink) mapLink.classList.toggle("ac-map-full", available === 0);
+      if (mapCount) mapCount.textContent = held ? "Held" : (available > 0 ? available + " available" : "Full");
+      if (mapLink) {
+        mapLink.classList.toggle("ac-map-full", !held && available === 0);
+        mapLink.classList.toggle("ac-map-held", held);
+        mapLink.setAttribute("aria-label", room.dataset.roomSearch + " — " +
+          (held ? "held" : (available > 0 ? available + " available" : "full")));
+      }
     });
     if (totalAvailable) totalAvailable.textContent = String(openTotal);
   }
@@ -295,7 +315,7 @@
   function loadRoster() {
     if (requestInFlight || document.hidden) return;
     if (!configurationLooksValid()) {
-      setConfigurationError("Live availability is not configured, so claiming is paused.");
+      setConfigurationError("Claims are paused.");
       return;
     }
 
@@ -306,7 +326,7 @@
     // claim while refreshing so a backgrounded tab cannot expose stale links.
     rosterReady = false;
     disableAllClaims("Checking…");
-    setLiveState("checking", integrationReady ? "Checking the latest claims…" : "Checking the room list… Claiming opens after the roster connection is verified.", false);
+    setLiveState("checking", integrationReady ? "Checking availability…" : "Claims opening soon…", false);
 
     window[callbackName] = receiveRoster;
     var endpoint = new URL("https://docs.google.com/spreadsheets/d/" + encodeURIComponent(rosterSheetId) + "/gviz/tq");
@@ -324,12 +344,12 @@
     requestScript.referrerPolicy = "no-referrer";
     requestScript.src = endpoint.href;
     requestScript.onerror = function () {
-      failRoster("We couldn’t verify live availability, so claiming is paused. Try again.");
+      failRoster("Can’t check availability. Claims are paused.");
     };
     document.head.appendChild(requestScript);
 
     requestTimer = window.setTimeout(function () {
-      failRoster("The live check took too long, so claiming is paused. Try again.");
+      failRoster("Can’t check availability. Claims are paused.");
     }, requestTimeout);
   }
 
@@ -342,7 +362,7 @@
       rosterSlots.forEach(function (slot) {
         var claim = claims.get(slot.dataset.rosterKey);
         if (slot.dataset.initialStatus === "occupied") {
-          setSlotState(slot, "occupied", claim ? claim.displayName : "Claimed");
+          setSlotState(slot, "occupied", claim ? claim.displayName : "");
         } else {
           setSlotState(slot, claim ? "occupied" : "available", claim ? claim.displayName : "");
         }
@@ -354,16 +374,16 @@
       var available = picker.querySelectorAll('[data-slot][data-claim-key][data-status="available"]').length;
       var checkedTime = new Date(lastSuccessfulCheck).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
       if (integrationReady) {
-        setLiveState("ready", "Checked at " + checkedTime + " · " + available + (available === 1 ? " place is" : " places are") + " available now.", false);
+        setLiveState("ready", available + " available · checked " + checkedTime, false);
       } else {
         disableAllClaims("Opening soon");
-        setLiveState("checking", "Room list checked at " + checkedTime + ". Claiming opens after the roster connection is verified.", false);
+        setLiveState("checking", "Availability checked · claims opening soon", false);
       }
       finishRequest();
       schedulePoll();
     } catch (error) {
       console.warn("Accommodation roster rejected:", error.message);
-      failRoster("The live roster returned unexpected data, so claiming is paused. Try again later.");
+      failRoster("Can’t check availability. Claims are paused.");
     }
   }
 
