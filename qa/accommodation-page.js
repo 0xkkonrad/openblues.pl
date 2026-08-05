@@ -197,19 +197,17 @@ async function run() {
 
       const primaryHref = await page.locator('.stay-primary').getAttribute('href');
       const finalHref = await page.locator('.stay-final__actions .btn').getAttribute('href');
-      const mapHref = await page.getByRole('link', { name: /Open the live map tab/ }).getAttribute('href');
       const startHref = await page.getByRole('link', { name: /Read the Sheet instructions first/ }).getAttribute('href');
       assertSheetLink(primaryHref, '2026080501');
       assertSheetLink(finalHref, '2026080501');
-      assertSheetLink(mapHref, '0');
       assertSheetLink(startHref, '2026080404');
       assert.equal(await page.locator('.stay-actions a').count(), 1);
 
       const sheetLinks = await page.locator(`a[href*="${sheetId}"]`).evaluateAll((nodes) => nodes.map((node) => node.href));
-      assert.equal(sheetLinks.length, 22);
+      assert.equal(sheetLinks.length, 21);
       assert.equal(sheetLinks.every((href) => href.includes(sheetId)), true);
       const sheetGids = sheetLinks.map((href) => new URLSearchParams(new URL(href).hash.slice(1)).get('gid'));
-      assert.deepEqual([...new Set(sheetGids)].sort(), ['0', '2026080404', '2026080501'].sort());
+      assert.deepEqual([...new Set(sheetGids)].sort(), ['2026080404', '2026080501'].sort());
       const roomSheetLinks = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => node.href));
       assert.equal(roomSheetLinks.length, 18);
       roomSheetLinks.forEach((href, index) => {

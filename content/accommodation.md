@@ -68,7 +68,6 @@ sitemap:
       <a href="#map-castle-downstairs">Use the redrawn floor plans <span aria-hidden="true">↓</span></a>
       <a href="/images/accommodation/venue-map-2026.webp" target="_blank" rel="noopener noreferrer">View the original Sheet map</a>
       <a href="/files/open-blues-2026-venue-map.pdf">Download the original source (PDF)</a>
-      <a href="https://docs.google.com/spreadsheets/d/1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8/edit#gid=0" target="_blank" rel="noopener noreferrer">Open the live map tab <span aria-hidden="true">↗</span></a>
     </div>
   </div>
   <p class="stay-map__intro">These site-native plans were redrawn from the supplied venue map for legibility. They preserve image-left/image-right room relationships, but are not to scale and intentionally omit door positions. Sleeping-surface symbols summarize each room’s current inventory; they do not place furniture. The maps contain no participant names or availability—check the Sheet for the live state. Only the 18 room cards below are selectable; Tower and Barn on the original whole map are orientation only.</p>

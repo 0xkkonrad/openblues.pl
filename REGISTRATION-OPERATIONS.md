@@ -26,7 +26,7 @@ The three visible tabs have deliberately separate jobs:
 
 1. `START HERE` — rules, live totals and links
 2. `ROOM BROWSER` — one row per person-place; participants browse and edit names here
-3. `VENUE MAP` — protected orientation map with live room counts
+3. `VENUE MAP` — protected link to the readable website floor plans
 
 The audited inventory contains 57 person-places across 18 rooms. At migration it contained 31 taken, 20 available and 6 unavailable places. Those numbers are not copied into the website because they change in the Sheet.
 
@@ -63,7 +63,7 @@ The website contains only stable, non-personal reference material:
 - four readable sleeping-building map panels
 - a whole-map WebP and downloadable PDF
 - static sleeping-surface descriptions
-- ordinary links to `START HERE`, `ROOM BROWSER`, `VENUE MAP` and the exact room row spans
+- ordinary links to `START HERE`, `ROOM BROWSER` and the exact room row spans
 
 Original JPEGs are not published. The WebPs were transcoded with metadata stripped; several originals contained GPS/camera metadata or MPO auxiliary data.
 
