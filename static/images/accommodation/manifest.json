@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "format": "webp",
   "quality": 82,
   "metadata": "stripped during transcode",
@@ -9,15 +9,16 @@
   "venueMap": {
     "source": "Klaudia-owned self-service workbook, exported from a temporary private copy",
     "privacy": "Participant names and live availability formulas replaced with neutral room labels before export; temporary copy trashed",
+    "redraw": "Site-native SVG schematics preserve confirmed image-left/image-right room relationships. Door positions, scale and exact furniture placement are intentionally omitted; sleeping-surface labels follow the audited room inventory.",
     "wholeMap": [
       { "src": "/images/accommodation/venue-map-2026.webp", "width": 2400, "height": 914 },
       { "src": "/files/open-blues-2026-venue-map.pdf", "format": "pdf" }
     ],
     "panels": [
-      { "src": "/images/accommodation/map-castle-downstairs.webp", "width": 1400, "height": 1070 },
-      { "src": "/images/accommodation/map-castle-upstairs.webp", "width": 2600, "height": 1070 },
-      { "src": "/images/accommodation/map-opposite-downstairs.webp", "width": 1280, "height": 300 },
-      { "src": "/images/accommodation/map-opposite-upstairs.webp", "width": 1280, "height": 300 }
+      { "src": "/images/accommodation/map-castle-downstairs.svg", "width": 1200, "height": 900, "rooms": 6, "places": 22 },
+      { "src": "/images/accommodation/map-castle-upstairs.svg", "width": 1600, "height": 850, "rooms": 6, "places": 20 },
+      { "src": "/images/accommodation/map-opposite-downstairs.svg", "width": 1000, "height": 440, "rooms": 2, "places": 5 },
+      { "src": "/images/accommodation/map-opposite-upstairs.svg", "width": 1000, "height": 650, "rooms": 3, "places": 6 }
     ]
   },
   "images": {

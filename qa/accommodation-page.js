@@ -49,6 +49,13 @@ const expectedPhotoSlugs = [
   'castle-upstairs-6'
 ];
 
+const expectedMapPaths = [
+  '/images/accommodation/map-castle-downstairs.svg',
+  '/images/accommodation/map-castle-upstairs.svg',
+  '/images/accommodation/map-opposite-downstairs.svg',
+  '/images/accommodation/map-opposite-upstairs.svg'
+];
+
 fs.mkdirSync(outputDir, { recursive: true });
 
 async function assertNoHorizontalOverflow(page, label) {
@@ -125,6 +132,24 @@ async function run() {
       assert.match(await page.locator('.stay-room-card--missing').textContent(), /No supplied photo/);
       assert.equal(await page.locator('.stay-map-panel img').count(), 4);
       assert.equal(await page.locator('.stay-map-panel__swipe').count(), 4);
+      const mapImages = await page.locator('.stay-map-panel img').evaluateAll((nodes) => nodes.map((node) => ({
+        path: new URL(node.src).pathname,
+        loading: node.getAttribute('loading'),
+        width: node.naturalWidth,
+        height: node.naturalHeight
+      })));
+      assert.deepEqual(mapImages.map(({ path }) => path), expectedMapPaths);
+      assert.equal(mapImages.every(({ loading }) => loading !== 'lazy'), true, 'floor plans must decode eagerly for print');
+      assert.deepEqual(mapImages.map(({ width, height }) => [width, height]), [
+        [1200, 900],
+        [1600, 850],
+        [1000, 440],
+        [1000, 650]
+      ]);
+
+      const mapActionNames = await page.locator('.stay-map-panel__actions a').evaluateAll((nodes) => nodes.map((node) => node.textContent.trim()));
+      assert.equal(mapActionNames.length, 8);
+      assert.equal(new Set(mapActionNames).size, 8, 'map open/download links need unique accessible names');
 
       const mapAffordances = await page.locator('.stay-map-panel').evaluateAll((panels) => panels.map((panel) => {
         const scroller = panel.querySelector('.stay-map-panel__scroll');

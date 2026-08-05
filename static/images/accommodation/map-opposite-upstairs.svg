@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="650" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+  <title id="title">Opposite building upstairs accommodation map</title>
+  <desc id="desc">A schematic plan with Room 3, Room 2 and Room 1 arranged image-left to image-right. Below Room 1, the kitchen sits above the entrance and stairs in the image-left column; the bathroom fills the image-right column.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #2d2925; }
+    .floor { fill: #fffaf1; }
+    .shared { fill: #edf3e8; }
+    .service { fill: #e3eef2; }
+    .wall { fill: none; stroke: #312b26; stroke-width: 5; stroke-linejoin: round; }
+    .divider { stroke: #312b26; stroke-width: 4; }
+    .kicker { fill: #8f3f25; font-size: 20px; font-weight: 850; letter-spacing: 2px; }
+    .note { fill: #6d6258; font-size: 20px; font-weight: 650; }
+    .room-code { fill: #fff; font-size: 34px; font-weight: 850; }
+    .room-name { font-size: 25px; font-weight: 850; }
+    .room-meta { fill: #594f46; font-size: 20px; font-weight: 700; }
+    .space-name { fill: #45613f; font-size: 23px; font-weight: 850; }
+    .service-name { fill: #3e5e6d; font-size: 22px; font-weight: 850; }
+    .pill { fill: #f8e4b5; stroke: #a96b17; stroke-width: 2.5; }
+    .pill-text { fill: #4a371b; font-size: 20px; font-weight: 850; }
+    .entry { fill: #8f3f25; font-size: 20px; font-weight: 850; }
+  </style>
+  <defs>
+    <symbol id="single" viewBox="0 0 22 28">
+      <rect x="3" y="2" width="16" height="24" rx="3" fill="#fffaf1" stroke="#7e5013" stroke-width="2.5"/>
+      <rect x="5" y="4" width="12" height="6" rx="2" fill="#dfbd6b"/>
+    </symbol>
+    <symbol id="double" viewBox="0 0 30 28">
+      <rect x="2" y="2" width="26" height="24" rx="3" fill="#fffaf1" stroke="#7e5013" stroke-width="2.5"/>
+      <rect x="4" y="4" width="10" height="6" rx="2" fill="#dfbd6b"/>
+      <rect x="16" y="4" width="10" height="6" rx="2" fill="#dfbd6b"/>
+    </symbol>
+  </defs>
+
+  <rect width="1000" height="650" rx="24" fill="#fcf7ee"/>
+  <text x="32" y="38" class="kicker">OPPOSITE · UPSTAIRS</text>
+  <text x="968" y="38" text-anchor="end" class="note">SCHEMATIC · NOT TO SCALE</text>
+
+  <rect x="32" y="68" width="298" height="292" class="floor"/>
+  <rect x="330" y="68" width="298" height="292" class="floor"/>
+  <rect x="628" y="68" width="340" height="292" class="floor"/>
+  <rect data-space="opposite-upstairs-kitchen" x="628" y="360" width="172" height="95" class="shared"/>
+  <rect data-space="opposite-upstairs-entrance-stairs" x="628" y="455" width="172" height="135" fill="#fff"/>
+  <rect data-space="opposite-upstairs-bathroom" x="800" y="360" width="168" height="230" class="service"/>
+
+  <path d="M32 360V68H968V590H628V360H32Z" class="wall"/>
+  <path d="M330 68V360M628 68V590M628 360H968M800 360V590M628 455H800" class="divider"/>
+
+  <g data-room="opposite-upstairs-3" transform="translate(56 94)">
+    <rect width="66" height="48" rx="24" fill="#9b452a"/>
+    <text x="33" y="35" text-anchor="middle" class="room-code">3</text>
+    <text x="84" y="32" class="room-name">Room 3</text>
+    <text x="0" y="82" class="room-meta">3 person-places</text>
+    <g transform="translate(0 105)"><rect width="240" height="58" rx="25" class="pill"/><use href="#single" x="14" y="15" width="22" height="28"/><text x="48" y="25" class="pill-text">1 SINGLE</text><text x="48" y="49" class="pill-text">1 PLACE</text></g>
+    <g transform="translate(0 171)"><rect width="250" height="58" rx="25" class="pill"/><use href="#double" x="11" y="15" width="30" height="28"/><text x="51" y="25" class="pill-text">SMALL DOUBLE</text><text x="51" y="49" class="pill-text">2 PLACES</text></g>
+  </g>
+
+  <g data-room="opposite-upstairs-2" transform="translate(346 94)">
+    <rect width="66" height="48" rx="24" fill="#9b452a"/>
+    <text x="33" y="35" text-anchor="middle" class="room-code">2</text>
+    <text x="84" y="32" class="room-name">Room 2</text>
+    <text x="0" y="82" class="room-meta">2 person-places</text>
+    <g transform="translate(0 105)"><rect width="240" height="58" rx="25" class="pill"/><use href="#single" x="14" y="15" width="22" height="28"/><text x="48" y="25" class="pill-text">2 SINGLES</text><text x="48" y="49" class="pill-text">2 PLACES</text></g>
+  </g>
+
+  <g data-room="opposite-upstairs-1" transform="translate(652 94)">
+    <rect width="66" height="48" rx="24" fill="#9b452a"/>
+    <text x="33" y="35" text-anchor="middle" class="room-code">1</text>
+    <text x="84" y="32" class="room-name">Room 1</text>
+    <text x="0" y="82" class="room-meta">1 person-place</text>
+    <g transform="translate(0 105)"><rect width="240" height="58" rx="25" class="pill"/><use href="#single" x="14" y="15" width="22" height="28"/><text x="48" y="25" class="pill-text">1 SINGLE</text><text x="48" y="49" class="pill-text">1 PLACE</text></g>
+  </g>
+
+  <g transform="translate(714 417)" text-anchor="middle">
+    <text class="space-name">Kitchen</text>
+  </g>
+  <g transform="translate(714 505)" text-anchor="middle">
+    <text class="entry">ENTRANCE</text>
+    <text y="36" class="space-name">Stairs ↓</text>
+  </g>
+  <g transform="translate(884 478)" text-anchor="middle">
+    <text class="service-name">Bathroom</text>
+  </g>
+
+  <path d="M714 628V600" stroke="#9b452a" stroke-width="4" stroke-linecap="round"/>
+  <path d="M705 609L714 600L723 609" fill="none" stroke="#9b452a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

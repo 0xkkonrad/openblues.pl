@@ -2,7 +2,8 @@
   "name": "openblues-site-qa",
   "private": true,
   "scripts": {
-    "test": "npm run test:accommodation && npm run test:deprecation && npm run test:accessibility && npm run test:smoke",
+    "test": "npm run test:maps && npm run test:accommodation && npm run test:deprecation && npm run test:accessibility && npm run test:smoke",
+    "test:maps": "node accommodation-maps.js",
     "test:accommodation": "node accommodation-page.js",
     "test:deprecation": "node accommodation-deprecation.js",
     "test:accessibility": "node accommodation-accessibility.js",

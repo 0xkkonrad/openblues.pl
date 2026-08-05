@@ -66,52 +66,59 @@ sitemap:
       <h2 id="map-title">Find your bearings</h2>
     </div>
     <div class="stay-map__links">
-      <a href="/images/accommodation/venue-map-2026.webp" target="_blank" rel="noopener noreferrer">View the whole map image</a>
-      <a href="/files/open-blues-2026-venue-map.pdf">Download the whole map (PDF)</a>
+      <a href="#map-castle-downstairs">Use the redrawn floor plans <span aria-hidden="true">↓</span></a>
+      <a href="/images/accommodation/venue-map-2026.webp" target="_blank" rel="noopener noreferrer">View the original Sheet map</a>
+      <a href="/files/open-blues-2026-venue-map.pdf">Download the original source (PDF)</a>
       <a href="https://docs.google.com/spreadsheets/d/1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8/edit#gid=0" target="_blank" rel="noopener noreferrer">Open the live map tab <span aria-hidden="true">↗</span></a>
     </div>
   </div>
-  <p class="stay-map__intro">This is an orientation plan, not a promise of exact furniture placement. The website map contains no participant names or availability; check the Sheet for the current state. Its colours come from the original plan and are not consistent in every service area, so use room labels rather than colour alone. Only the 18 room cards below are selectable; Tower and Barn shapes on the whole map are orientation only.</p>
+  <p class="stay-map__intro">These site-native plans were redrawn from the supplied venue map for legibility. They preserve image-left/image-right room relationships, but are not to scale and intentionally omit door positions. Sleeping-surface symbols summarize each room’s current inventory; they do not place furniture. The maps contain no participant names or availability—check the Sheet for the live state. Only the 18 room cards below are selectable; Tower and Barn on the original whole map are orientation only.</p>
   <ul class="stay-map__legend" aria-label="Map legend">
-    <li><span class="legend-bed" aria-hidden="true"></span>Beds and mattresses</li>
-    <li><span class="legend-sofa" aria-hidden="true"></span>Sofas</li>
-    <li><span class="legend-wet" aria-hidden="true"></span>Bathrooms / service areas</li>
-    <li><span class="legend-storage" aria-hidden="true"></span>Storage</li>
-    <li><span class="legend-ballroom" aria-hidden="true"></span>Ballroom</li>
+    <li><span class="legend-room" aria-hidden="true"></span>Sleeping room</li>
+    <li><span class="legend-shared" aria-hidden="true"></span>Shared space</li>
+    <li><span class="legend-service" aria-hidden="true"></span>Bathroom / service</li>
+    <li><span class="legend-single" aria-hidden="true"></span>Single</li>
+    <li><span class="legend-double" aria-hidden="true"></span>Double</li>
+    <li><span class="legend-sofa" aria-hidden="true"></span>Sofa bed</li>
+    <li><span class="legend-mattress" aria-hidden="true"></span>Mattress</li>
   </ul>
 
   <div class="stay-map__atlas">
-    <details class="stay-map-panel" open>
+    <details class="stay-map-panel" id="map-castle-downstairs" open>
       <summary><span>Castle · downstairs</span><small>A1 · A2 · A3 · B1 · B2 · C1</small></summary>
-      <p class="stay-map-panel__swipe" aria-hidden="true">Swipe / scroll sideways for the whole plan <span>→</span></p>
+      <p class="stay-map-panel__swipe" aria-hidden="true">Zoomed for readable type · swipe / scroll sideways when needed <span>→</span></p>
       <div class="stay-map-panel__scroll" tabindex="0" role="region" aria-label="Scrollable Castle downstairs floor plan">
-        <img src="/images/accommodation/map-castle-downstairs.webp" alt="Floor plan of the Castle downstairs showing rooms A1, A2, A3, B1, B2 and C1, plus the kitchen, hall and courtyard." width="1400" height="1070" loading="lazy">
+        <img class="stay-map-art stay-map-art--castle-downstairs" src="/images/accommodation/map-castle-downstairs.svg" alt="Schematic Castle downstairs plan. Wing A is at the image top and left: A1 sits above A2, with the kitchen and hall between those rooms and A3 at upper right. Wing B is on the image right with B1 above B2 beside the courtyard. C1 is at bottom left. The entrance is on the image-left between Wings A and C." width="1200" height="900">
       </div>
-      <p>Rooms A1, A2, A3, B1, B2 and C1. Yellow areas are sleeping surfaces; green areas are sofas.</p>
+      <p class="stay-map-panel__description">A1 and A2 each list one double and two singles. A3 lists a double, a single sofa and a double-size sofa counted as one place. B1 lists one double and two mattresses; B2 one double; C1 one double and two singles. WC areas appear beside the A-wing hall and at the upper-left of Wing C.</p>
+      <p class="stay-map-panel__actions"><a href="/images/accommodation/map-castle-downstairs.svg" target="_blank" rel="noopener noreferrer">Open Castle downstairs full-size</a><a href="/images/accommodation/map-castle-downstairs.svg" download>Download Castle downstairs SVG</a></p>
     </details>
-    <details class="stay-map-panel" open>
+    <details class="stay-map-panel" id="map-castle-upstairs" open>
       <summary><span>Castle · upstairs</span><small>Rooms 1–6</small></summary>
-      <p class="stay-map-panel__swipe" aria-hidden="true">Swipe / scroll sideways for the whole plan <span>→</span></p>
+      <p class="stay-map-panel__swipe" aria-hidden="true">Zoomed for readable type · swipe / scroll sideways when needed <span>→</span></p>
       <div class="stay-map-panel__scroll" tabindex="0" role="region" aria-label="Scrollable Castle upstairs floor plan">
-        <img src="/images/accommodation/map-castle-upstairs.webp" alt="Floor plan of the Castle upstairs showing rooms 1 through 6, storage, bathrooms, kitchen, open space and ballroom." width="2600" height="1070" loading="lazy">
+        <img class="stay-map-art stay-map-art--castle-upstairs" src="/images/accommodation/map-castle-upstairs.svg" alt="Schematic Castle upstairs plan. Image-left to image-right across the top are storage, Room 1, Room 2, balcony and bathroom services, Room 3 and Room 4. Kitchen and dining sit below storage. Stairs and a long open space sit above the ballroom. Directly below Room 4, table football and ping pong span the top; beneath them are the shower and WC on the image-left and the hall on the image-right. Room 5 then Room 6 sit below." width="1600" height="850">
       </div>
-      <p>Rooms 1–6 sit around the ballroom, kitchen and open space. The blue area is storage, not a sleeping room.</p>
+      <p class="stay-map-panel__description">Room 1 lists one double and two singles; Room 2 a double and a sofa bed for two; Room 3 three singles; Room 4 two singles and a possible additional double; Room 5 one double; Room 6 one double and one single. Beneath Room 4, the recreation area sits above the shower/WC and hall; Rooms 5 and 6 are below those. Storage is not an activity or sleeping room.</p>
+      <p class="stay-map-panel__actions"><a href="/images/accommodation/map-castle-upstairs.svg" target="_blank" rel="noopener noreferrer">Open Castle upstairs full-size</a><a href="/images/accommodation/map-castle-upstairs.svg" download>Download Castle upstairs SVG</a></p>
     </details>
-    <details class="stay-map-panel" open>
+    <details class="stay-map-panel" id="map-opposite-downstairs" open>
       <summary><span>Opposite · downstairs</span><small>Rooms 1–2</small></summary>
-      <p class="stay-map-panel__swipe" aria-hidden="true">Swipe / scroll sideways for the whole plan <span>→</span></p>
+      <p class="stay-map-panel__swipe" aria-hidden="true">Zoomed for readable type · swipe / scroll sideways when needed <span>→</span></p>
       <div class="stay-map-panel__scroll" tabindex="0" role="region" aria-label="Scrollable Opposite downstairs floor plan">
-        <img src="/images/accommodation/map-opposite-downstairs.webp" alt="Floor plan of the Opposite building downstairs showing rooms 1 and 2 with the central hall and bathroom." width="1280" height="300" loading="lazy">
+        <img class="stay-map-art stay-map-art--opposite" src="/images/accommodation/map-opposite-downstairs.svg" alt="Schematic Opposite downstairs plan with Room 1 on the image-left, the hall in the centre, Room 2 on the image-right, and the entrance on the lower edge near the hall and Room 2." width="1000" height="440">
       </div>
-      <p>Rooms 1 and 2, with the hall and bathroom between them.</p>
+      <p class="stay-map-panel__description">Room 1 lists one double for two places. Room 2 lists one double and one single for three places. The supplied plan confirms a central hall but does not confirm a downstairs bathroom.</p>
+      <p class="stay-map-panel__actions"><a href="/images/accommodation/map-opposite-downstairs.svg" target="_blank" rel="noopener noreferrer">Open Opposite downstairs full-size</a><a href="/images/accommodation/map-opposite-downstairs.svg" download>Download Opposite downstairs SVG</a></p>
     </details>
-    <details class="stay-map-panel" open>
+    <details class="stay-map-panel" id="map-opposite-upstairs" open>
       <summary><span>Opposite · upstairs</span><small>Rooms 1–3</small></summary>
-      <p class="stay-map-panel__swipe" aria-hidden="true">Swipe / scroll sideways for the whole plan <span>→</span></p>
+      <p class="stay-map-panel__swipe" aria-hidden="true">Zoomed for readable type · swipe / scroll sideways when needed <span>→</span></p>
       <div class="stay-map-panel__scroll" tabindex="0" role="region" aria-label="Scrollable Opposite upstairs floor plan">
-        <img src="/images/accommodation/map-opposite-upstairs.webp" alt="Floor plan of the Opposite building upstairs showing rooms 1, 2 and 3 with a kitchen beside room 1." width="1280" height="300" loading="lazy">
+        <img class="stay-map-art stay-map-art--opposite" src="/images/accommodation/map-opposite-upstairs.svg" alt="Schematic Opposite upstairs plan. Image-left to image-right are Room 3, Room 2 and Room 1. Below Room 1, the kitchen sits above the entrance and stairs in the image-left column; the bathroom fills the image-right column." width="1000" height="650">
       </div>
-      <p>Rooms 1–3, plus the upstairs kitchen.</p>
+      <p class="stay-map-panel__description">Room 3 lists one single and one small double for three places; Room 2 two singles; Room 1 one single. Below Room 1, the kitchen is directly above the entrance and stairs in the image-left column; the bathroom occupies the image-right column.</p>
+      <p class="stay-map-panel__actions"><a href="/images/accommodation/map-opposite-upstairs.svg" target="_blank" rel="noopener noreferrer">Open Opposite upstairs full-size</a><a href="/images/accommodation/map-opposite-upstairs.svg" download>Download Opposite upstairs SVG</a></p>
     </details>
   </div>
 

@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="850" viewBox="0 0 1600 850" role="img" aria-labelledby="title desc">
+  <title id="title">Castle upstairs accommodation map</title>
+  <desc id="desc">A schematic upstairs plan of the Castle. Storage and rooms 1 to 4 run across the upper wing, with bathrooms between rooms 2 and 3. Kitchen and dining are at lower left and the ballroom and open space are central. Beneath Room 4, table football and ping pong span the top, with shower and WC below on the image-left and the hall below on the image-right; Room 5 then Room 6 sit underneath.</desc>
+  <style>
+    text { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #2d2925; }
+    .floor { fill: #fffaf1; }
+    .shared { fill: #edf3e8; }
+    .service { fill: #e3eef2; }
+    .storage { fill: #e8edf5; }
+    .ballroom { fill: #f3e6eb; }
+    .wall { fill: none; stroke: #312b26; stroke-width: 5; stroke-linejoin: round; }
+    .divider { stroke: #312b26; stroke-width: 4; }
+    .kicker { fill: #8f3f25; font-size: 26px; font-weight: 800; letter-spacing: 2.2px; }
+    .note { fill: #6d6258; font-size: 26px; font-weight: 650; letter-spacing: .5px; }
+    .room-code { fill: #fff; font-size: 32px; font-weight: 850; }
+    .room-name { font-size: 26px; font-weight: 800; }
+    .room-meta { fill: #594f46; font-size: 26px; font-weight: 650; }
+    .space-name { fill: #45613f; font-size: 26px; font-weight: 800; }
+    .space-meta { fill: #5e6f59; font-size: 26px; font-weight: 650; }
+    .service-name { fill: #3e5e6d; font-size: 26px; font-weight: 800; }
+    .storage-name { fill: #4e607e; font-size: 26px; font-weight: 800; }
+    .ballroom-name { fill: #714859; font-size: 32px; font-weight: 850; }
+    .pill { fill: #f8e4b5; stroke: #a96b17; stroke-width: 3; }
+    .pill-sofa { fill: #dcebd4; stroke: #55704b; stroke-width: 3; }
+    .pill-text { fill: #4a371b; font-size: 26px; font-weight: 800; letter-spacing: .1px; }
+    .pill-text-sofa { fill: #3d5637; font-size: 26px; font-weight: 800; letter-spacing: .1px; }
+  </style>
+  <defs>
+    <symbol id="single" viewBox="0 0 22 28">
+      <rect x="3" y="2" width="16" height="24" rx="3" fill="#fffaf1" stroke="#7e5013" stroke-width="3"/>
+      <rect x="5" y="4" width="12" height="6" rx="2" fill="#dfbd6b"/>
+    </symbol>
+    <symbol id="double" viewBox="0 0 30 28">
+      <rect x="2" y="2" width="26" height="24" rx="3" fill="#fffaf1" stroke="#7e5013" stroke-width="3"/>
+      <rect x="4" y="4" width="10" height="6" rx="2" fill="#dfbd6b"/>
+      <rect x="16" y="4" width="10" height="6" rx="2" fill="#dfbd6b"/>
+    </symbol>
+    <symbol id="sofa" viewBox="0 0 30 24">
+      <rect x="4" y="7" width="22" height="13" rx="4" fill="#eff6eb" stroke="#4f6847" stroke-width="3"/>
+      <path d="M4 12H2V20H28V12H26M8 7V18M22 7V18" fill="none" stroke="#4f6847" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+
+  <rect width="1600" height="850" rx="24" fill="#fcf7ee"/>
+  <text x="38" y="35" class="kicker">CASTLE · UPSTAIRS</text>
+  <text x="1562" y="35" text-anchor="end" class="note">SCHEMATIC · NOT TO SCALE</text>
+
+  <!-- Top sleeping wing -->
+  <rect x="36" y="68" width="174" height="307" class="storage"/>
+  <rect x="210" y="68" width="300" height="307" class="floor"/>
+  <rect x="510" y="68" width="250" height="307" class="floor"/>
+  <rect x="760" y="68" width="140" height="307" class="service"/>
+  <rect x="900" y="68" width="280" height="307" class="floor"/>
+  <rect x="1180" y="68" width="384" height="307" class="floor"/>
+
+  <!-- Lower shared wing -->
+  <rect x="36" y="375" width="174" height="439" class="shared"/>
+  <rect x="210" y="375" width="970" height="117" class="shared"/>
+  <rect x="1090" y="375" width="90" height="117" class="service"/>
+  <rect x="210" y="492" width="970" height="322" class="ballroom"/>
+  <rect data-space="castle-upstairs-recreation" x="1180" y="375" width="384" height="75" class="shared"/>
+  <rect data-space="castle-upstairs-shower-wc" x="1180" y="450" width="160" height="130" class="service"/>
+  <rect data-space="castle-upstairs-hall" x="1340" y="450" width="224" height="130" class="shared"/>
+  <rect data-space="castle-upstairs-room5-area" x="1180" y="580" width="384" height="108" class="floor"/>
+  <rect data-space="castle-upstairs-room6-area" x="1180" y="688" width="384" height="126" class="floor"/>
+
+  <rect x="36" y="68" width="1528" height="746" rx="3" class="wall"/>
+  <path d="M210 68V814M510 68V375M760 68V375M900 68V375M1180 68V814M36 375H1564M210 492H1180M1180 450H1564M1180 580H1564M1180 688H1564M1340 450V580M36 594H210M760 170H900M760 272H900M1090 375V492" class="divider"/>
+
+  <!-- Storage -->
+  <g transform="translate(123 188)" text-anchor="middle">
+    <text class="storage-name">Storage</text>
+    <text y="34" class="room-meta">no</text>
+    <text y="63" class="room-meta">activities</text>
+    <text y="92" class="room-meta">here</text>
+  </g>
+
+  <!-- Room 1 -->
+  <g data-room="castle-upstairs-1" transform="translate(234 91)">
+    <rect width="54" height="40" rx="20" fill="#9b452a"/>
+    <text x="27" y="28" text-anchor="middle" class="room-code">1</text>
+    <text x="0" y="78" class="room-name">Room 1 · 4 places</text>
+    <g transform="translate(0 92)"><rect width="224" height="72" rx="30" class="pill"/><use href="#double" x="12" y="22" width="28" height="28"/><text x="52" y="29" class="pill-text">1 DOUBLE</text><text x="52" y="59" class="pill-text">2 PLACES</text></g>
+    <g transform="translate(0 172)"><rect width="224" height="72" rx="30" class="pill"/><use href="#single" x="15" y="22" width="22" height="28"/><text x="49" y="29" class="pill-text">2 SINGLES</text><text x="49" y="59" class="pill-text">2 PLACES</text></g>
+  </g>
+
+  <!-- Room 2 -->
+  <g data-room="castle-upstairs-2" transform="translate(528 91)">
+    <rect width="54" height="40" rx="20" fill="#9b452a"/>
+    <text x="27" y="28" text-anchor="middle" class="room-code">2</text>
+    <text x="0" y="76" class="room-name">Room 2</text>
+    <text x="0" y="108" class="room-meta">4 places</text>
+    <g transform="translate(0 120)"><rect width="204" height="72" rx="30" class="pill"/><use href="#double" x="10" y="22" width="28" height="28"/><text x="48" y="29" class="pill-text">DOUBLE</text><text x="48" y="59" class="pill-text">2 PLACES</text></g>
+    <g transform="translate(0 200)"><rect width="204" height="72" rx="30" class="pill-sofa"/><use href="#sofa" x="10" y="24" width="28" height="24"/><text x="48" y="29" class="pill-text-sofa">SOFA BED</text><text x="48" y="59" class="pill-text-sofa">2 PLACES</text></g>
+  </g>
+
+  <!-- Upper bathroom core -->
+  <g transform="translate(830 117)" text-anchor="middle">
+    <text class="service-name">Balcony</text>
+    <text y="92" class="service-name">WC +</text>
+    <text y="119" class="service-name">bath</text>
+    <text y="194" class="service-name">WC +</text>
+    <text y="221" class="service-name">shower</text>
+  </g>
+
+  <!-- Room 3 -->
+  <g data-room="castle-upstairs-3" transform="translate(924 91)">
+    <rect width="54" height="40" rx="20" fill="#9b452a"/>
+    <text x="27" y="28" text-anchor="middle" class="room-code">3</text>
+    <text x="0" y="78" class="room-name">Room 3</text>
+    <text x="0" y="110" class="room-meta">3 places</text>
+    <g transform="translate(0 124)"><rect width="224" height="72" rx="30" class="pill"/><use href="#single" x="14" y="22" width="22" height="28"/><text x="48" y="29" class="pill-text">3 SINGLES</text><text x="48" y="59" class="pill-text">3 PLACES</text></g>
+  </g>
+
+  <!-- Room 4 -->
+  <g data-room="castle-upstairs-4" transform="translate(1204 91)">
+    <rect width="54" height="40" rx="20" fill="#9b452a"/>
+    <text x="27" y="28" text-anchor="middle" class="room-code">4</text>
+    <text x="68" y="27" class="room-name">Room 4 · 4 places</text>
+    <g transform="translate(0 58)"><rect width="316" height="72" rx="30" class="pill"/><use href="#single" x="15" y="22" width="22" height="28"/><text x="49" y="29" class="pill-text">2 SINGLES</text><text x="49" y="59" class="pill-text">2 PLACES</text></g>
+    <g transform="translate(0 138)"><rect width="340" height="72" rx="30" class="pill"/><use href="#double" x="12" y="22" width="28" height="28"/><text x="52" y="29" class="pill-text">POSSIBLE DOUBLE</text><text x="52" y="59" class="pill-text">2 PLACES</text></g>
+  </g>
+
+  <!-- Kitchen / dining -->
+  <g transform="translate(123 472)" text-anchor="middle">
+    <text class="space-name">Kitchen</text>
+    <text y="26" class="space-meta">shared</text>
+  </g>
+  <g transform="translate(123 692)" text-anchor="middle">
+    <text class="space-name">Dining</text>
+    <text y="26" class="space-meta">shared</text>
+  </g>
+
+  <!-- Open space and ballroom -->
+  <rect x="238" y="398" width="118" height="60" rx="8" fill="#fff" stroke="#55704b" stroke-width="3"/>
+  <text x="297" y="435" text-anchor="middle" class="space-name">Stairs →</text>
+  <g transform="translate(745 420)" text-anchor="middle">
+    <text class="space-name">Open space</text>
+  </g>
+  <text x="1135" y="445" text-anchor="middle" class="service-name">WC</text>
+  <g transform="translate(695 636)" text-anchor="middle">
+    <text class="ballroom-name">Ballroom</text>
+    <text y="31" class="room-meta">shared event space</text>
+  </g>
+
+  <!-- Right-side service and recreation spaces -->
+  <g transform="translate(1372 403)" text-anchor="middle">
+    <text class="space-name">Table football</text>
+    <text y="31" class="space-name">Ping pong</text>
+  </g>
+  <g transform="translate(1260 502)" text-anchor="middle">
+    <text class="service-name">Shower</text>
+    <text y="31" class="service-name">+ WC</text>
+  </g>
+  <g transform="translate(1452 520)" text-anchor="middle">
+    <text class="space-name">Hall</text>
+  </g>
+
+  <!-- Room 5 -->
+  <g data-room="castle-upstairs-5" transform="translate(1204 584)">
+    <rect width="54" height="40" rx="20" fill="#9b452a"/>
+    <text x="27" y="28" text-anchor="middle" class="room-code">5</text>
+    <text x="68" y="27" class="room-name">Room 5 · 2 places</text>
+    <g transform="translate(0 42)"><rect width="350" height="50" rx="25" class="pill"/><use href="#double" x="12" y="11" width="28" height="28"/><text x="52" y="34" class="pill-text">DOUBLE · 2 PLACES</text></g>
+  </g>
+
+  <!-- Room 6 -->
+  <g data-room="castle-upstairs-6" transform="translate(1188 696)">
+    <rect width="54" height="40" rx="20" fill="#9b452a"/>
+    <text x="27" y="28" text-anchor="middle" class="room-code">6</text>
+    <text x="68" y="27" class="room-name">Room 6 · 3 places</text>
+    <g transform="translate(0 38)"><rect width="368" height="72" rx="30" class="pill"/><use href="#double" x="10" y="22" width="28" height="28"/><use href="#single" x="45" y="22" width="22" height="28"/><text x="72" y="29" class="pill-text">DOUBLE · 2 PLACES</text><text x="72" y="59" class="pill-text">SINGLE · 1 PLACE</text></g>
+  </g>
+</svg>
