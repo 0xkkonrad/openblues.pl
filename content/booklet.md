@@ -35,13 +35,13 @@ Please join the [Open Blues transport group on WhatsApp](https://chat.whatsapp.c
 
 Please bring your own towels and toiletries.
 
-- If you chose a paid **bed option**, you are guaranteed either a conventional bed or a large mattress prepared with fresh sheets and a pillow. It will be in a shared room: the option does not guarantee a bed frame or a private room. After registration, people choosing a single or shared sleeping place claim their exact place in the self-service bed chooser.
+- If you chose a paid **bed option**, you are guaranteed either a conventional bed or a large mattress prepared with fresh sheets and a pillow. It will be in a shared room: the option does not guarantee a bed frame or a private room. After registration, people choosing a single or shared sleeping place choose their exact place in the shared self-service Sheet linked from the room guide.
 - If you chose a **mattress**, there are no sheets. You have to carry your mattress, find a suitable spot for it and bring it back to where it was before. The advantage of this option is that you can put it wherever you like — so if you are a snorer or have very light sleep, you can probably find a nice spot. Unless you have a dust allergy, the barn is a great spot too. The disadvantage is that you have to arrange it yourself.
 - If you chose the **tent or floor** option, bring the complete setup you need for comfortable sleep. There is plenty of space; choose a suitable spot when you arrive.
 
-You can [see the room photos, find friends and browse the sleeping places](/accommodation/) in the accommodation picker.
+You can [browse the room photos and venue floor plans](/accommodation/) in the accommodation room guide. Names and live availability stay in the shared Sheet linked there.
 
-If you paid for a shared or single sleeping place, complete registration first and then [claim your exact place in the accommodation picker](/accommodation/). Your paid category is already guaranteed; no separate approval is required.
+If you paid for a shared or single sleeping place, complete registration first and then [choose or change your exact place through the accommodation room guide](/accommodation/). Your paid category is already guaranteed; no separate approval is required.
 
 All communal food is vegan and included from Thursday dinner through Monday breakfast. If you're extending your stay, extra nights do not include food. There is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -73,7 +73,7 @@ Registration works like this:
 1. Calculate the cash amount for your stay, Sunday night and drinks using the tables below.
 2. Transfer the non-refundable **€50 Reservation Payment** using the details inside the form.
 3. Upload the receipt and submit the form. The on-screen confirmation records your registration, repeats the cash amount to bring and links back to this guide.
-4. If you chose a single or shared sleeping place, use the accommodation picker linked on the confirmation to see who is in each room and claim an exact place.
+4. If you chose a single or shared sleeping place, use the [accommodation room guide](/accommodation/) to browse, then choose or change your exact place in the shared Sheet.
 5. Bring the remaining amount in cash. If you cannot come, you may find someone to take your place and ask us to update the registration.
 
 ### Calculate your cash amount
@@ -133,7 +133,7 @@ The invite is public, and other members can see your phone number and any WhatsA
 
 ## Checklist
 
-- Claimed an exact place in the self-service bed chooser if you paid for a shared or single sleeping place
+- Chosen or confirmed your exact place in the shared accommodation Sheet if you paid for a shared or single sleeping place
 - Sheets or sleeping bag (if you chose a mattress)
 - Right amount of cash (see the amount you saved from the registration confirmation screen)
 - Dress-to-impress outfit for Saturday

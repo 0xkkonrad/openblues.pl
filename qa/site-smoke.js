@@ -1,7 +1,7 @@
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 
-const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://127.0.0.1:3118';
+const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
 const entryPaths = ['/', '/booklet/', '/accommodation/', '/404.html'];
 
 async function run() {
@@ -22,19 +22,6 @@ async function run() {
     if (response.url().startsWith(origin) && response.status() >= 400) {
       failures.push(`HTTP ${response.status()}: ${response.url()}`);
     }
-  });
-
-  await page.route('https://docs.google.com/spreadsheets/**', async (route) => {
-    const requested = new URL(route.request().url());
-    const callback = (requested.searchParams.get('tqx') || '').match(/responseHandler:([A-Za-z0-9_$]+)/)?.[1];
-    await route.fulfill({
-      status: 200,
-      contentType: 'application/javascript; charset=utf-8',
-      body: `${callback}(${JSON.stringify({
-        status: 'ok',
-        table: { cols: [{ id: 'Col0', label: '', type: 'string' }], rows: [] }
-      })});`
-    });
   });
 
   for (const entryPath of entryPaths) {

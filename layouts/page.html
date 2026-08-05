@@ -1,7 +1,9 @@
 {{ define "main" }}
-<article class="prose page">
+<article class="{{ .Params.pageClass | default "prose page" }}">
+  {{ if not .Params.hideTitle }}
   <h1>{{ .Title }}</h1>
   {{ with .Params.subtitle }}<p class="subtitle">{{ . }}</p>{{ end }}
+  {{ end }}
   {{ .Content }}
 </article>
 {{ end }}

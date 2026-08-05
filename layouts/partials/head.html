@@ -44,12 +44,9 @@
 <link rel="stylesheet" href="{{ .RelPermalink }}">
 {{- end }}
 
-{{- if .Params.accommodationPicker }}
-  {{- with resources.Get "css/accommodation.css" | minify | fingerprint }}
+{{- range .Params.styles }}
+  {{- with resources.Get . | minify | fingerprint }}
 <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- end }}
-  {{- with resources.Get "js/accommodation.js" | minify | fingerprint }}
-<script src="{{ .RelPermalink }}" defer></script>
   {{- end }}
 {{- end }}
 

@@ -10,10 +10,10 @@ Hugo site deployed on GitHub Pages.
 
 - `content/_index.md` — landing page (about, venue, food, financials, FAQ)
 - `content/booklet.md` — the Info Booklet as a web page (`/booklet/`)
-- `REGISTRATION-OPERATIONS.md` — adopted 2026 registration and bed-booking operating decision
-- `qa/` — accommodation browser, accessibility and link smoke tests (`npm install --prefix qa && npm exec --prefix qa playwright install chromium && npm test --prefix qa`)
+- `REGISTRATION-OPERATIONS.md` — current registration and self-service accommodation operating decision
+- `qa/` — static accommodation, deprecation, accessibility and link smoke tests (`npm install --prefix qa && npm exec --prefix qa playwright install chromium && npm test --prefix qa`)
 - `layouts/` — minimal custom theme (no external theme dependency)
-- `static/images/` — logo, favicons, palace aerial (og image)
+- `static/images/` — logo, favicons, palace aerial, sanitized room photos and name-free venue maps
 - `static/CNAME` — custom domain for GitHub Pages
 - `archive/` — raw pull of the original Google Sites page and Google Doc booklet (not published)
 

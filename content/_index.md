@@ -68,7 +68,7 @@ We cook all communal food together, and it is all vegan. Food is included from T
 
 Sleeping options include a paid bed option, a mattress you arrange yourself, or space for your tent or sleeping setup on the floor. A paid bed option guarantees a sleeping place prepared with sheets and a pillow, but it may be a conventional bed or a large mattress. Rooms are shared; it does not guarantee a bed frame or a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
 
-If you paid for a shared or single sleeping place, complete registration first and then [see the rooms, find friends and claim your exact place](/accommodation/). Your paid category is already guaranteed; no separate approval is required.
+If you paid for a shared or single sleeping place, complete registration first and then [browse the room photos and venue map, and choose your exact place in the live self-service Sheet](/accommodation/). Your paid category is already guaranteed; no separate approval is required.
 
 There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -81,7 +81,7 @@ The sequence is:
 1. Calculate the cash amount for your stay, Sunday night and drinks.
 2. Transfer the non-refundable **€50 Reservation Payment** using the details inside the form.
 3. Upload the receipt and submit the form. The on-screen confirmation records your registration, repeats the cash amount to bring and links to this guide.
-4. If you chose a single or shared sleeping place, use the accommodation picker linked on the confirmation to see who is in each room and claim an exact place.
+4. If you chose a single or shared sleeping place, open the [accommodation room guide](/accommodation/) to browse first, then choose or change your exact place in the shared Sheet.
 5. Bring the remaining amount in cash. If you cannot come, you may find someone to take your place and ask us to update the registration.
 
 [See the complete payment, arrival and accommodation details](/booklet/#payments-and-registration).

@@ -1,10 +1,24 @@
 {
-  "version": 1,
+  "version": 2,
   "format": "webp",
   "quality": 82,
   "metadata": "stripped during transcode",
   "assignmentNotes": {
     "opposite-right": "No unambiguous source photo was supplied. Do not reuse another room's image."
+  },
+  "venueMap": {
+    "source": "Klaudia-owned self-service workbook, exported from a temporary private copy",
+    "privacy": "Participant names and live availability formulas replaced with neutral room labels before export; temporary copy trashed",
+    "wholeMap": [
+      { "src": "/images/accommodation/venue-map-2026.webp", "width": 2400, "height": 914 },
+      { "src": "/files/open-blues-2026-venue-map.pdf", "format": "pdf" }
+    ],
+    "panels": [
+      { "src": "/images/accommodation/map-castle-downstairs.webp", "width": 1400, "height": 1070 },
+      { "src": "/images/accommodation/map-castle-upstairs.webp", "width": 2600, "height": 1070 },
+      { "src": "/images/accommodation/map-opposite-downstairs.webp", "width": 1280, "height": 300 },
+      { "src": "/images/accommodation/map-opposite-upstairs.webp", "width": 1280, "height": 300 }
+    ]
   },
   "images": {
     "BALLROOM_.jpg": {
