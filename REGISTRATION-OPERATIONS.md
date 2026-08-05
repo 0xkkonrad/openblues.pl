@@ -22,12 +22,11 @@ Workbook:
 
 Owner: `klaudiapankert@gmail.com`
 
-The four visible tabs have deliberately separate jobs:
+The three visible tabs have deliberately separate jobs:
 
 1. `START HERE` — rules, live totals and links
-2. `ROOM BROWSER` — one protected row per room, live names and availability
-3. `CHOOSE / CHANGE` — one row per person-place; participants edit names here
-4. `VENUE MAP` — protected orientation map with live room counts
+2. `ROOM BROWSER` — one row per person-place; participants browse and edit names here
+3. `VENUE MAP` — protected orientation map with live room counts
 
 The audited inventory contains 57 person-places across 18 rooms. At migration it contained 31 taken, 20 available and 6 unavailable places. Those numbers are not copied into the website because they change in the Sheet.
 
@@ -36,7 +35,7 @@ The audited inventory contains 57 person-places across 18 rooms. At migration it
 - The workbook is link-only (`allowFileDiscovery=false`) and anyone with the link is a writer.
 - Editors cannot change sharing or add new editors.
 - Every sheet is protected.
-- On `CHOOSE / CHANGE`, exactly the 51 active name cells in column E are unprotected.
+- On `ROOM BROWSER`, exactly the 51 active name cells in column C are unprotected.
 - Four blocked and two organiser-held name cells remain protected.
 - Participant names are public display names only. The workbook contains no email, phone, payment evidence, registration answers or private sleeping/accessibility information.
 
@@ -46,7 +45,7 @@ This is a trust model, not a locking model. Google can accept two near-simultane
 
 1. Register and pay for a shared or single sleeping place.
 2. Browse photos and the floor plan at `/accommodation/`.
-3. Open the live Sheet and select `CHOOSE / CHANGE`.
+3. Open the live Sheet at `ROOM BROWSER`.
 4. Type one public display name into one green empty cell.
 5. Two people sharing a double bed or sofa use two person-place rows.
 6. To move, take the new empty place first, immediately clear the old name, and confirm that the name appears only once.
@@ -64,7 +63,7 @@ The website contains only stable, non-personal reference material:
 - four readable sleeping-building map panels
 - a whole-map WebP and downloadable PDF
 - static sleeping-surface descriptions
-- ordinary links to the Sheet tabs and room rows
+- ordinary links to `START HERE`, `ROOM BROWSER`, `VENUE MAP` and the exact room row spans
 
 Original JPEGs are not published. The WebPs were transcoded with metadata stripped; several originals contained GPS/camera metadata or MPO auxiliary data.
 

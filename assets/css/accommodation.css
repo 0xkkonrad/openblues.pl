@@ -109,22 +109,6 @@
 .stay-primary { background: var(--stay-terracotta-dark); }
 .stay-primary:hover { background: #71301d; }
 
-.stay-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: .62rem 1.1rem;
-  border: 2px solid var(--stay-terracotta);
-  border-radius: 999px;
-  color: var(--stay-terracotta-dark);
-  background: rgba(255, 255, 255, .56);
-  font-weight: 900;
-  line-height: 1.25;
-  text-decoration: none;
-}
-
-.stay-secondary:hover { color: #71301d; background: #fff; }
-
 .stay-skip {
   display: inline-block;
   margin-top: 1rem;

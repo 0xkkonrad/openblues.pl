@@ -45,8 +45,8 @@ for (const needle of forbidden) {
 const accommodation = fs.readFileSync(path.join(root, 'content/accommodation.md'), 'utf8');
 assert.match(accommodation, /1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8/);
 assert.match(accommodation, /gid=2026080501/);
-assert.match(accommodation, /gid=2026080502/);
 assert.match(accommodation, /gid=2026080404/);
 assert.match(accommodation, /gid=0/);
+assert.equal((accommodation.match(/gid=2026080501/g) || []).length, 20);
 
 process.stdout.write('PASS: legacy picker runtime, roster protocol, claim form and YAML inventory are absent from active site sources.\n');

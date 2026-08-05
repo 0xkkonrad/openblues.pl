@@ -29,6 +29,27 @@ const expectedRooms = [
   'opposite-right-upstairs-new'
 ];
 
+const expectedRoomRanges = [
+  'A5:E5',
+  'A6:E7',
+  'A8:E10',
+  'A11:E12',
+  'A13:E15',
+  'A16:E19',
+  'A20:E23',
+  'A24:E27',
+  'A28:E31',
+  'A32:E33',
+  'A34:E37',
+  'A38:E41',
+  'A42:E45',
+  'A46:E48',
+  'A49:E52',
+  'A53:E54',
+  'A55:E57',
+  'A58:E61'
+];
+
 const expectedPhotoSlugs = [
   'opposite-upstairs-1',
   'opposite-upstairs-2',
@@ -174,24 +195,27 @@ async function run() {
         expectedPhotoSlugs.map((slug) => `/images/accommodation/${slug}-1440.webp`)
       );
 
-      const chooseHref = await page.locator('.stay-primary').getAttribute('href');
-      const browserHref = await page.locator('.stay-secondary').getAttribute('href');
+      const primaryHref = await page.locator('.stay-primary').getAttribute('href');
+      const finalHref = await page.locator('.stay-final__actions .btn').getAttribute('href');
       const mapHref = await page.getByRole('link', { name: /Open the live map tab/ }).getAttribute('href');
       const startHref = await page.getByRole('link', { name: /Read the Sheet instructions first/ }).getAttribute('href');
-      assertSheetLink(chooseHref, '2026080502');
-      assertSheetLink(browserHref, '2026080501');
+      assertSheetLink(primaryHref, '2026080501');
+      assertSheetLink(finalHref, '2026080501');
       assertSheetLink(mapHref, '0');
       assertSheetLink(startHref, '2026080404');
+      assert.equal(await page.locator('.stay-actions a').count(), 1);
 
       const sheetLinks = await page.locator(`a[href*="${sheetId}"]`).evaluateAll((nodes) => nodes.map((node) => node.href));
-      assert.equal(sheetLinks.length, 23);
+      assert.equal(sheetLinks.length, 22);
       assert.equal(sheetLinks.every((href) => href.includes(sheetId)), true);
+      const sheetGids = sheetLinks.map((href) => new URLSearchParams(new URL(href).hash.slice(1)).get('gid'));
+      assert.deepEqual([...new Set(sheetGids)].sort(), ['0', '2026080404', '2026080501'].sort());
       const roomSheetLinks = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => node.href));
       assert.equal(roomSheetLinks.length, 18);
       roomSheetLinks.forEach((href, index) => {
         const fragment = new URLSearchParams(new URL(href).hash.slice(1));
         assert.equal(fragment.get('gid'), '2026080501');
-        assert.equal(fragment.get('range'), `B${index + 5}:G${index + 5}`);
+        assert.equal(fragment.get('range'), expectedRoomRanges[index]);
       });
       const roomLinkA11y = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => ({
         label: node.getAttribute('aria-label'),
@@ -243,11 +267,11 @@ async function run() {
     const response = await noScriptPage.goto(pageUrl, { waitUntil: 'networkidle' });
     assert.ok(response && response.ok());
     assert.equal(await noScriptPage.locator('[data-room-id]').count(), 18);
-    assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), '2026080502');
+    assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), '2026080501');
     await assertNoHorizontalOverflow(noScriptPage, 'no-JavaScript 390px');
     await noScriptContext.close();
 
-    process.stdout.write('PASS: static accommodation field guide loaded at 5 viewports with exact rooms, maps, photos, Sheet tabs, privacy and no legacy runtime.\n');
+    process.stdout.write('PASS: static accommodation field guide loaded at 5 viewports with exact rooms, maps, photos, Room Browser links, privacy and no legacy runtime.\n');
   } finally {
     await browser.close();
   }
