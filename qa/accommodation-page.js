@@ -215,7 +215,7 @@ async function run() {
 
     const noScriptContext = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
     const noScriptPage = await noScriptContext.newPage();
-    const response = await noScriptPage.goto(pageUrl, { waitUntil: 'domcontentloaded' });
+    const response = await noScriptPage.goto(pageUrl, { waitUntil: 'networkidle' });
     assert.ok(response && response.ok());
     assert.equal(await noScriptPage.locator('[data-room-id]').count(), 18);
     assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), '2026080502');
