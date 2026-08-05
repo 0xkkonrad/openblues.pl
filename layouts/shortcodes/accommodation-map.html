@@ -1,0 +1,11 @@
+{{- $slug := .Get "slug" -}}
+{{- $maps := slice "castle-downstairs" "castle-upstairs" "opposite-downstairs" "opposite-upstairs" -}}
+{{- if not (in $maps $slug) -}}
+  {{- errorf "accommodation-map: unsupported slug %q" $slug -}}
+{{- end -}}
+{{- $path := printf "static/images/accommodation/map-%s.svg" $slug -}}
+{{- $svg := os.ReadFile $path -}}
+{{- if not $svg -}}
+  {{- errorf "accommodation-map: %s is empty" $path -}}
+{{- end -}}
+{{- $svg | safeHTML -}}

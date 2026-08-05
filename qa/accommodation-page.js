@@ -77,6 +77,33 @@ const expectedMapPaths = [
   '/images/accommodation/map-opposite-upstairs.svg'
 ];
 
+const expectedMapDimensions = [
+  [1200, 900],
+  [1600, 850],
+  [1000, 440],
+  [1000, 650]
+];
+
+const mappedRooms = [
+  'castle-downstairs-a1',
+  'castle-downstairs-a2',
+  'castle-downstairs-a3',
+  'castle-downstairs-b1',
+  'castle-downstairs-b2',
+  'castle-downstairs-c1',
+  'castle-upstairs-1',
+  'castle-upstairs-2',
+  'castle-upstairs-3',
+  'castle-upstairs-4',
+  'castle-upstairs-5',
+  'castle-upstairs-6',
+  'opposite-downstairs-1',
+  'opposite-downstairs-2',
+  'opposite-upstairs-3',
+  'opposite-upstairs-2',
+  'opposite-upstairs-1'
+];
+
 fs.mkdirSync(outputDir, { recursive: true });
 
 async function assertNoHorizontalOverflow(page, label) {
@@ -151,26 +178,53 @@ async function run() {
       assert.equal(await page.locator('.stay-room-card__photo img').count(), 17);
       assert.equal(await page.locator('.stay-room-card--missing').count(), 1);
       assert.match(await page.locator('.stay-room-card--missing').textContent(), /No supplied photo/);
-      assert.equal(await page.locator('.stay-map-panel img').count(), 4);
+      assert.equal(await page.locator('.stay-map-panel img').count(), 0, 'floor plans must not contain raster placeholders');
+      assert.equal(await page.locator('.stay-map-panel__scroll > svg.stay-map-art').count(), 4);
       assert.equal(await page.locator('.stay-map-panel__swipe').count(), 4);
-      const mapImages = await page.locator('.stay-map-panel img').evaluateAll((nodes) => nodes.map((node) => ({
-        path: new URL(node.src).pathname,
-        loading: node.getAttribute('loading'),
-        width: node.naturalWidth,
-        height: node.naturalHeight
-      })));
-      assert.deepEqual(mapImages.map(({ path }) => path), expectedMapPaths);
-      assert.equal(mapImages.every(({ loading }) => loading !== 'lazy'), true, 'floor plans must decode eagerly for print');
-      assert.deepEqual(mapImages.map(({ width, height }) => [width, height]), [
-        [1200, 900],
-        [1600, 850],
-        [1000, 440],
-        [1000, 650]
-      ]);
+      const inlineMaps = await page.locator('.stay-map-panel__scroll > svg.stay-map-art').evaluateAll((nodes) => nodes.map((node) => {
+        const viewBox = node.viewBox.baseVal;
+        const box = node.getBoundingClientRect();
+        return {
+          width: Number(node.getAttribute('width')),
+          height: Number(node.getAttribute('height')),
+          viewBox: [viewBox.x, viewBox.y, viewBox.width, viewBox.height],
+          renderedWidth: box.width,
+          renderedHeight: box.height,
+          role: node.getAttribute('role'),
+          title: node.querySelector(':scope > title')?.textContent?.trim(),
+          scopeClasses: [...node.classList].filter((className) => className.startsWith('map-'))
+        };
+      }));
+      assert.deepEqual(inlineMaps.map(({ width: mapWidth, height: mapHeight }) => [mapWidth, mapHeight]), expectedMapDimensions);
+      assert.deepEqual(inlineMaps.map(({ viewBox }) => viewBox), expectedMapDimensions.map(([mapWidth, mapHeight]) => [0, 0, mapWidth, mapHeight]));
+      assert.equal(inlineMaps.every(({ renderedWidth, renderedHeight, role, title }) => renderedWidth > 0 && renderedHeight > 0 && role === 'group' && title), true, 'floor plans must render as named inline SVG groups');
+      assert.equal(new Set(inlineMaps.map(({ title }) => title)).size, 4, 'floor-plan accessible names must be unique');
+      assert.equal(new Set(inlineMaps.flatMap(({ scopeClasses }) => scopeClasses)).size, 4, 'floor-plan CSS scope classes must be unique');
+      assert.equal(inlineMaps.every(({ scopeClasses }) => scopeClasses.length === 1), true);
+
+      const mapRoomLinks = await page.locator('svg.stay-map-art a[data-room]').evaluateAll((nodes) => nodes.map((node) => {
+        const href = node.getAttribute('href');
+        return {
+          roomId: node.getAttribute('data-room'),
+          href,
+          label: node.getAttribute('aria-label'),
+          title: node.querySelector(':scope > title')?.textContent?.trim(),
+          targetExists: Boolean(document.getElementById(href.split('#')[1]))
+        };
+      }));
+      assert.deepEqual(mapRoomLinks.map(({ roomId }) => roomId), mappedRooms);
+      assert.equal(new Set(mapRoomLinks.map(({ label }) => label)).size, 17);
+      mapRoomLinks.forEach(({ roomId, href, label, title, targetExists }) => {
+        assert.equal(href, `https://openblues.pl/accommodation/#room-${roomId}`);
+        assert.ok(label && label === title);
+        assert.equal(targetExists, true, `${roomId} map link has no room-card target`);
+      });
 
       const mapActionNames = await page.locator('.stay-map-panel__actions a').evaluateAll((nodes) => nodes.map((node) => node.textContent.trim()));
       assert.equal(mapActionNames.length, 8);
       assert.equal(new Set(mapActionNames).size, 8, 'map open/download links need unique accessible names');
+      const mapActionPaths = await page.locator('.stay-map-panel__actions a').evaluateAll((nodes) => nodes.map((node) => new URL(node.href).pathname));
+      assert.deepEqual(mapActionPaths, expectedMapPaths.flatMap((mapPath) => [mapPath, mapPath]));
 
       const mapAffordances = await page.locator('.stay-map-panel').evaluateAll((panels) => panels.map((panel) => {
         const scroller = panel.querySelector('.stay-map-panel__scroll');
@@ -265,6 +319,20 @@ async function run() {
     const response = await noScriptPage.goto(pageUrl, { waitUntil: 'networkidle' });
     assert.ok(response && response.ok());
     assert.equal(await noScriptPage.locator('[data-room-id]').count(), 18);
+    assert.equal(await noScriptPage.locator('.stay-map-panel__scroll > svg.stay-map-art').count(), 4);
+    const noScriptMapLinks = await noScriptPage.locator('svg.stay-map-art a[data-room]').evaluateAll((nodes) => nodes.map((node) => {
+      const href = node.getAttribute('href');
+      return {
+        roomId: node.getAttribute('data-room'),
+        href,
+        targetExists: Boolean(document.getElementById(href.split('#')[1]))
+      };
+    }));
+    assert.deepEqual(noScriptMapLinks.map(({ roomId }) => roomId), mappedRooms);
+    noScriptMapLinks.forEach(({ roomId, href, targetExists }) => {
+      assert.equal(href, `https://openblues.pl/accommodation/#room-${roomId}`);
+      assert.equal(targetExists, true);
+    });
     assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), '2026080501');
     await assertNoHorizontalOverflow(noScriptPage, 'no-JavaScript 390px');
     await noScriptContext.close();
