@@ -59,8 +59,7 @@
     <rect width="66" height="48" rx="24" fill="#9b452a"/>
     <text x="33" y="35" text-anchor="middle" class="room-code">1</text>
     <text x="84" y="32" class="room-name">Room 1</text>
-    <text x="0" y="83" class="room-meta">2 person-places</text>
-    <g transform="translate(0 108)"><rect width="302" height="46" rx="23" class="pill"/><use href="#od-double" x="12" y="9" width="30" height="28"/><text x="53" y="30" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
+    <g transform="translate(0 70)"><rect width="205" height="46" rx="23" class="pill"/><use href="#od-double" x="12" y="9" width="30" height="28"/><text x="53" y="30" class="pill-text">1 DOUBLE</text></g>
     <use href="#od-camera" x="284" y="-13" width="40" height="40" class="photo-mark"/>
   </g>
 
@@ -73,9 +72,8 @@
     <rect width="66" height="48" rx="24" fill="#9b452a"/>
     <text x="33" y="35" text-anchor="middle" class="room-code">2</text>
     <text x="84" y="32" class="room-name">Room 2</text>
-    <text x="0" y="83" class="room-meta">3 person-places</text>
-    <g transform="translate(0 108)"><rect width="302" height="46" rx="23" class="pill"/><use href="#od-double" x="12" y="9" width="30" height="28"/><text x="53" y="30" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
-    <g transform="translate(0 162)"><rect width="280" height="46" rx="23" class="pill"/><use href="#od-single" x="15" y="9" width="22" height="28"/><text x="49" y="30" class="pill-text">1 SINGLE · 1 PLACE</text></g>
+    <g transform="translate(0 70)"><rect width="205" height="46" rx="23" class="pill"/><use href="#od-double" x="12" y="9" width="30" height="28"/><text x="53" y="30" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 124)"><rect width="195" height="46" rx="23" class="pill"/><use href="#od-single" x="15" y="9" width="22" height="28"/><text x="49" y="30" class="pill-text">1 SINGLE</text></g>
     <use href="#od-camera" x="262" y="-13" width="40" height="40" class="photo-mark"/>
   </g>
 

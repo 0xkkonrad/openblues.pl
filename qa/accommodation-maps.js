@@ -6,13 +6,14 @@ const { chromium } = require('playwright');
 const pageUrl = process.env.OPENBLUES_PREVIEW_URL || 'http://localhost:3118/accommodation/';
 const siteRoot = path.resolve(__dirname, '..');
 const canonicalAccommodationUrl = 'https://openblues.pl/accommodation/';
+const redundantCapacityCopy = /\b(?:person[- ]?)?places?\b/i;
 
 const maps = [
   {
     slug: 'castle-downstairs', width: 1200, height: 900, rooms: 6, places: 22,
     roomCodeFont: 30, secondaryFont: 23,
     roomIds: ['castle-downstairs-a1', 'castle-downstairs-a2', 'castle-downstairs-a3', 'castle-downstairs-b1', 'castle-downstairs-b2', 'castle-downstairs-c1'],
-    labels: ['Kitchen', 'Hall', 'Courtyard', 'ENTRANCE', 'Wing A', 'Wing B', 'Wing C', 'WC', 'DOUBLE-SIZE SOFA', '1 LISTED PLACE']
+    labels: ['Kitchen', 'Hall', 'Courtyard', 'ENTRANCE', 'Wing A', 'Wing B', 'Wing C', 'WC', 'DOUBLE-SIZE SOFA', 'SINGLE OCCUPANCY']
   },
   {
     slug: 'castle-upstairs', width: 1600, height: 850, rooms: 6, places: 20,
@@ -89,6 +90,12 @@ function staticChecks() {
     assert.doesNotMatch(source, /north|compass/i, `${map.slug} must not invent orientation`);
     map.labels.forEach((label) => assert.ok(source.includes(label), `${map.slug} is missing confirmed label: ${label}`));
 
+    const publicCopy = [
+      ...[...source.matchAll(/<(title|desc|text)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map((match) => match[2].replace(/<[^>]+>/g, ' ')),
+      ...[...source.matchAll(/\baria-label=["']([^"']+)["']/gi)].map((match) => match[1])
+    ].join(' ');
+    assert.doesNotMatch(publicCopy, redundantCapacityCopy, `${map.slug} repeats sleeping-surface capacity in public map copy`);
+
     const anchors = [...source.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi)].map((match) => ({
       attributes: match[1],
       body: match[2]
@@ -138,10 +145,20 @@ function staticChecks() {
   assert.match(content, /Tap or click a room to jump to its photo and details/i);
   assert.equal((content.match(/id=["']room-[^"']+["']\s+data-room-id=/g) || []).length, 18, 'every room card needs a stable map target ID');
   assert.match(content, /Layout is approximate: no scale or confirmed door and furniture positions/i);
-  assert.match(content, /Bed symbols summarize inventory rather than exact placement/i);
+  assert.match(content, /colou?rs and symbols[^<]*types?[^<]*(?:not|never)[^<]*availability/i, 'map copy must explain that colour and symbols encode type, not live availability');
+
+  const roomSummaries = [...content.matchAll(/<div class=["']stay-room-card__body["']>[\s\S]*?<span>([^<]+)<\/span>/g)].map((match) => match[1].trim());
+  assert.equal(roomSummaries.length, 18, 'every room card needs one plain sleeping-surface summary');
+  roomSummaries.forEach((summary) => {
+    assert.doesNotMatch(summary, redundantCapacityCopy, `room summary repeats capacity: ${summary}`);
+    assert.doesNotMatch(summary, /\b(?:free|taken|held|not[- ]open|available|availability|reserved|unavailable)\b/i, `room summary leaks mutable availability: ${summary}`);
+  });
+  const a3Article = content.match(/<article\b[^>]*data-room-id=["']castle-downstairs-a3["'][^>]*>[\s\S]*?<\/article>/i)?.[0] || '';
+  const a3Summary = a3Article.match(/<div class=["']stay-room-card__body["']>[\s\S]*?<span>([^<]+)<\/span>/i)?.[1] || '';
+  assert.match(a3Summary, /double-size sofa[^<]*single occupancy/i, 'A3 must preserve its non-obvious single-occupancy sofa exception');
   assert.match(content, /does not confirm a downstairs bathroom/i);
-  assert.match(content, /kitchen is directly above the entrance and stairs in the image-left column/i);
-  assert.match(content, /recreation area sits above the shower\/WC and hall/i);
+  assert.match(content, /kitchen[^<]*above (?:the )?entrance and stairs[^<]*bathroom[^<]*(?:right|image-right)/i);
+  assert.match(content, /recreation(?: area)? sits above (?:the )?shower\/WC and hall/i);
 }
 
 async function assertSvgGeometry(browser, map) {

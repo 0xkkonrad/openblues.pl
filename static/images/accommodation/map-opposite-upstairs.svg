@@ -67,9 +67,8 @@
     <rect width="66" height="48" rx="24" fill="#9b452a"/>
     <text x="33" y="35" text-anchor="middle" class="room-code">3</text>
     <text x="84" y="32" class="room-name">Room 3</text>
-    <text x="0" y="82" class="room-meta">3 person-places</text>
-    <g transform="translate(0 105)"><rect width="240" height="58" rx="25" class="pill"/><use href="#ou-single" x="14" y="15" width="22" height="28"/><text x="48" y="25" class="pill-text">1 SINGLE</text><text x="48" y="49" class="pill-text">1 PLACE</text></g>
-    <g transform="translate(0 171)"><rect width="250" height="58" rx="25" class="pill"/><use href="#ou-double" x="11" y="15" width="30" height="28"/><text x="51" y="25" class="pill-text">SMALL DOUBLE</text><text x="51" y="49" class="pill-text">2 PLACES</text></g>
+    <g transform="translate(0 66)"><rect width="190" height="46" rx="23" class="pill"/><use href="#ou-single" x="14" y="9" width="22" height="28"/><text x="48" y="31" class="pill-text">1 SINGLE</text></g>
+    <g transform="translate(0 120)"><rect width="230" height="46" rx="23" class="pill"/><use href="#ou-double" x="11" y="9" width="30" height="28"/><text x="51" y="31" class="pill-text">SMALL DOUBLE</text></g>
     <use href="#ou-camera" x="230" y="-13" width="40" height="40" class="photo-mark"/>
   </g>
 
@@ -77,8 +76,7 @@
     <rect width="66" height="48" rx="24" fill="#9b452a"/>
     <text x="33" y="35" text-anchor="middle" class="room-code">2</text>
     <text x="84" y="32" class="room-name">Room 2</text>
-    <text x="0" y="82" class="room-meta">2 person-places</text>
-    <g transform="translate(0 105)"><rect width="240" height="58" rx="25" class="pill"/><use href="#ou-single" x="14" y="15" width="22" height="28"/><text x="48" y="25" class="pill-text">2 SINGLES</text><text x="48" y="49" class="pill-text">2 PLACES</text></g>
+    <g transform="translate(0 66)"><rect width="190" height="46" rx="23" class="pill"/><use href="#ou-single" x="14" y="9" width="22" height="28"/><text x="48" y="31" class="pill-text">2 SINGLES</text></g>
     <use href="#ou-camera" x="230" y="-13" width="40" height="40" class="photo-mark"/>
   </g>
 
@@ -86,8 +84,7 @@
     <rect width="66" height="48" rx="24" fill="#9b452a"/>
     <text x="33" y="35" text-anchor="middle" class="room-code">1</text>
     <text x="84" y="32" class="room-name">Room 1</text>
-    <text x="0" y="82" class="room-meta">1 person-place</text>
-    <g transform="translate(0 105)"><rect width="240" height="58" rx="25" class="pill"/><use href="#ou-single" x="14" y="15" width="22" height="28"/><text x="48" y="25" class="pill-text">1 SINGLE</text><text x="48" y="49" class="pill-text">1 PLACE</text></g>
+    <g transform="translate(0 66)"><rect width="190" height="46" rx="23" class="pill"/><use href="#ou-single" x="14" y="9" width="22" height="28"/><text x="48" y="31" class="pill-text">1 SINGLE</text></g>
     <use href="#ou-camera" x="258" y="-13" width="40" height="40" class="photo-mark"/>
   </g>
 

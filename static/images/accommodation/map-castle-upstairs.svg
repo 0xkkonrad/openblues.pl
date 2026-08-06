@@ -101,9 +101,9 @@
   <g class="room-art" transform="translate(234 91)">
     <rect width="54" height="40" rx="20" fill="#9b452a"/>
     <text x="27" y="28" text-anchor="middle" class="room-code">1</text>
-    <text x="0" y="78" class="room-name">Room 1 · 4 places</text>
-    <g transform="translate(0 92)"><rect width="224" height="72" rx="30" class="pill"/><use href="#cu-double" x="12" y="22" width="28" height="28"/><text x="52" y="29" class="pill-text">1 DOUBLE</text><text x="52" y="59" class="pill-text">2 PLACES</text></g>
-    <g transform="translate(0 172)"><rect width="224" height="72" rx="30" class="pill"/><use href="#cu-single" x="15" y="22" width="22" height="28"/><text x="49" y="29" class="pill-text">2 SINGLES</text><text x="49" y="59" class="pill-text">2 PLACES</text></g>
+    <text x="0" y="78" class="room-name">Room 1</text>
+    <g transform="translate(0 92)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-double" x="12" y="11" width="28" height="28"/><text x="52" y="34" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 150)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-single" x="15" y="11" width="22" height="28"/><text x="49" y="34" class="pill-text">2 SINGLES</text></g>
     <use href="#cu-camera" x="233" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -112,9 +112,8 @@
     <rect width="54" height="40" rx="20" fill="#9b452a"/>
     <text x="27" y="28" text-anchor="middle" class="room-code">2</text>
     <text x="0" y="76" class="room-name">Room 2</text>
-    <text x="0" y="108" class="room-meta">4 places</text>
-    <g transform="translate(0 120)"><rect width="204" height="72" rx="30" class="pill"/><use href="#cu-double" x="10" y="22" width="28" height="28"/><text x="48" y="29" class="pill-text">DOUBLE</text><text x="48" y="59" class="pill-text">2 PLACES</text></g>
-    <g transform="translate(0 200)"><rect width="204" height="72" rx="30" class="pill-sofa"/><use href="#cu-sofa" x="10" y="24" width="28" height="24"/><text x="48" y="29" class="pill-text-sofa">SOFA BED</text><text x="48" y="59" class="pill-text-sofa">2 PLACES</text></g>
+    <g transform="translate(0 92)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-double" x="10" y="11" width="28" height="28"/><text x="48" y="34" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 150)"><rect width="220" height="50" rx="25" class="pill-sofa"/><use href="#cu-sofa" x="10" y="13" width="28" height="24"/><text x="48" y="34" class="pill-text-sofa">1 SOFA BED</text></g>
     <use href="#cu-camera" x="192" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -133,8 +132,7 @@
     <rect width="54" height="40" rx="20" fill="#9b452a"/>
     <text x="27" y="28" text-anchor="middle" class="room-code">3</text>
     <text x="0" y="78" class="room-name">Room 3</text>
-    <text x="0" y="110" class="room-meta">3 places</text>
-    <g transform="translate(0 124)"><rect width="224" height="72" rx="30" class="pill"/><use href="#cu-single" x="14" y="22" width="22" height="28"/><text x="48" y="29" class="pill-text">3 SINGLES</text><text x="48" y="59" class="pill-text">3 PLACES</text></g>
+    <g transform="translate(0 96)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-single" x="14" y="11" width="22" height="28"/><text x="48" y="34" class="pill-text">3 SINGLES</text></g>
     <use href="#cu-camera" x="212" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -142,9 +140,9 @@
   <g class="room-art" transform="translate(1204 91)">
     <rect width="54" height="40" rx="20" fill="#9b452a"/>
     <text x="27" y="28" text-anchor="middle" class="room-code">4</text>
-    <text x="68" y="27" class="room-name">Room 4 · 4 places</text>
-    <g transform="translate(0 58)"><rect width="316" height="72" rx="30" class="pill"/><use href="#cu-single" x="15" y="22" width="22" height="28"/><text x="49" y="29" class="pill-text">2 SINGLES</text><text x="49" y="59" class="pill-text">2 PLACES</text></g>
-    <g transform="translate(0 138)"><rect width="340" height="72" rx="30" class="pill"/><use href="#cu-double" x="12" y="22" width="28" height="28"/><text x="52" y="29" class="pill-text">POSSIBLE DOUBLE</text><text x="52" y="59" class="pill-text">2 PLACES</text></g>
+    <text x="68" y="27" class="room-name">Room 4</text>
+    <g transform="translate(0 58)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-single" x="15" y="11" width="22" height="28"/><text x="49" y="34" class="pill-text">2 SINGLES</text></g>
+    <g transform="translate(0 116)"><rect width="340" height="50" rx="25" class="pill"/><use href="#cu-double" x="12" y="11" width="28" height="28"/><text x="52" y="34" class="pill-text">POSSIBLE DOUBLE</text></g>
     <use href="#cu-camera" x="318" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -191,8 +189,8 @@
   <g class="room-art" transform="translate(1204 584)">
     <rect width="54" height="40" rx="20" fill="#9b452a"/>
     <text x="27" y="28" text-anchor="middle" class="room-code">5</text>
-    <text x="68" y="27" class="room-name">Room 5 · 2 places</text>
-    <g transform="translate(0 42)"><rect width="350" height="50" rx="25" class="pill"/><use href="#cu-double" x="12" y="11" width="28" height="28"/><text x="52" y="34" class="pill-text">DOUBLE · 2 PLACES</text></g>
+    <text x="68" y="27" class="room-name">Room 5</text>
+    <g transform="translate(0 42)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-double" x="12" y="11" width="28" height="28"/><text x="52" y="34" class="pill-text">1 DOUBLE</text></g>
     <use href="#cu-camera" x="318" y="-1" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -200,8 +198,8 @@
   <g class="room-art" transform="translate(1188 696)">
     <rect width="54" height="40" rx="20" fill="#9b452a"/>
     <text x="27" y="28" text-anchor="middle" class="room-code">6</text>
-    <text x="68" y="27" class="room-name">Room 6 · 3 places</text>
-    <g transform="translate(0 38)"><rect width="368" height="72" rx="30" class="pill"/><use href="#cu-double" x="10" y="22" width="28" height="28"/><use href="#cu-single" x="45" y="22" width="22" height="28"/><text x="72" y="29" class="pill-text">DOUBLE · 2 PLACES</text><text x="72" y="59" class="pill-text">SINGLE · 1 PLACE</text></g>
+    <text x="68" y="27" class="room-name">Room 6</text>
+    <g transform="translate(0 42)"><rect width="365" height="50" rx="25" class="pill"/><use href="#cu-double" x="10" y="11" width="28" height="28"/><use href="#cu-single" x="45" y="11" width="22" height="28"/><text x="72" y="34" class="pill-text">DOUBLE + SINGLE</text></g>
     <use href="#cu-camera" x="334" y="-1" width="38" height="38" class="photo-mark"/>
   </g>
   </g>

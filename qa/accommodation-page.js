@@ -7,6 +7,8 @@ const pageUrl = process.env.OPENBLUES_PREVIEW_URL || 'http://localhost:3118/acco
 const origin = new URL(pageUrl).origin;
 const outputDir = process.env.OPENBLUES_QA_OUTPUT || '/tmp/openblues-qa';
 const sheetId = '1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8';
+const redundantCapacityCopy = /\b(?:person[- ]?)?places?\b/i;
+const mutableAvailabilityCopy = /\b(?:free|taken|held|not[- ]open|available|availability|reserved|unavailable)\b/i;
 
 const expectedRooms = [
   'opposite-upstairs-1',
@@ -178,6 +180,19 @@ async function run() {
       assert.equal(await page.locator('.stay-room-card__photo img').count(), 17);
       assert.equal(await page.locator('.stay-room-card--missing').count(), 1);
       assert.match(await page.locator('.stay-room-card--missing').textContent(), /No supplied photo/);
+
+      const roomSummaries = await page.locator('.stay-room-card__body > span').allTextContents();
+      assert.equal(roomSummaries.length, 18, 'every room card needs one sleeping-surface summary');
+      roomSummaries.forEach((summary) => {
+        assert.doesNotMatch(summary, redundantCapacityCopy, `room summary repeats capacity: ${summary}`);
+        assert.doesNotMatch(summary, mutableAvailabilityCopy, `room summary leaks mutable availability: ${summary}`);
+      });
+      assert.match(
+        await page.locator('[data-room-id="castle-downstairs-a3"] .stay-room-card__body > span').textContent(),
+        /double-size sofa.*single occupancy/i,
+        'A3 must preserve its non-obvious single-occupancy sofa exception'
+      );
+
       assert.equal(await page.locator('.stay-map-panel img').count(), 0, 'floor plans must not contain raster placeholders');
       assert.equal(await page.locator('.stay-map-panel__scroll > svg.stay-map-art').count(), 4);
       assert.equal(await page.locator('.stay-map-panel__swipe').count(), 4);
@@ -201,6 +216,13 @@ async function run() {
       assert.equal(new Set(inlineMaps.map(({ title }) => title)).size, 4, 'floor-plan accessible names must be unique');
       assert.equal(new Set(inlineMaps.flatMap(({ scopeClasses }) => scopeClasses)).size, 4, 'floor-plan CSS scope classes must be unique');
       assert.equal(inlineMaps.every(({ scopeClasses }) => scopeClasses.length === 1), true);
+
+      const mapLabelCopy = await page.locator('svg.stay-map-art text').allTextContents();
+      assert.doesNotMatch(mapLabelCopy.join(' '), redundantCapacityCopy, 'floor-plan labels must not repeat capacity already conveyed by sleeping-surface types');
+      assert.equal(mapLabelCopy.filter((label) => /\bSINGLE OCCUPANCY\b/i.test(label)).length, 1, 'A3 needs exactly one concise single-occupancy exception');
+
+      const mapIntro = await page.locator('.stay-map__intro').textContent();
+      assert.match(mapIntro, /colou?rs and symbols.*types?.*(?:not|never).*availability/i, 'map intro must explain that colour and symbols encode type, not live availability');
 
       const mapRoomLinks = await page.locator('svg.stay-map-art a[data-room]').evaluateAll((nodes) => nodes.map((node) => {
         const href = node.getAttribute('href');

@@ -100,9 +100,9 @@
   <g class="room-art" transform="translate(62 92)">
     <rect width="64" height="42" rx="21" fill="#9b452a"/>
     <text x="32" y="29" text-anchor="middle" class="room-code">A1</text>
-    <text x="0" y="72" class="room-name">Wing A · 4 places</text>
-    <g transform="translate(0 91)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
-    <g transform="translate(0 141)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-single" x="12" y="7" width="22" height="28"/><text x="43" y="28" class="pill-text">2 SINGLES · 2 PLACES</text></g>
+    <text x="0" y="72" class="room-name">Wing A</text>
+    <g transform="translate(0 91)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 141)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-single" x="12" y="7" width="22" height="28"/><text x="43" y="28" class="pill-text">2 SINGLES</text></g>
     <use href="#cd-camera" x="371" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -110,9 +110,9 @@
   <g class="room-art" transform="translate(62 346)">
     <rect width="64" height="42" rx="21" fill="#9b452a"/>
     <text x="32" y="29" text-anchor="middle" class="room-code">A2</text>
-    <text x="82" y="28" class="room-name">Wing A · 4 places</text>
-    <g transform="translate(0 60)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
-    <g transform="translate(0 110)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-single" x="11" y="7" width="22" height="28"/><text x="42" y="28" class="pill-text">2 SINGLES · 2 PLACES</text></g>
+    <text x="82" y="28" class="room-name">Wing A</text>
+    <g transform="translate(0 60)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 110)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-single" x="11" y="7" width="22" height="28"/><text x="42" y="28" class="pill-text">2 SINGLES</text></g>
     <use href="#cd-camera" x="371" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -134,11 +134,10 @@
   <g class="room-art" transform="translate(788 92)">
     <rect width="64" height="42" rx="21" fill="#9b452a"/>
     <text x="32" y="29" text-anchor="middle" class="room-code">A3</text>
-    <text x="82" y="24" class="room-name">Wing A</text>
-    <text x="82" y="51" class="room-meta">4 listed places</text>
-    <g transform="translate(0 76)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
-    <g transform="translate(0 126)"><rect width="250" height="42" rx="21" class="pill-sofa"/><use href="#cd-sofa" x="9" y="9" width="28" height="24"/><text x="45" y="28" class="pill-text-sofa">1 SINGLE SOFA</text></g>
-    <g transform="translate(0 172)"><rect width="344" height="72" rx="30" class="pill-sofa"/><use href="#cd-sofa" x="10" y="24" width="28" height="24"/><text x="48" y="30" class="pill-text-sofa">DOUBLE-SIZE SOFA</text><text x="48" y="58" class="pill-text-sofa">1 LISTED PLACE</text></g>
+    <text x="82" y="28" class="room-name">Wing A</text>
+    <g transform="translate(0 60)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 110)"><rect width="240" height="42" rx="21" class="pill-sofa"/><use href="#cd-sofa" x="9" y="9" width="28" height="24"/><text x="45" y="28" class="pill-text-sofa">1 SINGLE SOFA</text></g>
+    <g transform="translate(0 160)"><rect width="344" height="72" rx="30" class="pill-sofa"/><use href="#cd-sofa" x="10" y="24" width="28" height="24"/><text x="48" y="30" class="pill-text-sofa">DOUBLE-SIZE SOFA</text><text x="48" y="58" class="pill-text-sofa">SINGLE OCCUPANCY</text></g>
     <use href="#cd-camera" x="327" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -146,9 +145,9 @@
   <g class="room-art" transform="translate(788 440)">
     <rect width="64" height="42" rx="21" fill="#9b452a"/>
     <text x="32" y="29" text-anchor="middle" class="room-code">B1</text>
-    <text x="82" y="28" class="room-name">Wing B · 4 places</text>
-    <g transform="translate(0 58)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-double" x="9" y="7" width="28" height="28"/><text x="44" y="28" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
-    <g transform="translate(0 108)"><rect width="330" height="68" rx="29" class="pill-mattress"/><use href="#cd-mattress" x="10" y="22" width="28" height="24"/><text x="46" y="29" class="pill-text">2 MATTRESSES</text><text x="46" y="56" class="pill-text">2 PLACES</text></g>
+    <text x="82" y="28" class="room-name">Wing B</text>
+    <g transform="translate(0 58)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="9" y="7" width="28" height="28"/><text x="44" y="28" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 108)"><rect width="260" height="42" rx="21" class="pill-mattress"/><use href="#cd-mattress" x="10" y="9" width="28" height="24"/><text x="46" y="28" class="pill-text">2 MATTRESSES</text></g>
     <use href="#cd-camera" x="327" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -156,8 +155,8 @@
   <g class="room-art" transform="translate(788 649)">
     <rect width="64" height="42" rx="21" fill="#9b452a"/>
     <text x="32" y="29" text-anchor="middle" class="room-code">B2</text>
-    <text x="82" y="28" class="room-name">Wing B · 2 places</text>
-    <g transform="translate(0 63)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
+    <text x="82" y="28" class="room-name">Wing B</text>
+    <g transform="translate(0 63)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE</text></g>
     <use href="#cd-camera" x="327" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -165,9 +164,9 @@
   <g class="room-art" transform="translate(138 644)">
     <rect width="64" height="42" rx="21" fill="#9b452a"/>
     <text x="32" y="29" text-anchor="middle" class="room-code">C1</text>
-    <text x="82" y="28" class="room-name">Wing C · 4 places</text>
-    <g transform="translate(0 63)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE · 2 PLACES</text></g>
-    <g transform="translate(0 113)"><rect width="340" height="42" rx="21" class="pill"/><use href="#cd-single" x="12" y="7" width="22" height="28"/><text x="43" y="28" class="pill-text">2 SINGLES · 2 PLACES</text></g>
+    <text x="82" y="28" class="room-name">Wing C</text>
+    <g transform="translate(0 63)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE</text></g>
+    <g transform="translate(0 113)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-single" x="12" y="7" width="22" height="28"/><text x="43" y="28" class="pill-text">2 SINGLES</text></g>
     <use href="#cd-camera" x="287" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
   <text x="81" y="664" text-anchor="middle" class="service-name">WC</text>
