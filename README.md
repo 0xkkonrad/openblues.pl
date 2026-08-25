@@ -11,6 +11,7 @@ Hugo site deployed on GitHub Pages.
 - `content/_index.md` — landing page (about, venue, food, financials, FAQ)
 - `content/booklet.md` — the Info Booklet as a web page (`/booklet/`)
 - `REGISTRATION-OPERATIONS.md` — current registration and self-service accommodation operating decision
+- `FINANCE-2026.md` — internal 2026 finance forecast, roster assumptions and recalculation rules
 - `qa/` — static accommodation, deprecation, accessibility and link smoke tests (`npm install --prefix qa && npm exec --prefix qa playwright install chromium && npm test --prefix qa`)
 - `layouts/` — minimal custom theme (no external theme dependency)
 - `static/images/` — logo, favicons, palace aerial, sanitized room photos and name-free venue maps
