@@ -27,7 +27,10 @@ enableGitInfo = false
 
   # --- Room browser (self-service accommodation Sheet for accepted participants who paid
   # for a shared or single place). Empty until the 2027 Sheet is ready; same open/closed pattern.
+  # roomBrowserURL must be the ROOM BROWSER tab URL ending in "#gid=<id>" (per-room links
+  # append "&range=A5:E5"); roomBrowserInstructionsURL is the START HERE tab (optional).
   roomBrowserURL = ""
+  roomBrowserInstructionsURL = ""
 
 [services.youtube]
   privacyEnhanced = true
