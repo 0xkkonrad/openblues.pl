@@ -9,7 +9,8 @@
   {{- $title = .Title }}
   {{- if not (strings.Contains .Title "Open Blues") }}{{ $title = printf "%s — Open Blues" .Title }}{{ end }}
 {{- end }}
-{{- $desc := .Params.description | default site.Params.description }}
+{{- $siteDesc := printf "%s %s." site.Params.descriptionBase site.Params.eventDatesHuman }}
+{{- $desc := .Params.description | default $siteDesc }}
 <title>{{ $title }}</title>
 <meta name="description" content="{{ $desc }}">
 {{- with .Params.robots }}
@@ -56,7 +57,7 @@
   "@context": "https://schema.org",
   "@type": ["Festival", "DanceEvent"],
   "name": "Open Blues {{ partial "event-year.html" . }}",
-  "description": {{ site.Params.description | jsonify | safeJS }},
+  "description": {{ $siteDesc | jsonify | safeJS }},
   "startDate": "{{ site.Params.eventStart }}",
   "endDate": "{{ site.Params.eventEnd }}",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",

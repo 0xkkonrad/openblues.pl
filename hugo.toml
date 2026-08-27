@@ -16,7 +16,9 @@ enableGitInfo = false
   eventStart = "2027-08-26"
   eventEnd = "2027-08-30"
   eventDatesHuman = "26–30 August 2027"
-  description = "A private, cost-shared, 100% DIY blues & fusion dance gathering at a historic Polish palace. Live music, community-run workshops, communal cooking. 26–30 August 2027."
+  # descriptionBase feeds <meta name=description>, og/twitter description and the JSON-LD
+  # description; eventDatesHuman is appended to it at build time, so no date lives here.
+  descriptionBase = "A private, cost-shared, 100% DIY blues & fusion dance gathering at a historic Polish palace. Live music, community-run workshops, communal cooking."
   ogImage = "images/og-palace.jpg"
 
   # --- Applications. While applicationsOpen is false (or applyURL is empty) every
