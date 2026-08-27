@@ -1,0 +1,2 @@
+{{- /* Returns the edition year, derived from site.Params.eventStart. */ -}}
+{{- return (time.AsTime site.Params.eventStart | time.Format "2006") -}}

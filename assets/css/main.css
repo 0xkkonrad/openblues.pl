@@ -144,6 +144,10 @@ img { max-width: 100%; height: auto; }
 .btn-outline:hover { background: var(--cream); }
 
 .btn-small { padding: .4rem 1rem; }
+
+/* Non-link state used while applications are closed (see hugo.toml applicationsOpen). */
+.btn-closed,
+.btn-closed:hover { background: var(--muted); cursor: default; }
 .topbar nav a.btn-small:hover { background: var(--btn-hover); color: #fff; }
 
 /* ---------- hero ---------- */

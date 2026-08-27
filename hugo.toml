@@ -11,12 +11,23 @@ disableKinds = ["taxonomy", "term", "rss", "section"]
 enableGitInfo = false
 
 [params]
-  description = "A private, cost-shared, 100% DIY blues & fusion dance gathering at a historic Polish palace. Live music, community-run workshops, communal cooking. 27–31 August 2026."
+  # --- Edition. Every date on the site (hero, at-a-glance, JSON-LD, Google Calendar link,
+  # the generated .ics) derives from these three values. Change them here and nowhere else.
+  eventStart = "2027-08-26"
+  eventEnd = "2027-08-30"
+  eventDatesHuman = "26–30 August 2027"
+  description = "A private, cost-shared, 100% DIY blues & fusion dance gathering at a historic Polish palace. Live music, community-run workshops, communal cooking. 26–30 August 2027."
   ogImage = "images/og-palace.jpg"
-  registerURL = "https://tally.so/r/68Y72P"
-  eventStart = "2026-08-27"
-  eventEnd = "2026-08-31"
-  eventDatesHuman = "27–31 August 2026"
+
+  # --- Applications. While applicationsOpen is false (or applyURL is empty) every
+  # apply button renders as a non-link "Applications open soon" state.
+  # To open applications: set applyURL to the Tally form and applicationsOpen = true.
+  applyURL = ""
+  applicationsOpen = false
+
+  # --- Room browser (self-service accommodation Sheet for accepted participants who paid
+  # for a shared or single place). Empty until the 2027 Sheet is ready; same open/closed pattern.
+  roomBrowserURL = ""
 
 [services.youtube]
   privacyEnhanced = true
@@ -31,3 +42,15 @@ enableGitInfo = false
 
 [markup.goldmark.renderer]
   unsafe = true
+
+# The iCal file is generated from eventStart/eventEnd (layouts/home.ics.ics).
+[mediaTypes."text/calendar"]
+  suffixes = ["ics"]
+
+[outputFormats.ICS]
+  mediaType = "text/calendar"
+  baseName = "openblues-2027"
+  isPlainText = true
+
+[outputs]
+  home = ["HTML", "ICS"]

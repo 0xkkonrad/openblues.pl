@@ -107,6 +107,15 @@
 }
 
 .stay-primary { background: var(--stay-terracotta-dark); }
+.stay-primary--closed {
+  margin: 0;
+  padding: .8rem 1rem;
+  min-height: 2.75rem;
+  border-radius: .6rem;
+  background: var(--stay-terracotta-dark);
+  color: #fff;
+  font-weight: 700;
+}
 .stay-primary:hover { background: #71301d; }
 
 .stay-skip {

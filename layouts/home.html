@@ -1,18 +1,21 @@
 {{ define "main" }}
+{{- $year := partial "event-year.html" . -}}
+{{- $calStart := time.AsTime site.Params.eventStart | time.Format "20060102" -}}
+{{- $calEnd := ((time.AsTime site.Params.eventEnd).AddDate 0 0 1) | time.Format "20060102" -}}
 <section class="hero">
   <img class="hero-logo" src="{{ "images/logo.png" | relURL }}" alt="Open Blues logo" width="368" height="195">
   <h1>A DIY blues &amp; fusion dance festival in a Polish palace</h1>
   <p class="hero-dates">{{ site.Params.eventDatesHuman }} · Piotrowice Nyskie Palace, Poland</p>
   <p class="hero-cal">Add to calendar:
-    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Open+Blues+2026&amp;dates=20260827/20260901&amp;location=Piotrowice+Nyskie+Palace%2C+Piotrowice+Nyskie+54%2C+Poland&amp;details=DIY+blues+%26+fusion+dance+festival+%E2%80%94+https%3A%2F%2Fopenblues.pl">Google</a> ·
-    <a href="{{ "openblues-2026.ics" | relURL }}">iCal</a>
+    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Open+Blues+{{ $year }}&amp;dates={{ $calStart }}/{{ $calEnd }}&amp;location=Piotrowice+Nyskie+Palace%2C+Piotrowice+Nyskie+54%2C+Poland&amp;details=DIY+blues+%26+fusion+dance+festival+%E2%80%94+https%3A%2F%2Fopenblues.pl">Google</a> ·
+    {{ with .OutputFormats.Get "ICS" }}<a href="{{ .RelPermalink }}">iCal</a>{{ end }}
   </p>
   <p class="hero-tagline">Blues &amp; Fusion. Live music. 100% DIY.</p>
   <p class="hero-cta">
-    <a class="btn" href="{{ site.Params.registerURL }}">Register&nbsp;✒️</a>
+    {{ partial "apply-cta.html" (dict "class" "btn" "label" "Apply&nbsp;✒️") }}
     <a class="btn btn-outline" href="{{ "booklet/" | relURL }}">Plan your stay</a>
   </p>
-  <p class="cta-help">No account is needed. Registration includes a required upload of your €50 Reservation Payment receipt.</p>
+  <p class="cta-help">Open Blues {{ $year }} is by application. No account is needed. The application includes a required upload of your €50 Reservation Payment receipt, refunded in full if we cannot offer you a place.</p>
   <p class="hero-note">A private, cost-shared gathering: nobody profits and everyone covers their own share of the real expenses.</p>
 </section>
 
