@@ -7,7 +7,7 @@ aliases:
 ## At a glance
 
 <div class="fact-grid" aria-label="Open Blues at a glance">
-<div><strong>When</strong><span>27–31 August 2026</span></div>
+<div><strong>When</strong><span>{{< param eventDatesHuman >}}</span></div>
 <div><strong>Where</strong><span>Piotrowice Nyskie Palace, Poland</span></div>
 <div><strong>Format</strong><span>Blues & fusion, live music and a community-led programme</span></div>
 <div><strong>Example totals</strong><span>€130 tent/no alcohol · €205 mattress/average drinks, including reservation</span></div>
@@ -58,9 +58,7 @@ The first table covers three nights: **Thursday, Friday and Saturday**. Add a Su
 
 An optional donation of €10, €25, €50, €100, €150 or another amount can be added. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
 
-There is also a non-refundable **€50 Reservation Payment** for shared fixed costs. Transfer details are in the registration form. The remaining amount is brought in cash.
-
-If you registered while an earlier Sunday-night price was shown, the original Sunday-night amount in your confirmation remains valid. Bring that confirmed amount; it will not be recalculated at the current price.
+There is also a **€50 Reservation Payment** for shared fixed costs, transferred as part of your application; the transfer details are inside the form. If we cannot offer you a place, it is refunded in full. Once you are accepted it is non-refundable. The remaining amount is brought in cash.
 
 ## Food and accommodation
 
@@ -68,27 +66,28 @@ We cook all communal food together, and it is all vegan. Food is included from T
 
 Sleeping options include a paid bed option, a mattress you arrange yourself, or space for your tent or sleeping setup on the floor. A paid bed option guarantees a sleeping place prepared with sheets and a pillow, but it may be a conventional bed or a large mattress. Rooms are shared; it does not guarantee a bed frame or a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
 
-If you paid for a shared or single sleeping place, complete registration first and then [browse the room photos and venue map, and choose your exact place in the live self-service Sheet](/accommodation/). Your paid category is already guaranteed; no separate approval is required.
+If you are accepted and paid for a shared or single sleeping place, you choose your exact place yourself: [browse the room photos and venue map](/accommodation/) and pick your place in the shared self-service Sheet once it opens. Your paid category is guaranteed; no separate approval is required.
 
 There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
-## How registration works
+## How applying works
 
-Registration uses Tally, so no account or sign-in is required. Uploading a Reservation Payment receipt is still mandatory.
+Open Blues {{< event-year >}} is by application. The form runs on Tally, so no account or sign-in is required. Uploading a Reservation Payment receipt is mandatory.
 
 The sequence is:
 
-1. Calculate the cash amount for your stay, Sunday night and drinks.
-2. Transfer the non-refundable **€50 Reservation Payment** using the details inside the form.
-3. Upload the receipt and submit the form. The on-screen confirmation records your registration, repeats the cash amount to bring and links to this guide.
-4. If you chose a single or shared sleeping place, open the [accommodation room guide](/accommodation/) to browse first, then choose or change your exact place in the shared Sheet.
-5. Bring the remaining amount in cash. If you cannot come, you may find someone to take your place and ask us to update the registration.
+1. Read [Plan your stay](/booklet/) and work out the cash amount for your stay, Sunday night and drinks.
+2. Apply with {{< apply-link >}}the application form{{< /apply-link >}}: it includes a short question about why you want to join, the transfer of the **€50 Reservation Payment** using the details inside the form, and the receipt upload.
+3. You will hear back shortly. We read every application and reply by email with a yes or a no.
+4. If we cannot offer you a place, the Reservation Payment is refunded in full.
+5. If you are accepted and paid for a single or shared sleeping place, browse the [accommodation room guide](/accommodation/) and choose your exact place in the shared Sheet once it opens.
+6. Bring the remaining amount in cash. If you are accepted and cannot come, you may find someone to take your place and ask us to update the application.
 
-[See the complete payment, arrival and accommodation details](/booklet/#payments-and-registration).
+[See the complete payment, arrival and accommodation details](/booklet/#payments-and-applying).
 
 ## About
 
-Open Blues is a private, cost-shared do-it-yourself gathering. The main organisers deal with the venue, registrations, scheduling and some logistics, but music, workshops, cooking and merriment are created by the participants. We mean the name literally: the programme is open to whatever you bring.
+Open Blues is a private, cost-shared do-it-yourself gathering. The main organisers deal with the venue, applications, scheduling and some logistics, but music, workshops, cooking and merriment are created by the participants. We mean the name literally: the programme is open to whatever you bring.
 
 Why don't we follow the usual workshop format, invite some star teachers and segregate dancers beginner to advanced?
 
@@ -172,7 +171,7 @@ Here is what Anna & Jim have to say about their home:
 
 ### What are the workshops and who are the teachers?
 
-This is a DIY gathering and all activities are community-led, so the programme takes shape late and changes often — we don't advertise an exact workshop line-up in advance. Mark “yes” or “maybe” when the registration form asks whether you would consider leading something. Closer to the gathering, participants add their ideas to the community-filled workshop sheet.
+This is a DIY gathering and all activities are community-led, so the programme takes shape late and changes often — we don't advertise an exact workshop line-up in advance. Mark “yes” or “maybe” when the application form asks whether you would consider leading something. Closer to the gathering, participants add their ideas to the community-filled workshop sheet.
 
 ### Can I arrive earlier or stay longer?
 
@@ -188,9 +187,17 @@ Yes, as long as they don't bother the farm animals. There are geese, chickens, t
 
 The place is a farm, so there are lots of animals and some places are dusty. However, there are rarely any animals in the ballroom and in the upstairs rooms — but sometimes there can be.
 
+### Why is there an application?
+
+Open Blues is a private, cost-shared gathering with a limited number of beds, so we ask everyone to apply. We read every application and answer each one by email. There is no required dance level and no audition: the one extra question is why you want to join.
+
+### What if I'm not accepted?
+
+You get your €50 Reservation Payment back in full. Nothing else is owed.
+
 ### What's the Reservation Payment about?
 
-The €50 payment commits your place and contributes to fixed costs such as the bands. It is non-refundable, but you can find someone to take your place and ask us to update the registration.
+The €50 payment commits your place and contributes to fixed costs such as the bands. It is refunded in full if we cannot offer you a place. Once you are accepted it is non-refundable, but you can find someone to take your place and ask us to update the application.
 
 ### What are the accommodation options like?
 
@@ -214,4 +221,4 @@ The venue is [Piotrowice Nyskie Palace, Piotrowice Nyskie 54, Poland](https://go
 
 The nearest rail hub is Nysa, about a 20-minute drive from the palace. From there, arrange a participant pickup in the transport group or take a taxi (usually around €30–50). If you are driving, use the palace map pin rather than only the village name, and ask in the transport group or email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) for the current on-site parking instructions before setting off.
 
-<p class="cta-final"><a class="btn" href="https://tally.so/r/68Y72P">Register for Open Blues 2026 ✒️</a></p>
+<p class="cta-final">{{< apply-cta class="btn" label="Apply for Open Blues ✒️" closedLabel="Applications open soon" >}}</p>
