@@ -24,7 +24,7 @@ enableGitInfo = false
   # --- Applications. While applicationsOpen is false (or applyURL is empty) every
   # apply button renders as a non-link "Applications open soon" state.
   # To open applications: set applyURL to the Tally form and applicationsOpen = true.
-  applyURL = ""
+  applyURL = "https://tally.so/r/Ek7V4o"
   applicationsOpen = false
 
   # --- Room browser (self-service accommodation Sheet for accepted participants who paid
