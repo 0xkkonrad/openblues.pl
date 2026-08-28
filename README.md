@@ -16,8 +16,6 @@ Hugo site deployed on GitHub Pages.
 - `content/_index.md` — landing page (about, cost, how applying works, venue, FAQ)
 - `content/booklet.md` — the Info Booklet as a web page (`/booklet/`)
 - `content/accommodation.md` — room photos and floor plans; Sheet links come from `roomBrowserURL`
-- `REGISTRATION-OPERATIONS.md` — 2026 registration and self-service accommodation operating decision (history; 2027 is by application)
-- `FINANCE-2026.md` — internal 2026 finance forecast, roster assumptions and recalculation rules
 - `LISTINGS.md` — festival listings tracker and submission data pack
 - `qa/` — static accommodation, deprecation, accessibility and link smoke tests (`npm install --prefix qa && npm exec --prefix qa playwright install chromium && npm test --prefix qa`; the browser tests expect a build served at `http://localhost:3118`, e.g. `hugo --minify --gc && python3 -m http.server 3118 -d public`)
 - `layouts/` — minimal custom theme (no external theme dependency)
