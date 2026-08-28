@@ -172,7 +172,7 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 
 ### Polish — Facebook groups (#11, #12, #13)
 
-> Open Blues 2027: oddolny festiwal bluesa i fusion w pałacu, 26–30 sierpnia
+> Open Blues 2027: oddolny festiwal bluesa i fusion w pałacu, 2–6 września
 >
 > Open Blues wraca: pięć dni w pałacu w Piotrowicach Nyskich na Opolszczyźnie, godzinę drogi od Wrocławia.
 >
