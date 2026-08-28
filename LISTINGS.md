@@ -1,8 +1,8 @@
 # Open Blues — Festival Listings Tracker
 
-**2027 status:** every listing below was made for the 2026 edition and must be re-submitted or edited for 2027 (dates 26–30 Aug 2027, assumed — confirm against `hugo.toml`). 2027 is by application: link to https://openblues.pl until the application form is live, then to the form. The log at the bottom is the 2026 history.
+**2027 status:** every listing below was made for the 2026 edition and must be re-submitted or edited for 2027 (dates 2–6 Sep 2027, assumed — confirm against `hugo.toml`). 2027 is by application: link to https://openblues.pl until the application form is live, then to the form. The log at the bottom is the 2026 history.
 
-Where Open Blues (26–30 Aug 2027, Piotrowice Nyskie Palace, Poland) should be listed to reach the blues, swing, and fusion dance crowds. Scope is deliberately narrow: blues / swing (lindy, balboa, shag-adjacent) / fusion only — no generic event sites, no other dance scenes.
+Where Open Blues (2–6 Sep 2027, Piotrowice Nyskie Palace, Poland) should be listed to reach the blues, swing, and fusion dance crowds. Scope is deliberately narrow: blues / swing (lindy, balboa, shag-adjacent) / fusion only — no generic event sites, no other dance scenes.
 
 Research verified 2026-07-12 by live-fetching every site (deep-research run, 25/25 claims confirmed by 3-0 adversarial votes). Dance calendars go stale fast: re-check a submission page right before submitting if more than a few weeks have passed.
 
@@ -36,7 +36,7 @@ Status legend: `TODO` not started · `SUBMITTED` waiting on moderation · `LIVE`
 Copy-paste facts for every form. Messaging policy applies everywhere: Open Blues is cost-sharing, not a product. Never write "price", "ticket price", or discount language in a listing. If a form has a price field, leave it empty or write "cost-sharing"; the description below deliberately omits numbers (SwingPlanIt bans prices in descriptions anyway) and lets openblues.pl explain the model.
 
 - **Event name:** Open Blues 2027
-- **Dates:** 26–30 August 2027 (Thu–Mon) — assumed; must match `eventDatesHuman` in `hugo.toml`
+- **Dates:** 2–6 September 2027 (Thu–Mon) — assumed; must match `eventDatesHuman` in `hugo.toml`
 - **Location:** Piotrowice Nyskie Palace, Piotrowice Nyskie 54 (near Nysa), Silesia, Poland. Nearest airports Wrocław, Ostrava, Katowice, Pardubice, Brno; nearest rail hub Nysa.
 - **Country:** Poland · **City field:** Piotrowice Nyskie (add "near Wrocław/Nysa" where a free-text field allows)
 - **Styles:** Blues + Fusion (where Fusion isn't offered, e.g. SwingPlanIt: Blues)
@@ -159,7 +159,7 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 
 ### English — Facebook groups (#14, #13, #16, #17) and the event page description
 
-> Open Blues 2027: DIY blues & fusion festival in a Polish palace, 26–30 August
+> Open Blues 2027: DIY blues & fusion festival in a Polish palace, 2–6 September
 >
 > Open Blues is back: five days at Piotrowice Nyskie Palace in south-west Poland, an hour from Wrocław and about three hours from Kraków, Prague and Vienna.
 >
@@ -185,7 +185,7 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 
 ### Discord — European Fusion Dancing (#15), short
 
-> Hi! We're organising **Open Blues 2027**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 26–30 Aug. Attendee-taught workshops, live music, dancing till sunrise. Cost-sharing instead of tickets; a full stay starts at €130. https://openblues.pl
+> Hi! We're organising **Open Blues 2027**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 2–6 Sep. Attendee-taught workshops, live music, dancing till sunrise. Cost-sharing instead of tickets; a full stay starts at €130. https://openblues.pl
 > Happy to answer questions! (Mods: calendar listing already sent to events@fusion-dancing.eu.)
 
 ## Log

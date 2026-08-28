@@ -13,9 +13,9 @@ enableGitInfo = false
 [params]
   # --- Edition. Every date on the site (hero, at-a-glance, JSON-LD, Google Calendar link,
   # the generated .ics) derives from these three values. Change them here and nowhere else.
-  eventStart = "2027-08-26"
-  eventEnd = "2027-08-30"
-  eventDatesHuman = "26–30 August 2027"
+  eventStart = "2027-09-02"
+  eventEnd = "2027-09-06"
+  eventDatesHuman = "2–6 September 2027"
   # descriptionBase feeds <meta name=description>, og/twitter description and the JSON-LD
   # description; eventDatesHuman is appended to it at build time, so no date lives here.
   descriptionBase = "A private, cost-shared, 100% DIY blues & fusion dance gathering at a historic Polish palace. Live music, community-run workshops, communal cooking."
