@@ -47,11 +47,18 @@ params.normalise = (text) =>
 // The canonical participant-facing sentences (projects/openblues-2027/POLICY.md). Fixed values
 // come from hugo.toml so this file never becomes a second source of truth for a date.
 params.policy = {
-  threshold: `Open Blues ${params.eventYear} happens if ${params.threshold} people have signed up and paid the €50 Reservation Payment by ${params.goNoGoHuman}.`,
+  // Rules 1 and 3, in the plain form POLICY.md's own "How much of this to actually say" section
+  // prints as the wording to prefer ("If we do not get to 40, you get your €50 back" beats the
+  // legal register). The meaning is untouched; the counter stated the same condition four times
+  // in one block before 30 Aug 2026, which is what POLICY forbids on any single page.
+  threshold: `Open Blues ${params.eventYear} happens if ${params.threshold} people sign up and pay the €50 by ${params.goNoGoHuman}.`,
   confirmation: `It is confirmed the moment the 40th payment arrives — that can be any time before ${params.goNoGoHuman}.`,
-  cancellation: `If we do not reach ${params.threshold} by ${params.goNoGoHuman}, Open Blues ${params.eventYear} does not happen and every Reservation Payment is refunded in full.`,
-  noOtherRefund:
-    'The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email openbluespoland@gmail.com.',
+  cancellation: 'If we do not get there, you get your €50 back.',
+  // POLICY rule 4's first sentence. The second ("If you cannot come, you may pass your place to
+  // someone else") is an edge case for a person who has already paid AND already dropped out, so
+  // /cost/ — where somebody is pricing a trip, not cancelling one — no longer carries it. It
+  // stays findable on /change/, inside rule 7, which is the page that owns the by-email paths.
+  noOtherRefund: 'The Reservation Payment is not refunded for any other reason.',
   noSelection: 'Everyone who signs up and pays is in. There is no selection, no application, and nothing to wait for.',
   // POLICY rule 6, rewritten 29 Aug 2026 for the Google Forms migration: the mechanism is now
   // the per-response edit link in the confirmation email, and "drinks" is gone from the list of
@@ -69,7 +76,9 @@ params.policy = {
   // "or earlier if the venue is full" is not merely redundant, it is untrue: site-policy.js
   // asserts that clause appears on no page at all.
   closing: `Signups close on ${params.closeHuman}.`,
-  cash: 'Everything except the €50 Reservation Payment is brought in cash to the venue.',
+  // Rule 9, in the active voice. It is the one rule that is an instruction to the reader, and the
+  // original deleted the actor from a sentence whose whole job is to tell them what to do.
+  cash: 'You bring everything except the €50 in cash to the venue.',
   beds:
     'If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order.',
 };

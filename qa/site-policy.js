@@ -36,15 +36,25 @@ const count = (haystack, needle) => haystack.split(needle).length - 1;
 const expectations = [
   {
     path: '/',
-    // Hero: rules 5 and 6, at the point of signup. "Your cost": rules 4 and 9.
-    // "Food and accommodation": rule 10. "How signing up works": rule 8.
-    // The counter owns rules 1 and 3, and only shows them in the open state.
-    once: [P.noSelection, P.change, P.noOtherRefund, P.cash, P.beds, P.closing],
-    atMostOnce: [P.threshold, P.cancellation, P.confirmation, P.notSelfService],
+    // The landing page states no rule of its own any more (30 Aug 2026 cut). Its job is to make
+    // somebody want to come and then hand off, so every rule lives on the page that owns it:
+    // 4 and 9 on /cost/, 5 and 8 on /questions/, 6 and 7 on /change/, 10 on /booklet/. The
+    // counter carries 1 and 3 — atMostOnce, not once, because its confirmed and cancelled
+    // states replace those sentences rather than adding to them.
+    once: [],
+    atMostOnce: Object.values(P),
+  },
+  {
+    // /questions/ is where somebody who actually wonders goes looking. Rule 5 exists only to
+    // answer a question, and rule 8 is a deadline you need once you have decided — neither
+    // belongs in front of a first-time reader who has not yet read what this is.
+    path: '/questions/',
+    once: [P.noSelection, P.closing],
+    atMostOnce: Object.values(P),
   },
   {
     // "Plan your stay" is read after you have decided, so it owns exactly one rule: where you
-    // will actually sleep. Rules 1/2/3 belong to the counter on /, 8 to /questions/, 9 to /cost/.
+    // will actually sleep. Rules 1/3 belong to the counter, 5/8 to /questions/, 4/9 to /cost/.
     path: '/booklet/',
     once: [P.beds],
     atMostOnce: Object.values(P),
@@ -69,7 +79,7 @@ const expectations = [
 // Every rendered file, not only the pages: the clause hid in a counter state and in a test
 // fixture last time, so scan the feeds too.
 const scannedPaths = [
-  '/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html',
+  '/', '/cost/', '/booklet/', '/change/', '/questions/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html',
   '/openblues-2027.ics', '/sitemap.xml', '/robots.txt',
 ];
 
@@ -137,7 +147,7 @@ async function run() {
   }
   assert.match(changeText, /so it only ever reaches you/,
     '/change/ must say the link is sent to the address the person signed up with (POLICY rule 7)');
-  for (const path of ['/', '/cost/', '/booklet/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html']) {
+  for (const path of ['/', '/cost/', '/booklet/', '/questions/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html']) {
     const html = await get(path);
     assert.ok(html.includes('change/'), `${path} must keep the durable /change/ route in the nav`);
   }

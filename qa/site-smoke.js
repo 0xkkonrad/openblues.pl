@@ -16,7 +16,7 @@ const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
 // /cost/ is the calculator that replaced Tally's live running total, and /spread-the-word/
 // is where the print kit's QR codes land people. Both are participant-facing entry points
 // and both were outside this smoke test before the Google Forms migration.
-const entryPaths = ['/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html'];
+const entryPaths = ['/', '/cost/', '/booklet/', '/change/', '/questions/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html'];
 
 async function run() {
   const browser = await chromium.launch({ headless: true });
@@ -103,7 +103,19 @@ async function check(browser) {
       for (const door of ['cost/', 'booklet/', 'change/']) {
         assert.ok(await page.locator(`a[href$="${door}"]`).count() >= 1, `/ must link to /${door}`);
       }
-      assert.match(bodyText, /refunded in full|comes back in full/, 'the front page must state the refund promise');
+      // The refund promise is the counter's, and the counter has three states. Asserting it
+      // unconditionally was a live build break waiting to happen: the moment the 40th payment
+      // landed, counter.yml would rewrite data/counter.json to "confirmed", the confirmed state
+      // carries no refund sentence (correctly — the condition is settled), and the next build
+      // would fail on the event this whole announcement exists to cause. Gate it on the state
+      // that actually makes the promise, and assert both halves of it while that state is live.
+      const counterStatus = await page.locator('.counter').getAttribute('data-counter-status');
+      if (counterStatus === 'open') {
+        assert.match(bodyText, /you get your €50 back/,
+          'while the counter is open, / must state the refund promise');
+        assert.match(bodyText, new RegExp(`happens if ${threshold} people sign up and pay`),
+          'while the counter is open, / must state the condition the €50 is riding on');
+      }
     }
 
     // Same-page anchors: the booklet's table of contents pointed at two headings that do not
