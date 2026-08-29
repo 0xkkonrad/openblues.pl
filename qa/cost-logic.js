@@ -200,6 +200,29 @@ for (const [tier, sunday, donation, expectedCash, expectedTotal] of CASES) {
 }
 
 if (contract.hasSpec) {
+  // The spec ships its own 24 canonical cases. qa/prices.js derives cases from the price grid
+  // rather than reading them, so comparing against the shipped list is a third independent
+  // statement of the same arithmetic — and it is the one the money oracle, the sheet and the
+  // receipt are all built from.
+  const shipped = contract.spec.money && contract.spec.money.canonical_cases;
+  if (Array.isArray(shipped)) {
+    check(shipped.length === 24, `the spec ships ${shipped.length} canonical cases, expected 24`);
+    const sundayKey = (c) => (c.sunday_night ? 'yes' : 'no');
+    const byId = new Map(shipped.map((c) => [`${c.tier}|${sundayKey(c)}|${c.donation_choice_eur}`, c]));
+    for (const [tier, sunday, donation, expectedCash, expectedTotal] of CASES) {
+      const key = `${tier}|${sunday}|${GRID.donations[donation]}`;
+      const shippedCase = byId.get(key);
+      check(Boolean(shippedCase), `the spec ships no canonical case ${key}`);
+      if (shippedCase) {
+        check(shippedCase.cash_to_bring_eur === expectedCash,
+          `${key}: the spec ships cash €${shippedCase.cash_to_bring_eur}, this file says €${expectedCash}`);
+        check(shippedCase.total_contribution_eur === expectedTotal,
+          `${key}: the spec ships total €${shippedCase.total_contribution_eur}, this file says €${expectedTotal}`);
+      }
+    }
+    specNote += ', 24 shipped cases matched';
+  }
+
   const specText = JSON.stringify(contract.spec);
   for (const question of config.questions) {
     for (const option of question.options) {

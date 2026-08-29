@@ -87,7 +87,11 @@ function euroAmounts(text) {
 // Known key paths first; a keyword scan second. Whichever fires, the result is cross-checked
 // against POLICY.md below, so a wrong guess cannot pass silently.
 function readPrices(spec) {
-  const buckets = [spec.prices, spec.pricing, spec.priceGrid, spec.grid, spec.money].filter(Boolean);
+  // spec.money.grid_eur is the shape the contract wave actually shipped; the rest are the
+  // shapes this loader was written against before it existed. Keep them all: guessing wrong
+  // is caught by the POLICY.md cross-check below, guessing nothing is a hard stop.
+  const buckets = [spec.prices, spec.pricing, spec.priceGrid, spec.grid,
+    spec.money && spec.money.grid_eur, spec.money].filter(Boolean);
   const pick = (...names) => {
     for (const bucket of buckets) {
       for (const name of names) {
@@ -102,13 +106,15 @@ function readPrices(spec) {
 
   const prices = {
     floor: pick('floor', 'floorTier', 'floor_eur', 'tent'),
-    shared: pick('shared', 'sharedPerPerson', 'shared_eur', 'sharedPerson'),
+    shared: pick('shared', 'shared_per_person', 'sharedPerPerson', 'shared_eur', 'sharedPerson'),
     single: pick('single', 'single_eur'),
-    sunday: pick('sunday', 'sundayNight', 'sunday_eur'),
-    reservation: pick('reservation', 'reservationPayment', 'reservation_eur'),
+    // sunday_night_flat first: without it the keyword fallback finds the "leaving before Sunday
+    // night — €0" label and reads Sunday as free, which the POLICY cross-check then rejects.
+    sunday: pick('sunday_night_flat', 'sunday', 'sundayNight', 'sunday_eur'),
+    reservation: pick('reservation_payment', 'reservation', 'reservationPayment', 'reservation_eur'),
   };
 
-  let donations = buckets.map((b) => b.donations || b.donation || b.donationRungs).find(Array.isArray);
+  let donations = buckets.map((b) => b.donation_rungs || b.donations || b.donation || b.donationRungs).find(Array.isArray);
   if (donations) {
     donations = donations.map((entry) => {
       if (typeof entry === 'number') return entry;
@@ -220,7 +226,7 @@ function optionLabels(spec) {
     if (!node || typeof node !== 'object') return;
     // An "option-shaped" object: has a label/text/title AND a numeric price/amount.
     const label = node.label ?? node.text ?? node.option ?? node.value;
-    const price = node.price ?? node.amount ?? node.eur;
+    const price = node.price ?? node.price_eur ?? node.amount ?? node.eur;
     if (typeof label === 'string' && typeof price === 'number') labels.push({ at, label, price });
     for (const [key, child] of Object.entries(node)) visit(child, at ? `${at}.${key}` : key);
   };

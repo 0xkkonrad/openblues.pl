@@ -1,6 +1,6 @@
 # Open Blues — Festival Listings Tracker
 
-**2027 status:** every listing below was made for the 2026 edition and must be re-submitted or edited for 2027 (dates 2–6 Sep 2027, assumed — confirm against `hugo.toml`). 2027 is by application: link to https://openblues.pl until the application form is live, then to the form. The log at the bottom is the 2026 history.
+**2027 status:** every listing below was made for the 2026 edition and must be re-submitted or edited for 2027 (dates 2–6 Sep 2027, assumed — confirm against `hugo.toml`). 2027 is first come, first served — everyone who signs up and pays is in, and there is no application: link to https://openblues.pl until the signup form is live, then to the form. The log at the bottom is the 2026 history.
 
 Where Open Blues (2–6 Sep 2027, Piotrowice Nyskie Palace, Poland) should be listed to reach the blues, swing, and fusion dance crowds. Scope is deliberately narrow: blues / swing (lindy, balboa, shag-adjacent) / fusion only — no generic event sites, no other dance scenes.
 
@@ -42,7 +42,7 @@ Copy-paste facts for every form. Messaging policy applies everywhere: Open Blues
 - **Styles:** Blues + Fusion (where Fusion isn't offered, e.g. SwingPlanIt: Blues)
 - **Event type:** Exchange (DanceCal-family taxonomy) / Camp (SwingPlanIt taxonomy — residential, food and beds on site)
 - **Website:** https://openblues.pl
-- **Application:** https://openblues.pl (the application form link is added there once applications open; 2027 is by application, everyone hears back by email)
+- **Signup:** https://openblues.pl (the signup form link is added there once signups open; everyone who signs up and pays is in — there is no selection, no application, and nothing to wait for)
 - **Contact email:** openbluespoland@gmail.com
 - **Teachers field:** "Community-led — workshops are crowdsourced from attendees, plus guest teachers" (no fixed lineup; SwingPlanIt forbids teacher names inside the description, use its separate field)
 - **Facebook event:** none — several venues like linking one; decide whether to create one before the FB-group round (#11–14, 16–17)
@@ -165,9 +165,9 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 >
 > It's a non-profit, do-it-yourself festival. We handle the venue and logistics; the workshops, live music and cooking come from everyone who shows up. There's social dancing until sunrise in the half-renovated palace ballroom, and we cook and eat together. Classes are taught by whoever comes, plus a few guest teachers. If there's something you love dancing or teaching, bring it and run a session.
 >
-> Instead of a ticket, everyone shares the festival's real costs. A full Thursday–Monday stay starts at €130; a mattress place with average drinks is €205, including the €50 reservation.
+> Instead of a ticket, everyone shares the festival's real costs. A full Thursday–Monday stay on the floor — a tent, your own mattress or a barn mattress — is €170 including the €50 reservation; a shared sleeping place for the same nights is €210.
 >
-> Info and application: https://openblues.pl
+> Info and signup: https://openblues.pl
 > Questions: openbluespoland@gmail.com
 
 ### Polish — Facebook groups (#11, #12, #13)
@@ -178,14 +178,14 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 >
 > To niekomercyjny festiwal DIY. Jako organizatorzy ogarniamy pałac i logistykę, a warsztaty, muzykę na żywo i gotowanie robią sami uczestnicy. Tańczymy do wschodu słońca w na wpół wyremontowanej sali balowej, gotujemy i jemy razem, a zajęcia prowadzą uczestnicy i zaproszeni nauczyciele. Jest coś, co kochasz tańczyć albo czego chcesz uczyć? Poprowadź z tego warsztat.
 >
-> Zamiast biletu dzielimy się realnymi kosztami. Pełny pobyt od czwartku do poniedziałku zaczyna się od 130 €; miejsce na materacu ze średnim pakietem napojów kosztuje 205 €, wliczając rezerwację 50 €.
+> Zamiast biletu dzielimy się realnymi kosztami. Pełny pobyt od czwartku do poniedziałku na podłodze — namiot, własny materac albo materac w stodole — to 170 € wraz z rezerwacją 50 €; miejsce we wspólnym łóżku na te same noce to 210 €.
 >
-> Info i zgłoszenia: https://openblues.pl
+> Info i zapisy: https://openblues.pl
 > Pytania: openbluespoland@gmail.com
 
 ### Discord — European Fusion Dancing (#15), short
 
-> Hi! We're organising **Open Blues 2027**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 2–6 Sep. Attendee-taught workshops, live music, dancing till sunrise. Cost-sharing instead of tickets; a full stay starts at €130. https://openblues.pl
+> Hi! We're organising **Open Blues 2027**, a 5-day DIY blues & fusion festival at Piotrowice Nyskie Palace in Poland, 2–6 Sep. Attendee-taught workshops, live music, dancing till sunrise. Cost-sharing instead of tickets; a full stay starts at €170. https://openblues.pl
 > Happy to answer questions! (Mods: calendar listing already sent to events@fusion-dancing.eu.)
 
 ## Log
