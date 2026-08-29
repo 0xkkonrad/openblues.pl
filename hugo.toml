@@ -22,12 +22,16 @@ enableGitInfo = false
   ogImage = "images/og-palace.jpg"
 
   # --- Signups. While signupsOpen is false (or signupURL is empty) every signup button
-  # renders as a non-link "Sign up · soon" state. To open signups: set signupURL to the signup
-  # form's live URL and signupsOpen = true. The button also closes itself while data/counter.json
-  # says status = "cancelled".
+  # renders as a non-link "Sign up · soon" state. To open signups: set signupsOpen = true. The
+  # button also closes itself while data/counter.json says status = "cancelled".
+  #
+  # signupURL is the 2027 Google Form (id 12Ea-6kyEaWuaF4Y5ojYgDePhZcEC01caR8TaDu4hHCM) — its
+  # LONG responder URL, not a forms.gle short link, which drops the query string that
+  # data/formprefill.json depends on. It replaced the Tally form https://tally.so/r/Ek7V4o on
+  # 29 Aug 2026; that form stays published as the rollback until the Forms stack is green.
   # data/formprefill.json carries the same form's prefill base and entry.NNNN ids, which is what
   # lets /cost/ hand somebody a signup link with their three choices already selected.
-  signupURL = "https://tally.so/r/Ek7V4o"
+  signupURL = "https://docs.google.com/forms/d/e/1FAIpQLSdZuj4QceEPozLdPmpl9AACfU655vW7ipJryoCed8Cg4JNkrQ/viewform"
   signupsOpen = false
 
   # --- Change my details. There is no longer a separate change form. From the 29 Aug 2026

@@ -28,7 +28,7 @@
     "page can put the price in its own column."
   ],
 
-  "formURL": "",
+  "formURL": "https://docs.google.com/forms/d/e/1FAIpQLSdZuj4QceEPozLdPmpl9AACfU655vW7ipJryoCed8Cg4JNkrQ/viewform",
 
   "reservationLabel": "€50",
 
@@ -37,7 +37,7 @@
   "questions": [
     {
       "key": "accommodation",
-      "entry": "",
+      "entry": "997577465",
       "title": "Accommodation for Thursday, Friday and Saturday nights",
       "legend": "Where will you sleep on Thursday, Friday and Saturday?",
       "breakdown": "accommodation",
@@ -63,7 +63,7 @@
     },
     {
       "key": "sunday",
-      "entry": "",
+      "entry": "1248501401",
       "title": "Sunday-night sleeping",
       "legend": "Are you staying Sunday night?",
       "breakdown": "Sunday night",
@@ -84,7 +84,7 @@
     },
     {
       "key": "donation",
-      "entry": "",
+      "entry": "1355658428",
       "title": "Optional donation to support the festival 💞",
       "legend": "Would you like to add a donation?",
       "breakdown": "donation",
