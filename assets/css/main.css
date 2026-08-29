@@ -189,6 +189,14 @@ img { max-width: 100%; height: auto; }
   font-size: .9rem;
 }
 
+/* The "you can change all of this later" promise, kept next to the signup button on purpose:
+   it is what makes asking everything up front reasonable (see /change/). */
+.cta-help--change { margin-top: -.4rem; }
+.cta-help--change a { font-weight: 700; }
+
+/* Button on /change/, directly under the opening promise. */
+.cta-change { text-align: center; margin: 1.6rem 0 2rem; }
+
 .hero-note {
   font-family: "Annie Use Your Telescope", cursive;
   font-size: 1.3rem;

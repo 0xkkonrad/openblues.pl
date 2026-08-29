@@ -28,6 +28,12 @@ enableGitInfo = false
   signupURL = "https://tally.so/r/Ek7V4o"
   signupsOpen = false
 
+  # --- Change my details. The always-available self-service form people use to change anything
+  # they answered at signup. /change/ is its permanent, public home: an email is lost within a
+  # year, this URL is not. Deliberately NOT gated by signupsOpen — someone who signed up must be
+  # able to change their details even after signups close.
+  changeURL = "https://tally.so/r/pbpaVZ"
+
   # --- Threshold model. The gathering goes ahead once `threshold` people have paid the €50
   # Reservation Payment; if that is not reached by goNoGoDate it is cancelled and everyone is
   # refunded. The live count lives in data/counter.json (paid, threshold, status, updated),

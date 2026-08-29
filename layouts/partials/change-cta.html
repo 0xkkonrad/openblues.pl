@@ -1,0 +1,14 @@
+{{- /*
+  Call-to-action for the always-available "Change my details" form (hugo.toml changeURL).
+  Unlike signup-cta.html this is NEVER closed by signupsOpen or by the counter: someone who has
+  already signed up must be able to change their details at any time, including after signups
+  close. It falls back to a non-link state only when changeURL is empty.
+  Context: dict "class" (extra classes) "label".
+*/ -}}
+{{- $class := .class | default "btn" -}}
+{{- $label := .label | default "Change my details" -}}
+{{- with site.Params.changeURL -}}
+<a class="{{ $class }}" href="{{ . }}">{{ $label | safeHTML }}</a>
+{{- else -}}
+<span class="{{ $class }} btn-closed" aria-disabled="true" title="The change form opens together with signups">{{ $label | safeHTML }} · soon</span>
+{{- end -}}
