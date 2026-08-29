@@ -7,6 +7,12 @@ styles:
   - css/spread.css
 ---
 
+{{< toc >}}
+
 {{< counter >}}
 
+<h2 id="print">Print</h2>
+
 {{< print-kit >}}
+
+{{< social-kit >}}
