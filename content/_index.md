@@ -81,7 +81,8 @@ The sequence is:
 3. You will hear back shortly. We read every application and reply by email with a yes or a no.
 4. If we cannot offer you a place, the Reservation Payment is refunded in full.
 5. If you are accepted and paid for a single or shared sleeping place, browse the [accommodation room guide](/accommodation/) and choose your exact place in the shared Sheet once it opens.
-6. Bring the remaining amount in cash. If you are accepted and cannot come, you may find someone to take your place and ask us to update the application.
+6. Bring the remaining amount in cash. If you are accepted and cannot come, you may find someone to take your place — tell us by email at [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
+7. Need to change something later — accommodation category, Sunday night, drinks, donation, whether you'll DJ, jam or run a workshop, your lift offer, or a name spelling? Accepted participants get a personal update link in their acceptance email; use it as often as you like, the latest answer counts and Klaudia confirms by email. The €50 Reservation Payment, refunds, your email address and handing your place to someone else are handled by email: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
 [See the complete payment, arrival and accommodation details](/booklet/#payments-and-applying).
 
@@ -198,6 +199,10 @@ You get your €50 Reservation Payment back in full. Nothing else is owed.
 ### What's the Reservation Payment about?
 
 The €50 payment commits your place and contributes to fixed costs such as the bands. It is refunded in full if we cannot offer you a place. Once you are accepted it is non-refundable, but you can find someone to take your place and ask us to update the application.
+
+### Can I change my details after applying?
+
+Yes, if the change is about your accommodation category, Sunday night, drinks, donation, whether you'll DJ, jam or run a workshop, your lift offer, or a name spelling. Accepted participants get a personal update link in their acceptance email; use it as often as you like, the latest answer counts and Klaudia confirms by email. The €50 Reservation Payment, refunds, your email address and handing your place to someone else are handled by email: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
 ### What are the accommodation options like?
 

@@ -75,7 +75,8 @@ Applying works like this:
 3. You will hear back shortly: we read every application and reply by email with a yes or a no.
 4. If we cannot offer you a place, the Reservation Payment is refunded in full. Once you are accepted it is non-refundable.
 5. If you are accepted and paid for a single or shared sleeping place, use the [accommodation room guide](/accommodation/) to browse, then choose or change your exact place in the shared Sheet once it opens.
-6. Bring the remaining amount in cash. If you are accepted and cannot come, you may find someone to take your place and ask us to update the application.
+6. Bring the remaining amount in cash. If you are accepted and cannot come, you may find someone to take your place — tell us by email at [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
+7. Need to change something later — accommodation category, Sunday night, drinks, donation, whether you'll DJ, jam or run a workshop, your lift offer, or a name spelling? Accepted participants get a personal update link in their acceptance email; use it as often as you like, the latest answer counts and Klaudia confirms by email. The €50 Reservation Payment, refunds, your email address and handing your place to someone else are handled by email: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
 ### Calculate your cash amount
 
