@@ -2,13 +2,17 @@
   "name": "openblues-site-qa",
   "private": true,
   "scripts": {
-    "test": "npm run test:maps && npm run test:accommodation && npm run test:deprecation && npm run test:accessibility && npm run test:smoke && npm run test:policy",
+    "test": "npm run test:maps && npm run test:accommodation && npm run test:deprecation && npm run test:accessibility && npm run test:a11y && npm run test:smoke && npm run test:trackers && npm run test:cost-logic && npm run test:cost && npm run test:policy",
     "test:maps": "node accommodation-maps.js",
     "test:accommodation": "node accommodation-page.js",
     "test:deprecation": "node accommodation-deprecation.js",
     "test:accessibility": "node accommodation-accessibility.js",
     "test:smoke": "node site-smoke.js",
-    "test:policy": "node site-policy.js"
+    "test:policy": "node site-policy.js",
+    "test:cost": "node cost-calculator.js",
+    "test:trackers": "node no-trackers.js",
+    "test:a11y": "node site-accessibility.js",
+    "test:cost-logic": "node cost-logic.js"
   },
   "devDependencies": {
     "axe-core": "4.10.3",

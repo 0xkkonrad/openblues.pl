@@ -1,0 +1,27 @@
+{{- /*
+  "Lost the link?" — the recovery path for the per-response edit link (POLICY.md rule 7).
+
+  WHY THIS EXISTS. From the 29 Aug 2026 Google Forms migration onward, the only way to change
+  your own answers is a per-response edit URL, and that link lives in exactly one place: the
+  confirmation email. POLICY's architecture rule says durable links belong on the website, not in
+  an email people lose within a year — so openblues.pl/change is the durable public home of the
+  promise and this is its recovery path. It ships WITH the migration, never after it.
+
+  TWO STATES, one parameter.
+    recoveryOpen + recoveryURL  →  a self-service form ("email me my link"), keyed on the address.
+    otherwise (today)           →  the honest email path, which needs no infrastructure and works
+                                   the moment somebody asks.
+
+  Both states obey the same rule: we send the link to the address the person signed up with, so it
+  only ever reaches them. Never ask anybody to prove who they are, and never show the link on a
+  web page. Mailbox access IS the authentication — it is strictly stronger than the email+name
+  matching this replaced, which had a live security hole on 29 Aug 2026.
+*/ -}}
+{{- $contact := "openbluespoland@gmail.com" -}}
+{{- if and site.Params.recoveryOpen site.Params.recoveryURL }}
+<p class="cta-change"><a class="btn" href="{{ site.Params.recoveryURL }}">Email&nbsp;me&nbsp;my&nbsp;link&nbsp;✉</a></p>
+<p class="cta-help">Give the address you signed up with. We send the link there, so it only ever reaches you — there is nothing to prove and no password to remember.</p>
+{{- else }}
+<p>Email <a href="mailto:{{ $contact }}?subject=My%20Open%20Blues%20link">{{ $contact }}</a> and ask for it. We send it to the address you signed up with, so it only ever reaches you.</p>
+<p class="cta-help">There is nothing to prove and no password to remember, and we never put the link on a web page.</p>
+{{- end }}

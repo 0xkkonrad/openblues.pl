@@ -1,0 +1,107 @@
+{
+  "_readme": [
+    "THE ONE FILE TO EDIT to wire /cost/ into the live signup form. No code change is needed.",
+    "",
+    "1. formURL — the form's LONG prefill base, ending in /viewform. Get it from the form's",
+    "   three-dot menu -> 'Get pre-filled link'. A forms.gle short link will NOT work: it drops",
+    "   the query string, and the query string is the whole point. While formURL is empty, /cost/",
+    "   shows the ordinary signup button instead of a prefilled one, so nothing ever links to a",
+    "   half-wired URL.",
+    "",
+    "2. entry — the digits of each question's entry.NNNN id. Run logPrefillIds() in the form's",
+    "   Apps Script project, or read them out of the 'Get pre-filled link' URL, which is",
+    "   authoritative. Digits only: the page writes the 'entry.' prefix itself. While any one of",
+    "   the three is empty, no prefilled link is built at all — a partial prefill would silently",
+    "   drop a choice the participant thought they had made.",
+    "",
+    "3. label — MUST match the live form's option label BYTE FOR BYTE, em dashes and curly",
+    "   apostrophes included. Google Forms matches a prefill value against the option string; a",
+    "   mismatch selects nothing and the participant lands on an empty question.",
+    "",
+    "PRICE LABEL CONTRACT (POLICY.md, machine contract): every priced label carries exactly one",
+    "euro amount and it is that option's price. Nothing in this file states a price as a number:",
+    "the page and qa/cost-logic.js both extract it from the label with the same regex the sheet",
+    "uses, so the site cannot drift from the form. qa/cost-logic.js fails the build if a label",
+    "carries zero or two euro amounts.",
+    "",
+    "'name' is what the page shows; 'label' is what the form receives. They differ only so the",
+    "page can put the price in its own column."
+  ],
+
+  "formURL": "",
+
+  "reservationLabel": "€50",
+
+  "reservationBreakdown": "Reservation Payment",
+
+  "questions": [
+    {
+      "key": "accommodation",
+      "entry": "",
+      "title": "Accommodation for Thursday, Friday and Saturday nights",
+      "legend": "Where will you sleep on Thursday, Friday and Saturday?",
+      "breakdown": "accommodation",
+      "help": "Three nights. Everyone eats the same communal food, whatever they sleep on.",
+      "showPrices": true,
+      "options": [
+        {
+          "key": "floor",
+          "name": "Floor — tent, your own mattress, or a barn mattress",
+          "label": "Floor — tent, your own mattress, or a barn mattress — €70"
+        },
+        {
+          "key": "shared",
+          "name": "Shared sleeping place for two — bed or large mattress, per person",
+          "label": "Shared sleeping place for two — bed or large mattress, per person — €110"
+        },
+        {
+          "key": "single",
+          "name": "Single sleeping place — bed or large mattress",
+          "label": "Single sleeping place — bed or large mattress — €160"
+        }
+      ]
+    },
+    {
+      "key": "sunday",
+      "entry": "",
+      "title": "Sunday-night sleeping",
+      "legend": "Are you staying Sunday night?",
+      "breakdown": "Sunday night",
+      "help": "One flat price, whatever you sleep on. Monday is breakfast, cleaning and departures.",
+      "showPrices": true,
+      "options": [
+        {
+          "key": "leaving",
+          "name": "I’m leaving before Sunday night",
+          "label": "I’m leaving before Sunday night — €0"
+        },
+        {
+          "key": "staying",
+          "name": "Staying Sunday night",
+          "label": "Staying Sunday night — €50"
+        }
+      ]
+    },
+    {
+      "key": "donation",
+      "entry": "",
+      "title": "Optional donation to support the festival 💞",
+      "legend": "Would you like to add a donation?",
+      "breakdown": "donation",
+      "help": "Entirely optional. Donations are what keep the sleeping places cheap for everyone else.",
+      "showPrices": false,
+      "options": [
+        { "key": "d100", "name": "€100", "label": "€100" },
+        { "key": "d50", "name": "€50", "label": "€50" },
+        { "key": "d20", "name": "€20", "label": "€20" },
+        { "key": "none", "name": "No donation", "label": "No donation — €0" }
+      ]
+    }
+  ],
+
+  "defaults": {
+    "accommodation": "floor",
+    "sunday": "leaving",
+    "donation": "none"
+  }
+}

@@ -33,13 +33,12 @@ Please join the [Open Blues transport group on WhatsApp](https://chat.whatsapp.c
 
 Please bring your own towels and toiletries.
 
-- If you chose a paid **bed option**, you are guaranteed either a conventional bed or a large mattress prepared with fresh sheets and a pillow. It will be in a shared room: the option does not guarantee a bed frame or a private room. If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order.
-- If you chose a **mattress**, there are no sheets. You have to carry your mattress, find a suitable spot for it and bring it back to where it was before. The advantage of this option is that you can put it wherever you like — so if you are a snorer or have very light sleep, you can probably find a nice spot. Unless you have a dust allergy, the barn is a great spot too. The disadvantage is that you have to arrange it yourself.
-- If you chose the **tent or floor** option, bring the complete setup you need for comfortable sleep. There is plenty of space; choose a suitable spot when you arrive.
+- If you chose a **shared or single sleeping place**, you are guaranteed either a conventional bed or a large mattress prepared with fresh sheets and a pillow. It will be in a shared room: the option does not guarantee a bed frame or a private room. If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order.
+- If you chose the **floor** option — a tent, your own mattress, or a barn mattress — bring the complete setup you need for comfortable sleep, including sheets or a sleeping bag. There is plenty of space and you choose your own spot when you arrive, which is the advantage: if you snore or sleep lightly, you can find somewhere quiet. Barn mattresses are first come, first served and have no sheets; unless you have a dust allergy the barn is a good spot.
 
 You can [browse the room photos and venue floor plans](/accommodation/) in the accommodation room guide. Names and live availability stay in the shared Sheet linked there.
 
-If you paid for a shared or single sleeping place, [choose or change your exact place through the accommodation room guide](/accommodation/) once the Sheet opens. Your paid category is guaranteed; no separate approval is required. To change the category itself — or anything else you answered at signup — use [openblues.pl/change](/change/).
+If you paid for a shared or single sleeping place, [choose or change your exact place through the accommodation room guide](/accommodation/) once the Sheet opens. Your paid category is guaranteed; no separate approval is required. To change the category itself — or anything else you answered at signup — use the link in your confirmation email; [openblues.pl/change](/change/) explains it and sends it again if you lost it.
 
 All communal food is vegan and included from Thursday dinner through Monday breakfast. If you're extending your stay, extra nights do not include food. There is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -66,9 +65,22 @@ The programme grows from the participants. Mark “yes” or “maybe” when th
 
 Open Blues {{< event-year >}} is first come, first served: everyone who signs up and pays is in. Open Blues {{< event-year >}} happens if **{{< param threshold >}} people have signed up and paid the €50 Reservation Payment by {{< param goNoGoHuman >}}**. It is confirmed the moment the 40th payment arrives — that can be any time before {{< param goNoGoHuman >}}. If we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, Open Blues {{< event-year >}} does not happen and every Reservation Payment is refunded in full. The live counter is on the [front page](/).
 
-Work out the cash amount for your stay, Sunday night and drinks from the [cost tables on the front page](/#your-cost), then sign up with {{< signup-link >}}the signup form{{< /signup-link >}}. It asks everything in one go: your name and email, your accommodation for Thursday, Friday and Saturday nights, Sunday night, drinks, an optional donation, whether you'll DJ, jam or run a workshop, and your travel and lift offer — then the transfer of the **€50 Reservation Payment** using the details inside the form, and the receipt upload, which is mandatory. It runs on Tally, so no account and no sign-in. The on-screen confirmation repeats the cash amount to bring and links back to this guide.
+Work out the cash amount for your stay on the [cost calculator](/cost/), then sign up with {{< signup-link >}}the signup form{{< /signup-link >}}. It asks everything in one go: your name and email, your accommodation for Thursday, Friday and Saturday nights, Sunday night, an optional donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and how you heard about us — then the transfer of the **€50 Reservation Payment** using the details inside the form, and a tick to say you have emailed us the confirmation. No account and no sign-in. We then email you a confirmation with the exact cash amount to bring, and a link that reopens your signup if you want to change anything.
 
 Everything except the €50 Reservation Payment is brought in cash to the venue.
+
+| Thursday, Friday & Saturday nights | Your cost |
+|---|---:|
+| Floor — tent, your own mattress, or a barn mattress | €70 |
+| Shared sleeping place for two — bed or large mattress, per person | €110 |
+| Single sleeping place — bed or large mattress | €160 |
+
+| Sunday night | Your cost |
+|---|---:|
+| Leaving before Sunday night | €0 |
+| Staying Sunday night, whatever you sleep on | €50 |
+
+An optional donation of €100, €50 or €20 is welcome on top, and entirely optional. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**. So the floor, leaving on Sunday, comes to €120 including the €50 Reservation Payment; a shared sleeping place with Sunday night added comes to €210.
 
 Nothing you answered is locked in: change any of it yourself, any time, at [openblues.pl/change](/change/). Only three things go by email — the €50 Reservation Payment, your email address, and passing your place to someone else: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
@@ -81,8 +93,8 @@ The invite is public, and other members can see your phone number and any WhatsA
 ## Checklist
 
 - Chosen or confirmed your exact place in the shared accommodation Sheet if you chose a paid shared or single sleeping place
-- Sheets or sleeping bag (if you chose a mattress)
-- Right amount of cash. If you changed anything at [openblues.pl/change](/change/), recalculate from the [cost tables on the front page](/#your-cost)
+- Sheets or a sleeping bag, if you chose the floor option
+- Right amount of cash. If you changed any of your answers, recalculate on the [cost calculator](/cost/)
 - Dress-to-impress outfit for Saturday
 - Earplugs
 - Towel and toiletries

@@ -10,7 +10,7 @@ aliases:
 <div><strong>When</strong><span>{{< param eventDatesHuman >}}</span></div>
 <div><strong>Where</strong><span>Piotrowice Nyskie Palace, Poland</span></div>
 <div><strong>Format</strong><span>Blues & fusion, live music and a community-led programme</span></div>
-<div><strong>Example totals</strong><span>€130 tent/no alcohol · €205 mattress/average drinks, including reservation</span></div>
+<div><strong>Example totals</strong><span>€120 on the floor, leaving Sunday · €210 in a shared bed, staying Sunday night — both including the €50 Reservation Payment. <a href="/cost/">Work yours out</a></span></div>
 <div><strong>Staying over</strong><span>Shared bed, mattress, tent or floor</span></div>
 <div><strong>Getting there</strong><span>Ride share, or train/taxi via Nysa</span></div>
 <div><strong>Goes ahead when</strong><span>{{< param threshold >}} people have paid the €50 Reservation Payment — live counter above</span></div>
@@ -30,36 +30,26 @@ Open Blues may not be the right fit if you prefer a fixed schedule, classes sort
 
 ## Your cost
 
-Open Blues is a private, cost-shared gathering made by its participants. Nobody is paid and nobody profits. Everyone covers their own share of the real expenses: their sleeping arrangement and communal food, their drinks, and a slice of fixed costs such as the venue and bands.
+Open Blues is a private, cost-shared gathering made by its participants. Nobody is paid and nobody profits. Everyone covers their own share of the real expenses: their sleeping arrangement and communal food, and a slice of fixed costs such as the venue and bands.
 
-Your total is the **€50 Reservation Payment plus the cash choices below**. Representative totals, before any optional donation, are €90 for a tent or floor on Thursday, Friday and Saturday nights, leaving Sunday and drinking no alcohol; €130 for the full Thursday-to-Monday stay in a tent or on the floor with no alcohol; €165 for that full stay with average drinks; and €205 for the full stay on a mattress with average drinks.
+Your total is the **€50 Reservation Payment plus the cash choices below**. Before any optional donation that is €120 for a tent, your own mattress or a barn mattress on Thursday, Friday and Saturday nights, leaving on Sunday; €170 for the same with Sunday night added; €210 for a shared sleeping place with Sunday night; and €260 for a single sleeping place with Sunday night.
 
-Calculate the cash part of your contribution by choosing one item from each relevant table:
+**[Work out your own number on the cost calculator](/cost/)** — three choices, and it tells you what you send now and what you bring in cash.
 
-The first table covers three nights: **Thursday, Friday and Saturday**. Add a Sunday-night option only if you are sleeping at the venue on Sunday night and leaving on Monday.
+The first table covers three nights: **Thursday, Friday and Saturday**. Add the Sunday-night line only if you are sleeping at the venue on Sunday night and leaving on Monday.
 
 | Thursday, Friday & Saturday nights | Your cost |
 |---|---:|
-| Tent or your own floor setup | €40 |
-| Mattress, without sheets | €60 |
-| Shared sleeping place for two — bed or large mattress, per person | €100 |
-| Single sleeping place — bed or large mattress | €150 |
+| Floor — tent, your own mattress, or a barn mattress | €70 |
+| Shared sleeping place for two — bed or large mattress, per person | €110 |
+| Single sleeping place — bed or large mattress | €160 |
 
 | Sunday night | Your cost |
 |---|---:|
 | Leaving before Sunday night | €0 |
-| Tent or floor | €40 |
-| Mattress | €60 |
-| Bed | €50 |
+| Staying Sunday night, whatever you sleep on | €50 |
 
-| Drinks contribution | Your cost |
-|---|---:|
-| No alcoholic drinks | €0 |
-| A little | €10 |
-| An average amount | €35 |
-| Lots | €45 |
-
-An optional donation of €10, €25, €50, €100, €150 or another amount can be added. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
+An optional donation of €100, €50 or €20 is welcome on top, and entirely optional. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
 
 There is also a **€50 Reservation Payment** for shared fixed costs, transferred when you sign up; the transfer details are inside the form. It is what makes the gathering happen, and it comes back in exactly one case: if we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, which is what the counter at the top of this page is counting. The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com). Everything except the €50 Reservation Payment is brought in cash to the venue.
 
@@ -75,7 +65,7 @@ There is a small shop in the village, and a Dino supermarket in Kałków, the ne
 
 ## How signing up works
 
-Open Blues {{< event-year >}} is first come, first served, and {{< signup-link >}}one form{{< /signup-link >}} does the whole job. It asks your name and email, your accommodation for Thursday to Saturday and for Sunday night, your drinks, an optional donation, whether you'll DJ, jam or run a workshop, and your travel and lift offer — then the €50 Reservation Payment transfer (the details are inside the form) and the receipt upload. It runs on Tally, so no account and no sign-in.
+Open Blues {{< event-year >}} is first come, first served, and {{< signup-link >}}one form{{< /signup-link >}} does the whole job. It asks your name and email, where you'll sleep from Thursday to Saturday and whether you are staying Sunday night, an optional donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and how you heard about us — then the €50 Reservation Payment transfer (the details are inside the form) and a tick to say you have emailed us the confirmation. No account and no sign-in.
 
 Then watch the counter at the top of this page. That is the whole process.
 
@@ -201,7 +191,7 @@ The €50 commits your place, counts towards the {{< param threshold >}} paid si
 
 ### Can I change my details after signing up?
 
-Yes — that is the point of asking everything up front. Everything you answered at signup is yours to change at [openblues.pl/change](/change/), as often as you like. No email and no waiting.
+Yes — that is the point of asking everything up front. Your confirmation email carries a link that reopens your own signup with your answers in it; change what you want and submit again, as often as you like. [openblues.pl/change](/change/) explains it and sends you the link again if you lose it.
 
 ### What are the accommodation options like?
 

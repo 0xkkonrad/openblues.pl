@@ -1,0 +1,87 @@
+{{- /*
+  The /cost/ calculator. Three inputs, one honest output.
+
+  EVERY price on this page comes out of an option LABEL in data/formprefill.json, extracted with
+  the same regex the sheet uses (POLICY.md's price-label contract). Nothing here writes a number,
+  so the page cannot drift from the form. A label carrying anything other than exactly one euro
+  amount fails the build below rather than mis-pricing silently.
+
+  data/formprefill.json is also the ONLY place the entry.NNNN prefill ids live. Wiring the real
+  ids when the form exists is an edit to that file; no template and no script changes.
+
+  The data-cost-* attributes are the DOM contract qa/cost-calculator.js drives. Do not rename them
+  without changing that harness: they are how the QA suite finds the controls and the two numbers.
+*/ -}}
+{{- $data := site.Data.formprefill -}}
+{{- $hooks := dict "accommodation" "data-cost-tier" "sunday" "data-cost-sunday" "donation" "data-cost-donation" -}}
+{{- $cfg := dict
+      "formURL" $data.formURL
+      "reservationLabel" $data.reservationLabel
+      "reservationBreakdown" $data.reservationBreakdown
+      "questions" $data.questions
+      "defaults" $data.defaults -}}
+
+{{- /* The prefilled signup link is built only when the form URL AND all three entry ids exist.
+       A partial prefill silently drops a choice the participant thinks they made. */ -}}
+{{- $prefillReady := and site.Params.signupsOpen (ne $data.formURL "") -}}
+{{- range $data.questions -}}
+  {{- if not (findRE `^[0-9]+$` (printf "%v" .entry)) -}}{{- $prefillReady = false -}}{{- end -}}
+{{- end -}}
+
+{{- $reservation := index (findRE `€[0-9]+` $data.reservationLabel) 0 -}}
+
+<form class="calc" data-cost-form>
+  {{- range $data.questions }}
+    {{- $hook := index $hooks .key -}}
+    {{- $default := index $data.defaults .key }}
+  <fieldset class="calc-q" {{ $hook | safeHTMLAttr }}>
+    <legend>{{ .legend }}</legend>
+    {{- with .help }}<p class="calc-help">{{ . }}</p>{{ end }}
+    <div class="calc-opts">
+      {{- $q := . -}}
+      {{- range .options -}}
+        {{- $amounts := findRE `€[0-9]+` .label -}}
+        {{- if ne (len $amounts) 1 -}}
+          {{- errorf "PRICE LABEL CONTRACT broken in data/formprefill.json: option %q carries %d euro amounts; every priced option label must carry exactly one and it must be that option's price (POLICY.md, Fixed values)." .label (len $amounts) -}}
+        {{- end -}}
+        {{- $price := replaceRE `[^0-9]` "" (index $amounts 0) }}
+      <label class="calc-opt">
+        <input type="radio" name="ob-{{ $q.key }}" value="{{ .key }}" data-price="{{ $price }}"{{ if eq .key $default }} checked{{ end }}>
+        <span class="calc-opt-name">{{ .name }}</span>
+        {{- if $q.showPrices }}<span class="calc-opt-price">€{{ $price }}</span>{{ end }}
+      </label>
+      {{- end }}
+    </div>
+  </fieldset>
+  {{- end }}
+
+  <div class="calc-out" data-cost-output role="status" hidden>
+    <p class="calc-now">You send <strong>{{ $reservation }}</strong> now, when you sign up.</p>
+    <p class="calc-bring">You bring <strong data-cost-cash>€0</strong> in cash at the venue.</p>
+    <p class="calc-sum"><span data-cost-total>€0</span> in total — <span data-cost-breakdown></span></p>
+    <p class="calc-cta">
+      {{- if $prefillReady -}}
+      <a class="btn" data-cost-signup href="{{ $data.formURL }}">Sign up with these choices ✒️</a>
+      {{- else -}}
+      {{ partial "signup-cta.html" (dict "class" "btn" "label" "Sign up for Open Blues ✒️" "closedLabel" "Sign up · soon") }}
+      {{- end }}
+    </p>
+  </div>
+
+  <noscript>
+    <p class="calc-noscript">This calculator needs JavaScript. The full price list is below: add up
+    your three lines and that is the cash you bring. The €50 Reservation Payment is on top of it,
+    and you transfer that when you sign up.</p>
+  </noscript>
+</form>
+
+{{- /* safeJS is required: inside a <script> element Go's html/template treats a piped
+     value as a JS *string* and emits the whole object double-encoded, so JSON.parse()
+     hands back a string and every price silently becomes 0. The content is this repo's
+     own data file, so bypassing the escaper is safe — but never interpolate anything
+     user-supplied here. */ -}}
+<script type="application/json" id="ob-cost-config">{{ $cfg | jsonify | safeJS }}</script>
+{{- with resources.Get "js/cost.js" }}
+{{- $js := . | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{- end }}

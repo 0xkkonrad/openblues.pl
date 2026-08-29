@@ -22,22 +22,28 @@ enableGitInfo = false
   ogImage = "images/og-palace.jpg"
 
   # --- Signups. While signupsOpen is false (or signupURL is empty) every signup button
-  # renders as a non-link "Sign up · soon" state. To open signups: set signupURL to the Tally
-  # form and signupsOpen = true. The button also closes itself while data/counter.json says
-  # status = "cancelled".
+  # renders as a non-link "Sign up · soon" state. To open signups: set signupURL to the signup
+  # form's live URL and signupsOpen = true. The button also closes itself while data/counter.json
+  # says status = "cancelled".
+  # data/formprefill.json carries the same form's prefill base and entry.NNNN ids, which is what
+  # lets /cost/ hand somebody a signup link with their three choices already selected.
   signupURL = "https://tally.so/r/Ek7V4o"
   signupsOpen = false
 
-  # --- Change my details. The always-available self-service form people use to change anything
-  # they answered at signup. /change/ is its permanent, public home: an email is lost within a
-  # year, this URL is not. Deliberately NOT gated by signupsOpen — someone who signed up must be
-  # able to change their details even after signups close.
-  # changeOpen is the launch gate and the ONLY thing to flip. While it is false the /change/ page
-  # and every change button degrade to an honest "· soon" state instead of shipping a link that
-  # may 404. The form was still a draft during the 29 Aug 2026 verification run; it answers 200
-  # as of 16:00 that day, so re-probe changeURL and set changeOpen = true at merge.
-  changeURL = "https://tally.so/r/pbpaVZ"
-  changeOpen = true
+  # --- Change my details. There is no longer a separate change form. From the 29 Aug 2026
+  # Google Forms migration onward, people change their own answers through the per-response edit
+  # link in their confirmation email, which rewrites their original row in place. /change/ is the
+  # durable public home of that promise: it explains the link and sends it again if it is lost.
+  # Deliberately NOT gated by signupsOpen — someone who signed up must be able to change their
+  # details even after signups close.
+  #
+  # recoveryURL is the optional "email me my link" form, keyed on the address somebody signed up
+  # with. While it is empty, /change/ shows the email path instead, which needs no infrastructure
+  # and is already true. Setting both values is the only change needed to switch it on; no page
+  # edit. Never put the edit link itself on a web page and never ask anybody to prove who they
+  # are — mailbox access is the authentication (POLICY.md rule 7).
+  recoveryURL = ""
+  recoveryOpen = false
 
   # --- Threshold model. The gathering goes ahead once `threshold` people have paid the €50
   # Reservation Payment; if that is not reached by goNoGoDate it is cancelled and everyone is

@@ -454,7 +454,10 @@ img { max-width: 100%; height: auto; }
   text-align: center;
 }
 
-.counter-headline { margin: 0; font-size: 1.15rem; font-weight: 900; color: var(--orange-dark); }
+/* --link, not --orange-dark: at 1.15rem/900 this is 18.4px bold, just under WCAG's
+   large-text threshold, so it needs 4.5:1. #c95f06 on white measures 4.09:1; --link
+   (#b45505) is the AA-contrast variant already defined for exactly this. */
+.counter-headline { margin: 0; font-size: 1.15rem; font-weight: 900; color: var(--link); }
 .counter-headline strong { font-size: 1.7rem; }
 .counter--cancelled .counter-headline { color: var(--muted); }
 
