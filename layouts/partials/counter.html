@@ -1,12 +1,13 @@
 {{- /*
   Live signup counter. Reads data/counter.json (paid, threshold, status, updated), which the
-  counter workflow writes from the signups workbook; site.Params.threshold/capacity/goNoGoHuman/
-  closeHuman supply the fixed numbers. States: open | confirmed | full | cancelled.
+  counter workflow writes from the signups workbook; site.Params.threshold/goNoGoHuman supply
+  the fixed numbers. Exactly three states: open | confirmed | cancelled. There is no capacity
+  limit and no "full" state (POLICY.md, Fixed values, 29 Aug 2026); an early stop, if it is ever
+  needed, is the workbook override cell setting "cancelled".
 */ -}}
 {{- $c := site.Data.counter -}}
 {{- $paid := int ($c.paid | default 0) -}}
 {{- $threshold := int (site.Params.threshold | default 40) -}}
-{{- $capacity := int (site.Params.capacity | default 0) -}}
 {{- $status := $c.status | default "open" -}}
 {{- if and (eq $status "open") (ge $paid $threshold) }}{{ $status = "confirmed" }}{{ end -}}
 {{- $year := partial "event-year.html" . -}}
@@ -15,12 +16,9 @@
 {{- if eq $status "cancelled" }}
   <p class="counter-headline">Open Blues {{ $year }} is not happening.</p>
   <p class="counter-sub">We did not reach {{ $threshold }} by {{ site.Params.goNoGoHuman }}. Every Reservation Payment is refunded in full.</p>
-{{- else if eq $status "full" }}
-  <p class="counter-headline">Confirmed and full — {{ $paid }} people are coming.</p>
-  <p class="counter-sub">Open Blues {{ $year }} is happening and every place is taken. Signups are closed.</p>
 {{- else if eq $status "confirmed" }}
   <p class="counter-headline">Confirmed! {{ $paid }} people have paid — Open Blues {{ $year }} is happening.</p>
-  <p class="counter-sub">Signups close on {{ site.Params.closeHuman }}, or earlier if the venue is full.{{ if gt $capacity $paid }} {{ sub $capacity $paid }} of {{ $capacity }} places left.{{ end }}</p>
+  <p class="counter-sub">The {{ $threshold }}th Reservation Payment has arrived, so it is going ahead. You can still sign up.</p>
 {{- else }}
   <p class="counter-headline"><strong>{{ $paid }}</strong> of {{ $threshold }} paid</p>
   <div class="counter-bar" role="progressbar" aria-label="Paid signups towards the threshold" aria-valuemin="0" aria-valuemax="{{ $threshold }}" aria-valuenow="{{ $paid }}"><span style="width:{{ $pct }}%"></span></div>

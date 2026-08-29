@@ -1,5 +1,7 @@
-// Reads the [params] the copy tests depend on straight out of hugo.toml, so a date or a
-// threshold is asserted from one place only (the same rule the site itself follows).
+// The canonical POLICY sentences and the [params] they are built from, read straight out of
+// hugo.toml so a date or a threshold is asserted from one place only (the same rule the site
+// itself follows). Consumed by qa/site-policy.js, which asserts these sentences against the
+// rendered pages — this file must never be the only place a sentence lives.
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -19,8 +21,8 @@ const params = {
   signupURL,
   changeURL,
   signupsOpen: readParam('signupsOpen') === 'true' && Boolean(signupURL),
+  changeOpen: readParam('changeOpen') === 'true' && Boolean(changeURL),
   threshold: readParam('threshold'),
-  capacity: readParam('capacity'),
   goNoGoHuman: readParam('goNoGoHuman'),
   closeHuman: readParam('closeHuman'),
   eventDatesHuman: readParam('eventDatesHuman'),
@@ -30,12 +32,14 @@ const params = {
 };
 
 // Curly quotes come from Goldmark's typographer; collapse them and whitespace so a sentence
-// written once in POLICY.md can be matched against rendered text.
+// written once in POLICY.md can be matched against rendered text. Stripping inline markup
+// (<strong>, <a>) leaves a space before the following punctuation, so close that up too.
 params.normalise = (text) =>
   String(text)
     .replace(/[\u2018\u2019]/g, "'")
     .replace(/[\u00a0\u202f]/g, ' ')
     .replace(/\s+/g, ' ')
+    .replace(/\s+([.,;:!?])/g, '$1')
     .trim();
 
 // The canonical participant-facing sentences (projects/openblues-2027/POLICY.md). Fixed values
@@ -51,10 +55,36 @@ params.policy = {
     "You can change your details yourself, any time, at openblues.pl/change — accommodation, Sunday night, drinks, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts.",
   notSelfService:
     'The €50 Reservation Payment, your email address and passing your place to someone else are handled by email: openbluespoland@gmail.com.',
-  closing: `Signups close on ${params.closeHuman}, or earlier if the venue is full.`,
+  // POLICY sentence 8 is exactly this, with nothing appended. There is no capacity limit, so
+  // "or earlier if the venue is full" is not merely redundant, it is untrue: site-policy.js
+  // asserts that clause appears on no page at all.
+  closing: `Signups close on ${params.closeHuman}.`,
   cash: 'Everything except the €50 Reservation Payment is brought in cash to the venue.',
   beds:
     'If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order.',
 };
+
+// Wording POLICY bans outright, plus the capacity clause Konrad removed on 29 Aug 2026. Tested
+// against the rendered text of every page. `noSelection` is stripped before the scan because it
+// is the one permitted use of the word "application".
+params.banned = [
+  /or earlier if the venue is full/i,
+  /venue is full/i,
+  /places are taken/i,
+  /places left/i,
+  /\bapplicants?\b/i,
+  /\bapplications?\b/i,
+  /\bapply\b/i,
+  /\baccepted\b/i,
+  /\bacceptance\b/i,
+  /\bdeclined\b/i,
+  /wait ?list/i,
+  /black ?list/i,
+  /ignore list/i,
+  /you will hear back/i,
+  /offer you a place/i,
+  /Why do you want to join/i,
+  /once you are accepted/i,
+];
 
 module.exports = params;

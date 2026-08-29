@@ -24,7 +24,7 @@ enableGitInfo = false
   # --- Signups. While signupsOpen is false (or signupURL is empty) every signup button
   # renders as a non-link "Sign up · soon" state. To open signups: set signupURL to the Tally
   # form and signupsOpen = true. The button also closes itself while data/counter.json says
-  # status = "full" or "cancelled".
+  # status = "cancelled".
   signupURL = "https://tally.so/r/Ek7V4o"
   signupsOpen = false
 
@@ -32,20 +32,25 @@ enableGitInfo = false
   # they answered at signup. /change/ is its permanent, public home: an email is lost within a
   # year, this URL is not. Deliberately NOT gated by signupsOpen — someone who signed up must be
   # able to change their details even after signups close.
+  # changeOpen is the launch gate and the ONLY thing to flip. While it is false the /change/ page
+  # and every change button degrade to an honest "· soon" state instead of shipping a link that
+  # may 404. The form was still a draft during the 29 Aug 2026 verification run; it answers 200
+  # as of 16:00 that day, so re-probe changeURL and set changeOpen = true at merge.
   changeURL = "https://tally.so/r/pbpaVZ"
+  changeOpen = false
 
   # --- Threshold model. The gathering goes ahead once `threshold` people have paid the €50
   # Reservation Payment; if that is not reached by goNoGoDate it is cancelled and everyone is
   # refunded. The live count lives in data/counter.json (paid, threshold, status, updated),
   # written by .github/workflows/counter.yml from the published "Public" tab of the signups
-  # workbook (repository variable COUNTER_CSV_URL) or edited by hand. capacity = 0 hides the
-  # "places left" line until the number is known.
+  # workbook (repository variable COUNTER_CSV_URL) or edited by hand. There is NO capacity limit
+  # and no "full" state: the counter has exactly three states, open | confirmed | cancelled, and
+  # signups simply run until closeDate (POLICY.md, Fixed values, 29 Aug 2026).
   threshold = 40
   goNoGoDate = "2027-08-03"
   goNoGoHuman = "3 August 2027"
   closeDate = "2027-08-19"
   closeHuman = "19 August 2027"
-  capacity = 0
 
   # --- Room browser (self-service accommodation Sheet for participants who paid
   # for a shared or single place). Empty until the 2027 Sheet is ready; same open/closed pattern.

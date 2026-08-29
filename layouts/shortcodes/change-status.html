@@ -1,0 +1,5 @@
+{{- /* One honest line on /change/ while the change form is not published yet. Renders nothing
+       once site.Params.changeOpen is true, so the page needs no edit at launch. */ -}}
+{{- if not (and site.Params.changeOpen site.Params.changeURL) -}}
+<p class="cta-help">The form itself opens shortly; the button above starts working the moment it does.</p>
+{{- end -}}

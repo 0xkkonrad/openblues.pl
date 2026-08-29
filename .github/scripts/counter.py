@@ -2,8 +2,9 @@
 """Fetch the published "Public" tab of the signups workbook as CSV and write data/counter.json.
 
 CSV contract: a header row and one value row with the columns paid, threshold, status, updated.
-status must be one of open, confirmed, full, cancelled ("full" and "cancelled" are only ever set
-by hand in the workbook's override cell). Usage: counter.py <csv-url> <out-json>
+status must be one of open, confirmed, cancelled — the only three states there are; there is no
+capacity limit and no "full" state (POLICY.md, Fixed values, 29 Aug 2026). "cancelled" is only
+ever set by hand in the workbook's override cell. Usage: counter.py <csv-url> <out-json>
 """
 import csv
 import io
@@ -21,7 +22,7 @@ row = {k.strip().lower(): (v or "").strip() for k, v in rows[0].items() if k}
 paid = int(row["paid"])
 threshold = int(row.get("threshold") or 40)
 status = (row.get("status") or "open").lower()
-if paid < 0 or threshold <= 0 or status not in {"open", "confirmed", "full", "cancelled"}:
+if paid < 0 or threshold <= 0 or status not in {"open", "confirmed", "cancelled"}:
     sys.exit(f"counter: invalid row {row}")
 data = {"paid": paid, "status": status, "threshold": threshold, "updated": row.get("updated", "")}
 with open(out, "w", encoding="utf-8") as fh:

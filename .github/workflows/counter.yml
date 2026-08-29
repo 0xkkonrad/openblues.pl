@@ -2,8 +2,9 @@ name: Update signup counter
 
 # Copies the signups workbook's published "Public" tab into data/counter.json and redeploys.
 # Inactive until the repository variable COUNTER_CSV_URL is set (Settings → Variables) to the
-# "Publish to web → CSV" URL of that tab. The workflow never decides anything: "full" and
-# "cancelled" come from the workbook's override cell, set by hand.
+# "Publish to web → CSV" URL of that tab. The workflow never decides anything: the only three
+# statuses are open, confirmed and cancelled, and "cancelled" comes from the workbook's override
+# cell, set by hand.
 
 on:
   schedule:

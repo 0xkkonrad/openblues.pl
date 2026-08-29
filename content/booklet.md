@@ -20,8 +20,6 @@ The venue consists of the beautiful palace and two big barns. The palace has man
 <a href="#diy-tasks-chores">DIY &amp; chores</a>
 <a href="#festival-rules">Rules</a>
 <a href="#payments-and-signing-up">Payments</a>
-<a href="#arrival-and-departure">Arrival &amp; departure</a>
-<a href="#preliminary-schedule">Schedule</a>
 <a href="#checklist">Checklist</a>
 </nav>
 
@@ -66,21 +64,15 @@ The programme grows from the participants. Mark “yes” or “maybe” when th
 
 ## Payments and signing up {#payments-and-signing-up}
 
-Open Blues {{< event-year >}} is first come, first served. Everyone who signs up and pays is in. There is no selection, no application, and nothing to wait for. Open Blues {{< event-year >}} happens if **{{< param threshold >}} people have signed up and paid the €50 Reservation Payment by {{< param goNoGoHuman >}}**. It is confirmed the moment the 40th payment arrives — that can be any time before {{< param goNoGoHuman >}}. If we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, Open Blues {{< event-year >}} does not happen and every Reservation Payment is refunded in full.
+Open Blues {{< event-year >}} is first come, first served: everyone who signs up and pays is in. Open Blues {{< event-year >}} happens if **{{< param threshold >}} people have signed up and paid the €50 Reservation Payment by {{< param goNoGoHuman >}}**. It is confirmed the moment the 40th payment arrives — that can be any time before {{< param goNoGoHuman >}}. If we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, Open Blues {{< event-year >}} does not happen and every Reservation Payment is refunded in full. The live counter is on the [front page](/).
 
-One form asks everything, and nothing in it is final: you can change any of it yourself afterwards at [openblues.pl/change](/change/). The form runs on Tally, so no account or sign-in is required. Uploading the Reservation Payment receipt is mandatory.
+Work out the cash amount for your stay, Sunday night and drinks from the [cost tables on the front page](/#your-cost), then sign up with {{< signup-link >}}the signup form{{< /signup-link >}}. It asks everything in one go: your name and email, your accommodation for Thursday, Friday and Saturday nights, Sunday night, drinks, an optional donation, whether you'll DJ, jam or run a workshop, and your travel and lift offer — then the transfer of the **€50 Reservation Payment** using the details inside the form, and the receipt upload, which is mandatory. It runs on Tally, so no account and no sign-in. The on-screen confirmation repeats the cash amount to bring and links back to this guide.
 
-Signing up works like this:
+Everything except the €50 Reservation Payment is brought in cash to the venue.
 
-1. Work out the cash amount for your stay, Sunday night and drinks from the [cost tables on the front page](/#your-cost), then sign up with {{< signup-link >}}the signup form{{< /signup-link >}}. It asks everything in one go: your name and email, your accommodation for Thursday, Friday and Saturday nights, Sunday night, drinks, an optional donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, the transfer of the **€50 Reservation Payment** using the details inside the form, and the receipt upload. The on-screen confirmation repeats the cash amount to bring and links back to this guide.
-2. Watch the counter on the front page. It is confirmed the moment the 40th payment arrives — that can be any time before {{< param goNoGoHuman >}}. If we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, Open Blues {{< event-year >}} does not happen and every Reservation Payment is refunded in full.
-3. You can change your details yourself, any time, at [openblues.pl/change](/change/) — accommodation, Sunday night, drinks, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts. There is no deadline on this and no email to wait for.
-4. If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order. Use the [accommodation room guide](/accommodation/) to browse the rooms first; the Sheet is linked there.
-5. Everything except the €50 Reservation Payment is brought in cash to the venue.
-6. The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
-7. The €50 Reservation Payment, your email address and passing your place to someone else are handled by email: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com). Everything else is yours to change at [openblues.pl/change](/change/).
+Nothing you answered is locked in: change any of it yourself, any time, at [openblues.pl/change](/change/). Only three things go by email — the €50 Reservation Payment, your email address, and passing your place to someone else: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
-Signups close on {{< param closeHuman >}}, or earlier if the venue is full.
+Signups close on {{< param closeHuman >}}.
 
 [Join the festival WhatsApp group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX).
 
@@ -90,7 +82,7 @@ The invite is public, and other members can see your phone number and any WhatsA
 
 - Chosen or confirmed your exact place in the shared accommodation Sheet if you chose a paid shared or single sleeping place
 - Sheets or sleeping bag (if you chose a mattress)
-- Right amount of cash — everything except the €50 Reservation Payment is brought in cash to the venue. If you changed anything at [openblues.pl/change](/change/), recalculate from the [cost tables on the front page](/#your-cost)
+- Right amount of cash. If you changed anything at [openblues.pl/change](/change/), recalculate from the [cost tables on the front page](/#your-cost)
 - Dress-to-impress outfit for Saturday
 - Earplugs
 - Towel and toiletries

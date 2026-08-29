@@ -9,6 +9,8 @@ You can change your details yourself, any time, at openblues.pl/change — accom
 
 <p class="cta-change">{{< change-cta class="btn" label="Change&nbsp;my&nbsp;details&nbsp;✎" >}}</p>
 
+{{< change-status >}}
+
 That is why the signup form asks everything at once: nothing you answer there is final. Bookmark this page rather than an email — **openblues.pl/change** still works next summer.
 
 The form asks for your email address and your full name. Use the same email address you signed up with: that is how a change is matched to your signup.
@@ -39,6 +41,6 @@ If you paid for a shared or single sleeping place, you choose your exact place i
 
 ## Not signed up yet?
 
-Everyone who signs up and pays is in. There is no selection, no application, and nothing to wait for. Signups close on {{< param closeHuman >}}, or earlier if the venue is full.
+Everyone who signs up and pays is in. There is no selection, no application, and nothing to wait for. Signups close on {{< param closeHuman >}}.
 
 <p class="cta-final">{{< signup-cta class="btn" label="Sign up for Open Blues ✒️" closedLabel="Sign up · soon" >}}</p>
