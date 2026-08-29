@@ -25,8 +25,12 @@ Hugo site deployed on GitHub Pages.
 
 ## Opening signups and the counter
 
-Signups are closed until the form is wired up. To open them, edit `hugo.toml` only:
-`signupURL = "https://tally.so/r/<form>"` and `signupsOpen = true`, then push to `main`.
+`signupURL` is already wired to the 2027 Google Form and `data/formprefill.json` already carries
+that form's `entry.NNNN` prefill ids, so `/cost/` can deep-link into it. Signups are closed until
+the QA gate is green: to open them, edit `hugo.toml` only — set `signupsOpen = true` — and push to
+`main`. Rollback is the same one line back to `false`. If `signupURL` itself ever has to change it
+must be the form's LONG `/viewform` URL; a `forms.gle` short link drops the query string the
+prefill depends on.
 
 The front page shows a live counter of paid signups from `data/counter.json`
 (`paid`, `threshold`, `status`, `updated`). `.github/workflows/counter.yml` refreshes it hourly

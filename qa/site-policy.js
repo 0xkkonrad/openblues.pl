@@ -52,7 +52,11 @@ const expectations = [
     once: [P.change, P.cancellation, P.noOtherRefund, P.notSelfService, P.noSelection, P.closing],
     atMostOnce: [P.threshold, P.confirmation, P.cash, P.beds],
   },
+  // /cost/ has one job: the number. It may repeat no rule, and it owns none of them — the
+  // reader is working out what the week costs, not reading terms.
+  { path: '/cost/', once: [], atMostOnce: Object.values(P) },
   { path: '/accommodation/', once: [], atMostOnce: Object.values(P) },
+  { path: '/spread-the-word/', once: [], atMostOnce: Object.values(P) },
   { path: '/2026/', once: [], atMostOnce: Object.values(P) },
   { path: '/404.html', once: [], atMostOnce: Object.values(P) },
 ];
@@ -60,7 +64,7 @@ const expectations = [
 // Every rendered file, not only the pages: the clause hid in a counter state and in a test
 // fixture last time, so scan the feeds too.
 const scannedPaths = [
-  '/', '/booklet/', '/change/', '/accommodation/', '/2026/', '/404.html',
+  '/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html',
   '/openblues-2027.ics', '/sitemap.xml', '/robots.txt',
 ];
 
@@ -94,29 +98,50 @@ async function run() {
     assert.doesNotMatch(text, /\bfull\b(?=[^.]*\bplaces?\b)/i, `${path} still talks about a full venue`);
   }
 
-  // The change form is gated on one parameter: while changeOpen is false nothing may link to a
-  // Tally form that is still a draft and answers 404.
+  // POLICY rule 6, as rewritten for the Google Forms migration: the way you change your answers
+  // is the per-response edit link in your confirmation email. Saying "fill the form in again" is
+  // banned outright (params.banned), and the page has to carry the recovery path from rule 7,
+  // because the link lives only in an email and POLICY forbids showing it on a web page.
+  const changeText = textOf(await get('/change/'));
+  assert.match(changeText, /the link in your confirmation email/i,
+    '/change/ must name the mechanism: "the link in your confirmation email" (POLICY rule 6)');
+  assert.match(changeText, /lost (?:your|the) link/i,
+    '/change/ must name the case: "Lost the link?" — the edit link exists in exactly one email (POLICY rule 7)');
+  assert.match(changeText, /(?:ask for it|email me my link|send (?:it|the link|your link) again)/i,
+    '/change/ must offer the recovery itself, not only acknowledge the problem (POLICY rule 7)');
+  assert.match(changeText, /(?:we send (?:it|the link) to the address you signed up with|it only ever reaches you)/i,
+    '/change/ must say the link goes to the address you signed up with — that sentence is the ' +
+    'whole authentication story, and POLICY forbids asking anyone to prove who they are');
+  assert.doesNotMatch(changeText, /(?:prove (?:who you are|your identity)|verify your identity|security question)/i,
+    '/change/ must never ask anybody to prove who they are (POLICY rule 7)');
+
+  // The recovery path has two states and one parameter. While recoveryURL is empty the page
+  // offers the email path, which needs no infrastructure and is already true; once the
+  // "email me my link" form exists, recoveryURL + recoveryOpen switch the page over with no
+  // edit to the page itself. Either way the edit link is NEVER shown on the page, and nobody is
+  // ever asked to prove who they are — mailbox access is the authentication (POLICY rule 7).
   const changePage = await get('/change/');
-  const changeLinks = (changePage.match(new RegExp(params.changeURL, 'g')) || []).length;
-  if (params.changeOpen) {
-    assert.ok(changeLinks >= 1, '/change/ must link to changeURL once changeOpen is true');
+  if (params.recoveryOpen) {
+    const escaped = params.recoveryURL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    assert.ok((changePage.match(new RegExp(escaped, 'g')) || []).length >= 1,
+      '/change/ must link to recoveryURL once recoveryOpen is true');
   } else {
-    assert.equal(changeLinks, 0, '/change/ must not link to an unpublished change form');
-    assert.match(changePage, /· soon/, '/change/ must show the "· soon" state while changeOpen is false');
+    assert.match(changePage, /mailto:openbluespoland@gmail\.com/,
+      '/change/ must offer the email recovery path while recoveryOpen is false: a lost link may ' +
+      'never be a dead end, which is why this page ships WITH the migration and not after it');
   }
-  for (const path of ['/', '/booklet/', '/accommodation/', '/2026/', '/404.html']) {
+  assert.match(changeText, /so it only ever reaches you/,
+    '/change/ must say the link is sent to the address the person signed up with (POLICY rule 7)');
+  for (const path of ['/', '/cost/', '/booklet/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html']) {
     const html = await get(path);
     assert.ok(html.includes('change/'), `${path} must keep the durable /change/ route in the nav`);
-    if (!params.changeOpen) {
-      assert.ok(!html.includes(params.changeURL), `${path} must not link to the unpublished change form`);
-    }
   }
 
   const sentences = Object.keys(P).length;
   process.stdout.write(
     `PASS: ${sentences} POLICY sentences asserted on ${expectations.length} pages, ` +
       `${params.banned.length} banned patterns clear on ${scannedPaths.length} rendered files, ` +
-      `change gate ${params.changeOpen ? 'open' : 'closed'}.\n`,
+      `link recovery ${params.recoveryOpen ? 'self-service' : 'by email'}.\n`,
   );
 }
 

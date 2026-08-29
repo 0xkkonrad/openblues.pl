@@ -13,7 +13,10 @@ const eventStart = readParam('eventStart');
 const eventYear = eventStart.slice(0, 4);
 
 const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
-const entryPaths = ['/', '/booklet/', '/change/', '/accommodation/', '/2026/', '/404.html'];
+// /cost/ is the calculator that replaced Tally's live running total, and /spread-the-word/
+// is where the print kit's QR codes land people. Both are participant-facing entry points
+// and both were outside this smoke test before the Google Forms migration.
+const entryPaths = ['/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html'];
 
 async function run() {
   const browser = await chromium.launch({ headless: true });
@@ -33,7 +36,15 @@ async function check(browser) {
 
   page.on('pageerror', (error) => failures.push(`pageerror: ${error.message}`));
   page.on('console', (message) => {
-    if (message.type() === 'error') failures.push(`console: ${message.text()}`);
+    if (message.type() !== 'error') return;
+    // layouts/404.html is emitted with absolute openblues.pl URLs (Hugo cannot make a 404
+    // page's asset paths relative — it is served from whatever depth the missing URL had), so
+    // against a local preview on a box with no internet those subresources fail and Chromium
+    // logs one console error each. That says nothing about the build. Whether any off-origin
+    // request happens at all is qa/no-trackers.js's job, and it asserts it properly.
+    const from = (message.location() || {}).url || '';
+    if (from && !from.startsWith(origin) && /Failed to load resource/i.test(message.text())) return;
+    failures.push(`console: ${message.text()}`);
   });
   page.on('requestfailed', (request) => {
     if (request.url().startsWith(origin)) failures.push(`request failed: ${request.url()}`);
@@ -63,8 +74,9 @@ async function check(browser) {
       assert.equal(await page.locator('nav a.btn').count(), 0, 'nav must not link anywhere while signups are closed');
       assert.equal(await page.locator('nav .btn-closed').count(), 1);
       assert.match(await page.locator('nav .btn-closed').textContent(), /soon|cancelled/i);
-      // Narrow: the signup form must not be linked while signups are closed, but the
-      // always-available change form is a different URL and a different gate (changeOpen).
+      // Narrow: the signup form must not be linked while signups are closed. /change/ is a
+      // different thing entirely — it is a page on this site, not a form, and it stays reachable
+      // for people who already signed up, including after signups close.
       assert.equal(await page.locator(`a[href="${signupUrl}"]`).count(), 0);
     }
     if (entryPath === '/') {
