@@ -1,0 +1,26 @@
+# The downloadable print kit shown on /spread-the-word/ by the print-kit shortcode.
+# file    -> static/files/printkit/<file>
+# preview -> static/images/printkit/<preview>
+# Regenerate with scripts/printkit/build.py in the openblues-2027 project repo.
+items:
+  - file: open-blues-2027-invite-cards-a7.pdf
+    preview: invite-cards-a7.jpg
+    title: Pocket invite cards
+    sheet: A4 sheet of 8 cards · 6 pages · black ink only
+    note: >-
+      The ones to carry. Page 1 mixes all five invitations; each of the following pages
+      is a sheet of one. Cut along the faint lines and keep a few in your jacket.
+  - file: open-blues-2027-invite-cards-a6.pdf
+    preview: invite-cards-a6.jpg
+    title: Postcard invites
+    sheet: A4 sheet of 4 cards · 6 pages · black ink only
+    note: >-
+      The same five invitations at postcard size, for when you want to write something
+      on the back before you give it to someone.
+  - file: open-blues-2027-poster-a4.pdf
+    preview: poster-a4.jpg
+    title: Wall poster
+    sheet: A4 · 6 pages, one per line · black ink only
+    note: >-
+      For the noticeboard at your studio or by the door at your local blues night.
+      Ask whoever runs the place first. Prints just as well shrunk to A5.
