@@ -1,20 +1,15 @@
-{{- /*
-  Renders the downloadable print kit from data/printkit.yaml, so adding a sheet is a
-  data edit and never a template edit. Each item needs: file, title, sheet, note,
-  preview. Files live in static/files/printkit/, previews in static/images/printkit/.
-*/ -}}
+{{- /* Downloads from data/printkit.yaml, so adding one is a data edit. */ -}}
 <ul class="kit" role="list">
 {{- range site.Data.printkit.items }}
   {{- $path := printf "files/printkit/%s" .file }}
   <li class="kit-item">
     <a class="kit-shot" href="{{ $path | relURL }}" download>
-      <img src="{{ (printf "images/printkit/%s" .preview) | relURL }}" alt="Preview of {{ .title }}" loading="lazy" width="420" height="594">
+      <img src="{{ (printf "images/printkit/%s" .preview) | relURL }}" alt="{{ .title }}" loading="lazy">
     </a>
     <div class="kit-body">
       <h3>{{ .title }}</h3>
       <p class="kit-sheet">{{ .sheet }}</p>
-      <p class="kit-note">{{ .note }}</p>
-      <a class="btn btn-outline btn-small" href="{{ $path | relURL }}" download>Download PDF</a>
+      <a class="btn btn-outline btn-small" href="{{ $path | relURL }}" download>Download</a>
     </div>
   </li>
 {{- end }}
