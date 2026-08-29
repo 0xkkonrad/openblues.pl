@@ -32,7 +32,7 @@ enableGitInfo = false
   # data/formprefill.json carries the same form's prefill base and entry.NNNN ids, which is what
   # lets /cost/ hand somebody a signup link with their three choices already selected.
   signupURL = "https://docs.google.com/forms/d/e/1FAIpQLSdZuj4QceEPozLdPmpl9AACfU655vW7ipJryoCed8Cg4JNkrQ/viewform"
-  signupsOpen = false
+  signupsOpen = true
 
   # --- Change my details. There is no longer a separate change form. From the 29 Aug 2026
   # Google Forms migration onward, people change their own answers through the per-response edit
