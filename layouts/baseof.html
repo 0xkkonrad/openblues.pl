@@ -8,15 +8,19 @@
     <a class="brand" href="{{ "/" | relURL }}">
       <img src="{{ "images/logo.png" | relURL }}" alt="Open Blues" width="92" height="49">
     </a>
+    {{- /* Three doors and the button. #about and #faq pointed at two headings the 30 Aug 2026
+       landing-page cut removed, so they scrolled nowhere on every page of the site; they render
+       as ./#about (relativeURLs), which is why the dead-anchor check never caught them.
+       /accommodation/ leaves the nav rather than the site: it is a Google Sheets rulebook and it
+       was the second-most-inviting label here, so a first-time reader landed in it. It stays
+       reachable from "Plan your stay", where a person who has actually decided goes looking.
+       /change/ and /2026/ move to the footer — neither is for somebody deciding whether to come,
+       and the footer nav keeps /change/ a durable route on every page (qa/site-policy.js).
+       Each destination now has exactly ONE name across the whole site. */ -}}
     <nav aria-label="Main">
-      <a href="{{ "/" | relURL }}#about">About</a>
-      <a href="{{ "cost/" | relURL }}">Cost</a>
-      <a href="{{ "booklet/" | relURL }}">Stay&nbsp;&amp;&nbsp;travel</a>
-      <a href="{{ "accommodation/" | relURL }}">Rooms&nbsp;&amp;&nbsp;beds</a>
-      <a href="{{ "/" | relURL }}#faq">FAQ</a>
-      <a href="{{ "spread-the-word/" | relURL }}">Spread&nbsp;the&nbsp;word</a>
-      <a href="{{ "change/" | relURL }}">Change&nbsp;details</a>
-      <a href="{{ "2026/" | relURL }}">2026</a>
+      <a href="{{ "cost/" | relURL }}">What&nbsp;it&nbsp;costs</a>
+      <a href="{{ "booklet/" | relURL }}">Plan&nbsp;your&nbsp;stay</a>
+      <a href="{{ "questions/" | relURL }}">Questions</a>
       {{ partial "signup-cta.html" (dict "class" "btn btn-small" "label" "Sign up") }}
     </nav>
   </header>
@@ -30,11 +34,16 @@
       🇺🇦 Please support Ukraine — <a href="https://u24.gov.ua/">United24</a> ·
       <a href="https://savelife.in.ua/en/">Come Back Alive</a>
     </p>
+    <nav class="footer-nav" aria-label="More">
+      <a href="{{ "change/" | relURL }}">Change my details</a> ·
+      <a href="{{ "spread-the-word/" | relURL }}">Spread the word</a> ·
+      <a href="{{ "2026/" | relURL }}">2026</a>
+    </nav>
     <p>
       <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a>
     </p>
     <p>
-      <a href="https://unlicense.org/">UNLICENSE</a> — feel free to use anything found here ·
+      <a href="https://unlicense.org/">UNLICENSE</a> ·
       Isabella Larsen &amp; Konrad Urban · Hosting sponsored by <a href="https://peanut.me">Peanut</a>
     </p>
   </footer>

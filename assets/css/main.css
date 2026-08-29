@@ -178,8 +178,6 @@ img { max-width: 100%; height: auto; }
 
 .hero-cal { color: var(--muted); font-size: .9rem; margin: .1rem 0; }
 
-.hero-tagline { color: var(--muted); margin: .4rem 0 1.6rem; }
-
 .hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem; margin: 0 0 .9rem; }
 
 .cta-help {
@@ -188,11 +186,6 @@ img { max-width: 100%; height: auto; }
   color: var(--muted);
   font-size: .9rem;
 }
-
-/* The "you can change all of this later" promise, kept next to the signup button on purpose:
-   it is what makes asking everything up front reasonable (see /change/). */
-.cta-help--change { margin-top: -.4rem; }
-.cta-help--change a { font-weight: 700; }
 
 /* Button on /change/, directly under the opening promise. */
 .cta-change { text-align: center; margin: 1.6rem 0 2rem; }
@@ -443,6 +436,16 @@ img { max-width: 100%; height: auto; }
 .footer .support-ua { color: var(--ink); margin-bottom: .5rem; }
 .footer .support-ua a { color: var(--link); }
 
+/* /change/, /spread-the-word/ and /2026/ live here rather than in the top nav: none of them is
+   for somebody deciding whether to come, and the footer keeps /change/ a durable route on every
+   page of the site. Links get a 44px touch target, same as the top nav. */
+.footer-nav { margin: .2rem 0 .5rem; }
+.footer-nav a {
+  display: inline-block;
+  padding: .55rem .35rem;
+  color: var(--link);
+}
+
 /* ---------- signup counter (partials/counter.html) ---------- */
 .counter {
   max-width: 34rem;
@@ -472,7 +475,6 @@ img { max-width: 100%; height: auto; }
 
 .counter-bar span { display: block; height: 100%; background: var(--orange); border-radius: 1rem; }
 .counter-sub { margin: .3rem 0 0; color: var(--muted); font-size: .9rem; }
-.counter-updated { margin: .3rem 0 0; color: var(--muted); font-size: .75rem; }
 
 .archive-links { padding-left: 1.2rem; }
 .archive-links li { margin: .4rem 0; }
