@@ -1,7 +1,6 @@
 ---
 title: "Change my details"
-subtitle: "Already signed up? Change anything you told us, yourself, any time."
-description: "Change your Open Blues details yourself, any time: accommodation, Sunday night, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. Use the link in your confirmation email, or ask for it again here."
+description: "Change your Open Blues answers yourself, any time. Use the link in your confirmation email, or ask us to send it to you again."
 url: /change/
 ---
 
@@ -9,15 +8,15 @@ You can change your details yourself, any time — accommodation, Sunday night, 
 
 ## Use the link in your confirmation email
 
-It reopens your own signup, with your answers already in it. Change what you like and submit again. The new answers replace the old ones. Search your inbox for **Open Blues**.
+That link reopens your own signup, with your answers already in it. Change what you like and submit again. Search your inbox for **Open Blues**.
 
-Change where you sleep, Sunday night or your donation, and the cash you bring changes too. [Work out the new number](/cost/).
+If you change where you sleep, your Sunday night or your donation, the cash you bring changes too. See [what it costs](/cost/).
 
 ## Lost the link?
 
 {{< recovery >}}
 
-## Three things go by email
+## Three things need an email
 
 The €50 Reservation Payment, your email address and passing your place to someone else are handled by email: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 

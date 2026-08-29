@@ -258,7 +258,7 @@ const expectedRows = [
   `| Shared sleeping place for two — bed or large mattress, per person | €${GRID.shared} |`,
   `| Single sleeping place — bed or large mattress | €0 |`.replace('€0', '€' + GRID.single),
   '| Leaving before Sunday night | €0 |',
-  `| Staying Sunday night, whatever you sleep on | €${GRID.sunday} |`,
+  `| Staying Sunday night | €${GRID.sunday} |`,
 ];
 
 // Every euro figure a participant-facing price page is allowed to show: the grid itself, any of

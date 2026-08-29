@@ -41,7 +41,7 @@
       "title": "Accommodation for Thursday, Friday and Saturday nights",
       "legend": "Where will you sleep on Thursday, Friday and Saturday?",
       "breakdown": "accommodation",
-      "help": "Three nights. Everyone eats the same communal food, whatever they sleep on.",
+      "help": "Three nights.",
       "showPrices": true,
       "options": [
         {
@@ -67,7 +67,7 @@
       "title": "Sunday-night sleeping",
       "legend": "Are you staying Sunday night?",
       "breakdown": "Sunday night",
-      "help": "One flat price, whatever you sleep on. Monday is breakfast, cleaning and departures.",
+      "help": "One flat price, whatever you sleep on.",
       "showPrices": true,
       "options": [
         {
@@ -88,7 +88,7 @@
       "title": "Optional donation to support the festival 💞",
       "legend": "Would you like to add a donation?",
       "breakdown": "donation",
-      "help": "Entirely optional. Donations are what keep the sleeping places cheap for everyone else.",
+      "help": "",
       "showPrices": false,
       "options": [
         { "key": "d100", "name": "€100", "label": "€100" },

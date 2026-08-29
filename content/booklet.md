@@ -5,7 +5,7 @@ description: "Practical information for Open Blues: how to reach Piotrowice Nysk
 url: /booklet/
 ---
 
-Open Blues happens at Piotrowice Nyskie Palace, in Silesia in south-west Poland. The house dates from around 1300. It fell into disrepair under Soviet rule, from 1945 to 1989. Anna and Jim bought it. They are restoring it room by room. It is their home, and they share it with us. Explore it. Respect their privacy.
+Open Blues happens at Piotrowice Nyskie Palace, in Silesia in south-west Poland. The house dates from around 1300. It has frescoes, painted Renaissance ceilings, and a working chapel — the village church, with Mass twice a week. Anna and Jim are restoring it room by room. It is their home, and they share it with us. Explore it. Respect their privacy.
 
 <img src="/images/gallery/palace-golden-hour.jpg" alt="Piotrowice Nyskie Palace at golden hour, tower and red roofs in evening light" loading="lazy" width="900" height="600" style="display:block;width:100%;height:auto;border-radius:.5rem;margin:1.4rem 0">
 
@@ -13,54 +13,52 @@ Open Blues happens at Piotrowice Nyskie Palace, in Silesia in south-west Poland.
 
 The address is [Piotrowice Nyskie 54, Poland](https://goo.gl/maps/S4sGDLpj19hnzjvH6). The nearest airports are Wrocław, Ostrava, Katowice, Pardubice and Brno.
 
-Most people drive or share a ride. [Join the WhatsApp group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX) to offer a seat or ask for one. The invite is public. Other members can see your phone number and any WhatsApp profile information you make visible.
+Most people drive or share a ride. [Join the WhatsApp group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX) to offer a seat or ask for one. The group is public, so other members see your phone number.
 
-The nearest rail hub is Nysa, a 20-minute drive away. From Nysa, take a taxi for around €30–50, or arrange a lift in the group.
+The nearest rail hub is Nysa, a 20-minute drive away. From Nysa, take a taxi for around €30–50, or ask for a ride in the group.
 
-If you drive, follow the map pin rather than the village name. Email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) for the current parking instructions before you set off.
+If you drive, follow the map pin, not the village name. Email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before you travel: we will send you the parking instructions, and we like to know when to expect you.
 
 ## Where you sleep {#accommodation-food}
 
-A paid place is a bed or a large mattress, made up with sheets and a pillow, in a shared room. If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order.
+You sleep in the palace — its rooms and its attics — or in one of the two barns.
 
-The floor option is a tent, your own mattress, or a mattress in the barn. Bring the whole setup you need, including sheets or a sleeping bag. You pick your own spot when you arrive, so you can find somewhere quiet. Barn mattresses are first come, first served. The barn has its own showers. It is a fine place to sleep, unless you have a dust allergy.
+A shared or single place is a bed or a large mattress in a shared room. We put sheets and a pillow on it for you. If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order.
+
+If you chose the floor, bring the setup you need. You pick your own spot when you arrive, so you can find somewhere quiet. The barn has its own showers. It is a fine place to sleep, unless you have a dust allergy.
 
 [See the rooms and the floor plans](/accommodation/).
 
 ## Food
 
-We cook together and all communal food is vegan. It is included from Thursday dinner through Monday breakfast.
+We cook every meal together, and all of it is vegan.
 
 There is a small village shop, five minutes away on foot. A Dino supermarket is in Kałków, the next village, a few minutes away by car.
 
 ## When it starts and ends
 
-Reception opens on Thursday at 18:00. The welcome follows at 18:30, dinner at 19:00 and the party at 20:00. Email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before you travel if you will arrive later.
-
-Monday is breakfast and communal cleaning. The programme ends at 12:00.
-
-An extra night before or after costs €20–50, depending on where you sleep. It comes without food. Agree it by email before you arrive.
+Reception opens on Thursday at 18:00. Monday is breakfast and communal cleaning, and the programme ends at 12:00.
 
 ## We all run it
 
-Participants make the music, the workshops and the meals. Take the initiative and look for things to help with: carrying speakers, cooking, washing up, keeping the place tidy.
+Nobody here is staff. Someone carries the speakers, someone cooks, someone washes the dishes — because they see it needs doing. That someone is you too.
 
-The programme grows from the people who come. Say at signup that you might lead something, and change your mind whenever you like at [openblues.pl/change](/change/). Closer to the date, participants add their ideas to a shared workshop sheet.
+The programme grows from the people who come. Say at signup that you might lead something.
 
-## House rules
+## The house
 
-The palace is Anna and Jim's home and a shared space. Leave every room the way you would like to find it.
+Leave every room the way you would like to find it.
 
-Take photographs. Before you publish one in which somebody else is the subject, ask them.
+Take photographs. Ask people before you publish a photo of them.
 
-Email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) about anything to do with safety or with how someone is behaving. We take it seriously and we act.
+Email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) if you feel unsafe, or if someone behaves badly. We take it seriously and we act on it.
 
 ## What to bring
 
 - Sheets or a sleeping bag, if you chose the floor
-- Your cash — [work the number out again](/cost/) if you changed any of your answers
+- Your cash — see [what it costs](/cost/)
 - A dress-to-impress outfit for Saturday
 - Earplugs
 - A towel and toiletries
-- Swimwear, for the natural pool and the lake nearby
+- Swimwear
 - Dance shoes, or your bare feet

@@ -22,22 +22,20 @@ The only thing you choose is where you sleep.
 | Sunday night | Your cost |
 |---|---:|
 | Leaving before Sunday night | €0 |
-| Staying Sunday night, whatever you sleep on | €50 |
+| Staying Sunday night | €50 |
 
-Food is in the price, from Thursday dinner through Monday breakfast. So are the bands, the palace and the ballroom.
+Food is included, from dinner on Thursday to breakfast on Monday. The price also covers the bands, the palace and the ballroom.
 
-A donation of €100, €50 or €20 is welcome on top, and entirely optional.
+You can add a donation of €100, €50 or €20. It is optional, and it keeps the lowest price low for everyone.
 
 <img src="/images/gallery/dinner-under-trees.jpg" alt="Communal dinner at a long table under the trees in the palace park" loading="lazy" width="900" height="506" style="display:block;width:100%;height:auto;border-radius:.5rem;margin:1.4rem 0">
 
 ## Paying
 
-You transfer the €50 Reservation Payment when you sign up. If Open Blues does not happen, you get it back. The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
+You send the €50 Reservation Payment when you sign up. If Open Blues does not happen, you get it back. The Reservation Payment is not refunded for any other reason.
 
-Everything except the €50 Reservation Payment is brought in cash to the venue. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
+You bring everything except the €50 in cash to the venue. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
 
-You can [change your answers later](/change/). The number changes with them.
-
-[Plan your stay](/booklet/) · [see the rooms](/accommodation/)
+We share the costs between us. Nobody earns money from Open Blues.
 
 <p class="cta-final">{{< signup-cta class="btn" label="Sign up for Open Blues ✒️" closedLabel="Sign up · soon" >}}</p>
