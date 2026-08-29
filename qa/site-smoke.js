@@ -13,10 +13,19 @@ const eventStart = readParam('eventStart');
 const eventYear = eventStart.slice(0, 4);
 
 const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
-const entryPaths = ['/', '/booklet/', '/accommodation/', '/2026/', '/404.html'];
+const entryPaths = ['/', '/booklet/', '/change/', '/accommodation/', '/2026/', '/404.html'];
 
 async function run() {
   const browser = await chromium.launch({ headless: true });
+  try {
+    await check(browser);
+  } finally {
+    // Without this an assertion failure leaks a headless chromium.
+    await browser.close();
+  }
+}
+
+async function check(browser) {
   const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
   const page = await context.newPage();
   const failures = [];
@@ -49,12 +58,14 @@ async function run() {
     }
     if (signupsOpen) {
       assert.equal(await page.locator(`nav a.btn[href="${signupUrl}"]`).count(), 1, 'nav signup button must link to signupURL');
-      assert.equal(await page.locator('.btn-closed').count(), 0);
+      assert.equal(await page.locator('nav .btn-closed').count(), 0);
     } else {
       assert.equal(await page.locator('nav a.btn').count(), 0, 'nav must not link anywhere while signups are closed');
       assert.equal(await page.locator('nav .btn-closed').count(), 1);
-      assert.match(await page.locator('nav .btn-closed').textContent(), /soon/i);
-      assert.equal(await page.locator('a[href*="tally.so"]').count(), 0);
+      assert.match(await page.locator('nav .btn-closed').textContent(), /soon|cancelled/i);
+      // Narrow: the signup form must not be linked while signups are closed, but the
+      // always-available change form is a different URL and a different gate (changeOpen).
+      assert.equal(await page.locator(`a[href="${signupUrl}"]`).count(), 0);
     }
     if (entryPath === '/') {
       assert.match(await page.locator('.hero-dates').textContent(), new RegExp(eventDatesHuman));
@@ -74,8 +85,17 @@ async function run() {
       assert.match(bodyText, /How signing up works/);
       assert.match(bodyText, /Is there a selection\?/);
       assert.match(bodyText, /What if we don.t reach 40 people\?/);
-      assert.match(bodyText, /refunded in full/);
+      assert.match(bodyText, /refunded in full|comes back in full/, 'the front page must state the refund promise');
     }
+
+    // Same-page anchors: the booklet's table of contents pointed at two headings that do not
+    // exist, and the link check below strips url.hash, so it could never catch them.
+    const anchors = await page.evaluate(() => {
+      const ids = new Set(Array.from(document.querySelectorAll('[id]'), (node) => node.id));
+      return Array.from(document.querySelectorAll('a[href^="#"]'), (a) => a.getAttribute('href').slice(1))
+        .filter((id) => id && !ids.has(decodeURIComponent(id)));
+    });
+    assert.deepEqual(anchors, [], `${entryPath} has dead same-page anchors: ${anchors.join(', ')}`);
 
     const discovered = await page.locator('a[href], link[href], script[src], img[src], source[srcset]').evaluateAll((nodes) =>
       nodes.flatMap((node) => {
@@ -100,7 +120,6 @@ async function run() {
 
   assert.deepEqual(failures, [], failures.join('\n'));
   await context.close();
-  await browser.close();
   process.stdout.write(`PASS: ${entryPaths.length} pages and ${internalUrls.size} linked local resources loaded without browser or HTTP errors.\n`);
 }
 

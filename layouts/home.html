@@ -15,7 +15,8 @@
     {{ partial "signup-cta.html" (dict "class" "btn" "label" "Sign&nbsp;up&nbsp;✒️") }}
     <a class="btn btn-outline" href="{{ "booklet/" | relURL }}">Plan your stay</a>
   </p>
-  <p class="cta-help">Sign up, transfer the €50 Reservation Payment and upload the receipt — that's it, everyone who pays is in. Open Blues {{ $year }} goes ahead once {{ site.Params.threshold }} people have paid; if we are not there by {{ site.Params.goNoGoHuman }}, everyone is refunded in full.</p>
+  <p class="cta-help">One form, once: your details, the €50 Reservation Payment transfer and the receipt. Everyone who signs up and pays is in. There is no selection, no application, and nothing to wait for.</p>
+  <p class="cta-help cta-help--change">Answering everything up front costs you nothing, because none of it is final. You can change your details yourself, any time, at <a href="{{ "change/" | relURL }}">openblues.pl/change</a> — accommodation, Sunday night, drinks, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts.</p>
   {{ partial "counter.html" . }}
   <p class="hero-note">A private, cost-shared gathering: nobody profits and everyone covers their own share of the real expenses.</p>
 </section>

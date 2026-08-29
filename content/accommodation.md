@@ -41,7 +41,7 @@ sitemap:
     <span class="stay-authority__number" aria-hidden="true">02</span>
     <p class="stay-eyebrow">Choose there</p>
     <h2>The shared Sheet</h2>
-    <p>The Sheet is the only live record. It opens once the gathering is confirmed. Green name cells are self-service: type, move or clear only your own public name.</p>
+    <p>The Sheet is the only live record. It opens once the gathering is confirmed, and places are allocated in signup order. Green name cells are self-service: type, move or clear only your own public name.</p>
   </div>
 </section>
 
@@ -272,7 +272,7 @@ sitemap:
   <div>
     <p class="stay-eyebrow">Ready?</p>
     <h2 id="final-title">Choose your place in the Sheet once it opens.</h2>
-    <p>If you paid for a shared or single place, your accommodation category is guaranteed. Pick your row, or change your own existing choice.</p>
+    <p>If you paid for a shared or single place, your accommodation category is guaranteed. Pick your row, or change your own existing choice. To change the category itself, use <a href="/change/">openblues.pl/change</a>.</p>
   </div>
   <div class="stay-final__actions">
     {{< room-browser-cta variant="final" >}}
