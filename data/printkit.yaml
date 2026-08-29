@@ -1,0 +1,16 @@
+# Downloads shown on /spread-the-word/ by the print-kit shortcode.
+# file -> static/files/printkit/  ·  preview -> static/images/printkit/
+# Regenerate with scripts/printkit/ in the openblues-2027 project repo.
+items:
+  - file: open-blues-2027-invite-cards-a7.pdf
+    preview: invite-cards-a7.jpg
+    title: Pocket cards
+    sheet: 8 per A4 sheet
+  - file: open-blues-2027-invite-cards-a6.pdf
+    preview: invite-cards-a6.jpg
+    title: Postcards
+    sheet: 4 per A4 sheet
+  - file: open-blues-2027-poster-a4.pdf
+    preview: poster-a4.jpg
+    title: Poster
+    sheet: A4

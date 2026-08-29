@@ -1,0 +1,20 @@
+{{- /* Every social image, grouped by where it goes. Published rather than zipped:
+       long-press to save on a phone, right-click on a desktop. */ -}}
+{{- $lines := site.Data.socialkit.lines }}
+{{- range site.Data.socialkit.groups }}
+<section class="soc" id="{{ .id }}">
+  <h2>{{ .title }} <span class="soc-note">{{ .note }}</span></h2>
+  <ul class="soc-grid" role="list">
+  {{- $dir := .dir }}
+  {{- range $lines }}
+    {{- $full := printf "images/social/%s/%s.jpg" $dir .slug }}
+    {{- $thumb := printf "images/social/thumbs/%s-%s.jpg" $dir .slug }}
+    <li>
+      <a href="{{ $full | relURL }}" download>
+        <img src="{{ $thumb | relURL }}" alt="{{ .alt }}" loading="lazy" decoding="async">
+      </a>
+    </li>
+  {{- end }}
+  </ul>
+</section>
+{{- end }}

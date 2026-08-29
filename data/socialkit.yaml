@@ -1,0 +1,42 @@
+# Social images shown on /spread-the-word/ by the social-kit shortcode.
+# Files live in static/images/social/<dir>/<slug>.jpg, thumbnails in
+# static/images/social/thumbs/<dir>-<slug>.jpg. Regenerate with
+# scripts/printkit/ in the openblues-2027 project repo.
+lines:
+  - slug: cook-with-me
+    alt: Come cook with me.
+  - slug: sharing-mattress
+    alt: Most of us share a mattress.
+  - slug: elegant-and-tent
+    alt: Bring something elegant. Maybe a tent.
+  - slug: old-and-broken
+    alt: The palace is a little broken.
+  - slug: teach-me
+    alt: Teach something you've never taught.
+  - slug: poster
+    alt: Sleep on the palace floor.
+groups:
+  - id: facebook
+    dir: facebook-post
+    title: Facebook & Instagram posts
+    note: 1080 × 1350
+  - id: instagram
+    dir: instagram-square
+    title: Instagram square
+    note: 1080 × 1080
+  - id: chats
+    dir: whatsapp
+    title: WhatsApp & chats
+    note: 1080 × 1080, bigger type for small previews
+  - id: stories
+    dir: story
+    title: Stories
+    note: 1080 × 1920
+  - id: listings
+    dir: listing
+    title: Listing pages & link previews
+    note: 1200 × 630
+  - id: event-cover
+    dir: facebook-event-cover
+    title: Facebook event cover
+    note: 1920 × 1005

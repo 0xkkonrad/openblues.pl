@@ -1,0 +1,61 @@
+/* /spread-the-word/ — the print kit and how to hand it out. */
+
+.kit { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 1.75rem; }
+@media (min-width: 700px) { .kit { grid-template-columns: repeat(2, 1fr); } }
+
+.kit-item {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  background: #fff;
+}
+.kit-shot { display: block; background: var(--cream); border-bottom: 1px solid var(--line); }
+.kit-shot img { display: block; width: 100%; height: auto; }
+.kit-body { padding: 1rem 1.15rem 1.25rem; display: flex; flex-direction: column; gap: .35rem; }
+.kit-body h3 { margin: 0; font-size: 1.05rem; }
+.kit-sheet { margin: 0; font-size: .85rem; color: var(--muted); }
+.kit-note { margin: .15rem 0 .75rem; font-size: .92rem; }
+.kit-body .btn { align-self: flex-start; }
+
+/* The "who do I give this to" list: short, concrete, scannable. */
+.handout { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .6rem; }
+.handout li { padding-left: 1.6rem; position: relative; }
+.handout li::before {
+  content: "→"; position: absolute; left: 0; top: 0; color: var(--orange); font-weight: 700;
+}
+
+.print-note {
+  margin-top: 1.5rem; padding: .9rem 1.1rem;
+  background: var(--cream); border: 1px solid var(--line); border-radius: 8px;
+  font-size: .92rem;
+}
+.print-note strong { color: var(--ink); }
+
+/* Anchor links to the sections below. */
+.toc {
+  display: flex; flex-wrap: wrap; gap: .4rem .55rem;
+  margin: 1.5rem 0 0; padding: 0;
+}
+.toc a {
+  font-size: .86rem; line-height: 1;
+  padding: .45rem .7rem;
+  border: 1px solid var(--line); border-radius: 999px;
+  text-decoration: none; color: var(--ink); background: #fff;
+}
+.toc a:hover { background: var(--cream); border-color: var(--orange); color: var(--link); }
+
+/* Social images, published rather than zipped. */
+.soc { margin-top: 3rem; scroll-margin-top: 1.5rem; }
+.soc h2 { margin-bottom: .35rem; }
+.soc-note {
+  font-family: "Lato", sans-serif; font-size: .8rem; font-weight: 400;
+  color: var(--muted); letter-spacing: .02em; white-space: nowrap;
+}
+.soc-grid {
+  list-style: none; margin: 1rem 0 0; padding: 0;
+  display: grid; gap: .9rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 640px) { .soc-grid { grid-template-columns: repeat(3, 1fr); } }
+.soc-grid a { display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: #fff; }
+.soc-grid a:hover { border-color: var(--orange); }
+.soc-grid img { display: block; width: 100%; height: auto; }
