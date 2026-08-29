@@ -198,7 +198,7 @@ You get your €50 Reservation Payment back in full. Nothing else is owed.
 
 ### What's the Reservation Payment about?
 
-The €50 payment commits your place and contributes to fixed costs such as the bands. It is refunded in full if we cannot offer you a place. Once you are accepted it is non-refundable, but you can find someone to take your place and ask us to update the application.
+The €50 payment commits your place and contributes to fixed costs such as the bands. It is refunded in full if we cannot offer you a place. Once you are accepted it is non-refundable, but you can find someone to take your place — tell us by email at [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
 ### Can I change my details after applying?
 
