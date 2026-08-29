@@ -1,0 +1,8 @@
+{{- /* Anchor links to the sections below. Kept in one place so a new group in
+       data/socialkit.yaml shows up here automatically. */ -}}
+<nav class="toc" aria-label="On this page">
+  <a href="#print">Print</a>
+  {{- range site.Data.socialkit.groups }}
+  <a href="#{{ .id }}">{{ .title }}</a>
+  {{- end }}
+</nav>
