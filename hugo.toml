@@ -37,7 +37,7 @@ enableGitInfo = false
   # may 404. The form was still a draft during the 29 Aug 2026 verification run; it answers 200
   # as of 16:00 that day, so re-probe changeURL and set changeOpen = true at merge.
   changeURL = "https://tally.so/r/pbpaVZ"
-  changeOpen = false
+  changeOpen = true
 
   # --- Threshold model. The gathering goes ahead once `threshold` people have paid the €50
   # Reservation Payment; if that is not reached by goNoGoDate it is cancelled and everyone is
