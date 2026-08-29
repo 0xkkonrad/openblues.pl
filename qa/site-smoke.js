@@ -5,14 +5,15 @@ const { chromium } = require('playwright');
 
 const hugoConfig = fs.readFileSync(path.resolve(__dirname, '..', 'hugo.toml'), 'utf8');
 const readParam = (name) => (hugoConfig.match(new RegExp(`^\\s*${name}\\s*=\\s*"?([^"\\n]*?)"?\\s*$`, 'm')) || [])[1] || '';
-const applyUrl = readParam('applyURL');
-const applicationsOpen = readParam('applicationsOpen') === 'true' && Boolean(applyUrl);
+const signupUrl = readParam('signupURL');
+const signupsOpen = readParam('signupsOpen') === 'true' && Boolean(signupUrl);
+const threshold = readParam('threshold');
 const eventDatesHuman = readParam('eventDatesHuman');
 const eventStart = readParam('eventStart');
 const eventYear = eventStart.slice(0, 4);
 
 const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
-const entryPaths = ['/', '/booklet/', '/accommodation/', '/404.html'];
+const entryPaths = ['/', '/booklet/', '/accommodation/', '/2026/', '/404.html'];
 
 async function run() {
   const browser = await chromium.launch({ headless: true });
@@ -42,13 +43,17 @@ async function run() {
 
     const bodyText = await page.locator('body').textContent();
     assert.doesNotMatch(bodyText, /\bregist(?:er|ration)\b|68Y72P|Open Blues 2026/i, `${entryPath} still carries 2026 registration copy`);
-    if (applicationsOpen) {
-      assert.equal(await page.locator(`nav a.btn[href="${applyUrl}"]`).count(), 1, 'nav apply button must link to applyURL');
+    if (entryPath === '/') {
+      assert.equal(await page.locator('nav a[href$="2026/"]').count(), 1, 'nav must link to the 2026 edition page');
+      assert.equal(await page.locator(`.counter[data-counter-threshold="${threshold}"]`).count(), 1, 'home must show the signup counter');
+    }
+    if (signupsOpen) {
+      assert.equal(await page.locator(`nav a.btn[href="${signupUrl}"]`).count(), 1, 'nav signup button must link to signupURL');
       assert.equal(await page.locator('.btn-closed').count(), 0);
     } else {
-      assert.equal(await page.locator('nav a.btn').count(), 0, 'nav must not link anywhere while applications are closed');
+      assert.equal(await page.locator('nav a.btn').count(), 0, 'nav must not link anywhere while signups are closed');
       assert.equal(await page.locator('nav .btn-closed').count(), 1);
-      assert.match(await page.locator('nav .btn-closed').textContent(), /Applications open soon/);
+      assert.match(await page.locator('nav .btn-closed').textContent(), /soon/i);
       assert.equal(await page.locator('a[href*="tally.so"]').count(), 0);
     }
     if (entryPath === '/') {
@@ -66,9 +71,9 @@ async function run() {
       assert.match(ics, new RegExp(`DTSTART;VALUE=DATE:${eventStart.replace(/-/g, '')}`));
       assert.match(ics, new RegExp(`SUMMARY:Open Blues ${eventYear}`));
       assert.equal(await page.locator('.hero-cta .btn').count(), 2);
-      assert.match(bodyText, /How applying works/);
-      assert.match(bodyText, /Why is there an application\?/);
-      assert.match(bodyText, /What if I.m not accepted\?/);
+      assert.match(bodyText, /How signing up works/);
+      assert.match(bodyText, /Is there a selection\?/);
+      assert.match(bodyText, /What if we don.t reach 40 people\?/);
       assert.match(bodyText, /refunded in full/);
     }
 

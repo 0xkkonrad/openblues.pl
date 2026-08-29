@@ -1,0 +1,46 @@
+name: Update signup counter
+
+# Copies the signups workbook's published "Public" tab into data/counter.json and redeploys.
+# Inactive until the repository variable COUNTER_CSV_URL is set (Settings → Variables) to the
+# "Publish to web → CSV" URL of that tab. The workflow never decides anything: "full" and
+# "cancelled" come from the workbook's override cell, set by hand.
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: counter
+  cancel-in-progress: false
+
+jobs:
+  update:
+    if: vars.COUNTER_CSV_URL != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Fetch the Public tab and write data/counter.json
+        env:
+          COUNTER_CSV_URL: ${{ vars.COUNTER_CSV_URL }}
+        run: python3 .github/scripts/counter.py "$COUNTER_CSV_URL" data/counter.json
+      - name: Commit, push and redeploy if the counter changed
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- data/counter.json; then
+            echo "counter unchanged"
+            exit 0
+          fi
+          git config user.name "openblues-counter"
+          git config user.email "counter@openblues.pl"
+          git add data/counter.json
+          git commit -m "counter: $(python3 -c 'import json; d = json.load(open("data/counter.json")); print(f"{d[\"paid\"]} paid, {d[\"status\"]}")')"
+          git push
+          # Pushes made with the workflow token do not trigger other workflows; start the deploy explicitly.
+          gh workflow run hugo.yml --ref main

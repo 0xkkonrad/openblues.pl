@@ -61,7 +61,7 @@
   "startDate": "{{ site.Params.eventStart }}",
   "endDate": "{{ site.Params.eventEnd }}",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "eventStatus": "https://schema.org/EventScheduled",
+  "eventStatus": "https://schema.org/{{ if eq (site.Data.counter.status | default "open") "cancelled" }}EventCancelled{{ else }}EventScheduled{{ end }}",
   "image": ["{{ site.Params.ogImage | absURL }}"],
   "location": {
     "@type": "Place",

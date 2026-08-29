@@ -1,7 +1,0 @@
-{{- /* Inline text link to the application form: {{< apply-link >}}the application form{{< /apply-link >}} */ -}}
-{{- $text := .Inner | default "the application form" -}}
-{{- if and site.Params.applicationsOpen site.Params.applyURL -}}
-<a href="{{ site.Params.applyURL }}">{{ $text }}</a>
-{{- else -}}
-{{ $text }} (applications open soon)
-{{- end -}}

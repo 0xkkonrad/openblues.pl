@@ -1,0 +1,17 @@
+{{- /*
+  Signup call-to-action. Renders a link when site.Params.signupsOpen is true, site.Params.signupURL
+  is set and data/counter.json does not say "full" or "cancelled"; otherwise a non-link state.
+  Context: dict "class" (extra classes) "label" (open label) "closedLabel" (optional).
+*/ -}}
+{{- $class := .class | default "btn" -}}
+{{- $label := .label | default "Sign up" -}}
+{{- $status := site.Data.counter.status | default "open" -}}
+{{- $closed := .closedLabel | default "Sign up · soon" -}}
+{{- $title := "Signups open soon" -}}
+{{- if eq $status "cancelled" }}{{ $closed = "Cancelled" }}{{ $title = "The gathering is cancelled" }}{{ end -}}
+{{- if eq $status "full" }}{{ $closed = "Full" }}{{ $title = "All places are taken" }}{{ end -}}
+{{- if and site.Params.signupsOpen site.Params.signupURL (not (in (slice "full" "cancelled") $status)) -}}
+<a class="{{ $class }}" href="{{ site.Params.signupURL }}">{{ $label | safeHTML }}</a>
+{{- else -}}
+<span class="{{ $class }} btn-closed" aria-disabled="true" title="{{ $title }}">{{ $closed | safeHTML }}</span>
+{{- end -}}

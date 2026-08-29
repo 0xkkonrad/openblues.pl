@@ -1,6 +1,6 @@
 ---
 title: "Accommodation"
-description: "Browse the Open Blues rooms and floor plans. Accepted participants with a paid shared or single place choose their sleeping place in the self-service Sheet."
+description: "Browse the Open Blues rooms and floor plans. Participants who paid for a shared or single place choose their sleeping place in the self-service Sheet once the gathering is confirmed."
 url: /accommodation/
 pageClass: accommodation-page
 hideTitle: true
@@ -15,8 +15,8 @@ sitemap:
 <section class="stay-hero" aria-labelledby="stay-title">
   <div class="stay-hero__copy">
     <p class="stay-eyebrow">Open Blues {{< event-year >}} · paid sleeping places</p>
-    <h1 id="stay-title">See the rooms.<br>Choose in the Sheet after acceptance.</h1>
-    <p class="stay-lede">Photos and floor plans live here. Names, availability and every change live in one shared Google Sheet, the Room Browser, which opens for accepted participants who paid for a shared or single sleeping place.</p>
+    <h1 id="stay-title">See the rooms.<br>Choose in the Sheet once it's confirmed.</h1>
+    <p class="stay-lede">Photos and floor plans live here. Names, availability and every change live in one shared Google Sheet, the Room Browser, which opens, once the gathering is confirmed, for participants who paid for a shared or single sleeping place.</p>
     <div class="stay-actions">
       {{< room-browser-cta variant="hero" >}}
     </div>
@@ -41,7 +41,7 @@ sitemap:
     <span class="stay-authority__number" aria-hidden="true">02</span>
     <p class="stay-eyebrow">Choose there</p>
     <h2>The shared Sheet</h2>
-    <p>The Sheet is the only live record. It opens after acceptance. Green name cells are self-service: type, move or clear only your own public name.</p>
+    <p>The Sheet is the only live record. It opens once the gathering is confirmed. Green name cells are self-service: type, move or clear only your own public name.</p>
   </div>
 </section>
 
@@ -272,7 +272,7 @@ sitemap:
   <div>
     <p class="stay-eyebrow">Ready?</p>
     <h2 id="final-title">Choose your place in the Sheet once it opens.</h2>
-    <p>If you are accepted with a paid shared or single place, your accommodation category is guaranteed. Pick your row, or change your own existing choice.</p>
+    <p>If you paid for a shared or single place, your accommodation category is guaranteed. Pick your row, or change your own existing choice.</p>
   </div>
   <div class="stay-final__actions">
     {{< room-browser-cta variant="final" >}}
