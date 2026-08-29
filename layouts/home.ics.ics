@@ -1,0 +1,17 @@
+{{- $start := time.AsTime site.Params.eventStart -}}
+{{- $end := (time.AsTime site.Params.eventEnd).AddDate 0 0 1 -}}
+{{- $year := partial "event-year.html" . -}}
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Open Blues//openblues.pl//EN
+BEGIN:VEVENT
+UID:openblues-{{ $year }}@openblues.pl
+DTSTAMP:{{ $start | time.Format "20060102" }}T000000Z
+DTSTART;VALUE=DATE:{{ $start | time.Format "20060102" }}
+DTEND;VALUE=DATE:{{ $end | time.Format "20060102" }}
+SUMMARY:Open Blues {{ $year }}
+LOCATION:Piotrowice Nyskie Palace\, Piotrowice Nyskie 54\, Poland
+DESCRIPTION:DIY blues & fusion dance festival — https://openblues.pl
+URL:https://openblues.pl
+END:VEVENT
+END:VCALENDAR

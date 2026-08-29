@@ -6,7 +6,12 @@ const { chromium } = require('playwright');
 const pageUrl = process.env.OPENBLUES_PREVIEW_URL || 'http://localhost:3118/accommodation/';
 const origin = new URL(pageUrl).origin;
 const outputDir = process.env.OPENBLUES_QA_OUTPUT || '/tmp/openblues-qa';
-const sheetId = '1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8';
+const hugoConfig = fs.readFileSync(path.resolve(__dirname, '..', 'hugo.toml'), 'utf8');
+const readParam = (name) => (hugoConfig.match(new RegExp(`^\\s*${name}\\s*=\\s*"([^"]*)"`, 'm')) || [])[1] || '';
+const roomBrowserUrl = readParam('roomBrowserURL');
+const roomBrowserInstructionsUrl = readParam('roomBrowserInstructionsURL');
+const sheetId = roomBrowserUrl ? new URL(roomBrowserUrl).pathname.split('/')[3] : '';
+const roomBrowserGid = roomBrowserUrl ? new URLSearchParams(new URL(roomBrowserUrl).hash.slice(1)).get('gid') : '';
 const redundantCapacityCopy = /\b(?:person[- ]?)?places?\b/i;
 const mutableAvailabilityCopy = /\b(?:free|taken|held|not[- ]open|available|availability|reserved|unavailable)\b/i;
 
@@ -168,7 +173,7 @@ async function run() {
       const response = await page.goto(pageUrl, { waitUntil: 'networkidle' });
       assert.ok(response && response.ok(), `${pageUrl} returned ${response && response.status()}`);
       assert.equal(await page.locator('h1').count(), 1);
-      assert.match(await page.locator('h1').textContent(), /See the rooms.*Choose in the live Sheet/s);
+      assert.match(await page.locator('h1').textContent(), /See the rooms.*Choose in the Sheet after acceptance/s);
       assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow, noarchive, nosnippet');
       assert.equal(await page.locator('meta[name="referrer"]').getAttribute('content'), 'no-referrer');
       assert.equal(await page.locator('script[src*="accommodation"]').count(), 0);
@@ -271,33 +276,44 @@ async function run() {
         expectedPhotoSlugs.map((slug) => `/images/accommodation/${slug}-1440.webp`)
       );
 
-      const primaryHref = await page.locator('.stay-primary').getAttribute('href');
-      const finalHref = await page.locator('.stay-final__actions .btn').getAttribute('href');
-      const startHref = await page.getByRole('link', { name: /Read the Sheet instructions first/ }).getAttribute('href');
-      assertSheetLink(primaryHref, '2026080501');
-      assertSheetLink(finalHref, '2026080501');
-      assertSheetLink(startHref, '2026080404');
-      assert.equal(await page.locator('.stay-actions a').count(), 1);
+      if (roomBrowserUrl) {
+        const primaryHref = await page.locator('.stay-primary').getAttribute('href');
+        const finalHref = await page.locator('.stay-final__actions .btn').getAttribute('href');
+        assertSheetLink(primaryHref, roomBrowserGid);
+        assertSheetLink(finalHref, roomBrowserGid);
+        if (roomBrowserInstructionsUrl) {
+          const startHref = await page.getByRole('link', { name: /Read the Sheet instructions first/ }).getAttribute('href');
+          assert.equal(startHref, roomBrowserInstructionsUrl);
+        }
+        assert.equal(await page.locator('.stay-actions a').count(), 1);
 
-      const sheetLinks = await page.locator(`a[href*="${sheetId}"]`).evaluateAll((nodes) => nodes.map((node) => node.href));
-      assert.equal(sheetLinks.length, 21);
-      assert.equal(sheetLinks.every((href) => href.includes(sheetId)), true);
-      const sheetGids = sheetLinks.map((href) => new URLSearchParams(new URL(href).hash.slice(1)).get('gid'));
-      assert.deepEqual([...new Set(sheetGids)].sort(), ['2026080404', '2026080501'].sort());
-      const roomSheetLinks = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => node.href));
-      assert.equal(roomSheetLinks.length, 18);
-      roomSheetLinks.forEach((href, index) => {
-        const fragment = new URLSearchParams(new URL(href).hash.slice(1));
-        assert.equal(fragment.get('gid'), '2026080501');
-        assert.equal(fragment.get('range'), expectedRoomRanges[index]);
-      });
-      const roomLinkA11y = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => ({
-        label: node.getAttribute('aria-label'),
-        height: node.getBoundingClientRect().height
-      })));
-      assert.equal(new Set(roomLinkA11y.map(({ label }) => label)).size, 18);
-      assert.equal(roomLinkA11y.every(({ label }) => /live in the Sheet$/.test(label || '')), true);
-      assert.equal(roomLinkA11y.every(({ height }) => height >= 44), true, `room Sheet link shorter than 44px at ${width}px`);
+        const sheetLinks = await page.locator(`a[href*="${sheetId}"]`).evaluateAll((nodes) => nodes.map((node) => node.href));
+        assert.equal(sheetLinks.length, roomBrowserInstructionsUrl ? 21 : 20);
+        assert.equal(sheetLinks.every((href) => href.includes(sheetId)), true);
+        const roomSheetLinks = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => node.href));
+        assert.equal(roomSheetLinks.length, 18);
+        roomSheetLinks.forEach((href, index) => {
+          const fragment = new URLSearchParams(new URL(href).hash.slice(1));
+          assert.equal(fragment.get('gid'), roomBrowserGid);
+          assert.equal(fragment.get('range'), expectedRoomRanges[index]);
+        });
+        const roomLinkA11y = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => ({
+          label: node.getAttribute('aria-label'),
+          height: node.getBoundingClientRect().height
+        })));
+        assert.equal(new Set(roomLinkA11y.map(({ label }) => label)).size, 18);
+        assert.equal(roomLinkA11y.every(({ label }) => /live in the Sheet$/.test(label || '')), true);
+        assert.equal(roomLinkA11y.every(({ height }) => height >= 44), true, `room Sheet link shorter than 44px at ${width}px`);
+      } else {
+        // Closed state: no Sheet link anywhere, a plain statement instead of the CTA, no per-room links.
+        assert.equal(await page.locator('a[href*="docs.google.com"]').count(), 0, 'no Sheet link may appear while roomBrowserURL is empty');
+        assert.equal(await page.locator('.stay-actions a').count(), 0);
+        assert.equal(await page.locator('.stay-room-card__body a').count(), 0);
+        assert.equal(await page.locator('[data-room-browser="closed"]').count(), 2);
+        assert.equal(await page.locator('.stay-final__actions .stay-closed-note').count(), 1);
+        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*accepted participants/s);
+        assert.equal(await page.getByRole('link', { name: /Read the Sheet instructions first/ }).count(), 0);
+      }
       const targetBlankWithoutSafety = await page.locator('a[target="_blank"]').evaluateAll((nodes) => nodes
         .filter((node) => {
           const tokens = (node.getAttribute('rel') || '').split(/\s+/);
@@ -311,6 +327,7 @@ async function run() {
       assert.doesNotMatch(bodyText, /accommodation picker|Tally gives the final confirmation/i);
       assert.doesNotMatch(bodyHtml, /claim_key|data-roster-|gviz\/tq|rjQKYM|1yOjUmU7/);
       assert.match(bodyText, /phone.*Sheets app.*read-only/is);
+      assert.doesNotMatch(bodyText, /regist(?:er|ration)|68Y72P|Open Blues 2026/i);
 
       const primaryBox = await page.locator('.stay-primary').boundingBox();
       assert.ok(primaryBox && primaryBox.height >= 44, `primary CTA is shorter than 44px at ${width}px`);
@@ -355,11 +372,15 @@ async function run() {
       assert.equal(href, `https://openblues.pl/accommodation/#room-${roomId}`);
       assert.equal(targetExists, true);
     });
-    assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), '2026080501');
+    if (roomBrowserUrl) {
+      assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), roomBrowserGid);
+    } else {
+      assert.equal(await noScriptPage.locator('a[href*="docs.google.com"]').count(), 0);
+    }
     await assertNoHorizontalOverflow(noScriptPage, 'no-JavaScript 390px');
     await noScriptContext.close();
 
-    process.stdout.write('PASS: static accommodation field guide loaded at 5 viewports with exact rooms, maps, photos, Room Browser links, privacy and no legacy runtime.\n');
+    process.stdout.write(`PASS: static accommodation field guide loaded at 5 viewports with exact rooms, maps, photos, Room Browser ${roomBrowserUrl ? 'links' : 'closed state'}, privacy and no legacy runtime.\n`);
   } finally {
     await browser.close();
   }

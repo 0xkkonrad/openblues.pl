@@ -1,0 +1,13 @@
+{{- /*
+  Apply call-to-action. Renders a link when site.Params.applicationsOpen is true and
+  site.Params.applyURL is set; otherwise a non-link "Applications open soon" element.
+  Context: dict "class" (extra classes) "label" (open label) "closedLabel" (optional).
+*/ -}}
+{{- $class := .class | default "btn" -}}
+{{- $label := .label | default "Apply" -}}
+{{- $closed := .closedLabel | default "Applications open soon" -}}
+{{- if and site.Params.applicationsOpen site.Params.applyURL -}}
+<a class="{{ $class }}" href="{{ site.Params.applyURL }}">{{ $label | safeHTML }}</a>
+{{- else -}}
+<span class="{{ $class }} btn-closed" aria-disabled="true" title="Applications are not open yet">{{ $closed | safeHTML }}</span>
+{{- end -}}

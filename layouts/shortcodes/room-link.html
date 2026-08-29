@@ -1,0 +1,4 @@
+{{- /* Per-room deep link into the Room Browser: {{< room-link range="A5:E5" label="..." >}}. Renders nothing while the browser is closed. */ -}}
+{{- with site.Params.roomBrowserURL -}}
+<a href="{{ . }}&amp;range={{ $.Get "range" }}" target="_blank" rel="noopener noreferrer" aria-label="{{ $.Get "label" }}">See this room live <span aria-hidden="true">↗</span></a>
+{{- end -}}

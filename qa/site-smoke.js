@@ -1,5 +1,15 @@
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const { chromium } = require('playwright');
+
+const hugoConfig = fs.readFileSync(path.resolve(__dirname, '..', 'hugo.toml'), 'utf8');
+const readParam = (name) => (hugoConfig.match(new RegExp(`^\\s*${name}\\s*=\\s*"?([^"\\n]*?)"?\\s*$`, 'm')) || [])[1] || '';
+const applyUrl = readParam('applyURL');
+const applicationsOpen = readParam('applicationsOpen') === 'true' && Boolean(applyUrl);
+const eventDatesHuman = readParam('eventDatesHuman');
+const eventStart = readParam('eventStart');
+const eventYear = eventStart.slice(0, 4);
 
 const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
 const entryPaths = ['/', '/booklet/', '/accommodation/', '/404.html'];
@@ -29,6 +39,38 @@ async function run() {
     assert.ok(response && response.ok(), `${entryPath} returned ${response && response.status()}`);
     assert.equal(await page.locator('html').getAttribute('lang'), 'en');
     assert.ok((await page.title()).trim(), `${entryPath} has no title`);
+
+    const bodyText = await page.locator('body').textContent();
+    assert.doesNotMatch(bodyText, /\bregist(?:er|ration)\b|68Y72P|Open Blues 2026/i, `${entryPath} still carries 2026 registration copy`);
+    if (applicationsOpen) {
+      assert.equal(await page.locator(`nav a.btn[href="${applyUrl}"]`).count(), 1, 'nav apply button must link to applyURL');
+      assert.equal(await page.locator('.btn-closed').count(), 0);
+    } else {
+      assert.equal(await page.locator('nav a.btn').count(), 0, 'nav must not link anywhere while applications are closed');
+      assert.equal(await page.locator('nav .btn-closed').count(), 1);
+      assert.match(await page.locator('nav .btn-closed').textContent(), /Applications open soon/);
+      assert.equal(await page.locator('a[href*="tally.so"]').count(), 0);
+    }
+    if (entryPath === '/') {
+      assert.match(await page.locator('.hero-dates').textContent(), new RegExp(eventDatesHuman));
+      assert.match(bodyText, new RegExp(`Open Blues ${eventYear}`));
+      const jsonLd = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
+      assert.equal(jsonLd.name, `Open Blues ${eventYear}`);
+      assert.equal(jsonLd.startDate, eventStart);
+      assert.equal(jsonLd.endDate, readParam('eventEnd'));
+      const calendarHref = await page.locator('.hero-cal a[href*="calendar.google.com"]').getAttribute('href');
+      assert.match(calendarHref, new RegExp(`text=Open\\+Blues\\+${eventYear}&dates=${eventStart.replace(/-/g, '')}/`));
+      const icsHref = await page.locator('.hero-cal a[href$=".ics"]').getAttribute('href');
+      assert.match(icsHref, new RegExp(`openblues-${eventYear}\\.ics$`));
+      const ics = await (await context.request.get(new URL(icsHref, page.url()).href)).text();
+      assert.match(ics, new RegExp(`DTSTART;VALUE=DATE:${eventStart.replace(/-/g, '')}`));
+      assert.match(ics, new RegExp(`SUMMARY:Open Blues ${eventYear}`));
+      assert.equal(await page.locator('.hero-cta .btn').count(), 2);
+      assert.match(bodyText, /How applying works/);
+      assert.match(bodyText, /Why is there an application\?/);
+      assert.match(bodyText, /What if I.m not accepted\?/);
+      assert.match(bodyText, /refunded in full/);
+    }
 
     const discovered = await page.locator('a[href], link[href], script[src], img[src], source[srcset]').evaluateAll((nodes) =>
       nodes.flatMap((node) => {

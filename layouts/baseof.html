@@ -14,7 +14,7 @@
       <a href="{{ "booklet/" | relURL }}">Stay&nbsp;&amp;&nbsp;travel</a>
       <a href="{{ "accommodation/" | relURL }}">Rooms&nbsp;&amp;&nbsp;beds</a>
       <a href="{{ "/" | relURL }}#faq">FAQ</a>
-      <a class="btn btn-small" href="{{ site.Params.registerURL }}">Register</a>
+      {{ partial "apply-cta.html" (dict "class" "btn btn-small" "label" "Apply") }}
     </nav>
   </header>
 

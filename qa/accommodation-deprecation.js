@@ -17,7 +17,11 @@ const forbidden = [
   'openBluesAccommodationRosterV1',
   'gviz/tq',
   'rjQKYM',
-  '1yOjUmU7gq6kY8cAurrMCKs9XVa86Ov-_uOTrTgAw8Bc'
+  '1yOjUmU7gq6kY8cAurrMCKs9XVa86Ov-_uOTrTgAw8Bc',
+  // 2026 edition leftovers: the 2026 Room Browser workbook, the 2026 Tally form and the old param.
+  '1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8',
+  'tally.so/r/68Y72P',
+  'registerURL'
 ];
 
 function filesBelow(directory) {
@@ -43,9 +47,22 @@ for (const needle of forbidden) {
 }
 
 const accommodation = fs.readFileSync(path.join(root, 'content/accommodation.md'), 'utf8');
-assert.match(accommodation, /1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8/);
-assert.match(accommodation, /gid=2026080501/);
-assert.match(accommodation, /gid=2026080404/);
-assert.equal((accommodation.match(/gid=2026080501/g) || []).length, 20);
+assert.doesNotMatch(accommodation, /docs\.google\.com\/spreadsheets/, 'Room Browser links must come from hugo.toml roomBrowserURL, never be hard-coded');
+assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="hero"\s*>\}\}/g) || []).length, 1);
+assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="final"\s*>\}\}/g) || []).length, 1);
+assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 18, 'every room card needs one room-link shortcode');
 
-process.stdout.write('PASS: legacy picker runtime, roster protocol, claim form and YAML inventory are absent from active site sources.\n');
+const hugoConfig = fs.readFileSync(path.join(root, 'hugo.toml'), 'utf8');
+for (const param of ['applyURL', 'applicationsOpen', 'roomBrowserURL', 'roomBrowserInstructionsURL', 'eventStart', 'eventEnd', 'eventDatesHuman']) {
+  assert.match(hugoConfig, new RegExp(`^\\s*${param}\\s*=`, 'm'), `hugo.toml must define params.${param}`);
+}
+const participantSources = ['content', 'layouts']
+  .flatMap((relative) => filesBelow(path.join(root, relative)))
+  .filter((filename) => /\.(md|html|ics)$/i.test(filename))
+  .map((filename) => `${path.relative(root, filename)}\n${fs.readFileSync(filename, 'utf8')}`)
+  .join('\n');
+assert.doesNotMatch(participantSources, /\b20[2-9]\d-\d\d-\d\d\b|\b20[2-9]\d[01]\d[0-3]\d\b/, 'event dates must come from hugo.toml params, not be hard-coded in content or layouts');
+assert.doesNotMatch(participantSources, /\bregist(?:er|ration)\b/i, 'participant-facing copy says apply/application, not register/registration');
+assert.doesNotMatch(participantSources, /Open Blues 20\d\d/, 'the edition year must come from the event-year partial/shortcode');
+
+process.stdout.write('PASS: legacy picker runtime, roster protocol, claim form, YAML inventory, 2026 Sheet/Tally links and hard-coded dates are absent from active site sources.\n');
