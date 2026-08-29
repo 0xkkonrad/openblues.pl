@@ -6,15 +6,15 @@ aliases:
 
 ## What happens
 
-We cook, dance, play and run the whole thing ourselves. Bring a workshop, a dish, an instrument — or just yourself.
+We cook, dance, play and run all of it ourselves. Bring a workshop, a dish, an instrument — or just yourself. We mean the name literally: the programme is open to whatever you bring.
 
 Breakfast together. Workshops that participants run. Swimming in the natural pool and the lake nearby. Dinner that everyone cooks. Live music and dancing till late. On Saturday we dress up for a fancy dinner.
 
-Everyone dances with everyone. Teach a workshop nobody has tried before. Cook for the whole festival. Dance to a band your friends sit in with. Fall asleep in a palace attic.
+Everyone dances with everyone. Fall asleep in a palace attic.
 
-All the food is vegan. It is also a farm, so there are geese, chickens, dogs and cats. And people.
+All the food is vegan. The palace is also a farm, so there are geese, chickens, dogs and cats. And people.
 
-Bare brick, painted ceilings, a ballroom, and a park to eat in.
+Painted ceilings, a ballroom, and a park to eat in.
 
 <div class="gallery">
 <img src="images/gallery/dancing-long-exposure.jpg" alt="Couples dancing blues in the palace ballroom to live piano, long exposure" loading="lazy" width="678" height="900">
@@ -29,15 +29,15 @@ Bare brick, painted ceilings, a ballroom, and a park to eat in.
 <img src="images/gallery/sparrow.jpg" alt="A participant holding a sparrow chick found at the farm" loading="lazy" width="678" height="900">
 </div>
 
+One of us puts it like this in the film below:
+
+> We don't have a teacher-student division. We are just kind of one mushy big thing together, and that means that everyone can bring something in.
+
 {{< youtube id=NkRzrqZHu9A loading=lazy title="Open Blues — festival aftermovie" >}}
 
-## When, where and what it costs
+## Sign up
 
-<div class="fact-grid" aria-label="The basics">
-<div><strong>When</strong><span>{{< param eventDatesHuman >}}</span></div>
-<div><strong>Where</strong><span><a href="https://goo.gl/maps/S4sGDLpj19hnzjvH6">Piotrowice Nyskie Palace</a>, south-west Poland</span></div>
-<div><strong>Cost</strong><span>From €120 in total, food included. <a href="/cost/">Work out your number</a></span></div>
-</div>
+Open Blues costs €120 or more, depending on where you sleep. Food is included. See [what it costs](/cost/).
 
 {{< counter >}}
 
@@ -47,8 +47,8 @@ Bare brick, painted ceilings, a ballroom, and a park to eat in.
 
 <div class="quotes">
 <figure>
-<blockquote>You arrive as a guest and by Saturday you're running a workshop, stirring a pot, or sitting in with the band.</blockquote>
-<figcaption>E., Berlin</figcaption>
+<blockquote>Dancing till sunrise in a half-renovated ballroom, live piano bouncing off bare brick. Nothing else comes close.</blockquote>
+<figcaption>A., London</figcaption>
 </figure>
 <figure>
 <blockquote>I didn't know I enjoyed chopping vegetables as much as I do dancing.</blockquote>
@@ -63,11 +63,7 @@ Bare brick, painted ceilings, a ballroom, and a park to eat in.
 ## More
 
 <div class="fact-grid" aria-label="More about Open Blues">
-<div><strong><a href="/cost/">What it costs</a></strong><span>The calculator, and every price.</span></div>
 <div><strong><a href="/booklet/">Plan your stay</a></strong><span>Travel, sleeping, food, and what to bring.</span></div>
-<div><strong><a href="/questions/">Questions</a></strong><span>Workshops, pets, arriving early, getting here.</span></div>
-<div><strong><a href="/change/">Already signed up?</a></strong><span>Change any answer yourself, any time.</span></div>
-<div><strong><a href="/spread-the-word/">Tell a friend</a></strong><span>Posters and words you can copy.</span></div>
+<div><strong><a href="/questions/">Questions</a></strong><span>Workshops, animals, children, arriving early.</span></div>
+<div><strong><a href="/spread-the-word/">Spread the word</a></strong><span>Posters and words you can copy.</span></div>
 </div>
-
-Open Blues is a private, cost-shared gathering. Nobody is paid and nobody profits.
