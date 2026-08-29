@@ -236,16 +236,22 @@ if (contract.hasSpec) {
   specNote += ' — PREFILL LABELS UNVERIFIED';
 }
 
-// --- 6. the three participant-facing price tables agree, and every example total is right ----
+// --- 6. the price table is right, and no other page carries a stale figure -------------------
 //
 // Divergence between artifacts is this project's most common bug — POLICY.md's own header says
-// so, and the "refunded if declined" sentence survived in three places at once. The grid is
-// quoted on /cost/, on the front page and in the booklet, so all three are parsed here and must
-// carry identical rows. Every worked example is RECOMPUTED through the calculator rather than
-// trusted: after a price change every example is stale, and a stale example sends somebody to
-// Poland with the wrong cash in their pocket.
+// so, and the "refunded if declined" sentence survived in three places at once. The grid used to
+// be quoted on three pages and is now quoted on one, which removes that bug class rather than
+// policing it. The other two pages are still scanned figure by figure, because the danger a
+// stale number poses is unchanged: it sends somebody to Poland with the wrong cash in their
+// pocket.
 
+// Every participant-facing surface that may show a euro figure at all. The scan below runs on
+// all of them, because a stale price hiding in prose is the bug this file exists to catch.
 const PRICED_PAGES = ['content/_index.md', 'content/booklet.md', 'content/cost.md'];
+// The price TABLES, the donation menu and the PLN rate live on exactly one page (29 Aug 2026
+// information-architecture cut). Three copies of one table is how the copies drift apart; one
+// copy plus the scan above is strictly stronger coverage with none of the drift.
+const TABLE_PAGES = ['content/cost.md'];
 
 const expectedRows = [
   `| Floor — tent, your own mattress, or a barn mattress | €${GRID.floor} |`,
@@ -268,18 +274,22 @@ const allowed = new Set([
   ...CASES.map(([, , , , total]) => total),
 ]);
 
-for (const relative of PRICED_PAGES) {
+for (const relative of TABLE_PAGES) {
   const text = fs.readFileSync(path.join(repoRoot, relative), 'utf8');
 
   const rows = text.split('\n').filter((line) => /^\|.*€/.test(line)).map((line) => line.trim());
   assert.deepEqual(rows, expectedRows,
-    `${relative}'s price table does not match POLICY.md's grid. All three participant-facing ` +
-    'surfaces must quote the same rows and no others.');
+    `${relative}'s price table does not match POLICY.md's grid. The site's one price surface ` +
+    'must quote these rows and no others.');
 
   check(text.includes('€100, €50 or €20'),
     `${relative} must offer the donation menu as "€100, €50 or €20" — high first, and no other rungs.`);
   check(text.includes('€1 = 4.50 PLN'),
     `${relative} must carry the PLN conversion rate next to its prices.`);
+}
+
+for (const relative of PRICED_PAGES) {
+  const text = fs.readFileSync(path.join(repoRoot, relative), 'utf8');
 
   for (const figure of text.match(/€\d+/g) || []) {
     const amount = Number(figure.slice(1));
@@ -289,31 +299,10 @@ for (const relative of PRICED_PAGES) {
   }
 }
 
-// The worked examples, recomputed here rather than copied out of the page.
-const totalFor = (tier, sunday, donation) => cost.calculate(config, {
-  accommodation: TIER[tier], sunday: SUNDAY[sunday], donation,
-}).total;
-
-const floorOnly = totalFor('floor', 'no', 'none');
-const floorSunday = totalFor('floor', 'yes', 'none');
-const sharedSunday = totalFor('shared', 'yes', 'none');
-const singleSunday = totalFor('single', 'yes', 'none');
-
-const indexMd = fs.readFileSync(path.join(repoRoot, 'content/_index.md'), 'utf8');
-const bookletMd = fs.readFileSync(path.join(repoRoot, 'content/booklet.md'), 'utf8');
-
-check(indexMd.includes(`€${floorOnly} on the floor, leaving Sunday · €${sharedSunday} in a shared bed, staying Sunday night`),
-  `the front page's "at a glance" example totals are stale: they must read €${floorOnly} and €${sharedSunday}.`);
-check(indexMd.includes(
-  `that is €${floorOnly} for a tent, your own mattress or a barn mattress on Thursday, Friday and Saturday nights, ` +
-  `leaving on Sunday; €${floorSunday} for the same with Sunday night added; €${sharedSunday} for a shared sleeping ` +
-  `place with Sunday night; and €${singleSunday} for a single sleeping place with Sunday night.`),
-  `the front page's representative totals are stale: they must read €${floorOnly} / €${floorSunday} / ` +
-  `€${sharedSunday} / €${singleSunday}, in that order.`);
-check(bookletMd.includes(
-  `So the floor, leaving on Sunday, comes to €${floorOnly} including the €${GRID.reservation} Reservation Payment; ` +
-  `a shared sleeping place with Sunday night added comes to €${sharedSunday}.`),
-  `the booklet's worked example is stale: it must read €${floorOnly} and €${sharedSunday}.`);
+// The three hand-written worked examples went with the 29 Aug 2026 cut: the calculator is one
+// click away and does the same job without going stale. The figure scan above is what now stops
+// a wrong total reaching a reader, and it covers every euro amount on every one of these pages,
+// not only the three sentences somebody remembered to assert.
 
 // --- report -----------------------------------------------------------------------------------
 

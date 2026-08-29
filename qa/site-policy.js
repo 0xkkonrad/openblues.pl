@@ -43,18 +43,23 @@ const expectations = [
     atMostOnce: [P.threshold, P.cancellation, P.confirmation, P.notSelfService],
   },
   {
+    // "Plan your stay" is read after you have decided, so it owns exactly one rule: where you
+    // will actually sleep. Rules 1/2/3 belong to the counter on /, 8 to /questions/, 9 to /cost/.
     path: '/booklet/',
-    once: [P.threshold, P.confirmation, P.cancellation, P.cash, P.beds, P.closing],
-    atMostOnce: [P.noSelection, P.change, P.noOtherRefund, P.notSelfService],
+    once: [P.beds],
+    atMostOnce: Object.values(P),
   },
   {
+    // /change/ owns the promise (rule 6) and the short list of things it cannot do (rule 7),
+    // plus the recovery path asserted further down. The refund rules moved to /cost/ and the
+    // counter: somebody changing their donation is not in the middle of a cancellation.
     path: '/change/',
-    once: [P.change, P.cancellation, P.noOtherRefund, P.notSelfService, P.noSelection, P.closing],
-    atMostOnce: [P.threshold, P.confirmation, P.cash, P.beds],
+    once: [P.change, P.notSelfService],
+    atMostOnce: Object.values(P),
   },
-  // /cost/ has one job: the number. It may repeat no rule, and it owns none of them — the
-  // reader is working out what the week costs, not reading terms.
-  { path: '/cost/', once: [], atMostOnce: Object.values(P) },
+  // /cost/ is the only price surface on the site, so it owns the two rules that are about money
+  // in hand: what happens to the €50 (rule 4) and what you carry to the venue (rule 9).
+  { path: '/cost/', once: [P.noOtherRefund, P.cash], atMostOnce: Object.values(P) },
   { path: '/accommodation/', once: [], atMostOnce: Object.values(P) },
   { path: '/spread-the-word/', once: [], atMostOnce: Object.values(P) },
   { path: '/2026/', once: [], atMostOnce: Object.values(P) },

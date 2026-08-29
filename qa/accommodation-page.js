@@ -306,7 +306,7 @@ async function run() {
         assert.equal(roomLinkA11y.every(({ height }) => height >= 44), true, `room Sheet link shorter than 44px at ${width}px`);
       } else {
         // Closed state: no Sheet link anywhere, a plain statement instead of the CTA, no per-room links.
-        assert.equal(await page.locator('a[href*="docs.google.com"]').count(), 0, 'no Sheet link may appear while roomBrowserURL is empty');
+        assert.equal(await page.locator('a[href*="docs.google.com/spreadsheets"]').count(), 0, 'no Sheet link may appear while roomBrowserURL is empty');
         assert.equal(await page.locator('.stay-actions a').count(), 0);
         assert.equal(await page.locator('.stay-room-card__body a').count(), 0);
         assert.equal(await page.locator('[data-room-browser="closed"]').count(), 2);
@@ -375,7 +375,7 @@ async function run() {
     if (roomBrowserUrl) {
       assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), roomBrowserGid);
     } else {
-      assert.equal(await noScriptPage.locator('a[href*="docs.google.com"]').count(), 0);
+      assert.equal(await noScriptPage.locator('a[href*="docs.google.com/spreadsheets"]').count(), 0);
     }
     await assertNoHorizontalOverflow(noScriptPage, 'no-JavaScript 390px');
     await noScriptContext.close();

@@ -1,21 +1,17 @@
 ---
 title: "What it costs"
-subtitle: "Three choices, two numbers: what you send now, and what you bring in cash."
+subtitle: "What you send now, and what you bring in cash."
 description: "Work out exactly what Open Blues costs you. Choose your sleeping place, Sunday night and an optional donation, and see what you transfer at signup and what you bring in cash to the venue."
 url: /cost/
 styles:
   - css/cost.css
 ---
 
-Open Blues is a private, cost-shared gathering. Nobody is paid, nobody profits, and there is no ticket: everyone covers their own share of the real costs — the palace, the bands, communal food and their own sleeping place.
-
-So there are only three things to decide, and this page adds them up.
+The only thing you choose is where you sleep.
 
 {{< cost-calculator >}}
 
 ## The price list
-
-Everyone eats the same communal food and dances in the same ballroom. The only thing you are choosing is where you sleep.
 
 | Thursday, Friday & Saturday nights | Your cost |
 |---|---:|
@@ -28,20 +24,20 @@ Everyone eats the same communal food and dances in the same ballroom. The only t
 | Leaving before Sunday night | €0 |
 | Staying Sunday night, whatever you sleep on | €50 |
 
-A donation of €100, €50 or €20 is welcome on top, and entirely optional. It is what keeps the cheapest sleeping place cheap.
+Food is in the price, from Thursday dinner through Monday breakfast. So are the bands, the palace and the ballroom.
+
+A donation of €100, €50 or €20 is welcome on top, and entirely optional.
+
+<img src="/images/gallery/dinner-under-trees.jpg" alt="Communal dinner at a long table under the trees in the palace park" loading="lazy" width="900" height="506" style="display:block;width:100%;height:auto;border-radius:.5rem;margin:1.4rem 0">
+
+## Paying
+
+You transfer the €50 Reservation Payment when you sign up. If Open Blues does not happen, you get it back. The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
 Everything except the €50 Reservation Payment is brought in cash to the venue. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
 
-## Nothing here is locked in
+You can [change your answers later](/change/). The number changes with them.
 
-You can change your details yourself, any time — accommodation, Sunday night, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts. [How that works](/change/).
-
-## What happens to the €50
-
-Open Blues {{< event-year >}} happens if {{< param threshold >}} people have signed up and paid the €50 Reservation Payment by {{< param goNoGoHuman >}}. Watch the [live counter on the front page](/).
-
-If we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, Open Blues {{< event-year >}} does not happen and every Reservation Payment is refunded in full. The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
-
-[Sleeping options, travel, food and the rest of the practical detail](/booklet/) · [see the rooms](/accommodation/)
+[Plan your stay](/booklet/) · [see the rooms](/accommodation/)
 
 <p class="cta-final">{{< signup-cta class="btn" label="Sign up for Open Blues ✒️" closedLabel="Sign up · soon" >}}</p>
