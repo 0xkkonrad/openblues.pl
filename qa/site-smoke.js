@@ -94,9 +94,15 @@ async function check(browser) {
       assert.match(ics, new RegExp(`DTSTART;VALUE=DATE:${eventStart.replace(/-/g, '')}`));
       assert.match(ics, new RegExp(`SUMMARY:Open Blues ${eventYear}`));
       assert.equal(await page.locator('.hero-cta .btn').count(), 2);
-      assert.match(bodyText, /How signing up works/);
-      assert.match(bodyText, /Is there a selection\?/);
-      assert.match(bodyText, /What if we don.t reach 40 people\?/);
+      // The landing page sells and hands off, so what it must contain is doors, not rule text.
+      // Three prose assertions used to sit here pinning "How signing up works", "Is there a
+      // selection?" and "What if we don't reach 40 people?" — sections the 2027 cut removed
+      // (the first two were process narration; the third is said by the counter, verbatim, and
+      // by the refund assertion below). Pin the hand-off instead: it is the mechanism that
+      // replaced them, and nothing else tests it.
+      for (const door of ['cost/', 'booklet/', 'change/']) {
+        assert.ok(await page.locator(`a[href$="${door}"]`).count() >= 1, `/ must link to /${door}`);
+      }
       assert.match(bodyText, /refunded in full|comes back in full/, 'the front page must state the refund promise');
     }
 
