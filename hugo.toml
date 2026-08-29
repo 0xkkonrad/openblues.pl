@@ -21,18 +21,38 @@ enableGitInfo = false
   descriptionBase = "A private, cost-shared, 100% DIY blues & fusion dance gathering at a historic Polish palace. Live music, community-run workshops, communal cooking."
   ogImage = "images/og-palace.jpg"
 
-  # --- Applications. While applicationsOpen is false (or applyURL is empty) every
-  # apply button renders as a non-link "Applications open soon" state.
-  # To open applications: set applyURL to the Tally form and applicationsOpen = true.
-  applyURL = "https://tally.so/r/Ek7V4o"
-  applicationsOpen = false
+  # --- Signups. While signupsOpen is false (or signupURL is empty) every signup button
+  # renders as a non-link "Sign up · soon" state. To open signups: set signupURL to the Tally
+  # form and signupsOpen = true. The button also closes itself while data/counter.json says
+  # status = "full" or "cancelled".
+  signupURL = "https://tally.so/r/Ek7V4o"
+  signupsOpen = false
 
-  # --- Room browser (self-service accommodation Sheet for accepted participants who paid
+  # --- Threshold model. The gathering goes ahead once `threshold` people have paid the €50
+  # Reservation Payment; if that is not reached by goNoGoDate it is cancelled and everyone is
+  # refunded. The live count lives in data/counter.json (paid, threshold, status, updated),
+  # written by .github/workflows/counter.yml from the published "Public" tab of the signups
+  # workbook (repository variable COUNTER_CSV_URL) or edited by hand. capacity = 0 hides the
+  # "places left" line until the number is known.
+  threshold = 40
+  goNoGoDate = "2027-08-03"
+  goNoGoHuman = "3 August 2027"
+  closeDate = "2027-08-19"
+  closeHuman = "19 August 2027"
+  capacity = 0
+
+  # --- Room browser (self-service accommodation Sheet for participants who paid
   # for a shared or single place). Empty until the 2027 Sheet is ready; same open/closed pattern.
   # roomBrowserURL must be the ROOM BROWSER tab URL ending in "#gid=<id>" (per-room links
   # append "&range=A5:E5"); roomBrowserInstructionsURL is the START HERE tab (optional).
   roomBrowserURL = ""
   roomBrowserInstructionsURL = ""
+
+  # --- 2026 edition links kept on /2026/ for its participants (rendered by the archive-2026 shortcode).
+  [params.archive2026]
+    datesHuman = "27–31 August 2026"
+    roomBrowserURL = "https://docs.google.com/spreadsheets/d/1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8/edit#gid=2026080501"
+    whatsappURL = "https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX"
 
 [services.youtube]
   privacyEnhanced = true

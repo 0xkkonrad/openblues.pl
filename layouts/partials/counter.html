@@ -1,0 +1,32 @@
+{{- /*
+  Live signup counter. Reads data/counter.json (paid, threshold, status, updated), which the
+  counter workflow writes from the signups workbook; site.Params.threshold/capacity/goNoGoHuman/
+  closeHuman supply the fixed numbers. States: open | confirmed | full | cancelled.
+*/ -}}
+{{- $c := site.Data.counter -}}
+{{- $paid := int ($c.paid | default 0) -}}
+{{- $threshold := int (site.Params.threshold | default 40) -}}
+{{- $capacity := int (site.Params.capacity | default 0) -}}
+{{- $status := $c.status | default "open" -}}
+{{- if and (eq $status "open") (ge $paid $threshold) }}{{ $status = "confirmed" }}{{ end -}}
+{{- $year := partial "event-year.html" . -}}
+{{- $pct := 0 }}{{ if gt $threshold 0 }}{{ $pct = math.Min 100 (div (mul $paid 100) $threshold) }}{{ end -}}
+<div class="counter counter--{{ $status }}" data-counter-status="{{ $status }}" data-counter-paid="{{ $paid }}" data-counter-threshold="{{ $threshold }}">
+{{- if eq $status "cancelled" }}
+  <p class="counter-headline">Open Blues {{ $year }} is not happening.</p>
+  <p class="counter-sub">We did not reach {{ $threshold }} paid signups by {{ site.Params.goNoGoHuman }}. Every Reservation Payment is being refunded in full.</p>
+{{- else if eq $status "full" }}
+  <p class="counter-headline">Confirmed and full — {{ $paid }} people are coming.</p>
+  <p class="counter-sub">Open Blues {{ $year }} is happening and every place is taken. Signups are closed.</p>
+{{- else if eq $status "confirmed" }}
+  <p class="counter-headline">Confirmed! {{ $paid }} people have paid — Open Blues {{ $year }} is happening.</p>
+  <p class="counter-sub">Signups stay open until {{ site.Params.closeHuman }}{{ if gt $capacity $paid }} or until all {{ $capacity }} places are taken ({{ sub $capacity $paid }} left){{ end }}.</p>
+{{- else }}
+  <p class="counter-headline"><strong>{{ $paid }}</strong> of {{ $threshold }} paid</p>
+  <div class="counter-bar" role="progressbar" aria-label="Paid signups towards the threshold" aria-valuemin="0" aria-valuemax="{{ $threshold }}" aria-valuenow="{{ $paid }}"><span style="width:{{ $pct }}%"></span></div>
+  <p class="counter-sub">Open Blues {{ $year }} is confirmed the moment {{ $threshold }} people have paid the €50 Reservation Payment. If we are not there by {{ site.Params.goNoGoHuman }}, everyone is refunded in full.</p>
+{{- end }}
+{{- with $c.updated }}
+  <p class="counter-updated">Counter updated {{ . }}</p>
+{{- end }}
+</div>

@@ -12,10 +12,11 @@
   </p>
   <p class="hero-tagline">Blues &amp; Fusion. Live music. 100% DIY.</p>
   <p class="hero-cta">
-    {{ partial "apply-cta.html" (dict "class" "btn" "label" "Apply&nbsp;✒️") }}
+    {{ partial "signup-cta.html" (dict "class" "btn" "label" "Sign&nbsp;up&nbsp;✒️") }}
     <a class="btn btn-outline" href="{{ "booklet/" | relURL }}">Plan your stay</a>
   </p>
-  <p class="cta-help">Open Blues {{ $year }} is by application. No account is needed. The application includes a required upload of your €50 Reservation Payment receipt, refunded in full if we cannot offer you a place.</p>
+  <p class="cta-help">Sign up, transfer the €50 Reservation Payment and upload the receipt — that's it, everyone who pays is in. Open Blues {{ $year }} goes ahead once {{ site.Params.threshold }} people have paid; if we are not there by {{ site.Params.goNoGoHuman }}, everyone is refunded in full.</p>
+  {{ partial "counter.html" . }}
   <p class="hero-note">A private, cost-shared gathering: nobody profits and everyone covers their own share of the real expenses.</p>
 </section>
 

@@ -53,7 +53,7 @@ assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="final"\s*
 assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 18, 'every room card needs one room-link shortcode');
 
 const hugoConfig = fs.readFileSync(path.join(root, 'hugo.toml'), 'utf8');
-for (const param of ['applyURL', 'applicationsOpen', 'roomBrowserURL', 'roomBrowserInstructionsURL', 'eventStart', 'eventEnd', 'eventDatesHuman']) {
+for (const param of ['signupURL', 'signupsOpen', 'threshold', 'goNoGoHuman', 'closeHuman', 'roomBrowserURL', 'roomBrowserInstructionsURL', 'eventStart', 'eventEnd', 'eventDatesHuman']) {
   assert.match(hugoConfig, new RegExp(`^\\s*${param}\\s*=`, 'm'), `hugo.toml must define params.${param}`);
 }
 const participantSources = ['content', 'layouts']
@@ -62,7 +62,7 @@ const participantSources = ['content', 'layouts']
   .map((filename) => `${path.relative(root, filename)}\n${fs.readFileSync(filename, 'utf8')}`)
   .join('\n');
 assert.doesNotMatch(participantSources, /\b20[2-9]\d-\d\d-\d\d\b|\b20[2-9]\d[01]\d[0-3]\d\b/, 'event dates must come from hugo.toml params, not be hard-coded in content or layouts');
-assert.doesNotMatch(participantSources, /\bregist(?:er|ration)\b/i, 'participant-facing copy says apply/application, not register/registration');
+assert.doesNotMatch(participantSources, /\bregist(?:er|ration)\b/i, 'participant-facing copy says sign up/signup, not register/registration');
 assert.doesNotMatch(participantSources, /Open Blues 20\d\d/, 'the edition year must come from the event-year partial/shortcode');
 
 process.stdout.write('PASS: legacy picker runtime, roster protocol, claim form, YAML inventory, 2026 Sheet/Tally links and hard-coded dates are absent from active site sources.\n');

@@ -145,7 +145,7 @@ img { max-width: 100%; height: auto; }
 
 .btn-small { padding: .4rem 1rem; }
 
-/* Non-link state used while applications are closed (see hugo.toml applicationsOpen). */
+/* Non-link state used while signups are closed (see hugo.toml signupsOpen). */
 .btn-closed,
 .btn-closed:hover { background: var(--muted); cursor: default; }
 .topbar nav a.btn-small:hover { background: var(--btn-hover); color: #fff; }
@@ -434,3 +434,34 @@ img { max-width: 100%; height: auto; }
 
 .footer .support-ua { color: var(--ink); margin-bottom: .5rem; }
 .footer .support-ua a { color: var(--link); }
+
+/* ---------- signup counter (partials/counter.html) ---------- */
+.counter {
+  max-width: 34rem;
+  margin: .2rem auto 1.1rem;
+  padding: .9rem 1.2rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: .8rem;
+  text-align: center;
+}
+
+.counter-headline { margin: 0; font-size: 1.15rem; font-weight: 900; color: var(--orange-dark); }
+.counter-headline strong { font-size: 1.7rem; }
+.counter--cancelled .counter-headline { color: var(--muted); }
+
+.counter-bar {
+  height: .6rem;
+  margin: .55rem 0;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.counter-bar span { display: block; height: 100%; background: var(--orange); border-radius: 1rem; }
+.counter-sub { margin: .3rem 0 0; color: var(--muted); font-size: .9rem; }
+.counter-updated { margin: .3rem 0 0; color: var(--muted); font-size: .75rem; }
+
+.archive-links { padding-left: 1.2rem; }
+.archive-links li { margin: .4rem 0; }

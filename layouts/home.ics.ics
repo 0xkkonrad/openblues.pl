@@ -10,6 +10,7 @@ DTSTAMP:{{ $start | time.Format "20060102" }}T000000Z
 DTSTART;VALUE=DATE:{{ $start | time.Format "20060102" }}
 DTEND;VALUE=DATE:{{ $end | time.Format "20060102" }}
 SUMMARY:Open Blues {{ $year }}
+STATUS:{{ $s := site.Data.counter.status | default "open" }}{{ if eq $s "cancelled" }}CANCELLED{{ else if or (eq $s "confirmed") (eq $s "full") (ge (int (site.Data.counter.paid | default 0)) (int site.Params.threshold)) }}CONFIRMED{{ else }}TENTATIVE{{ end }}
 LOCATION:Piotrowice Nyskie Palace\, Piotrowice Nyskie 54\, Poland
 DESCRIPTION:DIY blues & fusion dance festival — https://openblues.pl
 URL:https://openblues.pl

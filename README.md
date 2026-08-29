@@ -10,7 +10,7 @@ Hugo site deployed on GitHub Pages.
 
 - `hugo.toml` — **the only place that knows the edition**: `eventStart`, `eventEnd`, `eventDatesHuman`
   (hero, at-a-glance, JSON-LD, Google Calendar link and the generated `openblues-<year>.ics`),
-  the application switch (`applyURL` + `applicationsOpen`) and the Room Browser switch
+  the signup switch (`signupURL` + `signupsOpen`) and the Room Browser switch
   (`roomBrowserURL`, `roomBrowserInstructionsURL`). Empty/false = every CTA renders as a
   non-link "open soon" state; set them and every button links.
 - `content/_index.md` — landing page (about, cost, how applying works, venue, FAQ)
@@ -23,10 +23,17 @@ Hugo site deployed on GitHub Pages.
 - `static/CNAME` — custom domain for GitHub Pages
 - `archive/` — raw pull of the original Google Sites page and Google Doc booklet (not published)
 
-## Opening applications
+## Opening signups and the counter
 
-Applications are closed until the form exists. To open them, edit `hugo.toml` only:
-`applyURL = "https://tally.so/r/<form>"` and `applicationsOpen = true`, then push to `main`.
+Signups are closed until the form is wired up. To open them, edit `hugo.toml` only:
+`signupURL = "https://tally.so/r/<form>"` and `signupsOpen = true`, then push to `main`.
+
+The front page shows a live counter of paid signups from `data/counter.json`
+(`paid`, `threshold`, `status`, `updated`). `.github/workflows/counter.yml` refreshes it hourly
+from the published "Public" tab of the signups workbook once the repository variable
+`COUNTER_CSV_URL` is set (Settings → Secrets and variables → Actions → Variables); until then the
+file is edited by hand. `status` is `open`, `confirmed`, `full` or `cancelled`; the last two also
+turn every signup button into a non-link and are only ever set by hand in the workbook.
 The same pattern applies to the Room Browser (`roomBrowserURL`, optional `roomBrowserInstructionsURL`).
 
 ## Develop
