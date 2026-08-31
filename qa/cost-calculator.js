@@ -149,17 +149,9 @@ function pageDriver() {
     },
 
     set(control, price) {
-      let option = control.options.find((o) => priceOf(o) === price);
-      // A TIER-DEPENDENT control (Sunday night since 31 Aug 2026) has no price of its own in any
-      // label — its surcharge comes from the accommodation option — so it is driven through the
-      // data-cost-add contract instead: 1 = the choice that adds the surcharge, 0 = the free one.
-      const tiered = control.options.some((o) => o.node && o.node.getAttribute
-        && o.node.getAttribute('data-cost-add') !== null);
-      if (!option && tiered) {
-        const want = price > 0 ? '1' : '0';
-        option = control.options.find((o) => o.node && o.node.getAttribute
-          && o.node.getAttribute('data-cost-add') === want);
-      }
+      // Every control — Sunday night included, since it went back to three priced options on
+      // 31 Aug 2026 — carries its price in data-price, so one lookup drives all three.
+      const option = control.options.find((o) => priceOf(o) === price);
       if (!option) return `no option priced €${price} on ${describe(control).name}`;
       if (control.kind === 'select') {
         control.node.value = option.node.value;

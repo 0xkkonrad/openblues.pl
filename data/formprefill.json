@@ -18,11 +18,13 @@
     "   apostrophes included. Google Forms matches a prefill value against the option string; a",
     "   mismatch selects nothing and the participant lands on an empty question.",
     "",
-    "TIER-DEPENDENT SUNDAY (31 Aug 2026). Sunday night is no longer one flat price: it costs the",
-    "sundayPrice of whichever accommodation option you picked (€25 tent or floor, €50 any bed). The",
-    "Sunday question therefore declares priceFrom/priceField instead of pricing its own labels, and",
-    "its labels carry NO euro amount — they are a plain yes/no whose price is looked up. Every other",
-    "priced label still obeys the contract below.",
+    "SUNDAY IS A PLAIN THREE-WAY CHOICE (31 Aug 2026, Konrad: \"25 vs 50 for sunday. you can just",
+    "have that as multiple choice. way simpler\"). It was briefly tier-dependent — two questions on",
+    "the live form, and a priceFrom/priceField lookup in this file whose Sunday labels carried no",
+    "euro amount — and all of that is gone. The form now asks it ONCE, in a section BOTH",
+    "accommodation branches reach, with three options that each carry exactly one euro amount which",
+    "IS that option’s price. So Sunday obeys the same contract as every other question below and",
+    "the calculator reads its price off the chosen label.",
     "",
     "PRICE LABEL CONTRACT (POLICY.md, machine contract): every priced label carries exactly one",
     "euro amount and it is that option's price. Nothing in this file states a price as a number:",
@@ -49,45 +51,43 @@
         {
           "key": "floor",
           "name": "Tent or floor",
-          "label": "A tent or a place on the floor — €70",
-          "sundayPrice": 25
+          "label": "A tent or a place on the floor — €70"
         },
         {
           "key": "shared",
           "name": "A place in a double bed, per person",
-          "label": "A place in a double bed, per person — €110",
-          "sundayPrice": 50
+          "label": "A place in a double bed, per person — €110"
         },
         {
           "key": "single",
           "name": "A single bed",
-          "label": "A single bed — €160",
-          "sundayPrice": 50
+          "label": "A single bed — €160"
         }
       ]
     },
     {
       "key": "sunday",
-      "entry": "1248501401",
-      "title": "Sunday-night sleeping",
+      "entry": "556767432",
+      "title": "Sunday night",
       "legend": "Are you staying Sunday night?",
       "breakdown": "Sunday night",
-      "help": "€25 in a tent or on the floor, €50 in a bed. Monday is breakfast, cleaning and departures.",
-      "showPrices": false,
-      "priceFrom": "accommodation",
-      "priceField": "sundayPrice",
+      "help": "Your three nights end on Sunday morning. Sunday night is extra and you leave on Monday. Pick the line that matches where you sleep.",
+      "showPrices": true,
       "options": [
         {
           "key": "leaving",
-          "name": "I’m leaving before Sunday night",
-          "label": "I’m leaving before Sunday night",
-          "stay": false
+          "name": "I leave before Sunday night",
+          "label": "I leave before Sunday night — €0"
         },
         {
-          "key": "staying",
-          "name": "Staying Sunday night",
-          "label": "Staying Sunday night",
-          "stay": true
+          "key": "tentfloor",
+          "name": "I stay, in a tent or on the floor",
+          "label": "I stay Sunday night, in a tent or on the floor — €25"
+        },
+        {
+          "key": "bed",
+          "name": "I stay, in a bed",
+          "label": "I stay Sunday night, in a bed — €50"
         }
       ]
     },

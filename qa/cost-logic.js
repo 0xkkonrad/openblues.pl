@@ -9,7 +9,7 @@
 // grid. They are deliberately NOT recomputed from the same data the calculator reads: a test that
 // derives its expectations from the thing under test proves only that addition is associative.
 //   Tent or floor €70 · a place in a double bed €110 pp · a single bed €160 ·
-//   Sunday night TIER-DEPENDENT: +€25 on tent or floor, +€50 in any bed (31 Aug 2026) ·
+//   Sunday night: one three-way question, €0 leaving / €25 tent or floor / €50 bed (31 Aug 2026) ·
 //   donation €100/€50/€20/none · Reservation Payment €50, transferred at signup, not in the cash.
 //
 // When projects/openblues-2027/spec/2027-spec.json exists, qa/spec.js is loaded as well and the
@@ -31,15 +31,19 @@ const GRID = {
   floor: 70,
   shared: 110,
   single: 160,
-  // Sunday night is priced by tier, not flat: €25 with a tent or the floor, €50 with any bed.
+  // Sunday night is one question with three priced options. This maps each tier to the rung a
+  // person on that tier picks — the canonical, self-consistent pairing.
   sundayFor: { floor: 25, shared: 50, single: 50 },
   donations: { d100: 100, d50: 50, d20: 20, none: 0 },
   reservation: 50,
 };
 
-// tier key -> option key in data/formprefill.json, and the Sunday pair.
+// tier key -> option key in data/formprefill.json.
 const TIER = { floor: 'floor', shared: 'shared', single: 'single' };
-const SUNDAY = { no: 'leaving', yes: 'staying' };
+// Sunday night is now three options, so "staying" means a different one per tier: the rung whose
+// price matches where that person sleeps. SUNDAY_KEY[€] names it; sundayKey(tier, staying) picks it.
+const SUNDAY_KEY = { 0: 'leaving', 25: 'tentfloor', 50: 'bed' };
+const sundayKey = (tier, staying) => SUNDAY_KEY[staying === 'yes' ? GRID.sundayFor[tier] : 0];
 
 // [tier, sunday, donation, cash to bring, total contribution] — 3 x 2 x 4 = 24, written out.
 const CASES = [
@@ -79,9 +83,11 @@ const check = (ok, message) => { if (!ok) fail.push(message); };
 
 let labelCount = 0;
 for (const question of config.questions) {
-  // A tier-dependent question (priceFrom) has no price of its own to put in a label; it is
-  // checked separately below. Every other priced label still carries exactly one euro amount.
-  if (question.priceFrom) continue;
+  // No question is exempt any more: the priceFrom/priceField workaround retired on 31 Aug 2026,
+  // so EVERY option label on the page carries exactly one euro amount and it is that price.
+  check(!question.priceFrom && !question.priceField,
+    `question ${question.key} still declares priceFrom/priceField; the tier-dependent workaround ` +
+    'was removed on 31 Aug 2026 and every label now carries its own price.');
   for (const option of question.options) {
     labelCount += 1;
     const amounts = String(option.label).match(/€\s?\d+/g) || [];
@@ -111,22 +117,28 @@ for (const [tier, expected] of [['floor', GRID.floor], ['shared', GRID.shared], 
   check(priceIn('accommodation', TIER[tier]) === expected,
     `data/formprefill.json prices ${tier} at €${priceIn('accommodation', TIER[tier])}, POLICY.md says €${expected}`);
 }
-// Sunday night is tier-dependent, so its own labels must carry NO price and the surcharge must
-// live on the accommodation option instead. Read both back out of the data file.
+// Sunday night is ONE question with exactly three options, each carrying its own price. The old
+// arrangement (a yes/no whose price was looked up from the accommodation option) is gone, and so
+// is the sundayPrice field that fed it — a leftover would mean two ways to price one line.
 const sundayQuestion = config.questions.find((q) => q.key === 'sunday');
-check(sundayQuestion.priceFrom === 'accommodation' && sundayQuestion.priceField === 'sundayPrice',
-  'the Sunday question must declare priceFrom "accommodation" / priceField "sundayPrice"');
-for (const option of sundayQuestion.options) {
-  check((String(option.label).match(/€\s?\d+/g) || []).length === 0,
-    `the tier-dependent Sunday option "${option.label}" must carry no euro amount in its label`);
+check(sundayQuestion.options.length === 3,
+  `the Sunday question must offer exactly three options, it offers ${sundayQuestion.options.length}`);
+for (const [key, expected] of Object.entries(SUNDAY_KEY).map(([eur, k]) => [k, Number(eur)])) {
+  const option = sundayQuestion.options.find((o) => o.key === key);
+  check(Boolean(option), `the Sunday question has no "${key}" option`);
+  if (option) {
+    check(cost.priceOf(option.label) === expected,
+      `Sunday option ${key} is €${cost.priceOf(option.label)} in the data file, €${expected} expected`);
+  }
 }
-check(sundayQuestion.options.find((o) => o.key === SUNDAY.no).stay === false,
-  'the "leaving before Sunday night" option must not add a Sunday charge');
-check(sundayQuestion.options.find((o) => o.key === SUNDAY.yes).stay === true,
-  'the "staying Sunday night" option must add a Sunday charge');
 const accommodationOptions = config.questions.find((q) => q.key === 'accommodation').options;
+for (const option of accommodationOptions) {
+  check(option.sundayPrice === undefined,
+    `accommodation option ${option.key} still carries a sundayPrice; Sunday prices itself now.`);
+}
+// The canonical pairing still has to produce POLICY.md's per-tier Sunday figure.
 for (const [tier, expected] of Object.entries(GRID.sundayFor)) {
-  const found = accommodationOptions.find((o) => o.key === TIER[tier]).sundayPrice;
+  const found = cost.priceOf(sundayQuestion.options.find((o) => o.key === sundayKey(tier, 'yes')).label);
   check(found === expected,
     `Sunday night on ${tier} is €${found} in the data file, €${expected} in POLICY.md`);
 }
@@ -149,7 +161,7 @@ check(CASES.length === 24, `expected 24 canonical cases, this file lists ${CASES
 for (const [tier, sunday, donation, expectedCash, expectedTotal] of CASES) {
   const result = cost.calculate(config, {
     accommodation: TIER[tier],
-    sunday: SUNDAY[sunday],
+    sunday: sundayKey(tier, sunday),
     donation,
   });
   const id = `${tier} + sunday-${sunday} + donation-${donation}`;
@@ -175,12 +187,12 @@ if (!wired) {
 const sample = JSON.parse(JSON.stringify(config));
 sample.formURL = 'https://docs.google.com/forms/d/e/EXAMPLE/viewform';
 sample.questions.forEach((question, i) => { question.entry = String(1000 + i); });
-const url = cost.prefillURL(sample, { accommodation: 'shared', sunday: 'staying', donation: 'd20' });
+const url = cost.prefillURL(sample, { accommodation: 'shared', sunday: 'bed', donation: 'd20' });
 check(url.startsWith('https://docs.google.com/forms/d/e/EXAMPLE/viewform?usp=pp_url&'),
   `a wired prefill link must start at the form's viewform URL with usp=pp_url; got ${url}`);
 for (const [i, expected] of [
   [0, 'A place in a double bed, per person — €110'],
-  [1, 'Staying Sunday night'],
+  [1, 'I stay Sunday night, in a bed — €50'],
   [2, '€20'],
 ]) {
   const wanted = `entry.${1000 + i}=${encodeURIComponent(expected)}`;
@@ -348,7 +360,7 @@ for (const relative of PRICED_PAGES) {
 
 // The worked examples, recomputed here rather than copied out of the page.
 const totalFor = (tier, sunday, donation) => cost.calculate(config, {
-  accommodation: TIER[tier], sunday: SUNDAY[sunday], donation,
+  accommodation: TIER[tier], sunday: sundayKey(tier, sunday), donation,
 }).total;
 
 const floorOnly = totalFor('floor', 'no', 'none');
