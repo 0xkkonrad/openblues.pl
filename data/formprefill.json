@@ -33,13 +33,9 @@
     "'name' is what the page shows; 'label' is what the form receives. They differ only so the",
     "page can put the price in its own column."
   ],
-
   "formURL": "https://docs.google.com/forms/d/e/1FAIpQLSdZuj4QceEPozLdPmpl9AACfU655vW7ipJryoCed8Cg4JNkrQ/viewform",
-
   "reservationLabel": "€50",
-
   "reservationBreakdown": "Reservation Payment",
-
   "questions": [
     {
       "key": "accommodation",
@@ -53,7 +49,7 @@
         {
           "key": "floor",
           "name": "Tent or floor",
-          "label": "Tent or floor — €70",
+          "label": "A tent or a place on the floor — €70",
           "sundayPrice": 25
         },
         {
@@ -104,14 +100,29 @@
       "help": "Entirely optional. Donations are what keep the sleeping places cheap for everyone else.",
       "showPrices": false,
       "options": [
-        { "key": "d100", "name": "€100", "label": "€100" },
-        { "key": "d50", "name": "€50", "label": "€50" },
-        { "key": "d20", "name": "€20", "label": "€20" },
-        { "key": "none", "name": "No donation", "label": "No donation — €0" }
+        {
+          "key": "d100",
+          "name": "€100",
+          "label": "€100"
+        },
+        {
+          "key": "d50",
+          "name": "€50",
+          "label": "€50"
+        },
+        {
+          "key": "d20",
+          "name": "€20",
+          "label": "€20"
+        },
+        {
+          "key": "none",
+          "name": "No donation",
+          "label": "No donation — €0"
+        }
       ]
     }
   ],
-
   "defaults": {
     "accommodation": "floor",
     "sunday": "leaving",
