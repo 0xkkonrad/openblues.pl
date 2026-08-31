@@ -6,6 +6,11 @@
   so the page cannot drift from the form. A label carrying anything other than exactly one euro
   amount fails the build below rather than mis-pricing silently.
 
+  The exception is a TIER-DEPENDENT question (one that declares priceFrom): Sunday night costs €25
+  with a tent or the floor and €50 with any bed, so it has no single price of its own. Its labels
+  must carry NO euro amount — cost.js looks the price up from the chosen accommodation option — and
+  a euro amount appearing in one of them fails the build too.
+
   data/formprefill.json is also the ONLY place the entry.NNNN prefill ids live. Wiring the real
   ids when the form exists is an edit to that file; no template and no script changes.
 
@@ -41,15 +46,30 @@
       {{- $q := . -}}
       {{- range .options -}}
         {{- $amounts := findRE `€[0-9]+` .label -}}
-        {{- if ne (len $amounts) 1 -}}
-          {{- errorf "PRICE LABEL CONTRACT broken in data/formprefill.json: option %q carries %d euro amounts; every priced option label must carry exactly one and it must be that option's price (POLICY.md, Fixed values)." .label (len $amounts) -}}
-        {{- end -}}
-        {{- $price := replaceRE `[^0-9]` "" (index $amounts 0) }}
+        {{- if $q.priceFrom -}}
+          {{- /* A tier-dependent question (Sunday night) is priced from the option chosen for
+                 $q.priceFrom, so its own labels carry no euro amount and cost.js does the lookup. */ -}}
+          {{- if ne (len $amounts) 0 -}}
+            {{- errorf "TIERED QUESTION %q: option %q carries a euro amount, but a question with priceFrom is priced from its source option, not from its own label (data/formprefill.json)." $q.key .label -}}
+          {{- end -}}
+      <label class="calc-opt">
+        {{- /* data-cost-add is the DOM contract for a tier-dependent option: 1 = this choice adds
+               the source option's surcharge, 0 = it adds nothing. It carries no data-price because
+               it has no single price. qa/cost-calculator.js drives the control through it. */ -}}
+        <input type="radio" name="ob-{{ $q.key }}" value="{{ .key }}" data-cost-add="{{ if .stay }}1{{ else }}0{{ end }}"{{ if eq .key $default }} checked{{ end }}>
+        <span class="calc-opt-name">{{ .name }}</span>
+      </label>
+        {{- else -}}
+          {{- if ne (len $amounts) 1 -}}
+            {{- errorf "PRICE LABEL CONTRACT broken in data/formprefill.json: option %q carries %d euro amounts; every priced option label must carry exactly one and it must be that option's price (POLICY.md, Fixed values)." .label (len $amounts) -}}
+          {{- end -}}
+          {{- $price := replaceRE `[^0-9]` "" (index $amounts 0) }}
       <label class="calc-opt">
         <input type="radio" name="ob-{{ $q.key }}" value="{{ .key }}" data-price="{{ $price }}"{{ if eq .key $default }} checked{{ end }}>
         <span class="calc-opt-name">{{ .name }}</span>
         {{- if $q.showPrices }}<span class="calc-opt-price">€{{ $price }}</span>{{ end }}
       </label>
+        {{- end -}}
       {{- end }}
     </div>
   </fieldset>
@@ -70,8 +90,9 @@
 
   <noscript>
     <p class="calc-noscript">This calculator needs JavaScript. The full price list is below: add up
-    your three lines and that is the cash you bring. The €50 Reservation Payment is on top of it,
-    and you transfer that when you sign up.</p>
+    your three lines — where you sleep, Sunday night if you stay, and any donation — and that is the
+    cash you bring. The €50 Reservation Payment is on top of it, and you transfer that when you
+    sign up.</p>
   </noscript>
 </form>
 

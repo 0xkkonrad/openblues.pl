@@ -70,8 +70,11 @@ params.policy = {
   // asserts that clause appears on no page at all.
   closing: `Signups close on ${params.closeHuman}.`,
   cash: 'Everything except the €50 Reservation Payment is brought in cash to the venue.',
+  // POLICY rule 10, rewritten 31 Aug 2026: nothing about a sleeping place waits for the 40th
+  // payment any more, and the three sleeping options are named tent or floor / a place in a
+  // double bed / a single bed.
   beds:
-    'If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order.',
+    'If you paid for a bed, you choose your exact place in the shared Sheet, in signup order.',
 };
 
 // Wording POLICY bans outright, plus the capacity clause Konrad removed on 29 Aug 2026. Tested

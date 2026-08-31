@@ -10,8 +10,8 @@ aliases:
 <div><strong>When</strong><span>{{< param eventDatesHuman >}}</span></div>
 <div><strong>Where</strong><span>Piotrowice Nyskie Palace, Poland</span></div>
 <div><strong>Format</strong><span>Blues & fusion, live music and a community-led programme</span></div>
-<div><strong>Example totals</strong><span>€120 on the floor, leaving Sunday · €210 in a shared bed, staying Sunday night — both including the €50 Reservation Payment. <a href="/cost/">Work yours out</a></span></div>
-<div><strong>Staying over</strong><span>Shared bed, mattress, tent or floor</span></div>
+<div><strong>Example totals</strong><span>€120 in a tent or on the floor, leaving Sunday · €210 for a place in a double bed, staying Sunday night — both including the €50 Reservation Payment. <a href="/cost/">Work yours out</a></span></div>
+<div><strong>Staying over</strong><span>A single bed, a place in a double bed, or a tent or floor</span></div>
 <div><strong>Getting there</strong><span>Ride share, or train/taxi via Nysa</span></div>
 <div><strong>Goes ahead when</strong><span>{{< param threshold >}} people have paid the €50 Reservation Payment — live counter above</span></div>
 <div><strong>Signups close</strong><span>{{< param closeHuman >}}</span></div>
@@ -32,22 +32,22 @@ Open Blues may not be the right fit if you prefer a fixed schedule, classes sort
 
 Open Blues is a private, cost-shared gathering made by its participants. Nobody is paid and nobody profits. Everyone covers their own share of the real expenses: their sleeping arrangement and communal food, and a slice of fixed costs such as the venue and bands.
 
-Your total is the **€50 Reservation Payment plus the cash choices below**. Before any optional donation that is €120 for a tent, your own mattress or a barn mattress on Thursday, Friday and Saturday nights, leaving on Sunday; €170 for the same with Sunday night added; €210 for a shared sleeping place with Sunday night; and €260 for a single sleeping place with Sunday night.
+Your total is the **€50 Reservation Payment plus the cash choices below**. Before any optional donation that is €120 for a tent or the floor on Thursday, Friday and Saturday nights, leaving on Sunday; €145 for the same with Sunday night added; €210 for a place in a double bed with Sunday night; and €260 for a single bed with Sunday night.
 
 **[Work out your own number on the cost calculator](/cost/)** — three choices, and it tells you what you send now and what you bring in cash.
 
-The first table covers three nights: **Thursday, Friday and Saturday**. Add the Sunday-night line only if you are sleeping at the venue on Sunday night and leaving on Monday.
+The first table covers three nights: **Thursday, Friday and Saturday**. Add the Sunday-night line only if you are sleeping at the venue on Sunday night and leaving on Monday; what Sunday costs depends on where you sleep.
 
 | Thursday, Friday & Saturday nights | Your cost |
 |---|---:|
-| Floor — tent, your own mattress, or a barn mattress | €70 |
-| Shared sleeping place for two — bed or large mattress, per person | €110 |
-| Single sleeping place — bed or large mattress | €160 |
+| Tent or floor | €70 |
+| A place in a double bed, per person | €110 |
+| A single bed | €160 |
 
-| Sunday night | Your cost |
+| Sunday night, if you stay | Your cost |
 |---|---:|
-| Leaving before Sunday night | €0 |
-| Staying Sunday night, whatever you sleep on | €50 |
+| Tent or floor | €25 |
+| Any bed | €50 |
 
 An optional donation of €100, €50 or €20 is welcome on top, and entirely optional. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
 
@@ -57,9 +57,9 @@ There is also a **€50 Reservation Payment** for shared fixed costs, transferre
 
 We cook all communal food together, and it is all vegan. Food is included from Thursday dinner through Monday breakfast.
 
-Sleeping options include a paid bed option, a mattress you arrange yourself, or space for your tent or sleeping setup on the floor. A paid bed option guarantees a sleeping place prepared with sheets and a pillow, but it may be a conventional bed or a large mattress. Rooms are shared; it does not guarantee a bed frame or a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
+There are three sleeping options: a single bed, a place in a double bed, or space for your tent or sleeping setup on the floor. A bed is prepared for you with sheets and a pillow. Rooms are shared; a bed does not guarantee a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
 
-If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order. [Browse the room photos and venue map](/accommodation/) first; your paid category is guaranteed and no separate approval is required.
+If you paid for a bed, you choose your exact place in the shared Sheet, in signup order. [Browse the room photos and venue map](/accommodation/) first; your paid category is guaranteed and no separate approval is required. The sleeping spaces go quickly, so pick the one you want when you sign up — and if you change your mind, you can change your answer later.
 
 There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -167,7 +167,7 @@ This is a DIY gathering and all activities are community-led, so the programme t
 
 Standard reception opens on Thursday at 18:00, followed by the welcome at 18:30, dinner at 19:00 and the party at 20:00. If you expect to arrive later, email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before travelling so the organisers know when to expect you. Monday includes breakfast and communal cleaning; the programme finishes at **12:00 noon**, followed by departures.
 
-An additional night before or after the gathering costs €20–50 depending on your sleeping arrangement and does not include food. It must be agreed before arrival: email the organisers, who will coordinate the stay with the hosts.
+Arriving on **Wednesday** costs **€30 per person**, for beds only — it is not available with the tent or floor option, and it does not include food. Bring that €30 in cash and give it directly to Jim when you arrive; it is separate from the €50 Reservation Payment and from the cash total for Thursday to Monday, and is not part of anything you have already paid. Email the organisers before travelling so the hosts know to expect you. [Early arrivals in full](/booklet/#early-arrivals).
 
 ### Can I bring pets or children?
 

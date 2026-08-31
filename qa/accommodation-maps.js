@@ -240,7 +240,7 @@ async function assertSvgGeometry(browser, map) {
 
     assert.deepEqual(requests, [directUrl], `${map.slug} standalone SVG fetched an external font, script or image`);
 
-    const findings = await page.locator('g:has(> rect.pill), g:has(> rect.pill-sofa), g:has(> rect.pill-mattress)').evaluateAll((groups) => groups.flatMap((group, groupIndex) => {
+    const findings = await page.locator('g:has(> rect.pill), g:has(> rect.pill-sofa)').evaluateAll((groups) => groups.flatMap((group, groupIndex) => {
       const pill = group.querySelector(':scope > rect').getBoundingClientRect();
       const content = [...group.children].slice(1).map((node) => ({ node, box: node.getBoundingClientRect() }));
       const problems = [];

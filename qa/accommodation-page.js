@@ -173,7 +173,7 @@ async function run() {
       const response = await page.goto(pageUrl, { waitUntil: 'networkidle' });
       assert.ok(response && response.ok(), `${pageUrl} returned ${response && response.status()}`);
       assert.equal(await page.locator('h1').count(), 1);
-      assert.match(await page.locator('h1').textContent(), /See the rooms.*Choose in the Sheet once it.s confirmed/s);
+      assert.match(await page.locator('h1').textContent(), /See the rooms.*Choose your place in the Sheet/s);
       assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow, noarchive, nosnippet');
       assert.equal(await page.locator('meta[name="referrer"]').getAttribute('content'), 'no-referrer');
       assert.equal(await page.locator('script[src*="accommodation"]').count(), 0);
@@ -306,7 +306,10 @@ async function run() {
         assert.equal(roomLinkA11y.every(({ height }) => height >= 44), true, `room Sheet link shorter than 44px at ${width}px`);
       } else {
         // Closed state: no Sheet link anywhere, a plain statement instead of the CTA, no per-room links.
-        assert.equal(await page.locator('a[href*="docs.google.com"]').count(), 0, 'no Sheet link may appear while roomBrowserURL is empty');
+        // "Sheet link" means the Room Browser spreadsheet. The nav's signup button is also a
+        // docs.google.com URL (a Form, since 29 Aug 2026), so match spreadsheets specifically —
+        // otherwise this reads an open signup button as a leaked Sheet link.
+        assert.equal(await page.locator('a[href*="docs.google.com/spreadsheets"]').count(), 0, 'no Sheet link may appear while roomBrowserURL is empty');
         assert.equal(await page.locator('.stay-actions a').count(), 0);
         assert.equal(await page.locator('.stay-room-card__body a').count(), 0);
         assert.equal(await page.locator('[data-room-browser="closed"]').count(), 2);
@@ -375,7 +378,7 @@ async function run() {
     if (roomBrowserUrl) {
       assertSheetLink(await noScriptPage.locator('.stay-primary').getAttribute('href'), roomBrowserGid);
     } else {
-      assert.equal(await noScriptPage.locator('a[href*="docs.google.com"]').count(), 0);
+      assert.equal(await noScriptPage.locator('a[href*="docs.google.com/spreadsheets"]').count(), 0);
     }
     await assertNoHorizontalOverflow(noScriptPage, 'no-JavaScript 390px');
     await noScriptContext.close();

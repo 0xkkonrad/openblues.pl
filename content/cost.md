@@ -15,18 +15,18 @@ So there are only three things to decide, and this page adds them up.
 
 ## The price list
 
-Everyone eats the same communal food and dances in the same ballroom. The only thing you are choosing is where you sleep.
+Everyone eats the same communal food and dances in the same ballroom. The only thing you are choosing is where you sleep. Sunday night costs €25 in a tent or on the floor and €50 in a bed.
 
 | Thursday, Friday & Saturday nights | Your cost |
 |---|---:|
-| Floor — tent, your own mattress, or a barn mattress | €70 |
-| Shared sleeping place for two — bed or large mattress, per person | €110 |
-| Single sleeping place — bed or large mattress | €160 |
+| Tent or floor | €70 |
+| A place in a double bed, per person | €110 |
+| A single bed | €160 |
 
-| Sunday night | Your cost |
+| Sunday night, if you stay | Your cost |
 |---|---:|
-| Leaving before Sunday night | €0 |
-| Staying Sunday night, whatever you sleep on | €50 |
+| Tent or floor | €25 |
+| Any bed | €50 |
 
 A donation of €100, €50 or €20 is welcome on top, and entirely optional. It is what keeps the cheapest sleeping place cheap.
 
@@ -34,7 +34,7 @@ Everything except the €50 Reservation Payment is brought in cash to the venue.
 
 ## Nothing here is locked in
 
-You can change your details yourself, any time — accommodation, Sunday night, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts. [How that works](/change/).
+The sleeping spaces go quickly, so choose the one you want when you sign up. You can change your details yourself, any time — accommodation, Sunday night, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts. [How that works](/change/).
 
 ## What happens to the €50
 

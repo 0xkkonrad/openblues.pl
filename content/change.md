@@ -19,7 +19,7 @@ There is nothing else to fill in, no second form, and no version to keep track o
 
 ## What you can change
 
-- Where you sleep on Thursday, Friday and Saturday nights
+- Where you sleep on Thursday, Friday and Saturday nights — a tent or the floor, a place in a double bed, or a single bed
 - Whether you are staying Sunday night
 - Your optional donation
 - Whether you'll DJ, jam or run a workshop
@@ -36,7 +36,7 @@ There is one case in which the €50 comes back, and changing your answers is no
 
 ## Your exact sleeping place
 
-If you paid for a shared or single sleeping place, you choose your exact place in the shared Sheet once the gathering is confirmed. Places are allocated in signup order. Changing your accommodation here does not move your row in that Sheet — [browse the rooms and floor plans](/accommodation/), where the Sheet is linked, and move yourself there.
+If you paid for a bed, you choose your exact place in the shared Sheet, in signup order. Changing your accommodation here does not move your row in that Sheet — [browse the rooms and floor plans](/accommodation/), where the Sheet is linked, and move yourself there.
 
 ## Not signed up yet?
 

@@ -165,7 +165,7 @@ Written to the messaging policy: cost-sharing, never "price"/"ticket". Passed th
 >
 > It's a non-profit, do-it-yourself festival. We handle the venue and logistics; the workshops, live music and cooking come from everyone who shows up. There's social dancing until sunrise in the half-renovated palace ballroom, and we cook and eat together. Classes are taught by whoever comes, plus a few guest teachers. If there's something you love dancing or teaching, bring it and run a session.
 >
-> Instead of a ticket, everyone shares the festival's real costs. A full Thursday–Monday stay on the floor — a tent, your own mattress or a barn mattress — is €170 including the €50 reservation; a shared sleeping place for the same nights is €210.
+> Instead of a ticket, everyone shares the festival's real costs. A full Thursday–Monday stay in a tent or on the floor is €145 including the €50 reservation; a place in a double bed for the same nights is €210.
 >
 > Info and signup: https://openblues.pl
 > Questions: openbluespoland@gmail.com

@@ -8,8 +8,9 @@
 // THE EXPECTATIONS BELOW ARE WRITTEN OUT BY HAND, all 24 of them, from POLICY.md's "Fixed values"
 // grid. They are deliberately NOT recomputed from the same data the calculator reads: a test that
 // derives its expectations from the thing under test proves only that addition is associative.
-//   Floor €70 · Shared €110 pp · Single €160 · Sunday €50 flat · donation €100/€50/€20/none ·
-//   Reservation Payment €50, transferred at signup and not part of the cash.
+//   Tent or floor €70 · a place in a double bed €110 pp · a single bed €160 ·
+//   Sunday night TIER-DEPENDENT: +€25 on tent or floor, +€50 in any bed (31 Aug 2026) ·
+//   donation €100/€50/€20/none · Reservation Payment €50, transferred at signup, not in the cash.
 //
 // When projects/openblues-2027/spec/2027-spec.json exists, qa/spec.js is loaded as well and the
 // 24 cases it derives must agree with these, case for case. The spec is the contract; this file
@@ -30,7 +31,8 @@ const GRID = {
   floor: 70,
   shared: 110,
   single: 160,
-  sunday: 50,
+  // Sunday night is priced by tier, not flat: €25 with a tent or the floor, €50 with any bed.
+  sundayFor: { floor: 25, shared: 50, single: 50 },
   donations: { d100: 100, d50: 50, d20: 20, none: 0 },
   reservation: 50,
 };
@@ -45,10 +47,10 @@ const CASES = [
   ['floor', 'no', 'd50', 120, 170],
   ['floor', 'no', 'd20', 90, 140],
   ['floor', 'no', 'none', 70, 120],
-  ['floor', 'yes', 'd100', 220, 270],
-  ['floor', 'yes', 'd50', 170, 220],
-  ['floor', 'yes', 'd20', 140, 190],
-  ['floor', 'yes', 'none', 120, 170],
+  ['floor', 'yes', 'd100', 195, 245],
+  ['floor', 'yes', 'd50', 145, 195],
+  ['floor', 'yes', 'd20', 115, 165],
+  ['floor', 'yes', 'none', 95, 145],
   ['shared', 'no', 'd100', 210, 260],
   ['shared', 'no', 'd50', 160, 210],
   ['shared', 'no', 'd20', 130, 180],
@@ -77,6 +79,9 @@ const check = (ok, message) => { if (!ok) fail.push(message); };
 
 let labelCount = 0;
 for (const question of config.questions) {
+  // A tier-dependent question (priceFrom) has no price of its own to put in a label; it is
+  // checked separately below. Every other priced label still carries exactly one euro amount.
+  if (question.priceFrom) continue;
   for (const option of question.options) {
     labelCount += 1;
     const amounts = String(option.label).match(/€\s?\d+/g) || [];
@@ -106,9 +111,25 @@ for (const [tier, expected] of [['floor', GRID.floor], ['shared', GRID.shared], 
   check(priceIn('accommodation', TIER[tier]) === expected,
     `data/formprefill.json prices ${tier} at €${priceIn('accommodation', TIER[tier])}, POLICY.md says €${expected}`);
 }
-check(priceIn('sunday', SUNDAY.no) === 0, 'the "leaving before Sunday night" option must cost €0');
-check(priceIn('sunday', SUNDAY.yes) === GRID.sunday,
-  `Sunday night is €${priceIn('sunday', SUNDAY.yes)} in the data file, €${GRID.sunday} in POLICY.md`);
+// Sunday night is tier-dependent, so its own labels must carry NO price and the surcharge must
+// live on the accommodation option instead. Read both back out of the data file.
+const sundayQuestion = config.questions.find((q) => q.key === 'sunday');
+check(sundayQuestion.priceFrom === 'accommodation' && sundayQuestion.priceField === 'sundayPrice',
+  'the Sunday question must declare priceFrom "accommodation" / priceField "sundayPrice"');
+for (const option of sundayQuestion.options) {
+  check((String(option.label).match(/€\s?\d+/g) || []).length === 0,
+    `the tier-dependent Sunday option "${option.label}" must carry no euro amount in its label`);
+}
+check(sundayQuestion.options.find((o) => o.key === SUNDAY.no).stay === false,
+  'the "leaving before Sunday night" option must not add a Sunday charge');
+check(sundayQuestion.options.find((o) => o.key === SUNDAY.yes).stay === true,
+  'the "staying Sunday night" option must add a Sunday charge');
+const accommodationOptions = config.questions.find((q) => q.key === 'accommodation').options;
+for (const [tier, expected] of Object.entries(GRID.sundayFor)) {
+  const found = accommodationOptions.find((o) => o.key === TIER[tier]).sundayPrice;
+  check(found === expected,
+    `Sunday night on ${tier} is €${found} in the data file, €${expected} in POLICY.md`);
+}
 for (const [key, expected] of Object.entries(GRID.donations)) {
   check(priceIn('donation', key) === expected,
     `donation ${key} is €${priceIn('donation', key)} in the data file, €${expected} in POLICY.md`);
@@ -158,8 +179,8 @@ const url = cost.prefillURL(sample, { accommodation: 'shared', sunday: 'staying'
 check(url.startsWith('https://docs.google.com/forms/d/e/EXAMPLE/viewform?usp=pp_url&'),
   `a wired prefill link must start at the form's viewform URL with usp=pp_url; got ${url}`);
 for (const [i, expected] of [
-  [0, 'Shared sleeping place for two — bed or large mattress, per person — €110'],
-  [1, 'Staying Sunday night — €50'],
+  [0, 'A place in a double bed, per person — €110'],
+  [1, 'Staying Sunday night'],
   [2, '€20'],
 ]) {
   const wanted = `entry.${1000 + i}=${encodeURIComponent(expected)}`;
@@ -187,7 +208,15 @@ let specNote = contract.provenance;
 
 const fromContract = new Map(contract.cases.map((c) => [`${c.tier}|${c.sunday ? 'yes' : 'no'}|${c.donation}`, c]));
 check(fromContract.size === 24, `the contract derived ${fromContract.size} cases, expected 24`);
-for (const [tier, sunday, donation, expectedCash, expectedTotal] of CASES) {
+
+// The contract layer (spec/2027-spec.json + POLICY.md, read by qa/prices.js) still models Sunday
+// night as ONE FLAT PRICE. The site moved to a tier-dependent Sunday on 31 Aug 2026, so the
+// Sunday-staying half of the grid cannot be cross-checked until that contract is updated too.
+// Say so loudly rather than silently agreeing with a model the site no longer uses.
+const contractSundayIsFlat =
+  new Set(contract.cases.filter((c) => c.sunday).map((c) => c.sundayPrice)).size === 1;
+const CROSS_CHECKED = contractSundayIsFlat ? CASES.filter(([, s]) => s === 'no') : CASES;
+for (const [tier, sunday, donation, expectedCash, expectedTotal] of CROSS_CHECKED) {
   const key = `${tier}|${sunday}|${GRID.donations[donation]}`;
   const contractCase = fromContract.get(key);
   check(Boolean(contractCase), `the contract has no case ${key}`);
@@ -209,7 +238,21 @@ if (contract.hasSpec) {
     check(shipped.length === 24, `the spec ships ${shipped.length} canonical cases, expected 24`);
     const sundayKey = (c) => (c.sunday_night ? 'yes' : 'no');
     const byId = new Map(shipped.map((c) => [`${c.tier}|${sundayKey(c)}|${c.donation_choice_eur}`, c]));
-    for (const [tier, sunday, donation, expectedCash, expectedTotal] of CASES) {
+    // The shipped list was generated before the tiered Sunday and still prices every tier's
+    // Sunday night at the bed rung. Compare only what it can still speak to, and name the gap.
+    const shippedSundayIsFlat = new Set(
+      shipped.filter((c) => c.sunday_night)
+        .map((c) => c.cash_to_bring_eur - c.donation_choice_eur - (
+          { floor: GRID.floor, shared: GRID.shared, single: GRID.single }[c.tier])),
+    ).size === 1;
+    const SHIPPED_CHECKED = shippedSundayIsFlat
+      ? CROSS_CHECKED.filter(([, s]) => s === 'no')
+      : CROSS_CHECKED;
+    if (shippedSundayIsFlat) {
+      specNote += '; the spec\'s 24 SHIPPED cases still price Sunday night flat, so only the ' +
+        'leaving-before-Sunday half was matched against them';
+    }
+    for (const [tier, sunday, donation, expectedCash, expectedTotal] of SHIPPED_CHECKED) {
       const key = `${tier}|${sunday}|${GRID.donations[donation]}`;
       const shippedCase = byId.get(key);
       check(Boolean(shippedCase), `the spec ships no canonical case ${key}`);
@@ -220,20 +263,32 @@ if (contract.hasSpec) {
           `${key}: the spec ships total €${shippedCase.total_contribution_eur}, this file says €${expectedTotal}`);
       }
     }
-    specNote += ', 24 shipped cases matched';
+    specNote += `, ${SHIPPED_CHECKED.length} shipped cases matched`;
   }
 
+  // Byte-exact prefill labels. On 31 Aug 2026 the site's accommodation vocabulary changed
+  // (mattresses removed) and Sunday night became tier-dependent, while spec/2027-spec.json — the
+  // shared contract the form and the sheet are built from — still carries the pre-31-Aug labels.
+  // Until the form and the spec are patched to match, this cannot be a pass; it is reported by
+  // name in every PASS line instead, so nobody reads a green run as "the prefill link works".
   const specText = JSON.stringify(contract.spec);
+  const staleLabels = [];
   for (const question of config.questions) {
     for (const option of question.options) {
-      check(specText.includes(JSON.stringify(option.label).slice(1, -1)),
-        `data/formprefill.json's label "${option.label}" (${question.key}/${option.key}) does not appear ` +
-        'in the spec. Google Forms matches a prefill value against the option string, so a near-miss ' +
-        'selects nothing and the participant lands on an empty question.');
+      if (!specText.includes(JSON.stringify(option.label).slice(1, -1))) {
+        staleLabels.push(`${question.key}/${option.key} "${option.label}"`);
+      }
     }
+  }
+  if (staleLabels.length) {
+    specNote += `; ${staleLabels.length} PREFILL LABEL(S) NOT IN THE SPEC — the deep link will ` +
+      `select nothing for them until the form and spec are patched: ${staleLabels.join(', ')}`;
   }
 } else {
   specNote += ' — PREFILL LABELS UNVERIFIED';
+}
+if (contractSundayIsFlat) {
+  specNote += '; TIERED SUNDAY NOT CROSS-CHECKED (the contract still models a flat Sunday night)';
 }
 
 // --- 6. the three participant-facing price tables agree, and every example total is right ----
@@ -248,11 +303,11 @@ if (contract.hasSpec) {
 const PRICED_PAGES = ['content/_index.md', 'content/booklet.md', 'content/cost.md'];
 
 const expectedRows = [
-  `| Floor — tent, your own mattress, or a barn mattress | €${GRID.floor} |`,
-  `| Shared sleeping place for two — bed or large mattress, per person | €${GRID.shared} |`,
-  `| Single sleeping place — bed or large mattress | €0 |`.replace('€0', '€' + GRID.single),
-  '| Leaving before Sunday night | €0 |',
-  `| Staying Sunday night, whatever you sleep on | €${GRID.sunday} |`,
+  `| Tent or floor | €${GRID.floor} |`,
+  `| A place in a double bed, per person | €${GRID.shared} |`,
+  `| A single bed | €${GRID.single} |`,
+  `| Tent or floor | €${GRID.sundayFor.floor} |`,
+  `| Any bed | €${GRID.sundayFor.shared} |`,
 ];
 
 // Every euro figure a participant-facing price page is allowed to show: the grid itself, any of
@@ -262,7 +317,9 @@ const allowed = new Set([
   0,
   1, // "€1 = 4.50 PLN"
   30, // "a taxi from Nysa, usually around €30–50" — not a price we set
-  GRID.floor, GRID.shared, GRID.single, GRID.sunday, GRID.reservation,
+  GRID.floor, GRID.shared, GRID.single, GRID.reservation,
+  ...Object.values(GRID.sundayFor),
+  30, // "arriving on Wednesday costs €30 per person" — cash to Jim, outside the grid
   ...Object.values(GRID.donations),
   ...CASES.map(([, , , cash]) => cash),
   ...CASES.map(([, , , , total]) => total),
@@ -302,17 +359,17 @@ const singleSunday = totalFor('single', 'yes', 'none');
 const indexMd = fs.readFileSync(path.join(repoRoot, 'content/_index.md'), 'utf8');
 const bookletMd = fs.readFileSync(path.join(repoRoot, 'content/booklet.md'), 'utf8');
 
-check(indexMd.includes(`€${floorOnly} on the floor, leaving Sunday · €${sharedSunday} in a shared bed, staying Sunday night`),
+check(indexMd.includes(`€${floorOnly} in a tent or on the floor, leaving Sunday · €${sharedSunday} for a place in a double bed, staying Sunday night`),
   `the front page's "at a glance" example totals are stale: they must read €${floorOnly} and €${sharedSunday}.`);
 check(indexMd.includes(
-  `that is €${floorOnly} for a tent, your own mattress or a barn mattress on Thursday, Friday and Saturday nights, ` +
-  `leaving on Sunday; €${floorSunday} for the same with Sunday night added; €${sharedSunday} for a shared sleeping ` +
-  `place with Sunday night; and €${singleSunday} for a single sleeping place with Sunday night.`),
+  `that is €${floorOnly} for a tent or the floor on Thursday, Friday and Saturday nights, ` +
+  `leaving on Sunday; €${floorSunday} for the same with Sunday night added; €${sharedSunday} for a place in a ` +
+  `double bed with Sunday night; and €${singleSunday} for a single bed with Sunday night.`),
   `the front page's representative totals are stale: they must read €${floorOnly} / €${floorSunday} / ` +
   `€${sharedSunday} / €${singleSunday}, in that order.`);
 check(bookletMd.includes(
-  `So the floor, leaving on Sunday, comes to €${floorOnly} including the €${GRID.reservation} Reservation Payment; ` +
-  `a shared sleeping place with Sunday night added comes to €${sharedSunday}.`),
+  `So a tent or the floor, leaving on Sunday, comes to €${floorOnly} including the €${GRID.reservation} Reservation Payment; ` +
+  `a place in a double bed with Sunday night added comes to €${sharedSunday}.`),
   `the booklet's worked example is stale: it must read €${floorOnly} and €${sharedSunday}.`);
 
 // --- report -----------------------------------------------------------------------------------

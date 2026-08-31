@@ -188,7 +188,11 @@ function policyGrid() {
     floor: one((l) => /\bfloor\b/i.test(l)),
     shared: one((l) => /\bshared\b/i.test(l)),
     single: one((l) => /\bsingle\b/i.test(l)),
-    sunday: one((l) => /sunday night/i.test(l)),
+    // Sunday night became TIER-DEPENDENT on 31 Aug 2026: two rows, €25 on a tent or the floor
+    // and €50 in any bed. `sunday` stays the bed rung so the spec's single flat figure still
+    // cross-checks against something real; `sundayFloor` is the new one.
+    sunday: one((l) => /sunday night/i.test(l) && /\bbed\b/i.test(l)),
+    sundayFloor: one((l) => /sunday night/i.test(l) && /(floor|tent)/i.test(l)),
     reservation: one((l) => /reservation payment/i.test(l)),
     donations: rowFor((l) => /donation/i.test(l)),
   };
@@ -269,15 +273,16 @@ function canonicalCases(prices) {
     { key: 'shared', price: prices.shared },
     { key: 'single', price: prices.single },
   ];
-  const sundays = [
-    { key: 'no', price: 0 },
-    { key: 'yes', price: prices.sunday },
-  ];
   const donations = prices.donations.map((amount) => ({ key: String(amount), price: amount }));
   must(donations.length === 4, `expected 4 donation rungs (100/50/20/none), got ${donations.length}`);
 
   const cases = [];
   for (const tier of tiers) {
+    // Sunday night is priced by the tier you chose, not flat (POLICY.md, 31 Aug 2026).
+    const sundays = [
+      { key: 'no', price: 0 },
+      { key: 'yes', price: prices.sundayFor[tier.key] },
+    ];
     for (const sunday of sundays) {
       for (const donation of donations) {
         const cash = tier.price + sunday.price + donation.price;
@@ -302,6 +307,12 @@ function canonicalCases(prices) {
 const spec = loadSpec();
 const grid = policyGrid();
 const prices = spec ? readPrices(spec) : { ...grid, donations: [...grid.donations, 0] };
+// The tiered Sunday lives only in POLICY.md — the spec still ships one flat figure — so take the
+// tiering from POLICY, which is the newer authority. crossCheck still compares the spec's flat
+// figure against POLICY's bed rung, which is the one it was written to mean.
+prices.sundayFor = { floor: grid.sundayFloor, shared: grid.sunday, single: grid.sunday };
+must(typeof prices.sundayFor.floor === 'number' && typeof prices.sundayFor.shared === 'number',
+  "POLICY.md must carry both Sunday-night rungs: a 'tent or floor' row and an 'any bed' row.");
 if (spec) crossCheck(prices, grid);
 const labelCount = spec ? assertPriceLabelContract(spec) : 0;
 
