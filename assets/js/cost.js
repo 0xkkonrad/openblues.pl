@@ -13,6 +13,11 @@
  * the page cannot drift from the form. A label carrying zero or two euro amounts THROWS rather
  * than guessing — a silently mis-priced option sends somebody to Poland with the wrong cash.
  *
+ * The one exception is a TIER-DEPENDENT question, which declares priceFrom/priceField in
+ * data/formprefill.json: Sunday night costs €25 with a tent or the floor and €50 with any bed, so
+ * it cannot carry one price in its own label. Its labels carry no euro amount at all and its price
+ * is looked up from the accommodation option instead — a missing lookup THROWS, same as above.
+ *
  * Loads as a plain <script> in the browser and as a CommonJS module in node, so qa/cost-logic.js
  * drives the same arithmetic the page runs, over all 24 canonical cases, without a browser.
  *
@@ -41,7 +46,14 @@
     return parseInt(found[0].match(EURO_ONE)[1], 10);
   }
 
-  /** questions[] and their options, keyed for lookup, with every price derived from its label. */
+  /**
+   * questions[] and their options, keyed for lookup, with every price derived from its label.
+   *
+   * A question that declares priceFrom is TIER-DEPENDENT: its own labels carry no euro amount and
+   * its price is looked up at calculate() time from the option chosen for the question named by
+   * priceFrom, in the field named by priceField. Sunday night is the only one — €25 with a tent or
+   * the floor, €50 with any bed — and its options say which of them costs anything via `stay`.
+   */
   function index(config) {
     var byKey = {};
     (config.questions || []).forEach(function (question) {
@@ -52,7 +64,9 @@
           key: option.key,
           name: option.name,
           label: option.label,
-          price: priceOf(option.label)
+          stay: option.stay === true,
+          price: question.priceFrom ? null : priceOf(option.label),
+          source: option
         };
         options[option.key] = priced;
         order.push(priced);
@@ -62,11 +76,33 @@
     return byKey;
   }
 
+  /** The tier-dependent price of `picked`, read off the option chosen for question.priceFrom. */
+  function tieredPrice(idx, question, picked, choice) {
+    if (!picked.stay) return 0;
+    var from = idx[question.priceFrom];
+    if (!from) {
+      throw new Error('Question "' + question.key + '" prices from "' + question.priceFrom +
+        '", which does not exist.');
+    }
+    var source = from.options[(choice || {})[question.priceFrom]];
+    if (!source) {
+      throw new Error('No option "' + (choice || {})[question.priceFrom] + '" for "' +
+        question.priceFrom + '", needed to price "' + question.key + '"');
+    }
+    var amount = source.source[question.priceField];
+    if (typeof amount !== 'number' || !isFinite(amount) || amount < 0) {
+      throw new Error('TIERED PRICE MISSING: option "' + source.label + '" has no numeric ' +
+        question.priceField + ', so "' + question.key + '" cannot be priced. ' +
+        'Fix data/formprefill.json, not this file.');
+    }
+    return amount;
+  }
+
   /**
    * choice is { accommodation: 'floor', sunday: 'leaving', donation: 'none' } — option keys.
    * Returns the two numbers the page promises and the lines behind them. There is no fifth
-   * number: one accommodation tier, plus Sunday if you stay, plus a donation if you want to,
-   * plus the €50 already transferred.
+   * number: one accommodation tier, plus Sunday if you stay (€25 with a tent or the floor,
+   * €50 with any bed), plus a donation if you want to, plus the €50 already transferred.
    */
   function calculate(config, choice) {
     var idx = index(config);
@@ -79,7 +115,7 @@
         key: question.key,
         name: picked.name,
         label: picked.label,
-        price: picked.price,
+        price: question.priceFrom ? tieredPrice(idx, question, picked, choice) : picked.price,
         breakdown: question.breakdown || question.key
       };
     });

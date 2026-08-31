@@ -340,7 +340,6 @@
 .stay-map__legend .legend-single { width: .58rem; height: 1.1rem; border: 2px solid #8a5e19; background: #f8e4b5; }
 .stay-map__legend .legend-double { width: 1.25rem; height: 1.1rem; border: 2px solid #8a5e19; background: #f8e4b5; }
 .stay-map__legend .legend-sofa { width: 1.25rem; border: 2px solid #55704b; border-radius: .42rem; background: #dcebd4; }
-.stay-map__legend .legend-mattress { width: 1.25rem; border: 2px dashed #8a5e19; background: #fff6df; }
 
 .stay-map__atlas {
   display: grid;
