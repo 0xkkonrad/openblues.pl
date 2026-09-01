@@ -17,7 +17,10 @@ Hugo site deployed on GitHub Pages.
 - `content/booklet.md` — the Info Booklet as a web page (`/booklet/`)
 - `content/accommodation.md` — room photos and floor plans; Sheet links come from `roomBrowserURL`
 - `LISTINGS.md` — festival listings tracker and submission data pack
-- `qa/` — static accommodation, deprecation, accessibility and link smoke tests (`npm install --prefix qa && npm exec --prefix qa playwright install chromium && npm test --prefix qa`; the browser tests expect a build served at `http://localhost:3118`, e.g. `hugo --minify --gc && python3 -m http.server 3118 -d public`)
+- `contracts/signup-2027.json` — deploy-time contract for the live form URL, prefill ids, exact
+  option labels and price grid
+- `qa/` — static, browser and signup-plumbing checks (`cd qa && npm ci && npx playwright install chromium`,
+  then `cd .. && qa/run.sh`; the runner builds and serves an isolated preview itself)
 - `layouts/` — minimal custom theme (no external theme dependency)
 - `static/images/` — logo, favicons, palace aerial, sanitized room photos and name-free venue maps
 - `static/CNAME` — custom domain for GitHub Pages
@@ -26,18 +29,19 @@ Hugo site deployed on GitHub Pages.
 ## Opening signups and the counter
 
 `signupURL` is already wired to the 2027 Google Form and `data/formprefill.json` already carries
-that form's `entry.NNNN` prefill ids, so `/cost/` can deep-link into it. Signups are closed until
-the QA gate is green: to open them, edit `hugo.toml` only — set `signupsOpen = true` — and push to
-`main`. Rollback is the same one line back to `false`. If `signupURL` itself ever has to change it
-must be the form's LONG `/viewform` URL; a `forms.gle` short link drops the query string the
-prefill depends on.
+that form's `entry.NNNN` prefill ids, so `/cost/` can deep-link into it. `signupsOpen` in
+`hugo.toml` is the one site-wide switch: `true` opens every signup button and `false` closes them.
+If the form changes, update `signupURL`, `data/formprefill.json` and
+`contracts/signup-2027.json` together. The URL must be the form's long `/viewform` URL; a
+`forms.gle` short link drops the query string the prefill depends on.
 
 The front page shows a live counter of paid signups from `data/counter.json`
 (`paid`, `threshold`, `status`, `updated`). `.github/workflows/counter.yml` refreshes it hourly
 from the published "Public" tab of the signups workbook once the repository variable
 `COUNTER_CSV_URL` is set (Settings → Secrets and variables → Actions → Variables); until then the
-file is edited by hand. `status` is `open`, `confirmed`, `full` or `cancelled`; the last two also
-turn every signup button into a non-link and are only ever set by hand in the workbook.
+file is edited by hand. `status` is `open`, `confirmed` or `cancelled`. Confirmation happens
+automatically and is one-way; only the operator-set `cancelled` state turns signup buttons into
+non-links.
 The same pattern applies to the Room Browser (`roomBrowserURL`, optional `roomBrowserInstructionsURL`).
 
 ## Develop

@@ -1,25 +1,25 @@
 #!/usr/bin/env python3
 """Fetch the published "Public" tab of the signups workbook as CSV and write data/counter.json.
 
-CSV contract: a header row and one value row with the columns paid, threshold, status, updated.
-Any other column in the CSV is ignored, so the workbook can carry working columns (the override
-cell, the check cell, the confirmed-at latch) in the same published tab. status must be one of
-open, confirmed, cancelled — the only three states there are; there is no capacity limit and no
-"full" state (POLICY.md, Fixed values, 29 Aug 2026). "cancelled" is only ever set by hand in the
-workbook's override cell. Usage: counter.py <csv-url> <out-json>
+CSV contract: a header row and one value row with the columns paid, threshold, status, updated
+and check. The check cell must report both "formulas OK" and "FEED OK". A numeric paid value is
+not enough: when the raw form feed disappears the workbook deliberately publishes zero alongside
+"FEED MISSING", and publishing that zero would hide the fault. Other columns are ignored, so the
+workbook can carry working columns (the override cell and confirmed-at latch) in the same tab.
+status must be one of open, confirmed, cancelled — the only three states there are; there is no
+capacity limit. "cancelled" is only ever set by hand in the workbook's override cell.
+Usage: counter.py <csv-url> <out-json>
 
 CONFIRMATION IS ONE-WAY.  POLICY.md rule 2: "It is confirmed the moment the 40th payment
 arrives... Confirmation is one-way: later drop-outs never un-confirm it."  Once this file has
-published "confirmed", it will not publish "open" again — see latch_status() below.  The
-workbook has its own latch (Public!H2, written by the Apps Script latchConfirmed()); this one is
-independent of it and of any Google credential, so the public page never retracts a confirmation
-even if that trigger is missing, broken or not yet installed.
+published "confirmed", it will not publish "open" again — see latch_status() below. This latch
+is independent of the workbook implementation and of any Google credential, so the
+public page never retracts a confirmation if an upstream latch is missing or broken.
 
-FAIL LOUD, NEVER GUESS.  If paid is not an integer — which is what the workbook publishes when
-its header guard trips, e.g. "HEADER MISMATCH in Signups: Counted" — int() raises here and the
-job goes red WITHOUT writing data/counter.json.  The site then keeps serving the last good
-counter.  A red "Update signup counter" job means "the workbook shape changed", not "the site is
-down": fix the header in the workbook, never the formula, and never this script.
+FAIL LOUD, NEVER GUESS. If the check cell is missing/unhealthy or paid is not an integer, the job
+goes red WITHOUT writing data/counter.json. The site then keeps serving the last good counter.
+A red "Update signup counter" job means the workbook feed or shape needs attention, not that the
+site is down.
 """
 import csv
 import io
@@ -28,6 +28,19 @@ import sys
 import urllib.request
 
 STATES = {"open", "confirmed", "cancelled"}
+REQUIRED_CHECKS = ("formulas ok", "feed ok")
+
+
+def validate_check(row):
+    """Reject a superficially numeric row unless both workbook guards are healthy."""
+    check = row.get("check", "")
+    folded = check.casefold()
+    missing = [guard for guard in REQUIRED_CHECKS if guard not in folded]
+    if missing:
+        sys.exit(
+            "counter: refusing to publish because Public.check is unhealthy "
+            f"(missing {', '.join(missing)}; got {check!r})"
+        )
 
 
 def latch_status(new_status, out_path):
@@ -59,6 +72,7 @@ def main(url, out):
     if not rows:
         sys.exit("counter: the CSV has no value row")
     row = {k.strip().lower(): (v or "").strip() for k, v in rows[0].items() if k}
+    validate_check(row)
     paid = int(row["paid"])
     threshold = int(row.get("threshold") or 40)
     status = (row.get("status") or "open").lower()

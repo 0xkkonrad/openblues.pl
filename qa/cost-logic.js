@@ -5,17 +5,16 @@
 // after a Playwright run, and so the price-label contract is enforced on data/formprefill.json
 // itself.
 //
-// THE EXPECTATIONS BELOW ARE WRITTEN OUT BY HAND, all 24 of them, from POLICY.md's "Fixed values"
-// grid. They are deliberately NOT recomputed from the same data the calculator reads: a test that
+// THE EXPECTATIONS BELOW ARE WRITTEN OUT BY HAND, all 24 of them. They are deliberately NOT
+// recomputed from the same data the calculator reads: a test that
 // derives its expectations from the thing under test proves only that addition is associative.
 //   Tent or floor €70 · a place in a double bed €110 pp · a single bed €160 ·
 //   Sunday night: one three-way question, €0 leaving / €25 tent or floor / €50 bed (31 Aug 2026) ·
 //   donation €100/€50/€20/none · Reservation Payment €50, transferred at signup, not in the cash.
 //
-// When projects/openblues-2027/spec/2027-spec.json exists, qa/spec.js is loaded as well and the
-// 24 cases it derives must agree with these, case for case. The spec is the contract; this file
-// is a second, independent statement of it, and two independent statements agreeing is the only
-// reason to trust either.
+// contracts/signup-2027.json independently records the form handoff and price grid. The 24 cases
+// it derives must agree with these, case for case, and its prefill values must agree byte-for-byte
+// with data/formprefill.json.
 
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -25,7 +24,7 @@ const repoRoot = path.resolve(__dirname, '..');
 const config = JSON.parse(fs.readFileSync(path.join(repoRoot, 'data', 'formprefill.json'), 'utf8'));
 const cost = require(path.join(repoRoot, 'assets', 'js', 'cost.js'));
 
-// --- the grid, restated by hand from POLICY.md ------------------------------------------------
+// --- the grid, restated by hand ---------------------------------------------------------------
 
 const GRID = {
   floor: 70,
@@ -115,7 +114,7 @@ const priceIn = (questionKey, optionKey) => {
 
 for (const [tier, expected] of [['floor', GRID.floor], ['shared', GRID.shared], ['single', GRID.single]]) {
   check(priceIn('accommodation', TIER[tier]) === expected,
-    `data/formprefill.json prices ${tier} at €${priceIn('accommodation', TIER[tier])}, POLICY.md says €${expected}`);
+    `data/formprefill.json prices ${tier} at €${priceIn('accommodation', TIER[tier])}, 2027 grid says €${expected}`);
 }
 // Sunday night is ONE question with exactly three options, each carrying its own price. The old
 // arrangement (a yes/no whose price was looked up from the accommodation option) is gone, and so
@@ -136,18 +135,18 @@ for (const option of accommodationOptions) {
   check(option.sundayPrice === undefined,
     `accommodation option ${option.key} still carries a sundayPrice; Sunday prices itself now.`);
 }
-// The canonical pairing still has to produce POLICY.md's per-tier Sunday figure.
+// The canonical pairing still has to produce the 2027 per-tier Sunday figure.
 for (const [tier, expected] of Object.entries(GRID.sundayFor)) {
   const found = cost.priceOf(sundayQuestion.options.find((o) => o.key === sundayKey(tier, 'yes')).label);
   check(found === expected,
-    `Sunday night on ${tier} is €${found} in the data file, €${expected} in POLICY.md`);
+    `Sunday night on ${tier} is €${found} in the data file, €${expected} in the 2027 grid`);
 }
 for (const [key, expected] of Object.entries(GRID.donations)) {
   check(priceIn('donation', key) === expected,
-    `donation ${key} is €${priceIn('donation', key)} in the data file, €${expected} in POLICY.md`);
+    `donation ${key} is €${priceIn('donation', key)} in the data file, €${expected} in the 2027 grid`);
 }
 check(cost.priceOf(config.reservationLabel) === GRID.reservation,
-  `the Reservation Payment is €${cost.priceOf(config.reservationLabel)} in the data file, €${GRID.reservation} in POLICY.md`);
+  `the Reservation Payment is €${cost.priceOf(config.reservationLabel)} in the data file, €${GRID.reservation} in the 2027 grid`);
 
 // The donation rungs must be offered high-first: the ordering is the anchoring decision
 // (29 Aug 2026), not a cosmetic one.
@@ -176,14 +175,33 @@ for (const [tier, sunday, donation, expectedCash, expectedTotal] of CASES) {
 
 const anyChoice = { accommodation: 'floor', sunday: 'leaving', donation: 'none' };
 
-// Today: no form exists, so no link may be built. A half-wired prefill silently drops a choice.
+// The real handoff must be fully wired. A half-wired prefill silently drops a choice.
 const wired = Boolean(config.formURL) && config.questions.every((q) => /^\d+$/.test(String(q.entry)));
-if (!wired) {
-  check(cost.prefillURL(config, anyChoice) === '',
-    'data/formprefill.json is not fully wired, so prefillURL() must return "" — never a partial link');
+check(wired, 'data/formprefill.json must have a long form URL and a numeric entry id for every question');
+check(/^https:\/\/docs\.google\.com\/forms\/d\/e\/[^/]+\/viewform$/.test(config.formURL),
+  `formURL must be the long Google Forms /viewform URL; got ${config.formURL}`);
+
+const actualURL = cost.prefillURL(
+  config,
+  { accommodation: 'shared', sunday: 'bed', donation: 'd20' },
+);
+check(actualURL.startsWith(`${config.formURL}?usp=pp_url&`),
+  `the real prefill link must start at formURL with usp=pp_url; got ${actualURL}`);
+for (const [questionKey, optionKey] of [
+  ['accommodation', 'shared'],
+  ['sunday', 'bed'],
+  ['donation', 'd20'],
+]) {
+  const question = config.questions.find((candidate) => candidate.key === questionKey);
+  const option = question && question.options.find((candidate) => candidate.key === optionKey);
+  const wanted = question && option
+    ? `entry.${question.entry}=${encodeURIComponent(option.label)}`
+    : `missing ${questionKey}/${optionKey}`;
+  check(Boolean(question && option && actualURL.includes(wanted)),
+    `the real prefill link must carry ${wanted}\n  got: ${actualURL}`);
 }
 
-// And the shape it produces once it is wired, on a stand-in config.
+// Exercise the URL builder independently of the live ids as well.
 const sample = JSON.parse(JSON.stringify(config));
 sample.formURL = 'https://docs.google.com/forms/d/e/EXAMPLE/viewform';
 sample.questions.forEach((question, i) => { question.entry = String(1000 + i); });
@@ -206,29 +224,17 @@ check(cost.prefillURL(partial, anyChoice) === '',
 
 // --- 5. agreement with the contract ----------------------------------------------------------
 //
-// qa/prices.js always resolves: it reads spec/2027-spec.json when that exists and falls back to
-// POLICY.md's Fixed values grid when it does not, reporting which in `provenance`. Its 24 cases
-// must agree with the 24 written out above, case for case — two independent statements of the
-// same contract agreeing is the only reason to trust either.
-//
-// qa/spec.js is the strict door: it throws while the contract file is missing. The byte-exact
-// label check needs it, because POLICY carries prices, not option labels, and a prefill value
-// that is not byte-identical to the form's option label selects nothing at all.
+// qa/prices.js requires the repository-local contract. Its 24 cases must agree with the 24
+// written out above, and all form values must match data/formprefill.json exactly. A prefill label
+// that differs by even one character selects nothing in Google Forms.
 
 const contract = require('./prices');
-let specNote = contract.provenance;
+const specNote = contract.provenance;
 
 const fromContract = new Map(contract.cases.map((c) => [`${c.tier}|${c.sunday ? 'yes' : 'no'}|${c.donation}`, c]));
 check(fromContract.size === 24, `the contract derived ${fromContract.size} cases, expected 24`);
 
-// The contract layer (spec/2027-spec.json + POLICY.md, read by qa/prices.js) still models Sunday
-// night as ONE FLAT PRICE. The site moved to a tier-dependent Sunday on 31 Aug 2026, so the
-// Sunday-staying half of the grid cannot be cross-checked until that contract is updated too.
-// Say so loudly rather than silently agreeing with a model the site no longer uses.
-const contractSundayIsFlat =
-  new Set(contract.cases.filter((c) => c.sunday).map((c) => c.sundayPrice)).size === 1;
-const CROSS_CHECKED = contractSundayIsFlat ? CASES.filter(([, s]) => s === 'no') : CASES;
-for (const [tier, sunday, donation, expectedCash, expectedTotal] of CROSS_CHECKED) {
+for (const [tier, sunday, donation, expectedCash, expectedTotal] of CASES) {
   const key = `${tier}|${sunday}|${GRID.donations[donation]}`;
   const contractCase = fromContract.get(key);
   check(Boolean(contractCase), `the contract has no case ${key}`);
@@ -240,73 +246,50 @@ for (const [tier, sunday, donation, expectedCash, expectedTotal] of CROSS_CHECKE
   }
 }
 
-if (contract.hasSpec) {
-  // The spec ships its own 24 canonical cases. qa/prices.js derives cases from the price grid
-  // rather than reading them, so comparing against the shipped list is a third independent
-  // statement of the same arithmetic — and it is the one the money oracle, the sheet and the
-  // receipt are all built from.
-  const shipped = contract.spec.money && contract.spec.money.canonical_cases;
-  if (Array.isArray(shipped)) {
-    check(shipped.length === 24, `the spec ships ${shipped.length} canonical cases, expected 24`);
-    const sundayKey = (c) => (c.sunday_night ? 'yes' : 'no');
-    const byId = new Map(shipped.map((c) => [`${c.tier}|${sundayKey(c)}|${c.donation_choice_eur}`, c]));
-    // The shipped list was generated before the tiered Sunday and still prices every tier's
-    // Sunday night at the bed rung. Compare only what it can still speak to, and name the gap.
-    const shippedSundayIsFlat = new Set(
-      shipped.filter((c) => c.sunday_night)
-        .map((c) => c.cash_to_bring_eur - c.donation_choice_eur - (
-          { floor: GRID.floor, shared: GRID.shared, single: GRID.single }[c.tier])),
-    ).size === 1;
-    const SHIPPED_CHECKED = shippedSundayIsFlat
-      ? CROSS_CHECKED.filter(([, s]) => s === 'no')
-      : CROSS_CHECKED;
-    if (shippedSundayIsFlat) {
-      specNote += '; the spec\'s 24 SHIPPED cases still price Sunday night flat, so only the ' +
-        'leaving-before-Sunday half was matched against them';
-    }
-    for (const [tier, sunday, donation, expectedCash, expectedTotal] of SHIPPED_CHECKED) {
-      const key = `${tier}|${sunday}|${GRID.donations[donation]}`;
-      const shippedCase = byId.get(key);
-      check(Boolean(shippedCase), `the spec ships no canonical case ${key}`);
-      if (shippedCase) {
-        check(shippedCase.cash_to_bring_eur === expectedCash,
-          `${key}: the spec ships cash €${shippedCase.cash_to_bring_eur}, this file says €${expectedCash}`);
-        check(shippedCase.total_contribution_eur === expectedTotal,
-          `${key}: the spec ships total €${shippedCase.total_contribution_eur}, this file says €${expectedTotal}`);
-      }
-    }
-    specNote += `, ${SHIPPED_CHECKED.length} shipped cases matched`;
-  }
+const contractForm = contract.spec.form;
+check(config.formURL === contractForm.url,
+  `formURL differs from the contract:\n  site: ${config.formURL}\n  contract: ${contractForm.url}`);
+const hugoConfig = fs.readFileSync(path.join(repoRoot, 'hugo.toml'), 'utf8');
+const signupURL = (hugoConfig.match(/^\s*signupURL\s*=\s*"([^"]+)"\s*$/m) || [])[1] || '';
+check(signupURL === contractForm.url,
+  `hugo.toml signupURL differs from the contract:\n  site: ${signupURL}\n  contract: ${contractForm.url}`);
+check(config.reservationLabel === contractForm.reservation.label,
+  `reservationLabel differs from the contract: ${config.reservationLabel} vs ${contractForm.reservation.label}`);
+check(JSON.stringify(config.defaults) === JSON.stringify(contractForm.defaults),
+  `calculator defaults differ from the contract: ${JSON.stringify(config.defaults)} vs ${JSON.stringify(contractForm.defaults)}`);
+check(config.questions.length === contractForm.questions.length,
+  `site has ${config.questions.length} prefill questions; contract has ${contractForm.questions.length}`);
 
-  // Byte-exact prefill labels. On 31 Aug 2026 the site's accommodation vocabulary changed
-  // (mattresses removed) and Sunday night became tier-dependent, while spec/2027-spec.json — the
-  // shared contract the form and the sheet are built from — still carries the pre-31-Aug labels.
-  // Until the form and the spec are patched to match, this cannot be a pass; it is reported by
-  // name in every PASS line instead, so nobody reads a green run as "the prefill link works".
-  const specText = JSON.stringify(contract.spec);
-  const staleLabels = [];
-  for (const question of config.questions) {
-    for (const option of question.options) {
-      if (!specText.includes(JSON.stringify(option.label).slice(1, -1))) {
-        staleLabels.push(`${question.key}/${option.key} "${option.label}"`);
-      }
-    }
+for (let i = 0; i < contractForm.questions.length; i += 1) {
+  const expectedQuestion = contractForm.questions[i];
+  const actualQuestion = config.questions[i];
+  check(Boolean(actualQuestion), `site has no prefill question at position ${i + 1}`);
+  if (!actualQuestion) continue;
+  check(actualQuestion.key === expectedQuestion.key,
+    `prefill question ${i + 1} key is ${actualQuestion.key}, contract says ${expectedQuestion.key}`);
+  check(String(actualQuestion.entry) === String(expectedQuestion.entry),
+    `${expectedQuestion.key} entry id is ${actualQuestion.entry}, contract says ${expectedQuestion.entry}`);
+  check(actualQuestion.options.length === expectedQuestion.options.length,
+    `${expectedQuestion.key} has ${actualQuestion.options.length} options, contract has ${expectedQuestion.options.length}`);
+  for (let j = 0; j < expectedQuestion.options.length; j += 1) {
+    const expectedOption = expectedQuestion.options[j];
+    const actualOption = actualQuestion.options[j];
+    check(Boolean(actualOption), `${expectedQuestion.key} has no option at position ${j + 1}`);
+    if (!actualOption) continue;
+    check(actualOption.key === expectedOption.key,
+      `${expectedQuestion.key} option ${j + 1} key is ${actualOption.key}, contract says ${expectedOption.key}`);
+    check(actualOption.label === expectedOption.label,
+      `${expectedQuestion.key}/${expectedOption.key} prefill label differs byte-for-byte:\n` +
+      `  site: ${JSON.stringify(actualOption.label)}\n  contract: ${JSON.stringify(expectedOption.label)}`);
+    check(cost.priceOf(actualOption.label) === expectedOption.price,
+      `${expectedQuestion.key}/${expectedOption.key} label prices at €${cost.priceOf(actualOption.label)}, ` +
+      `contract says €${expectedOption.price}`);
   }
-  if (staleLabels.length) {
-    specNote += `; ${staleLabels.length} PREFILL LABEL(S) NOT IN THE SPEC — the deep link will ` +
-      `select nothing for them until the form and spec are patched: ${staleLabels.join(', ')}`;
-  }
-} else {
-  specNote += ' — PREFILL LABELS UNVERIFIED';
-}
-if (contractSundayIsFlat) {
-  specNote += '; TIERED SUNDAY NOT CROSS-CHECKED (the contract still models a flat Sunday night)';
 }
 
 // --- 6. the three participant-facing price tables agree, and every example total is right ----
 //
-// Divergence between artifacts is this project's most common bug — POLICY.md's own header says
-// so, and the "refunded if declined" sentence survived in three places at once. The grid is
+// Divergence between artifacts is this project's most common bug. The grid is
 // quoted on /cost/, on the front page and in the booklet, so all three are parsed here and must
 // carry identical rows. Every worked example is RECOMPUTED through the calculator rather than
 // trusted: after a price change every example is stale, and a stale example sends somebody to
@@ -342,7 +325,7 @@ for (const relative of PRICED_PAGES) {
 
   const rows = text.split('\n').filter((line) => /^\|.*€/.test(line)).map((line) => line.trim());
   assert.deepEqual(rows, expectedRows,
-    `${relative}'s price table does not match POLICY.md's grid. All three participant-facing ` +
+    `${relative}'s price table does not match the 2027 grid. All three participant-facing ` +
     'surfaces must quote the same rows and no others.');
 
   check(text.includes('€100, €50 or €20'),
@@ -392,5 +375,5 @@ if (fail.length) {
 } else {
   process.stdout.write(
     `PASS: ${CASES.length} canonical cases, ${labelCount} option labels against the price-label contract, ` +
-    `donation order high-first, prefill link gated. ${specNote}.\n`);
+    `donation order high-first, real prefill URL and byte-exact handoff verified. ${specNote}.\n`);
 }

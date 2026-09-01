@@ -12,7 +12,7 @@
 #
 # Env:
 #   HUGO           path to the hugo binary (default: hugo on PATH)
-#   OPENBLUES_SPEC path to spec/2027-spec.json (default: ../../../projects/openblues-2027/spec/)
+#   OPENBLUES_SPEC path to an alternate signup contract (default: contracts/signup-2027.json)
 set -euo pipefail
 
 QA_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

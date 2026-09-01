@@ -6,8 +6,7 @@
 //
 // This drives the real page in a real browser and checks all 24 canonical cases
 // (3 accommodation tiers x 2 Sunday states x 4 donation rungs) against qa/prices.js, which reads
-// the prices out of spec/2027-spec.json and cross-checks them against POLICY.md — or, until that
-// file exists, out of POLICY.md alone, saying so in the PASS line. No price is written down here.
+// the repository-local signup contract. No price is written down here.
 //
 // DOM CONTRACT — what /cost/ has to expose, in preference order:
 //

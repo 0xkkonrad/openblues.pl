@@ -1,0 +1,99 @@
+{
+  "_readme": "Checked-in deploy contract for the 2027 signup handoff. Labels and entry IDs must match the live Google Form byte for byte; prices are independently checked against the site calculator and published price tables.",
+  "form": {
+    "url": "https://docs.google.com/forms/d/e/1FAIpQLSdZuj4QceEPozLdPmpl9AACfU655vW7ipJryoCed8Cg4JNkrQ/viewform",
+    "reservation": {
+      "label": "€50",
+      "price": 50
+    },
+    "questions": [
+      {
+        "key": "accommodation",
+        "entry": "997577465",
+        "options": [
+          {
+            "key": "floor",
+            "label": "A tent or a place on the floor — €70",
+            "price": 70
+          },
+          {
+            "key": "shared",
+            "label": "A place in a double bed, per person — €110",
+            "price": 110
+          },
+          {
+            "key": "single",
+            "label": "A single bed — €160",
+            "price": 160
+          }
+        ]
+      },
+      {
+        "key": "sunday",
+        "entry": "556767432",
+        "options": [
+          {
+            "key": "leaving",
+            "label": "I leave before Sunday night — €0",
+            "price": 0
+          },
+          {
+            "key": "tentfloor",
+            "label": "I stay Sunday night, in a tent or on the floor — €25",
+            "price": 25
+          },
+          {
+            "key": "bed",
+            "label": "I stay Sunday night, in a bed — €50",
+            "price": 50
+          }
+        ]
+      },
+      {
+        "key": "donation",
+        "entry": "1355658428",
+        "options": [
+          {
+            "key": "d100",
+            "label": "€100",
+            "price": 100
+          },
+          {
+            "key": "d50",
+            "label": "€50",
+            "price": 50
+          },
+          {
+            "key": "d20",
+            "label": "€20",
+            "price": 20
+          },
+          {
+            "key": "none",
+            "label": "No donation — €0",
+            "price": 0
+          }
+        ]
+      }
+    ],
+    "defaults": {
+      "accommodation": "floor",
+      "sunday": "leaving",
+      "donation": "none"
+    }
+  },
+  "prices": {
+    "floor": 70,
+    "shared": 110,
+    "single": 160,
+    "sunday_floor": 25,
+    "sunday_bed": 50,
+    "reservation": 50,
+    "donations": [
+      100,
+      50,
+      20,
+      0
+    ]
+  }
+}
