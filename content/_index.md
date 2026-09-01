@@ -167,11 +167,9 @@ Here is what Anna & Jim have to say about their home:
 
 This is a DIY gathering and all activities are community-led, so the programme takes shape late and changes often — we don't advertise an exact workshop line-up in advance. The signup form asks whether you would consider leading something; mark “yes” or “maybe”, and change your mind later at [openblues.pl/change](/change/) if you want to. Closer to the gathering, participants add their ideas to the community-filled workshop sheet.
 
-### Can I arrive earlier or stay longer?
+### When should I arrive and leave?
 
 Standard reception opens on Thursday at 18:00, followed by the welcome at 18:30, dinner at 19:00 and the party at 20:00. If you expect to arrive later, email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before travelling so the organisers know when to expect you. Monday includes breakfast and communal cleaning; the programme finishes at **12:00 noon**, followed by departures.
-
-Arriving on **Wednesday** costs **€30 per person**, for beds only — it is not available with the tent or floor option, and it does not include food. Bring that €30 in cash and give it directly to Jim when you arrive; it is separate from the €50 Reservation Payment and from the cash total for Thursday to Monday, and is not part of anything you have already paid. Email the organisers before travelling so the hosts know to expect you. [Early arrivals in full](/booklet/#early-arrivals).
 
 ### Can I bring pets or children?
 

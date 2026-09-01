@@ -114,6 +114,13 @@ params.banned = [
   /sold out/i,
   /limited places/i,
   /\bcapacity\b/i,
+  // Participants arrive from Thursday. Keep the removed pre-event arrival path out of every
+  // rendered page, including equivalent wording that avoids naming the weekday.
+  /\bWednesday\b/i,
+  /early[-\s]+arriv/i,
+  /arriv(?:e|ing|al)[^.]{0,100}\bday before\b/i,
+  /\bday before\b[^.]{0,100}arriv/i,
+  /arriv(?:e|ing|al)[^.]{0,100}\bbefore Thursday\b/i,
   // POLICY rule 6: say "the link in your confirmation email", never this.
   /fill (?:in )?the form (?:in )?again/i,
 ];

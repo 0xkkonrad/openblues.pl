@@ -314,7 +314,6 @@ const allowed = new Set([
   30, // "a taxi from Nysa, usually around €30–50" — not a price we set
   GRID.floor, GRID.shared, GRID.single, GRID.reservation,
   ...Object.values(GRID.sundayFor),
-  30, // "arriving on Wednesday costs €30 per person" — cash to Jim, outside the grid
   ...Object.values(GRID.donations),
   ...CASES.map(([, , , cash]) => cash),
   ...CASES.map(([, , , , total]) => total),
@@ -322,6 +321,9 @@ const allowed = new Set([
 
 for (const relative of PRICED_PAGES) {
   const text = fs.readFileSync(path.join(repoRoot, relative), 'utf8');
+
+  check(!/\bwednesday\b|early arrivals?/i.test(text),
+    `${relative} must not advertise Wednesday or early arrival; reception starts on Thursday.`);
 
   const rows = text.split('\n').filter((line) => /^\|.*€/.test(line)).map((line) => line.trim());
   assert.deepEqual(rows, expectedRows,

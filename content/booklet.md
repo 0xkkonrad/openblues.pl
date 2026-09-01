@@ -17,7 +17,6 @@ The venue consists of the beautiful palace and two big barns. The palace has man
 <strong>On this page</strong>
 <a href="#travel-and-ride-sharing">Travel</a>
 <a href="#accommodation-food">Accommodation &amp; food</a>
-<a href="#early-arrivals">Early arrivals</a>
 <a href="#diy-tasks-chores">DIY &amp; chores</a>
 <a href="#festival-rules">Rules</a>
 <a href="#payments-and-signing-up">Payments</a>
@@ -41,21 +40,11 @@ You can [browse the room photos and venue floor plans](/accommodation/) in the a
 
 If you paid for a bed, [choose or change your exact place through the accommodation room guide](/accommodation/) once the Sheet opens. Your paid category is guaranteed; no separate approval is required. To change the category itself — or anything else you answered at signup — use the link in your confirmation email; [openblues.pl/change](/change/) explains it and sends it again if you lost it.
 
-All communal food is vegan and included from Thursday dinner through Monday breakfast. If you're extending your stay, extra nights do not include food. There is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
+All communal food is vegan and included from Thursday dinner through Monday breakfast. There is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
 Showers and toilets can be used throughout the castle.
 
 There is generally decent Wi-Fi in several rooms.
-
-## Early arrivals {#early-arrivals}
-
-Arriving on **Wednesday** costs **€30 per person**. It is for beds only: it is not available with the tent or floor option, and it does not include food.
-
-Bring the €30 in cash and give it directly to Jim when you arrive.
-
-This €30 is separate money. It is not part of the €50 Reservation Payment, and it is not part of the cash total you bring for Thursday to Monday — nothing you have already paid covers it.
-
-Email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before you travel so the hosts know to expect you.
 
 ## DIY, tasks & chores {#diy-tasks-chores}
 
