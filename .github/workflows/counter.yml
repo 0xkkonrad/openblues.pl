@@ -41,7 +41,7 @@ jobs:
           git config user.name "openblues-counter"
           git config user.email "counter@openblues.pl"
           git add data/counter.json
-          git commit -m "counter: $(python3 -c 'import json; d = json.load(open("data/counter.json")); print(f"{d[\"paid\"]} paid, {d[\"status\"]}")')"
+          git commit -m "counter: $(python3 -c 'import json; d = json.load(open("data/counter.json")); print("{} paid, {}".format(d["paid"], d["status"]))')"
           git push
           # Pushes made with the workflow token do not trigger other workflows; start the deploy explicitly.
           gh workflow run hugo.yml --ref main
