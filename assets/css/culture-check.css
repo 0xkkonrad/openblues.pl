@@ -1,0 +1,254 @@
+/* Homepage culture check: three private, local scenarios with progressive enhancement. */
+.culture-check {
+  margin: 2rem 0 .6rem;
+  overflow: hidden;
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  box-shadow: 0 .8rem 2rem rgba(80, 52, 24, .08);
+}
+
+.culture-check [hidden] { display: none !important; }
+
+.culture-check__intro {
+  padding: 1.35rem 1.35rem 1rem;
+}
+
+.culture-check__eyebrow {
+  margin: 0 0 .15rem;
+  color: var(--link);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.prose .culture-check__intro h3 {
+  margin: 0 0 .35rem;
+  color: var(--ink);
+  font-family: "Annie Use Your Telescope", cursive;
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.culture-check__intro p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+.culture-check__form { margin: 0; }
+
+.culture-question {
+  min-width: 0;
+  margin: 0;
+  padding: 0 1.35rem 1.35rem;
+  border: 0;
+}
+
+.culture-question legend {
+  display: block;
+  width: 100%;
+  padding: 1.15rem 0 .9rem;
+  color: var(--ink);
+}
+
+.culture-question legend:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: .25rem;
+  border-radius: .2rem;
+}
+
+.culture-question__step {
+  display: block;
+  margin-bottom: .2rem;
+  color: var(--link);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.culture-question__prompt {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.culture-question__picture {
+  display: block;
+  overflow: hidden;
+  margin: 0 0 1rem;
+  aspect-ratio: 3 / 2;
+  background: var(--line);
+  border-radius: .75rem;
+}
+
+.culture-question__picture img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.culture-options {
+  display: grid;
+  gap: .55rem;
+}
+
+.culture-option {
+  display: grid;
+  grid-template-columns: 1.15rem 1.7rem minmax(0, 1fr);
+  align-items: center;
+  gap: .65rem;
+  min-height: 3.25rem;
+  padding: .65rem .75rem;
+  background: #fff;
+  border: 1px solid #dfd0bd;
+  border-radius: .65rem;
+  cursor: pointer;
+  line-height: 1.35;
+}
+
+.culture-option:hover { border-color: var(--orange); }
+
+.culture-option:has(input:checked) {
+  border-color: var(--link);
+  box-shadow: inset 0 0 0 1px var(--link);
+  font-weight: 700;
+}
+
+.culture-option:has(input:focus-visible) {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+}
+
+.culture-option input {
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  accent-color: var(--link);
+}
+
+.culture-option__letter {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--link);
+  background: var(--cream);
+  border-radius: 50%;
+  font-size: .8rem;
+  font-weight: 900;
+}
+
+.culture-option:has(input:checked) .culture-option__letter {
+  color: #fff;
+  background: var(--link);
+}
+
+.culture-question__feedback {
+  margin: .8rem 0 0;
+  padding: .7rem .8rem;
+  color: #4d4438;
+  background: #fff;
+  border-left: 4px solid var(--orange);
+  border-radius: 0 .5rem .5rem 0;
+  font-weight: 700;
+}
+
+.culture-check__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding: 1rem 1.35rem 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.culture-check__back,
+.culture-result__again {
+  min-height: 2.75rem;
+  padding: .5rem .25rem;
+  color: var(--link);
+  background: transparent;
+  border: 0;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.culture-check__back:hover,
+.culture-result__again:hover { color: var(--orange-dark); }
+
+.culture-check__back:focus-visible,
+.culture-result__again:focus-visible,
+.culture-check__next:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+button.culture-check__next {
+  min-height: 2.75rem;
+  padding: .65rem 1.25rem;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+button.culture-check__next:disabled {
+  color: #fff;
+  background: var(--muted);
+  cursor: not-allowed;
+  opacity: .7;
+}
+
+.culture-result {
+  padding: 1.5rem 1.35rem 1.35rem;
+  text-align: center;
+  border-top: 1px solid var(--line);
+}
+
+.culture-result h4 {
+  margin: 0 0 .4rem;
+  color: var(--link);
+  font-family: "Annie Use Your Telescope", cursive;
+  font-size: 2rem;
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.culture-result h4:focus { outline: 0; }
+.culture-result h4:focus-visible { outline: 3px solid var(--orange); outline-offset: .25rem; }
+.culture-result p { margin: .55rem auto; max-width: 36rem; }
+.culture-result .btn { margin-top: .35rem; }
+.culture-result__again { display: inline-block; margin-top: .35rem; }
+
+.culture-check__noscript {
+  margin: 0 1.35rem 1.35rem;
+  padding: .8rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: .6rem;
+}
+
+@media (max-width: 640px) {
+  .culture-check { margin-right: -.25rem; margin-left: -.25rem; }
+  .culture-check__intro { padding: 1.1rem 1rem .85rem; }
+  .culture-question { padding: 0 1rem 1rem; }
+  .culture-question legend { padding-top: 1rem; }
+  .culture-question__prompt { font-size: 1.05rem; }
+  .culture-option {
+    grid-template-columns: 1.1rem 1.55rem minmax(0, 1fr);
+    gap: .5rem;
+    padding: .65rem;
+    font-size: .94rem;
+  }
+  .culture-option__letter { width: 1.55rem; height: 1.55rem; }
+  .culture-check__nav { padding: .9rem 1rem 1rem; }
+  .culture-result { padding: 1.25rem 1rem 1rem; }
+  .culture-check__noscript { margin: 0 1rem 1rem; }
+}

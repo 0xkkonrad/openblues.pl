@@ -2,6 +2,8 @@
 title: "Open Blues — Dance in Poland"
 aliases:
   - /home/
+styles:
+  - css/culture-check.css
 ---
 
 ## At a glance
@@ -27,6 +29,8 @@ Open Blues is open to anyone who is comfortable with its DIY format. There is no
 Come if you want to teach a workshop that has never been tried before, cook dinner for the whole festival, dance to a band your friends sit in with, dress up for Saturday's fancy dinner and fall asleep in a palace attic.
 
 Open Blues may not be the right fit if you prefer a fixed schedule, classes sorted by level, hotel-style accommodation or a fully staffed event. That is completely fine: there are many good festivals with that format, and we go to them too.
+
+{{< culture-check >}}
 
 ## Your cost
 

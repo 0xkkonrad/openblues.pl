@@ -2,8 +2,8 @@
   "name": "openblues-site-qa",
   "private": true,
   "scripts": {
-    "test": "npm run test:maps && npm run test:accommodation && npm run test:deprecation && npm run test:accessibility && npm run test:a11y && npm run test:smoke && npm run test:trackers && npm run test:cost-logic && npm run test:cost && npm run test:policy",
-    "test:deploy": "npm run test:counter && npm run test:cost-logic && npm run test:cost && npm run test:smoke",
+    "test": "npm run test:maps && npm run test:accommodation && npm run test:deprecation && npm run test:accessibility && npm run test:a11y && npm run test:quiz && npm run test:smoke && npm run test:trackers && npm run test:cost-logic && npm run test:cost && npm run test:policy",
+    "test:deploy": "npm run test:counter && npm run test:cost-logic && npm run test:cost && npm run test:quiz && npm run test:smoke",
     "test:counter": "python3 ../.github/scripts/counter_test.py",
     "test:maps": "node accommodation-maps.js",
     "test:accommodation": "node accommodation-page.js",
@@ -14,6 +14,7 @@
     "test:cost": "node cost-calculator.js",
     "test:trackers": "node no-trackers.js",
     "test:a11y": "node site-accessibility.js",
+    "test:quiz": "node culture-check.js",
     "test:cost-logic": "node cost-logic.js"
   },
   "devDependencies": {
