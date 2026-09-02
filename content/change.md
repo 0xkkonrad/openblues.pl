@@ -9,7 +9,7 @@ url: /change/
 
 When you signed up we emailed you a confirmation. It carries a link that reopens **your own signup**, with your answers already in it. The form shows which fields remain editable; submit it to save an update.
 
-There is nothing else to fill in, no second form, and no version to keep track of. Search your inbox for **Open Blues** and it is in there.
+For your signup details, there is no version to keep track of. Search your inbox for **Open Blues** and the personal link is there. Your exact bed is chosen separately through the Room Browser below.
 
 ## Lost the link?
 
@@ -32,4 +32,4 @@ The €50 Reservation Payment, your email address and passing your place to some
 
 ## Your exact sleeping place
 
-If you selected a bed and paid the €50 Reservation Payment, choose your exact place in the shared Sheet, in signup order; the accommodation balance is paid later in cash at the venue. Changing your accommodation here does not move your row in that Sheet — [browse the rooms and floor plans](/accommodation/), where the Sheet is linked, and move yourself there.
+Changing the accommodation category through your signup edit link does not change your exact sleeping place. If your signup includes a bed, [browse the rooms and floor plans](/accommodation/), open the view-only Room Browser, click Claim beside a free place and submit the same full name as in your signup. To move, claim a different free place; the latest room submission wins. To release a place without choosing another, email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com). The accommodation balance is paid later in cash at the venue.

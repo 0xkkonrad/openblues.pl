@@ -15,7 +15,7 @@ Hugo site deployed on GitHub Pages.
   non-link "open soon" state; set them and every button links.
 - `content/_index.md` — landing page (overview, fit, cost, venue and FAQ)
 - `content/booklet.md` — the Info Booklet as a web page (`/booklet/`)
-- `content/accommodation.md` — room photos and floor plans; Sheet links come from `roomBrowserURL`
+- `content/accommodation.md` — room photos and floor plans; view-only Room Browser links come from `roomBrowserURL`
 - `LISTINGS.md` — honest 2027 listing status and action log
 - `LAUNCH-KIT.md` — canonical facts, reusable copy, public assets and listing-agent checklist
 - `contracts/signup-2027.json` — deploy-time contract for the live form URL, prefill ids, exact
@@ -45,8 +45,13 @@ file is edited by hand. `status` is `open`, `confirmed` or `cancelled`. Confirma
 automatically and is one-way; only the operator-set `cancelled` state turns signup buttons into
 non-links.
 The 2027 Room Browser and its Start Here tab are wired through `roomBrowserURL` and
-`roomBrowserInstructionsURL`. Public room facts come from the current 2027 accommodation TODO;
-participant-bearing resources from past editions must never be linked from the archive page.
+`roomBrowserInstructionsURL`. It is a public, view-only availability board: each free row owns
+its prefilled Claim link to one external Google Form. The Form URL and its private response/status
+workbook deliberately do not live in this repository or on the website. The public workbook may
+show only slot facts and FREE/TAKEN/NOT OPEN status; participant names remain committee-only, and
+the latest room submission for the same normalized signup name is authoritative. Public room facts
+come from the current 2027 accommodation TODO; participant-bearing resources from past editions
+must never be linked from the archive page.
 
 ## Develop
 

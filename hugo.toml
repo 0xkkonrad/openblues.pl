@@ -60,8 +60,9 @@ enableGitInfo = false
   goNoGoDate = "2027-08-03"
   goNoGoHuman = "3 August 2027"
 
-  # --- Room browser (self-service accommodation Sheet for participants who selected
-  # a shared or single place and paid the €50 Reservation Payment). Same open/closed pattern.
+  # --- Room Browser (public, view-only accommodation availability). Same open/closed pattern.
+  # Per-place Claim links live in the external browser and open its one Google Form. The
+  # private Form responses/status workbook must never be configured or linked from this site.
   # roomBrowserURL must be the ROOM BROWSER tab URL ending in "#gid=<id>" (per-room links
   # append "&range=A5:E5"); roomBrowserInstructionsURL is the START HERE tab (optional).
   roomBrowserURL = "https://docs.google.com/spreadsheets/d/1KVgUi0zuvkC0Sd_Sm8Ltg1jIsBGH_lePV50PkDS9Ats/edit#gid=2026080501"

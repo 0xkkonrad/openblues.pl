@@ -1,7 +1,7 @@
 {{- /*
-  Room Browser call-to-action for /accommodation/. Renders the live Sheet links when
-  site.Params.roomBrowserURL is set; otherwise a plain statement that the browser opens
-  later, for participants who selected a bed and paid the €50 Reservation Payment.
+  Room Browser call-to-action for /accommodation/. Renders the configured public,
+  view-only availability board when site.Params.roomBrowserURL is set; otherwise a
+  plain statement that the browser opens later. Claim Form links live in that board.
   Params: variant="hero" | "final".
 */ -}}
 {{- $variant := .Get "variant" | default "hero" -}}
@@ -9,10 +9,10 @@
 {{- if $url -}}
   {{- if eq $variant "final" -}}
 <a class="btn" href="{{ $url }}" target="_blank" rel="noopener noreferrer">Open the Room Browser <span aria-hidden="true">↗</span></a>
-{{ with site.Params.roomBrowserInstructionsURL }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Read the Sheet instructions first <span aria-hidden="true">↗</span></a>{{ end }}
+{{ with site.Params.roomBrowserInstructionsURL }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">Read the Room Browser instructions first <span aria-hidden="true">↗</span></a>{{ end }}
   {{- else -}}
 <a class="btn stay-primary" href="{{ $url }}" target="_blank" rel="noopener noreferrer">Open the Room Browser <span aria-hidden="true">↗</span></a>
   {{- end -}}
 {{- else -}}
-<p class="{{ if eq $variant "final" }}stay-closed-note{{ else }}stay-primary stay-primary--closed{{ end }}" data-room-browser="closed">The {{ partial "event-year.html" . }} Room Browser is not open yet. It is for participants who selected a bed and paid the €50 Reservation Payment; the link will be added here.</p>
+<p class="{{ if eq $variant "final" }}stay-closed-note{{ else }}stay-primary stay-primary--closed{{ end }}" data-room-browser="closed">The {{ partial "event-year.html" . }} Room Browser is not open yet. When it opens, participants who chose a bed can see availability and claim a place here.</p>
 {{- end -}}

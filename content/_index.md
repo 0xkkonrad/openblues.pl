@@ -61,7 +61,7 @@ We cook all communal food together, and it is all vegan. Food is included from T
 
 There are three sleeping options: a single bed, a place in a double bed, or space for your tent or sleeping setup on the floor. A bed is prepared for you with sheets and a pillow. Rooms are shared; a bed does not guarantee a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
 
-If you selected a bed and paid the €50 Reservation Payment, choose your exact place in the shared Sheet, in signup order. [Browse the room photos and venue map](/accommodation/) first. Your accommodation balance is paid later in cash at the venue.
+If your signup includes a bed, [browse the room photos and venue map](/accommodation/), then open the view-only Room Browser and click Claim beside a free place. Use the same full name as in your signup; only the committee can see it. Your accommodation balance is paid later in cash at the venue.
 
 There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 

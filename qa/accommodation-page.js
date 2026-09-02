@@ -173,7 +173,7 @@ async function run() {
       const response = await page.goto(pageUrl, { waitUntil: 'networkidle' });
       assert.ok(response && response.ok(), `${pageUrl} returned ${response && response.status()}`);
       assert.equal(await page.locator('h1').count(), 1);
-      assert.match(await page.locator('h1').textContent(), /See the rooms.*Choose your place in the Sheet/s);
+      assert.match(await page.locator('h1').textContent(), /See the rooms.*Claim a free place/s);
       assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow, noarchive, nosnippet');
       assert.equal(await page.locator('meta[name="referrer"]').getAttribute('content'), 'no-referrer');
       assert.equal(await page.locator('script[src*="accommodation"]').count(), 0);
@@ -286,7 +286,7 @@ async function run() {
         assertSheetLink(primaryHref, roomBrowserGid);
         assertSheetLink(finalHref, roomBrowserGid);
         if (roomBrowserInstructionsUrl) {
-          const startHref = await page.getByRole('link', { name: /Read the Sheet instructions first/ }).getAttribute('href');
+          const startHref = await page.getByRole('link', { name: /Read the Room Browser instructions first/ }).getAttribute('href');
           assert.equal(startHref, roomBrowserInstructionsUrl);
         }
         assert.equal(await page.locator('.stay-actions a').count(), 1);
@@ -308,8 +308,8 @@ async function run() {
           height: node.getBoundingClientRect().height
         })));
         assert.equal(new Set(roomLinkA11y.map(({ label }) => label)).size, 18);
-        assert.equal(roomLinkA11y.every(({ label }) => /live in the Sheet$/.test(label || '')), true);
-        assert.equal(roomLinkA11y.every(({ height }) => height >= 44), true, `room Sheet link shorter than 44px at ${width}px`);
+        assert.equal(roomLinkA11y.every(({ label }) => /availability in the Room Browser$/.test(label || '')), true);
+        assert.equal(roomLinkA11y.every(({ height }) => height >= 44), true, `room availability link shorter than 44px at ${width}px`);
       } else {
         // Closed state: no Sheet link anywhere, a plain statement instead of the CTA, no per-room links.
         // "Sheet link" means the Room Browser spreadsheet. The nav's signup button is also a
@@ -320,8 +320,8 @@ async function run() {
         assert.equal(await page.locator('.stay-room-card__body a').count(), 0);
         assert.equal(await page.locator('[data-room-browser="closed"]').count(), 2);
         assert.equal(await page.locator('.stay-final__actions .stay-closed-note').count(), 1);
-        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*selected a bed.*€50 Reservation Payment/s);
-        assert.equal(await page.getByRole('link', { name: /Read the Sheet instructions first/ }).count(), 0);
+        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*chose a bed.*see availability and claim a place/s);
+        assert.equal(await page.getByRole('link', { name: /Read the Room Browser instructions first/ }).count(), 0);
       }
       const targetBlankWithoutSafety = await page.locator('a[target="_blank"]').evaluateAll((nodes) => nodes
         .filter((node) => {
@@ -335,8 +335,10 @@ async function run() {
       const bodyHtml = await page.locator('body').innerHTML();
       assert.doesNotMatch(bodyText, /accommodation picker|Tally gives the final confirmation/i);
       assert.doesNotMatch(bodyHtml, /claim_key|data-roster-|gviz\/tq|rjQKYM|tally\.so\/r\//);
-      assert.match(bodyText, /public display name of up to 60 characters.*other participants to see/is);
-      assert.match(bodyText, /phone.*Sheets app.*read-only/is);
+      assert.match(bodyText, /view-only list of free and taken places/is);
+      assert.match(bodyText, /same full name you used to sign up.*Only the committee can see names/is);
+      assert.match(bodyText, /latest submission wins/is);
+      assert.doesNotMatch(bodyText, /public display name|green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i);
       assert.doesNotMatch(bodyText, /regist(?:er|ration)|Open Blues 2026/i);
 
       const primaryBox = await page.locator('.stay-primary').boundingBox();

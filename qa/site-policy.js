@@ -86,6 +86,8 @@ async function run() {
   const bookletText = rendered.get('/booklet/').text;
   assert.match(bookletText, new RegExp(`${params.threshold} Reservation Payments have arrived by ${params.goNoGoHuman}`));
   assert.match(bookletText, /The transfer details are inside the form/);
+  assert.match(bookletText, /view-only Room Browser.*click(?:ing)? Claim beside a free place/i);
+  assert.match(bookletText, /participant names are visible only to the committee/i);
 
   const changeText = rendered.get('/change/').text;
   assert.match(changeText, /the (?:personal )?edit link in your confirmation email/i);
@@ -94,6 +96,19 @@ async function run() {
   assert.match(changeText, /(?:ask for it|email me my link|send (?:it|the link|your link) again)/i);
   assert.match(changeText, /so it only ever reaches you/i);
   assert.doesNotMatch(changeText, /(?:prove (?:who you are|your identity)|verify your identity|security question)/i);
+  assert.match(changeText, /same full name as in your signup/i);
+  assert.match(changeText, /latest room submission wins/i);
+
+  const accommodationText = rendered.get('/accommodation/').text;
+  assert.match(accommodationText, /Room Browser is a view-only list of free and taken places/i);
+  assert.match(accommodationText, /Only the committee can see names/i);
+  assert.match(accommodationText, /The latest submission wins/i);
+
+  const retiredRoomFlow = /public display name|green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i;
+  for (const pagePath of ['/', '/booklet/', '/change/', '/accommodation/']) {
+    assert.doesNotMatch(rendered.get(pagePath).text, retiredRoomFlow,
+      `${pagePath} still describes the retired directly editable Room Browser`);
+  }
 
   const changePage = rendered.get('/change/').raw;
   if (params.recoveryOpen) {
