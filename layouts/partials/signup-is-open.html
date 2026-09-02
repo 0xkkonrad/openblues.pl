@@ -1,0 +1,3 @@
+{{- /* One predicate for every link that can open the signup form. */ -}}
+{{- $status := site.Data.counter.status | default "open" -}}
+{{- return (and site.Params.signupsOpen site.Params.signupURL (ne $status "cancelled")) -}}

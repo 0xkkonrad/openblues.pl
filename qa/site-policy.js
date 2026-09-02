@@ -52,6 +52,8 @@ async function run() {
   }
 
   const home = rendered.get('/');
+  assert.doesNotMatch(home.raw, /class="quotes"|What people say/i,
+    'unsourced attributed testimonials must not be published');
   const heroMatch = home.raw.match(/<section class="hero home-hero"[\s\S]*?<\/section>/i);
   assert.ok(heroMatch, 'homepage must render the redesigned first fold');
   const heroText = textOf(heroMatch[0]);

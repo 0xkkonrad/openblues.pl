@@ -10,7 +10,7 @@ const redundantCapacityCopy = /\b(?:person[- ]?)?places?\b/i;
 
 const maps = [
   {
-    slug: 'castle-downstairs', width: 1200, height: 900, rooms: 6, places: 22,
+    slug: 'castle-downstairs', width: 1200, height: 900, rooms: 6, places: 19,
     roomCodeFont: 30, secondaryFont: 23,
     roomIds: ['castle-downstairs-a1', 'castle-downstairs-a2', 'castle-downstairs-a3', 'castle-downstairs-b1', 'castle-downstairs-b2', 'castle-downstairs-c1'],
     labels: ['Kitchen', 'Hall', 'Courtyard', 'ENTRANCE', 'Wing A', 'Wing B', 'Wing C', 'WC', 'DOUBLE-SIZE SOFA', 'SINGLE OCCUPANCY']
@@ -19,7 +19,7 @@ const maps = [
     slug: 'castle-upstairs', width: 1600, height: 850, rooms: 6, places: 20,
     roomCodeFont: 32, secondaryFont: 26,
     roomIds: ['castle-upstairs-1', 'castle-upstairs-2', 'castle-upstairs-3', 'castle-upstairs-4', 'castle-upstairs-5', 'castle-upstairs-6'],
-    labels: ['Storage', 'Balcony', 'WC +', 'bath', 'shower', 'Kitchen', 'Dining', 'Stairs', 'Open space', 'Ballroom', 'Table football', 'Ping pong', 'Hall', 'POSSIBLE DOUBLE']
+    labels: ['Storage', 'Balcony', 'WC +', 'bath', 'shower', 'Kitchen', 'Dining', 'Stairs', 'Open space', 'Ballroom', 'Table football', 'Ping pong', 'Hall', '4 SINGLES']
   },
   {
     slug: 'opposite-downstairs', width: 1000, height: 440, rooms: 2, places: 5,
@@ -126,11 +126,11 @@ function staticChecks() {
   assert.equal(new Set(allAccessibleLabels).size, 17, 'room-map links need unique accessible labels');
   assert.equal(new Set(allScopeClasses).size, maps.length, 'each inline map needs a unique CSS scope class');
   assert.equal(allRoomIds.includes('opposite-right-upstairs-new'), false, 'unconfirmed new room must stay unmapped');
-  assert.equal(maps.reduce((sum, map) => sum + map.places, 0), 53);
-  assert.equal(53 + 4, 57, 'mapped plus explicitly unmapped capacity changed');
+  assert.equal(maps.reduce((sum, map) => sum + map.places, 0), 50);
+  assert.equal(50 + 4, 54, 'mapped plus explicitly unmapped room inventory changed');
 
   const manifest = JSON.parse(fs.readFileSync(path.join(siteRoot, 'static', 'images', 'accommodation', 'manifest.json'), 'utf8'));
-  assert.equal(manifest.version, 4);
+  assert.equal(manifest.version, 5);
   assert.deepEqual(manifest.venueMap.panels, maps.map(({ slug, width, height, rooms, places }) => ({
     src: `/images/accommodation/map-${slug}.svg`, width, height, rooms, places
   })));

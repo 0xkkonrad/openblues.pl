@@ -13,10 +13,11 @@ Hugo site deployed on GitHub Pages.
   the signup switch (`signupURL` + `signupsOpen`) and the Room Browser switch
   (`roomBrowserURL`, `roomBrowserInstructionsURL`). Empty/false = every CTA renders as a
   non-link "open soon" state; set them and every button links.
-- `content/_index.md` — landing page (about, cost, how applying works, venue, FAQ)
+- `content/_index.md` — landing page (overview, fit, cost, venue and FAQ)
 - `content/booklet.md` — the Info Booklet as a web page (`/booklet/`)
 - `content/accommodation.md` — room photos and floor plans; Sheet links come from `roomBrowserURL`
-- `LISTINGS.md` — festival listings tracker and submission data pack
+- `LISTINGS.md` — honest 2027 listing status and action log
+- `LAUNCH-KIT.md` — canonical facts, reusable copy, public assets and listing-agent checklist
 - `contracts/signup-2027.json` — deploy-time contract for the live form URL, prefill ids, exact
   option labels and price grid
 - `qa/` — static, browser and signup-plumbing checks (`cd qa && npm ci && npx playwright install chromium`,
@@ -29,8 +30,9 @@ Hugo site deployed on GitHub Pages.
 ## Opening signups and the counter
 
 `signupURL` is already wired to the 2027 Google Form and `data/formprefill.json` already carries
-that form's `entry.NNNN` prefill ids, so `/cost/` can deep-link into it. `signupsOpen` in
-`hugo.toml` is the one site-wide switch: `true` opens every signup button and `false` closes them.
+that form's `entry.NNNN` prefill ids, so `/cost/` can deep-link into it. Every signup surface uses
+`layouts/partials/signup-is-open.html`: the Form URL and `signupsOpen` must be set, and a
+`cancelled` counter state closes buttons, inline links and calculator-prefilled links together.
 If the form changes, update `signupURL`, `data/formprefill.json` and
 `contracts/signup-2027.json` together. The URL must be the form's long `/viewform` URL; a
 `forms.gle` short link drops the query string the prefill depends on.
@@ -42,7 +44,9 @@ from the published "Public" tab of the signups workbook once the repository vari
 file is edited by hand. `status` is `open`, `confirmed` or `cancelled`. Confirmation happens
 automatically and is one-way; only the operator-set `cancelled` state turns signup buttons into
 non-links.
-The same pattern applies to the Room Browser (`roomBrowserURL`, optional `roomBrowserInstructionsURL`).
+The 2027 Room Browser and its Start Here tab are wired through `roomBrowserURL` and
+`roomBrowserInstructionsURL`. Public room facts come from the current 2027 accommodation TODO;
+participant-bearing resources from past editions must never be linked from the archive page.
 
 ## Develop
 

@@ -97,7 +97,6 @@
     <text x="32" y="29" text-anchor="middle" class="room-code">A1</text>
     <text x="0" y="72" class="room-name">Wing A</text>
     <g transform="translate(0 91)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE</text></g>
-    <g transform="translate(0 141)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-single" x="12" y="7" width="22" height="28"/><text x="43" y="28" class="pill-text">2 SINGLES</text></g>
     <use href="#cd-camera" x="371" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 
@@ -107,7 +106,7 @@
     <text x="32" y="29" text-anchor="middle" class="room-code">A2</text>
     <text x="82" y="28" class="room-name">Wing A</text>
     <g transform="translate(0 60)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-double" x="10" y="7" width="28" height="28"/><text x="47" y="28" class="pill-text">1 DOUBLE</text></g>
-    <g transform="translate(0 110)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-single" x="11" y="7" width="22" height="28"/><text x="42" y="28" class="pill-text">2 SINGLES</text></g>
+    <g transform="translate(0 110)"><rect width="190" height="42" rx="21" class="pill"/><use href="#cd-single" x="11" y="7" width="22" height="28"/><text x="42" y="28" class="pill-text">1 SINGLE</text></g>
     <use href="#cd-camera" x="371" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 

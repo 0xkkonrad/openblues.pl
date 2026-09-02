@@ -32,4 +32,4 @@ The €50 Reservation Payment, your email address and passing your place to some
 
 ## Your exact sleeping place
 
-If you paid for a bed, you choose your exact place in the shared Sheet, in signup order. Changing your accommodation here does not move your row in that Sheet — [browse the rooms and floor plans](/accommodation/), where the Sheet is linked, and move yourself there.
+If you selected a bed and paid the €50 Reservation Payment, choose your exact place in the shared Sheet, in signup order; the accommodation balance is paid later in cash at the venue. Changing your accommodation here does not move your row in that Sheet — [browse the rooms and floor plans](/accommodation/), where the Sheet is linked, and move yourself there.

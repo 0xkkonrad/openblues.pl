@@ -1,7 +1,8 @@
 {{- /*
   Room Browser call-to-action for /accommodation/. Renders the live Sheet links when
   site.Params.roomBrowserURL is set; otherwise a plain statement that the browser opens
-  later, for participants who paid for a bed. Params: variant="hero" | "final".
+  later, for participants who selected a bed and paid the €50 Reservation Payment.
+  Params: variant="hero" | "final".
 */ -}}
 {{- $variant := .Get "variant" | default "hero" -}}
 {{- $url := site.Params.roomBrowserURL -}}
@@ -13,5 +14,5 @@
 <a class="btn stay-primary" href="{{ $url }}" target="_blank" rel="noopener noreferrer">Open the Room Browser <span aria-hidden="true">↗</span></a>
   {{- end -}}
 {{- else -}}
-<p class="{{ if eq $variant "final" }}stay-closed-note{{ else }}stay-primary stay-primary--closed{{ end }}" data-room-browser="closed">The {{ partial "event-year.html" . }} Room Browser is not open yet. It is for participants who paid for a bed; the link will be added here.</p>
+<p class="{{ if eq $variant "final" }}stay-closed-note{{ else }}stay-primary stay-primary--closed{{ end }}" data-room-browser="closed">The {{ partial "event-year.html" . }} Room Browser is not open yet. It is for participants who selected a bed and paid the €50 Reservation Payment; the link will be added here.</p>
 {{- end -}}

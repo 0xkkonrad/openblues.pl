@@ -33,12 +33,12 @@ Please join the [Open Blues transport group on WhatsApp](https://chat.whatsapp.c
 
 Please bring your own towels and toiletries.
 
-- If you chose **a single bed** or **a place in a double bed**, it is prepared for you with fresh sheets and a pillow. It will be in a shared room: a bed does not guarantee a private room. If you paid for a bed, you choose your exact place in the shared Sheet, in signup order.
+- If you chose **a single bed** or **a place in a double bed**, it is prepared for you with fresh sheets and a pillow. It will be in a shared room: a bed does not guarantee a private room. After paying the €50 Reservation Payment, choose your exact place in the shared Sheet, in signup order; the accommodation balance is paid later in cash at the venue.
 - If you chose **tent or floor**, bring the complete setup you need for comfortable sleep, including a mat and sheets or a sleeping bag. There is plenty of space and you choose your own spot when you arrive, which is the advantage: if you snore or sleep lightly, you can find somewhere quiet. Unless you have a dust allergy the barn is a good spot, and it has its own showers.
 
 You can [browse the room photos and venue floor plans](/accommodation/) in the accommodation room guide. Names and live availability stay in the shared Sheet linked there.
 
-If you paid for a bed, [choose or change your exact place through the accommodation room guide](/accommodation/) once the Sheet opens. Your paid category is guaranteed; no separate approval is required. To ask about changing the category, start with the edit link in your confirmation email; [openblues.pl/change](/change/) explains how it works.
+If you selected a bed and paid the €50 Reservation Payment, [choose or change your exact place through the accommodation room guide](/accommodation/). The accommodation balance is paid later in cash at the venue. To ask about changing the category, start with the edit link in your confirmation email; [openblues.pl/change](/change/) explains how it works.
 
 All communal food is vegan and included from Thursday dinner through Monday breakfast. There is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -88,7 +88,7 @@ The invite is public, and other members can see your phone number and any WhatsA
 
 ## Checklist
 
-- Chosen or confirmed your exact place in the shared accommodation Sheet if you paid for a bed
+- Chosen or confirmed your exact place in the shared accommodation Sheet if you selected a bed and paid the €50 Reservation Payment
 - A mat and sheets or a sleeping bag, if you chose tent or floor
 - Right amount of cash. If you changed any of your answers, recalculate on the [cost calculator](/cost/)
 - Dress-to-impress outfit for Saturday

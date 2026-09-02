@@ -27,7 +27,7 @@
 
 {{- /* The prefilled signup link is built only when the form URL AND all three entry ids exist.
        A partial prefill silently drops a choice the participant thinks they made. */ -}}
-{{- $prefillReady := and site.Params.signupsOpen (ne $data.formURL "") -}}
+{{- $prefillReady := and (partial "signup-is-open.html" .) (ne $data.formURL "") -}}
 {{- range $data.questions -}}
   {{- if not (findRE `^[0-9]+$` (printf "%v" .entry)) -}}{{- $prefillReady = false -}}{{- end -}}
 {{- end -}}

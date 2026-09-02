@@ -287,37 +287,6 @@ img { max-width: 100%; height: auto; }
 .fact-grid strong { color: var(--link); }
 .fact-grid span { margin-top: .15rem; }
 
-/* ---------- quotes ---------- */
-.quotes {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 1rem;
-  margin: 1.2rem 0;
-}
-
-.quotes figure {
-  margin: 0;
-  background: var(--cream);
-  border: 1px solid var(--line);
-  border-radius: .6rem;
-  padding: 1rem 1.1rem;
-}
-
-.prose .quotes blockquote {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  border-radius: 0;
-}
-
-.quotes figcaption {
-  margin-top: .6rem;
-  font-family: "Annie Use Your Telescope", cursive;
-  font-size: 1.15rem;
-  color: var(--link);
-}
-
 /* ---------- gallery ---------- */
 .gallery {
   columns: 3 12rem;
@@ -408,15 +377,6 @@ img { max-width: 100%; height: auto; }
 
   .fact-grid { grid-template-columns: 1fr; }
 
-  .quotes {
-    grid-template-columns: 1fr;
-    gap: .6rem;
-  }
-
-  .quotes figure { padding: .7rem .8rem; }
-  .quotes blockquote { font-size: .92rem; }
-  .quotes figcaption { font-size: 1.05rem; }
-
   .gallery { columns: 2; column-gap: .5rem; }
   .gallery img { margin-bottom: .5rem; border-radius: .4rem; }
 }
@@ -435,6 +395,14 @@ img { max-width: 100%; height: auto; }
 
 .footer .support-ua { color: var(--ink); margin-bottom: .5rem; }
 .footer .support-ua a { color: var(--link); }
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .25rem 1rem;
+  margin: .45rem 0;
+}
 
 /* ---------- signup counter (partials/counter.html) ---------- */
 .counter {

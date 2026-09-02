@@ -1,6 +1,6 @@
 {{- /*
-  Signup call-to-action. Renders a link when site.Params.signupsOpen is true, site.Params.signupURL
-  is set and data/counter.json does not say "cancelled"; otherwise a non-link state.
+  Signup call-to-action. The shared signup-is-open partial decides whether this renders a link
+  or a non-link state, including the counter's cancelled state.
   Context: dict "class" (extra classes) "label" (open label) "closedLabel" (optional).
 */ -}}
 {{- $class := .class | default "btn" -}}
@@ -9,7 +9,7 @@
 {{- $closed := .closedLabel | default "Sign up · soon" -}}
 {{- $title := "Signups open soon" -}}
 {{- if eq $status "cancelled" }}{{ $closed = "Cancelled" }}{{ $title = "The gathering is cancelled" }}{{ end -}}
-{{- if and site.Params.signupsOpen site.Params.signupURL (ne $status "cancelled") -}}
+{{- if partial "signup-is-open.html" . -}}
 <a class="{{ $class }}" href="{{ site.Params.signupURL }}">{{ $label | safeHTML }}</a>
 {{- else -}}
 <span class="{{ $class }} btn-closed" aria-disabled="true" title="{{ $title }}">{{ $closed | safeHTML }}</span>

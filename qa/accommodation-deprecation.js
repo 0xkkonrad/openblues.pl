@@ -7,7 +7,19 @@ const removedFiles = [
   'assets/js/accommodation.js',
   'data/accommodation.yaml',
   'layouts/accommodation/single.html',
-  'qa/accommodation-browser.js'
+  'qa/accommodation-browser.js',
+  'static/images/social/facebook-event-cover/sharing-mattress.jpg',
+  'static/images/social/facebook-post/sharing-mattress.jpg',
+  'static/images/social/instagram-square/sharing-mattress.jpg',
+  'static/images/social/listing/sharing-mattress.jpg',
+  'static/images/social/story/sharing-mattress.jpg',
+  'static/images/social/thumbs/facebook-event-cover-sharing-mattress.jpg',
+  'static/images/social/thumbs/facebook-post-sharing-mattress.jpg',
+  'static/images/social/thumbs/instagram-square-sharing-mattress.jpg',
+  'static/images/social/thumbs/listing-sharing-mattress.jpg',
+  'static/images/social/thumbs/story-sharing-mattress.jpg',
+  'static/images/social/thumbs/whatsapp-sharing-mattress.jpg',
+  'static/images/social/whatsapp/sharing-mattress.jpg'
 ];
 const activeRoots = ['assets', 'content', 'data', 'layouts', 'static'];
 const forbidden = [
@@ -21,6 +33,7 @@ const forbidden = [
   // 2026 edition leftovers: the 2026 Room Browser workbook, the 2026 Tally form and the old param.
   '1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8',
   'tally.so/r/68Y72P',
+  'tally.so/r/Ek7V4o',
   'registerURL'
 ];
 

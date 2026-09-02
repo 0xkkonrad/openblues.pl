@@ -42,8 +42,8 @@ const expectedRoomRanges = [
   'A8:E10',
   'A11:E12',
   'A13:E15',
-  'A16:E19',
-  'A20:E23',
+  'A16:E17',
+  'A20:E22',
   'A24:E27',
   'A28:E31',
   'A32:E33',
@@ -197,6 +197,10 @@ async function run() {
         /double-size sofa.*single occupancy/i,
         'A3 must preserve its non-obvious single-occupancy sofa exception'
       );
+      assert.equal(await page.locator('[data-room-id="castle-downstairs-a1"] .stay-room-card__body > span').textContent(), '1 double bed');
+      assert.equal(await page.locator('[data-room-id="castle-downstairs-a2"] .stay-room-card__body > span').textContent(), '1 double · 1 single');
+      assert.equal(await page.locator('[data-room-id="castle-upstairs-3"] .stay-room-card__body > span').textContent(), '3 single beds');
+      assert.equal(await page.locator('[data-room-id="castle-upstairs-4"] .stay-room-card__body > span').textContent(), '4 single beds');
 
       assert.equal(await page.locator('.stay-map-panel img').count(), 0, 'floor plans must not contain raster placeholders');
       assert.equal(await page.locator('.stay-map-panel__scroll > svg.stay-map-art').count(), 4);
@@ -314,7 +318,7 @@ async function run() {
         assert.equal(await page.locator('.stay-room-card__body a').count(), 0);
         assert.equal(await page.locator('[data-room-browser="closed"]').count(), 2);
         assert.equal(await page.locator('.stay-final__actions .stay-closed-note').count(), 1);
-        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*participants who paid/s);
+        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*selected a bed.*€50 Reservation Payment/s);
         assert.equal(await page.getByRole('link', { name: /Read the Sheet instructions first/ }).count(), 0);
       }
       const targetBlankWithoutSafety = await page.locator('a[target="_blank"]').evaluateAll((nodes) => nodes

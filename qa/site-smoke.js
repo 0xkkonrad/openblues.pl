@@ -6,12 +6,12 @@ const { chromium } = require('playwright');
 const hugoConfig = fs.readFileSync(path.resolve(__dirname, '..', 'hugo.toml'), 'utf8');
 const readParam = (name) => (hugoConfig.match(new RegExp(`^\\s*${name}\\s*=\\s*"?([^"\\n]*?)"?\\s*$`, 'm')) || [])[1] || '';
 const signupUrl = readParam('signupURL');
-const signupsOpen = readParam('signupsOpen') === 'true' && Boolean(signupUrl);
+const counterData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'data/counter.json'), 'utf8'));
+const signupsOpen = readParam('signupsOpen') === 'true' && Boolean(signupUrl) && counterData.status !== 'cancelled';
 const threshold = readParam('threshold');
 const eventDatesHuman = readParam('eventDatesHuman');
 const eventStart = readParam('eventStart');
 const eventYear = eventStart.slice(0, 4);
-const counterData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'data/counter.json'), 'utf8'));
 
 const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
 // /cost/ is the calculator that replaced Tally's live running total, and /spread-the-word/
@@ -65,7 +65,11 @@ async function check(browser) {
     const bodyText = await page.locator('body').textContent();
     assert.doesNotMatch(bodyText, /\bregist(?:er|ration)\b|68Y72P|Open Blues 2026/i, `${entryPath} still carries 2026 registration copy`);
     if (entryPath === '/') {
-      assert.equal(await page.locator('nav a[href$="2026/"]').count(), 1, 'nav must link to the 2026 edition page');
+      assert.equal(await page.locator('header nav a[href$="spread-the-word/"]').count(), 1, 'primary nav must keep Spread the word');
+      assert.equal(await page.locator('header nav a[href$="change/"]').count(), 0, 'Change details must be secondary navigation');
+      assert.equal(await page.locator('header nav a[href$="2026/"]').count(), 0, 'past editions must be secondary navigation');
+      assert.equal(await page.locator('footer nav a[href$="change/"]').count(), 1, 'footer must retain Change details');
+      assert.equal(await page.locator('footer nav a[href$="2026/"]').count(), 1, 'footer must retain the 2026 archive');
       assert.equal(await page.locator(`.counter[data-counter-threshold="${threshold}"]`).count(), 1, 'home must show the signup counter');
     }
     if (signupsOpen) {

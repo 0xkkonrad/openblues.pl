@@ -1,7 +1,7 @@
 {{- /* Inline text link to the signup form: {{< signup-link >}}the signup form{{< /signup-link >}} */ -}}
 {{- $text := .Inner | default "the signup form" -}}
-{{- if and site.Params.signupsOpen site.Params.signupURL -}}
+{{- if partial "signup-is-open.html" . -}}
 <a href="{{ site.Params.signupURL }}">{{ $text }}</a>
 {{- else -}}
-{{ $text }} (signups open soon)
+{{ $text }} (not currently open)
 {{- end -}}

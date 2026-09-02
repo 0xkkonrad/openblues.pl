@@ -141,8 +141,7 @@
     <rect width="54" height="40" rx="20" fill="#9b452a"/>
     <text x="27" y="28" text-anchor="middle" class="room-code">4</text>
     <text x="68" y="27" class="room-name">Room 4</text>
-    <g transform="translate(0 58)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-single" x="15" y="11" width="22" height="28"/><text x="49" y="34" class="pill-text">2 SINGLES</text></g>
-    <g transform="translate(0 116)"><rect width="340" height="50" rx="25" class="pill"/><use href="#cu-double" x="12" y="11" width="28" height="28"/><text x="52" y="34" class="pill-text">POSSIBLE DOUBLE</text></g>
+    <g transform="translate(0 58)"><rect width="220" height="50" rx="25" class="pill"/><use href="#cu-single" x="15" y="11" width="22" height="28"/><text x="49" y="34" class="pill-text">4 SINGLES</text></g>
     <use href="#cu-camera" x="318" y="-9" width="38" height="38" class="photo-mark"/>
   </g>
 

@@ -27,8 +27,8 @@ enableGitInfo = false
   #
   # signupURL is the 2027 Google Form (id 12Ea-6kyEaWuaF4Y5ojYgDePhZcEC01caR8TaDu4hHCM) — its
   # LONG responder URL, not a forms.gle short link, which drops the query string that
-  # data/formprefill.json depends on. It replaced the Tally form https://tally.so/r/Ek7V4o on
-  # 29 Aug 2026; that form stays published as the rollback until the Forms stack is green.
+  # data/formprefill.json depends on. It replaced the retired Tally form on 29 Aug 2026;
+  # Tally is not a rollback or supported signup path.
   # data/formprefill.json carries the same form's prefill base and entry.NNNN ids, which is what
   # lets /cost/ hand somebody a signup link with their three choices already selected.
   signupURL = "https://docs.google.com/forms/d/e/1FAIpQLSdZuj4QceEPozLdPmpl9AACfU655vW7ipJryoCed8Cg4JNkrQ/viewform"
@@ -60,18 +60,16 @@ enableGitInfo = false
   goNoGoDate = "2027-08-03"
   goNoGoHuman = "3 August 2027"
 
-  # --- Room browser (self-service accommodation Sheet for participants who paid
-  # for a shared or single place). Empty until the 2027 Sheet is ready; same open/closed pattern.
+  # --- Room browser (self-service accommodation Sheet for participants who selected
+  # a shared or single place and paid the €50 Reservation Payment). Same open/closed pattern.
   # roomBrowserURL must be the ROOM BROWSER tab URL ending in "#gid=<id>" (per-room links
   # append "&range=A5:E5"); roomBrowserInstructionsURL is the START HERE tab (optional).
-  roomBrowserURL = ""
-  roomBrowserInstructionsURL = ""
+  roomBrowserURL = "https://docs.google.com/spreadsheets/d/1KVgUi0zuvkC0Sd_Sm8Ltg1jIsBGH_lePV50PkDS9Ats/edit#gid=2026080501"
+  roomBrowserInstructionsURL = "https://docs.google.com/spreadsheets/d/1KVgUi0zuvkC0Sd_Sm8Ltg1jIsBGH_lePV50PkDS9Ats/edit#gid=2026080404"
 
-  # --- 2026 edition links kept on /2026/ for its participants (rendered by the archive-2026 shortcode).
+  # --- 2026 archive. Participant-bearing coordination files are no longer linked publicly.
   [params.archive2026]
     datesHuman = "27–31 August 2026"
-    roomBrowserURL = "https://docs.google.com/spreadsheets/d/1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8/edit#gid=2026080501"
-    whatsappURL = "https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX"
 
 [services.youtube]
   privacyEnhanced = true

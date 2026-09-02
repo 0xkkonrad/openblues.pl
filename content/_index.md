@@ -61,7 +61,7 @@ We cook all communal food together, and it is all vegan. Food is included from T
 
 There are three sleeping options: a single bed, a place in a double bed, or space for your tent or sleeping setup on the floor. A bed is prepared for you with sheets and a pillow. Rooms are shared; a bed does not guarantee a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
 
-If you paid for a bed, you choose your exact place in the shared Sheet, in signup order. [Browse the room photos and venue map](/accommodation/) first; your paid category is guaranteed and no separate approval is required. The sleeping spaces go quickly, so pick the one you want when you sign up.
+If you selected a bed and paid the €50 Reservation Payment, choose your exact place in the shared Sheet, in signup order. [Browse the room photos and venue map](/accommodation/) first. Your accommodation balance is paid later in cash at the venue.
 
 There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -108,43 +108,6 @@ Here is what Anna & Jim have to say about their home:
 <img src="images/gallery/group-photo-stairwell.jpg" alt="Open Blues participants waving from the palace stairwell" loading="lazy" width="900" height="675">
 <img src="images/gallery/country-road.jpg" alt="Country road to Piotrowice Nyskie at dusk" loading="lazy" width="900" height="675">
 <img src="images/gallery/sparrow.jpg" alt="A participant holding a sparrow chick found at the farm" loading="lazy" width="678" height="900">
-</div>
-
-## What people say
-
-<div class="quotes">
-<figure>
-<blockquote>You arrive as a guest and by Saturday you're running a workshop, stirring a pot, or sitting in with the band.</blockquote>
-<figcaption>E., Berlin</figcaption>
-</figure>
-<figure>
-<blockquote>Dancing till sunrise in a half-renovated ballroom, live piano bouncing off bare brick. Nothing else comes close.</blockquote>
-<figcaption>A., London</figcaption>
-</figure>
-<figure>
-<blockquote>The only festival where I learned as much in the kitchen as on the dance floor.</blockquote>
-<figcaption>M., Hamburg</figcaption>
-</figure>
-<figure>
-<blockquote>I flew in from the other side of the world knowing nobody. I left with a family.</blockquote>
-<figcaption>N., Kuala Lumpur</figcaption>
-</figure>
-<figure>
-<blockquote>I've danced all over Europe, and the festival that feels most like magic is an hour from my home.</blockquote>
-<figcaption>Z., Wrocław</figcaption>
-</figure>
-<figure>
-<blockquote>I didn't know I enjoyed chopping vegetables as much as I do dancing.</blockquote>
-<figcaption>J., Kraków</figcaption>
-</figure>
-<figure>
-<blockquote>Dressing up for the fancy dinner on Saturday and wandering those palace halls — I felt like I'd slipped into another century.</blockquote>
-<figcaption>L., Vienna</figcaption>
-</figure>
-<figure>
-<blockquote>Every festival says "community". This is the first one where I believed it.</blockquote>
-<figcaption>O., Kyiv</figcaption>
-</figure>
 </div>
 
 ## FAQ
