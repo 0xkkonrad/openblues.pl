@@ -1,7 +1,6 @@
-// The canonical POLICY sentences and the [params] they are built from, read straight out of
-// hugo.toml so a date or a threshold is asserted from one place only (the same rule the site
-// itself follows). Consumed by qa/site-policy.js, which asserts these sentences against the
-// rendered pages — this file must never be the only place a sentence lives.
+// Shared Hugo parameters, text normalisation and banned-copy patterns for the rendered-site QA.
+// Dates and thresholds are read from hugo.toml so the tests do not create a second source of
+// truth.
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -26,16 +25,14 @@ const params = {
   recoveryOpen: readParam('recoveryOpen') === 'true' && Boolean(recoveryURL),
   threshold: readParam('threshold'),
   goNoGoHuman: readParam('goNoGoHuman'),
-  closeHuman: readParam('closeHuman'),
   eventDatesHuman: readParam('eventDatesHuman'),
   eventStart,
   eventEnd: readParam('eventEnd'),
   eventYear: eventStart.slice(0, 4),
 };
 
-// Curly quotes come from Goldmark's typographer; collapse them and whitespace so a sentence
-// written once in POLICY.md can be matched against rendered text. Stripping inline markup
-// (<strong>, <a>) leaves a space before the following punctuation, so close that up too.
+// Curly quotes come from Goldmark's typographer; collapse them and whitespace before comparing
+// rendered copy. Stripping inline markup can leave a space before punctuation, so close it too.
 params.normalise = (text) =>
   String(text)
     .replace(/[\u2018\u2019]/g, "'")
@@ -44,43 +41,20 @@ params.normalise = (text) =>
     .replace(/\s+([.,;:!?])/g, '$1')
     .trim();
 
-// The canonical participant-facing sentences (projects/openblues-2027/POLICY.md). Fixed values
-// come from hugo.toml so this file never becomes a second source of truth for a date.
-params.policy = {
-  threshold: `Open Blues ${params.eventYear} happens if ${params.threshold} people have signed up and paid the €50 Reservation Payment by ${params.goNoGoHuman}.`,
-  confirmation: `It is confirmed the moment the 40th payment arrives — that can be any time before ${params.goNoGoHuman}.`,
-  cancellation: `If we do not reach ${params.threshold} by ${params.goNoGoHuman}, Open Blues ${params.eventYear} does not happen and every Reservation Payment is refunded in full.`,
-  noOtherRefund:
-    'The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email openbluespoland@gmail.com.',
-  noSelection: 'Everyone who signs up and pays is in. There is no selection, no application, and nothing to wait for.',
-  // POLICY rule 6, rewritten 29 Aug 2026 for the Google Forms migration: the mechanism is now
-  // the per-response edit link in the confirmation email, and "drinks" is gone from the list of
-  // things you can change because the question no longer exists.
-  change:
-    "You can change your details yourself, any time — accommodation, Sunday night, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts.",
-  notSelfService:
-    'The €50 Reservation Payment, your email address and passing your place to someone else are handled by email: openbluespoland@gmail.com.',
-  // POLICY rule 7's recovery path. The edit link lives only in an email, so /change/ has to be
-  // able to send it again — and it may never be shown on a web page or gated behind proving
-  // who you are.
-  lostLink:
-    'Ask for it again at openblues.pl/change. We send it to the address you signed up with, so it only ever reaches you.',
-  // POLICY sentence 8 is exactly this, with nothing appended. There is no capacity limit, so
-  // "or earlier if the venue is full" is not merely redundant, it is untrue: site-policy.js
-  // asserts that clause appears on no page at all.
-  closing: `Signups close on ${params.closeHuman}.`,
-  cash: 'Everything except the €50 Reservation Payment is brought in cash to the venue.',
-  // POLICY rule 10, rewritten 31 Aug 2026: nothing about a sleeping place waits for the 40th
-  // payment any more, and the three sleeping options are named tent or floor / a place in a
-  // double bed / a single bed.
-  beds:
-    'If you paid for a bed, you choose your exact place in the shared Sheet, in signup order.',
-};
-
-// Wording POLICY bans outright, plus the capacity clause Konrad removed on 29 Aug 2026. Tested
-// against the rendered text of every page. `noSelection` is stripped before the scan because it
-// is the one permitted use of the word "application".
+// Wording that must not return to any participant-facing page. This includes the blanket
+// reassurance and false signup deadline removed in the September landing-page cleanup.
 params.banned = [
+  /One form, once/i,
+  /Signups close/i,
+  /19 August 2027/i,
+  /Nothing is final/i,
+  /Nothing (?:here|you answered) is locked in/i,
+  /Everyone who signs up and pays is in/i,
+  /There is no selection/i,
+  /nothing to wait for/i,
+  /latest answer counts/i,
+  /change (?:anything|your details)[^.]{0,80}\bany time\b/i,
+  /\b\d+\s+of\s+\d+\s+paid\b/i,
   /or earlier if the venue is full/i,
   /venue is full/i,
   /places are taken/i,

@@ -1,18 +1,15 @@
-// Asserts the rendered site against the canonical participant-facing sentences in
-// projects/openblues-2027/POLICY.md, which qa/site-params.js holds. Two jobs:
+// Copy ownership and regression checks for participant-facing pages.
 //
-//   1. every load-bearing rule is actually on the surface that owns it, word for word;
-//   2. no rule is stated twice on one page (POLICY, "How much of this to actually say":
-//      "Never state the same rule twice on one page"), and no banned wording survives
-//      anywhere — including the regression that started this: "or earlier if the venue is
-//      full", a clause describing a state that cannot occur, since there is no capacity limit.
-//
-// Needs a served build: OPENBLUES_PREVIEW_ORIGIN (default http://localhost:3118).
+// The homepage sells the gathering and speaks about people. Payment mechanics live on the
+// cost/booklet surfaces; /change/ describes only the fields its personal edit link exposes.
+// The rejected blanket reassurance and false 19 August closing date are banned everywhere.
 const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
 const params = require('./site-params');
 
 const origin = (process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118').replace(/\/$/, '');
-const P = params.policy;
+const counter = JSON.parse(fs.readFileSync(path.join(params.repoRoot, 'data/counter.json'), 'utf8'));
 
 const entities = {
   '&nbsp;': ' ', '&amp;': '&', '&quot;': '"', '&#34;': '"', '&#39;': "'", '&apos;': "'",
@@ -29,119 +26,92 @@ const textOf = (html) =>
       .replace(/&[a-z#0-9]+;/gi, (m) => (m in entities ? entities[m] : ' ')),
   );
 
-const count = (haystack, needle) => haystack.split(needle).length - 1;
-
-// Which surface owns which sentence. `once` = exactly one occurrence, `atMostOnce` = the
-// counter can swap it out with its state, so 0 or 1 but never a duplicate.
-const expectations = [
-  {
-    path: '/',
-    // Hero: rules 5 and 6, at the point of signup. "Your cost": rules 4 and 9.
-    // "Food and accommodation": rule 10. "How signing up works": rule 8.
-    // The counter owns rules 1 and 3, and only shows them in the open state.
-    once: [P.noSelection, P.change, P.noOtherRefund, P.cash, P.beds, P.closing],
-    atMostOnce: [P.threshold, P.cancellation, P.confirmation, P.notSelfService],
-  },
-  {
-    path: '/booklet/',
-    once: [P.threshold, P.confirmation, P.cancellation, P.cash, P.beds, P.closing],
-    atMostOnce: [P.noSelection, P.change, P.noOtherRefund, P.notSelfService],
-  },
-  {
-    path: '/change/',
-    once: [P.change, P.cancellation, P.noOtherRefund, P.notSelfService, P.noSelection, P.closing],
-    atMostOnce: [P.threshold, P.confirmation, P.cash, P.beds],
-  },
-  // /cost/ has one job: the number. It may repeat no rule, and it owns none of them — the
-  // reader is working out what the week costs, not reading terms.
-  { path: '/cost/', once: [], atMostOnce: Object.values(P) },
-  { path: '/accommodation/', once: [], atMostOnce: Object.values(P) },
-  { path: '/spread-the-word/', once: [], atMostOnce: Object.values(P) },
-  { path: '/2026/', once: [], atMostOnce: Object.values(P) },
-  { path: '/404.html', once: [], atMostOnce: Object.values(P) },
-];
-
-// Every rendered file, not only the pages: the clause hid in a counter state and in a test
-// fixture last time, so scan the feeds too.
-const scannedPaths = [
+const paths = [
   '/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html',
-  '/openblues-2027.ics', '/sitemap.xml', '/robots.txt',
 ];
+const textAssets = ['/openblues-2027.ics', '/sitemap.xml', '/robots.txt'];
 
-async function get(path) {
-  const response = await fetch(origin + path);
-  assert.ok(response.ok, `${path} returned HTTP ${response.status}`);
+async function get(pagePath) {
+  const response = await fetch(origin + pagePath);
+  assert.ok(response.ok, `${pagePath} returned HTTP ${response.status}`);
   return response.text();
 }
 
 async function run() {
-  const label = (path, sentence) => `${path}: "${sentence.slice(0, 60)}…"`;
+  const rendered = new Map();
 
-  for (const { path, once, atMostOnce } of expectations) {
-    const text = textOf(await get(path));
-    for (const sentence of once) {
-      assert.equal(count(text, sentence), 1, `${label(path, sentence)} must appear exactly once`);
-    }
-    for (const sentence of atMostOnce) {
-      assert.ok(count(text, sentence) <= 1, `${label(path, sentence)} is stated more than once`);
-    }
-  }
+  for (const pagePath of [...paths, ...textAssets]) {
+    const raw = await get(pagePath);
+    const text = params.normalise(textAssets.includes(pagePath) ? raw : textOf(raw));
+    rendered.set(pagePath, { raw, text });
 
-  for (const path of scannedPaths) {
-    const raw = await get(path);
-    const text = params.normalise(path.endsWith('.ics') || path.endsWith('.xml') || path.endsWith('.txt') ? raw : textOf(raw));
-    // The one permitted use of the word "application" is POLICY sentence 5's negation.
-    const scanned = text.split(P.noSelection).join(' ');
     for (const pattern of params.banned) {
-      assert.doesNotMatch(scanned, pattern, `${path} carries banned wording ${pattern}`);
+      assert.doesNotMatch(text, pattern, `${pagePath} carries rejected or stale wording ${pattern}`);
     }
-    assert.doesNotMatch(text, /\bfull\b(?=[^.]*\bplaces?\b)/i, `${path} still talks about a full venue`);
+    assert.doesNotMatch(text, /\bfull\b(?=[^.]*\bplaces?\b)/i, `${pagePath} still talks about a full venue`);
   }
 
-  // POLICY rule 6, as rewritten for the Google Forms migration: the way you change your answers
-  // is the per-response edit link in your confirmation email. Saying "fill the form in again" is
-  // banned outright (params.banned), and the page has to carry the recovery path from rule 7,
-  // because the link lives only in an email and POLICY forbids showing it on a web page.
-  const changeText = textOf(await get('/change/'));
-  assert.match(changeText, /the link in your confirmation email/i,
-    '/change/ must name the mechanism: "the link in your confirmation email" (POLICY rule 6)');
-  assert.match(changeText, /lost (?:your|the) link/i,
-    '/change/ must name the case: "Lost the link?" — the edit link exists in exactly one email (POLICY rule 7)');
-  assert.match(changeText, /(?:ask for it|email me my link|send (?:it|the link|your link) again)/i,
-    '/change/ must offer the recovery itself, not only acknowledge the problem (POLICY rule 7)');
-  assert.match(changeText, /(?:we send (?:it|the link) to the address you signed up with|it only ever reaches you)/i,
-    '/change/ must say the link goes to the address you signed up with — that sentence is the ' +
-    'whole authentication story, and POLICY forbids asking anyone to prove who they are');
-  assert.doesNotMatch(changeText, /(?:prove (?:who you are|your identity)|verify your identity|security question)/i,
-    '/change/ must never ask anybody to prove who they are (POLICY rule 7)');
+  const home = rendered.get('/');
+  const heroMatch = home.raw.match(/<section class="hero home-hero"[\s\S]*?<\/section>/i);
+  assert.ok(heroMatch, 'homepage must render the redesigned first fold');
+  const heroText = textOf(heroMatch[0]);
+  assert.match(heroText, /Blues & fusion\. Live music\. Five DIY days in a Polish palace/);
+  assert.ok(heroText.includes(params.eventDatesHuman), 'first fold must show the configured event dates');
+  assert.match(heroText, /Piotrowice Nyskie Palace, Poland/);
+  assert.match(heroText, /Sign up now/);
+  assert.match(heroText, /See what it's like/);
+  assert.doesNotMatch(heroText, /Reservation Payment|\bpaid\b/i,
+    'the first fold must talk about people, not payment mechanics');
 
-  // The recovery path has two states and one parameter. While recoveryURL is empty the page
-  // offers the email path, which needs no infrastructure and is already true; once the
-  // "email me my link" form exists, recoveryURL + recoveryOpen switch the page over with no
-  // edit to the page itself. Either way the edit link is NEVER shown on the page, and nobody is
-  // ever asked to prove who they are — mailbox access is the authentication (POLICY rule 7).
-  const changePage = await get('/change/');
+  const paid = Number(counter.paid || 0);
+  const threshold = Number(params.threshold);
+  const status = counter.status === 'open' && paid >= threshold ? 'confirmed' : counter.status;
+  if (status === 'open') {
+    const remaining = Math.max(0, threshold - paid);
+    assert.match(heroText, new RegExp(`${paid} ${paid === 1 ? 'person is' : 'people are'} in\\.`));
+    assert.match(heroText, new RegExp(`${remaining === 1 ? 'One' : remaining} more and Open Blues happens\\.`));
+    assert.match(heroText, new RegExp(`You could be number ${paid + 1}\\.`));
+  } else if (status === 'confirmed') {
+    assert.match(heroText, /Open Blues is happening/);
+  } else if (status === 'cancelled') {
+    assert.match(heroText, /isn't happening/);
+  }
+
+  const costText = rendered.get('/cost/').text;
+  assert.match(costText, /The €50 Reservation Payment is part of your total and is transferred when you sign up/);
+  assert.match(costText, /otherwise it is non-refundable/);
+
+  const bookletText = rendered.get('/booklet/').text;
+  assert.match(bookletText, new RegExp(`${params.threshold} Reservation Payments have arrived by ${params.goNoGoHuman}`));
+  assert.match(bookletText, /The transfer details are inside the form/);
+
+  const changeText = rendered.get('/change/').text;
+  assert.match(changeText, /the (?:personal )?edit link in your confirmation email/i);
+  assert.match(changeText, /The form shows which fields remain editable/i);
+  assert.match(changeText, /lost (?:your|the) link/i);
+  assert.match(changeText, /(?:ask for it|email me my link|send (?:it|the link|your link) again)/i);
+  assert.match(changeText, /so it only ever reaches you/i);
+  assert.doesNotMatch(changeText, /(?:prove (?:who you are|your identity)|verify your identity|security question)/i);
+
+  const changePage = rendered.get('/change/').raw;
   if (params.recoveryOpen) {
-    const escaped = params.recoveryURL.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    assert.ok((changePage.match(new RegExp(escaped, 'g')) || []).length >= 1,
-      '/change/ must link to recoveryURL once recoveryOpen is true');
+    assert.ok(changePage.includes(params.recoveryURL), '/change/ must link to recoveryURL while recovery is open');
   } else {
     assert.match(changePage, /mailto:openbluespoland@gmail\.com/,
-      '/change/ must offer the email recovery path while recoveryOpen is false: a lost link may ' +
-      'never be a dead end, which is why this page ships WITH the migration and not after it');
-  }
-  assert.match(changeText, /so it only ever reaches you/,
-    '/change/ must say the link is sent to the address the person signed up with (POLICY rule 7)');
-  for (const path of ['/', '/cost/', '/booklet/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html']) {
-    const html = await get(path);
-    assert.ok(html.includes('change/'), `${path} must keep the durable /change/ route in the nav`);
+      '/change/ must offer the email recovery path while recovery is closed');
   }
 
-  const sentences = Object.keys(P).length;
+  for (const pagePath of paths) {
+    assert.ok(rendered.get(pagePath).raw.includes('change/'), `${pagePath} must keep the durable /change/ route`);
+  }
+
+  const hugoConfig = fs.readFileSync(path.join(params.repoRoot, 'hugo.toml'), 'utf8');
+  assert.doesNotMatch(hugoConfig, /^\s*close(?:Date|Human)\s*=/m,
+    'the removed signup closing date must not remain as a Hugo parameter');
+
   process.stdout.write(
-    `PASS: ${sentences} POLICY sentences asserted on ${expectations.length} pages, ` +
-      `${params.banned.length} banned patterns clear on ${scannedPaths.length} rendered files, ` +
-      `link recovery ${params.recoveryOpen ? 'self-service' : 'by email'}.\n`,
+    `PASS: people-first hero, focused cost/change copy and ${params.banned.length} rejected patterns ` +
+    `checked across ${paths.length} pages and ${textAssets.length} text assets.\n`,
   );
 }
 

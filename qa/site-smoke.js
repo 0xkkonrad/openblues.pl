@@ -11,6 +11,7 @@ const threshold = readParam('threshold');
 const eventDatesHuman = readParam('eventDatesHuman');
 const eventStart = readParam('eventStart');
 const eventYear = eventStart.slice(0, 4);
+const counterData = JSON.parse(fs.readFileSync(path.resolve(__dirname, '..', 'data/counter.json'), 'utf8'));
 
 const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
 // /cost/ is the calculator that replaced Tally's live running total, and /spread-the-word/
@@ -81,7 +82,6 @@ async function check(browser) {
     }
     if (entryPath === '/') {
       assert.match(await page.locator('.hero-dates').textContent(), new RegExp(eventDatesHuman));
-      assert.match(bodyText, new RegExp(`Open Blues ${eventYear}`));
       const jsonLd = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
       assert.equal(jsonLd.name, `Open Blues ${eventYear}`);
       assert.equal(jsonLd.startDate, eventStart);
@@ -94,10 +94,22 @@ async function check(browser) {
       assert.match(ics, new RegExp(`DTSTART;VALUE=DATE:${eventStart.replace(/-/g, '')}`));
       assert.match(ics, new RegExp(`SUMMARY:Open Blues ${eventYear}`));
       assert.equal(await page.locator('.hero-cta .btn').count(), 2);
-      assert.match(bodyText, /How signing up works/);
-      assert.match(bodyText, /Is there a selection\?/);
-      assert.match(bodyText, /What if we don.t reach 40 people\?/);
-      assert.match(bodyText, /refunded in full|comes back in full/, 'the front page must state the refund promise');
+      assert.equal((await page.locator('.home-hero h1').textContent()).trim(),
+        'Blues & fusion. Live music. Five DIY days in a Polish palace');
+      const heroCtaText = (await page.locator('.hero-cta').textContent()).replace(/\s+/g, ' ');
+      assert.match(heroCtaText, /Sign up now/);
+      assert.match(heroCtaText, /See what it.s like/);
+      assert.doesNotMatch(bodyText, /One form, once|Nothing is final|Signups close|There is no selection/i);
+
+      const paid = Number(counterData.paid || 0);
+      const remaining = Math.max(0, Number(threshold) - paid);
+      const status = counterData.status === 'open' && paid >= Number(threshold) ? 'confirmed' : counterData.status;
+      if (status === 'open') {
+        const counterText = await page.locator('.home-hero .counter').textContent();
+        assert.match(counterText, new RegExp(`${paid} ${paid === 1 ? 'person is' : 'people are'} in`));
+        assert.match(counterText, new RegExp(`${remaining === 1 ? 'One' : remaining} more and Open Blues happens`));
+        assert.match(counterText, new RegExp(`You could be number ${paid + 1}`));
+      }
     }
 
     // Same-page anchors: the booklet's table of contents pointed at two headings that do not
@@ -128,6 +140,49 @@ async function check(browser) {
   for (const url of internalUrls) {
     const response = await context.request.get(url);
     assert.ok(response.ok(), `linked local resource returned ${response.status()}: ${url}`);
+  }
+
+  // The approved first fold has to use wide screens and keep its actions in reach on small
+  // ones. These are geometry checks, not screenshots, so they remain stable in CI.
+  for (const viewport of [
+    { width: 320, height: 844 },
+    { width: 390, height: 844 },
+    { width: 768, height: 1024 },
+    { width: 1440, height: 1000 },
+    { width: 1920, height: 1080 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await page.goto(origin + '/', { waitUntil: 'networkidle' });
+    const geometry = await page.evaluate(() => {
+      const rect = (selector) => {
+        const box = document.querySelector(selector).getBoundingClientRect();
+        return { top: box.top, right: box.right, bottom: box.bottom, left: box.left, width: box.width, height: box.height };
+      };
+      return {
+        scrollWidth: document.documentElement.scrollWidth,
+        innerWidth: window.innerWidth,
+        hero: rect('.home-hero'),
+        inner: rect('.home-hero__inner'),
+        copy: rect('.home-hero__copy'),
+        photo: rect('.home-hero__photo'),
+        cta: rect('.hero-cta'),
+      };
+    });
+    assert.ok(geometry.scrollWidth <= geometry.innerWidth,
+      `homepage overflows at ${viewport.width}px: ${JSON.stringify(geometry)}`);
+    if (viewport.width >= 1000) {
+      assert.ok(geometry.photo.left > geometry.copy.right,
+        `wide hero must be two columns at ${viewport.width}px: ${JSON.stringify(geometry)}`);
+      assert.ok(geometry.inner.width >= viewport.width * 0.67,
+        `wide hero wastes too much width at ${viewport.width}px: ${JSON.stringify(geometry)}`);
+      assert.ok(geometry.hero.bottom <= viewport.height,
+        `wide first fold must fit its viewport at ${viewport.width}px: ${JSON.stringify(geometry)}`);
+    } else {
+      assert.ok(geometry.photo.top >= geometry.copy.bottom,
+        `narrow hero must stack without overlap at ${viewport.width}px: ${JSON.stringify(geometry)}`);
+      assert.ok(geometry.cta.bottom <= viewport.height,
+        `signup actions must remain in the first viewport at ${viewport.width}px: ${JSON.stringify(geometry)}`);
+    }
   }
 
   assert.deepEqual(failures, [], failures.join('\n'));

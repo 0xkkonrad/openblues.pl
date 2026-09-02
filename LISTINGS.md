@@ -1,6 +1,6 @@
 # Open Blues — Festival Listings Tracker
 
-**2027 status:** every listing below was made for the 2026 edition and must be re-submitted or edited for 2027 (dates 2–6 Sep 2027, assumed — confirm against `hugo.toml`). 2027 is first come, first served — everyone who signs up and pays is in, and there is no application: link to https://openblues.pl until the signup form is live, then to the form. The log at the bottom is the 2026 history.
+**2027 status:** every listing below was made for the 2026 edition and must be re-submitted or edited for 2027 (dates 2–6 Sep 2027, assumed — confirm against `hugo.toml`). Link to https://openblues.pl for the current signup status and form. The log at the bottom is the 2026 history.
 
 Where Open Blues (2–6 Sep 2027, Piotrowice Nyskie Palace, Poland) should be listed to reach the blues, swing, and fusion dance crowds. Scope is deliberately narrow: blues / swing (lindy, balboa, shag-adjacent) / fusion only — no generic event sites, no other dance scenes.
 
@@ -42,7 +42,7 @@ Copy-paste facts for every form. Messaging policy applies everywhere: Open Blues
 - **Styles:** Blues + Fusion (where Fusion isn't offered, e.g. SwingPlanIt: Blues)
 - **Event type:** Exchange (DanceCal-family taxonomy) / Camp (SwingPlanIt taxonomy — residential, food and beds on site)
 - **Website:** https://openblues.pl
-- **Signup:** https://openblues.pl (the signup form link is added there once signups open; everyone who signs up and pays is in — there is no selection, no application, and nothing to wait for)
+- **Signup:** https://openblues.pl (the homepage carries the current signup status and form link)
 - **Contact email:** openbluespoland@gmail.com
 - **Teachers field:** "Community-led — workshops are crowdsourced from attendees, plus guest teachers" (no fixed lineup; SwingPlanIt forbids teacher names inside the description, use its separate field)
 - **Facebook event:** none — several venues like linking one; decide whether to create one before the FB-group round (#11–14, 16–17)

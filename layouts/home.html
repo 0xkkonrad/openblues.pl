@@ -2,23 +2,38 @@
 {{- $year := partial "event-year.html" . -}}
 {{- $calStart := time.AsTime site.Params.eventStart | time.Format "20060102" -}}
 {{- $calEnd := ((time.AsTime site.Params.eventEnd).AddDate 0 0 1) | time.Format "20060102" -}}
-<section class="hero">
-  <img class="hero-logo" src="{{ "images/logo.png" | relURL }}" alt="Open Blues logo" width="368" height="195">
-  <h1>A DIY blues &amp; fusion dance festival in a Polish palace</h1>
-  <p class="hero-dates">{{ site.Params.eventDatesHuman }} · Piotrowice Nyskie Palace, Poland</p>
-  <p class="hero-cal">Add to calendar:
-    <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Open+Blues+{{ $year }}&amp;dates={{ $calStart }}/{{ $calEnd }}&amp;location=Piotrowice+Nyskie+Palace%2C+Piotrowice+Nyskie+54%2C+Poland&amp;details=DIY+blues+%26+fusion+dance+festival+%E2%80%94+https%3A%2F%2Fopenblues.pl">Google</a> ·
-    {{ with .OutputFormats.Get "ICS" }}<a href="{{ .RelPermalink }}">iCal</a>{{ end }}
-  </p>
-  <p class="hero-tagline">Blues &amp; Fusion. Live music. 100% DIY.</p>
-  <p class="hero-cta">
-    {{ partial "signup-cta.html" (dict "class" "btn" "label" "Sign&nbsp;up&nbsp;✒️") }}
-    <a class="btn btn-outline" href="{{ "booklet/" | relURL }}">Plan your stay</a>
-  </p>
-  <p class="cta-help">One form, once: your details, the €50 Reservation Payment transfer, and a tick to say you have emailed us the confirmation. Everyone who signs up and pays is in. There is no selection, no application, and nothing to wait for.</p>
-  <p class="cta-help cta-help--change">Answering everything up front costs you nothing, because none of it is final. You can change your details yourself, any time — accommodation, Sunday night, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts. <a href="{{ "change/" | relURL }}">How that works</a>.</p>
-  {{ partial "counter.html" . }}
-  <p class="hero-note">A private, cost-shared gathering: nobody profits and everyone covers their own share of the real expenses.</p>
+<section class="hero home-hero">
+  <div class="home-hero__inner">
+    <div class="home-hero__copy">
+      <img class="hero-logo" src="{{ "images/logo.png" | relURL }}" alt="Open Blues" width="368" height="195">
+      <h1>Blues &amp; fusion. Live music. Five DIY days in a Polish palace</h1>
+
+      <div class="hero-event">
+        <p class="hero-dates">{{ site.Params.eventDatesHuman }}</p>
+        <p class="hero-place">Piotrowice Nyskie Palace, Poland</p>
+      </div>
+
+      {{ partial "counter.html" . }}
+
+      <div class="hero-cta">
+        {{ partial "signup-cta.html" (dict "class" "btn" "label" "Sign&nbsp;up&nbsp;now") }}
+        <a class="btn btn-outline" href="#about">See what it’s like</a>
+      </div>
+
+      <div class="hero-cal" aria-label="Add Open Blues {{ $year }} to your calendar">
+        <svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true" focusable="false">
+          <path d="M7 2v3M17 2v3M3.5 9h17M5 4h14a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <span>Add the dates</span>
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Open+Blues+{{ $year }}&amp;dates={{ $calStart }}/{{ $calEnd }}&amp;location=Piotrowice+Nyskie+Palace%2C+Piotrowice+Nyskie+54%2C+Poland&amp;details=DIY+blues+%26+fusion+dance+festival+%E2%80%94+https%3A%2F%2Fopenblues.pl">Google</a>
+        {{ with .OutputFormats.Get "ICS" }}<a href="{{ .RelPermalink }}">iCal</a>{{ end }}
+      </div>
+    </div>
+
+    <figure class="home-hero__photo">
+      <img src="{{ "images/gallery/dancing-long-exposure.jpg" | relURL }}" alt="Dancers moving past a pianist in the palace ballroom" width="678" height="900">
+    </figure>
+  </div>
 </section>
 
 <article class="prose">

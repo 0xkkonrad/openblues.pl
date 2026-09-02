@@ -3,6 +3,7 @@ title: "Open Blues — Dance in Poland"
 aliases:
   - /home/
 styles:
+  - css/home.css
   - css/culture-check.css
 ---
 
@@ -15,9 +16,6 @@ styles:
 <div><strong>Example totals</strong><span>€120 in a tent or on the floor, leaving Sunday · €210 for a place in a double bed, staying Sunday night — both including the €50 Reservation Payment. <a href="/cost/">Work yours out</a></span></div>
 <div><strong>Staying over</strong><span>A single bed, a place in a double bed, or a tent or floor</span></div>
 <div><strong>Getting there</strong><span>Ride share, or train/taxi via Nysa</span></div>
-<div><strong>Goes ahead when</strong><span>{{< param threshold >}} people have paid the €50 Reservation Payment — live counter above</span></div>
-<div><strong>Signups close</strong><span>{{< param closeHuman >}}</span></div>
-<div><strong>Changed your mind</strong><span>Nothing is final — <a href="/change/">openblues.pl/change</a></span></div>
 </div>
 
 [Compare sleeping options, food and travel details in Plan your stay](/booklet/).
@@ -63,21 +61,9 @@ We cook all communal food together, and it is all vegan. Food is included from T
 
 There are three sleeping options: a single bed, a place in a double bed, or space for your tent or sleeping setup on the floor. A bed is prepared for you with sheets and a pillow. Rooms are shared; a bed does not guarantee a private room. [Compare the accommodation options and what to bring](/booklet/#accommodation-food).
 
-If you paid for a bed, you choose your exact place in the shared Sheet, in signup order. [Browse the room photos and venue map](/accommodation/) first; your paid category is guaranteed and no separate approval is required. The sleeping spaces go quickly, so pick the one you want when you sign up — and if you change your mind, you can change your answer later.
+If you paid for a bed, you choose your exact place in the shared Sheet, in signup order. [Browse the room photos and venue map](/accommodation/) first; your paid category is guaranteed and no separate approval is required. The sleeping spaces go quickly, so pick the one you want when you sign up.
 
 There is a small shop in the village, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
-
-## How signing up works
-
-Open Blues {{< event-year >}} is first come, first served, and {{< signup-link >}}one form{{< /signup-link >}} does the whole job. It asks your name and email, where you'll sleep from Thursday to Saturday and whether you are staying Sunday night, an optional donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and how you heard about us — then the €50 Reservation Payment transfer (the details are inside the form) and a tick to say you have emailed us the confirmation. No account and no sign-in.
-
-Then watch the counter at the top of this page. That is the whole process.
-
-Nothing you answered is locked in: change any of it yourself, any time, at [openblues.pl/change](/change/). Only three things go by email — the €50 Reservation Payment, your email address, and passing your place to someone else: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
-
-Signups close on {{< param closeHuman >}}.
-
-[See the complete payment, arrival and accommodation details](/booklet/#payments-and-signing-up).
 
 ## About
 
@@ -165,7 +151,7 @@ Here is what Anna & Jim have to say about their home:
 
 ### What are the workshops and who are the teachers?
 
-This is a DIY gathering and all activities are community-led, so the programme takes shape late and changes often — we don't advertise an exact workshop line-up in advance. The signup form asks whether you would consider leading something; mark “yes” or “maybe”, and change your mind later at [openblues.pl/change](/change/) if you want to. Closer to the gathering, participants add their ideas to the community-filled workshop sheet.
+This is a DIY gathering and all activities are community-led, so the programme takes shape late and changes often — we don't advertise an exact workshop line-up in advance. The signup form asks whether you would consider leading something. Closer to the gathering, participants add their ideas to the community-filled workshop sheet.
 
 ### When should I arrive and leave?
 
@@ -179,21 +165,9 @@ Yes, as long as they don't bother the farm animals. There are geese, chickens, t
 
 The place is a farm, so there are lots of animals and some places are dusty. However, there are rarely any animals in the ballroom and in the upstairs rooms — but sometimes there can be.
 
-### Is there a selection?
-
-No. Nobody reads your answers to decide anything, there is no audition and there is no required dance level. What we do need is enough people, which is what the counter at the top of this page is for.
-
-### What if we don't reach 40 people?
-
-Then it does not happen and your €50 comes back in full. Nothing else is owed.
-
-### What's the Reservation Payment about?
-
-The €50 commits your place, counts towards the {{< param threshold >}} paid signups that make the gathering happen, and contributes to fixed costs such as the bands.
-
 ### Can I change my details after signing up?
 
-Yes — that is the point of asking everything up front. Your confirmation email carries a link that reopens your own signup with your answers in it; change what you want and submit again, as often as you like. [openblues.pl/change](/change/) explains it and sends you the link again if you lose it.
+Your confirmation email carries a personal edit link. It shows which signup fields can still be updated. [openblues.pl/change](/change/) explains the link and how to recover it if you lose it.
 
 ### What are the accommodation options like?
 

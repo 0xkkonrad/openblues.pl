@@ -53,9 +53,11 @@ assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="final"\s*
 assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 18, 'every room card needs one room-link shortcode');
 
 const hugoConfig = fs.readFileSync(path.join(root, 'hugo.toml'), 'utf8');
-for (const param of ['signupURL', 'signupsOpen', 'threshold', 'goNoGoHuman', 'closeHuman', 'roomBrowserURL', 'roomBrowserInstructionsURL', 'eventStart', 'eventEnd', 'eventDatesHuman']) {
+for (const param of ['signupURL', 'signupsOpen', 'threshold', 'goNoGoHuman', 'roomBrowserURL', 'roomBrowserInstructionsURL', 'eventStart', 'eventEnd', 'eventDatesHuman']) {
   assert.match(hugoConfig, new RegExp(`^\\s*${param}\\s*=`, 'm'), `hugo.toml must define params.${param}`);
 }
+assert.doesNotMatch(hugoConfig, /^\s*close(?:Date|Human)\s*=/m,
+  'the removed signup closing date must not remain in hugo.toml');
 const participantSources = ['content', 'layouts']
   .flatMap((relative) => filesBelow(path.join(root, relative)))
   .filter((filename) => /\.(md|html|ics)$/i.test(filename))

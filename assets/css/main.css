@@ -99,7 +99,7 @@ img { max-width: 100%; height: auto; }
   justify-content: space-between;
   flex-wrap: wrap;
   gap: .5rem 1rem;
-  max-width: 62rem;
+  max-width: 82rem;
   margin: 0 auto;
   padding: .8rem 1.2rem;
 }
@@ -178,31 +178,10 @@ img { max-width: 100%; height: auto; }
 
 .hero-cal { color: var(--muted); font-size: .9rem; margin: .1rem 0; }
 
-.hero-tagline { color: var(--muted); margin: .4rem 0 1.6rem; }
-
 .hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem; margin: 0 0 .9rem; }
 
-.cta-help {
-  max-width: 52ch;
-  margin: -.2rem auto .8rem;
-  color: var(--muted);
-  font-size: .9rem;
-}
-
-/* The "you can change all of this later" promise, kept next to the signup button on purpose:
-   it is what makes asking everything up front reasonable (see /change/). */
-.cta-help--change { margin-top: -.4rem; }
-.cta-help--change a { font-weight: 700; }
-
-/* Button on /change/, directly under the opening promise. */
+/* Recovery button on /change/. */
 .cta-change { text-align: center; margin: 1.6rem 0 2rem; }
-
-.hero-note {
-  font-family: "Annie Use Your Telescope", cursive;
-  font-size: 1.3rem;
-  color: var(--link);
-  margin: 0;
-}
 
 /* ---------- prose ---------- */
 .prose {
@@ -399,11 +378,11 @@ img { max-width: 100%; height: auto; }
 
 .yt-lite iframe { width: 100%; height: 100%; border: 0; }
 
-/* ---------- small screens ---------- */
-@media (max-width: 640px) {
+/* ---------- compact header ---------- */
+@media (max-width: 65rem) {
   .topbar {
     justify-content: center;
-    padding: .55rem .75rem;
+    padding: .45rem .55rem;
   }
 
   .topbar .brand { display: none; }
@@ -411,7 +390,21 @@ img { max-width: 100%; height: auto; }
   .topbar nav {
     justify-content: center;
     width: 100%;
+    gap: .1rem .18rem;
   }
+
+  .topbar nav a {
+    padding: .28rem .35rem;
+    font-size: .86rem;
+  }
+
+  .topbar nav .btn-small {
+    padding: .35rem .7rem;
+  }
+}
+
+/* ---------- small screens ---------- */
+@media (max-width: 640px) {
 
   .fact-grid { grid-template-columns: 1fr; }
 
@@ -472,7 +465,6 @@ img { max-width: 100%; height: auto; }
 
 .counter-bar span { display: block; height: 100%; background: var(--orange); border-radius: 1rem; }
 .counter-sub { margin: .3rem 0 0; color: var(--muted); font-size: .9rem; }
-.counter-updated { margin: .3rem 0 0; color: var(--muted); font-size: .75rem; }
 
 .archive-links { padding-left: 1.2rem; }
 .archive-links li { margin: .4rem 0; }

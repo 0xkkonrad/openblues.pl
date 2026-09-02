@@ -32,15 +32,9 @@ A donation of €100, €50 or €20 is welcome on top, and entirely optional. I
 
 Everything except the €50 Reservation Payment is brought in cash to the venue. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
 
-## Nothing here is locked in
-
-The sleeping spaces go quickly, so choose the one you want when you sign up. You can change your details yourself, any time — accommodation, Sunday night, donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and the spelling of your name. The latest answer counts. [How that works](/change/).
-
 ## What happens to the €50
 
-Open Blues {{< event-year >}} happens if {{< param threshold >}} people have signed up and paid the €50 Reservation Payment by {{< param goNoGoHuman >}}. Watch the [live counter on the front page](/).
-
-If we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, Open Blues {{< event-year >}} does not happen and every Reservation Payment is refunded in full. The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
+The €50 Reservation Payment is part of your total and is transferred when you sign up. If fewer than {{< param threshold >}} people commit by {{< param goNoGoHuman >}}, it is refunded; otherwise it is non-refundable. If you cannot come, you may pass your place to someone else by emailing [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
 
 [Sleeping options, travel, food and the rest of the practical detail](/booklet/) · [see the rooms](/accommodation/)
 

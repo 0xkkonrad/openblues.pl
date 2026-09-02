@@ -54,13 +54,11 @@ enableGitInfo = false
   # refunded. The live count lives in data/counter.json (paid, threshold, status, updated),
   # written by .github/workflows/counter.yml from the published "Public" tab of the signups
   # workbook (repository variable COUNTER_CSV_URL) or edited by hand. There is NO capacity limit
-  # and no "full" state: the counter has exactly three states, open | confirmed | cancelled, and
-  # signups simply run until closeDate (POLICY.md, Fixed values, 29 Aug 2026).
+  # and no "full" state: the counter has exactly three states, open | confirmed | cancelled.
+  # signupsOpen is the explicit site-wide control; there is no published signup closing date.
   threshold = 40
   goNoGoDate = "2027-08-03"
   goNoGoHuman = "3 August 2027"
-  closeDate = "2027-08-19"
-  closeHuman = "19 August 2027"
 
   # --- Room browser (self-service accommodation Sheet for participants who paid
   # for a shared or single place). Empty until the 2027 Sheet is ready; same open/closed pattern.

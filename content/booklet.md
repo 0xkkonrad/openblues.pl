@@ -38,7 +38,7 @@ Please bring your own towels and toiletries.
 
 You can [browse the room photos and venue floor plans](/accommodation/) in the accommodation room guide. Names and live availability stay in the shared Sheet linked there.
 
-If you paid for a bed, [choose or change your exact place through the accommodation room guide](/accommodation/) once the Sheet opens. Your paid category is guaranteed; no separate approval is required. To change the category itself — or anything else you answered at signup — use the link in your confirmation email; [openblues.pl/change](/change/) explains it and sends it again if you lost it.
+If you paid for a bed, [choose or change your exact place through the accommodation room guide](/accommodation/) once the Sheet opens. Your paid category is guaranteed; no separate approval is required. To ask about changing the category, start with the edit link in your confirmation email; [openblues.pl/change](/change/) explains how it works.
 
 All communal food is vegan and included from Thursday dinner through Monday breakfast. There is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -50,7 +50,7 @@ There is generally decent Wi-Fi in several rooms.
 
 This is a DIY festival: participants make the music, workshops, cooking and day-to-day running of the event happen. Please take initiative and actively look for things to help with. This might mean carrying speakers, rearranging chairs, helping in the kitchen, washing up or replacing toilet paper rolls.
 
-The programme grows from the participants. Mark “yes” or “maybe” when the signup form asks whether you might lead something — and change that answer at [openblues.pl/change](/change/) whenever you like. Closer to the gathering, participants add their ideas to a community-filled workshop sheet. The exact line-up is not advertised in advance.
+The programme grows from the participants. Mark “yes” or “maybe” when the signup form asks whether you might lead something. Closer to the gathering, participants add their ideas to a community-filled workshop sheet. The exact line-up is not advertised in advance.
 
 ## Festival rules
 
@@ -63,9 +63,9 @@ The programme grows from the participants. Mark “yes” or “maybe” when th
 
 ## Payments and signing up {#payments-and-signing-up}
 
-Open Blues {{< event-year >}} is first come, first served: everyone who signs up and pays is in. Open Blues {{< event-year >}} happens if **{{< param threshold >}} people have signed up and paid the €50 Reservation Payment by {{< param goNoGoHuman >}}**. It is confirmed the moment the 40th payment arrives — that can be any time before {{< param goNoGoHuman >}}. If we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, Open Blues {{< event-year >}} does not happen and every Reservation Payment is refunded in full. The live counter is on the [front page](/).
+Open Blues {{< event-year >}} happens when **{{< param threshold >}} Reservation Payments have arrived by {{< param goNoGoHuman >}}**. If fewer than {{< param threshold >}} people commit by then, every €50 Reservation Payment is refunded. The live people count is on the [front page](/).
 
-Work out the cash amount for your stay on the [cost calculator](/cost/), then sign up with {{< signup-link >}}the signup form{{< /signup-link >}}. It asks everything in one go: your name and email, your accommodation for Thursday, Friday and Saturday nights, Sunday night, an optional donation, whether you'll DJ, jam or run a workshop, your travel and lift offer, and how you heard about us — then the transfer of the **€50 Reservation Payment** using the details inside the form, and a tick to say you have emailed us the confirmation. No account and no sign-in. We then email you a confirmation with the exact cash amount to bring, and a link that reopens your signup if you want to change anything.
+Work out your total on the [cost calculator](/cost/), then continue to {{< signup-link >}}the signup form{{< /signup-link >}}. The transfer details are inside the form.
 
 Everything except the €50 Reservation Payment is brought in cash to the venue.
 
@@ -81,10 +81,6 @@ Everything except the €50 Reservation Payment is brought in cash to the venue.
 | Any bed | €50 |
 
 An optional donation of €100, €50 or €20 is welcome on top, and entirely optional. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**. So a tent or the floor, leaving on Sunday, comes to €120 including the €50 Reservation Payment; a place in a double bed with Sunday night added comes to €210.
-
-Nothing you answered is locked in: change any of it yourself, any time, at [openblues.pl/change](/change/). Only three things go by email — the €50 Reservation Payment, your email address, and passing your place to someone else: [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com).
-
-Signups close on {{< param closeHuman >}}.
 
 [Join the festival WhatsApp group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX).
 

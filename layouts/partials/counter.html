@@ -11,20 +11,20 @@
 {{- $status := $c.status | default "open" -}}
 {{- if and (eq $status "open") (ge $paid $threshold) }}{{ $status = "confirmed" }}{{ end -}}
 {{- $year := partial "event-year.html" . -}}
+{{- $remaining := math.Max 0 (sub $threshold $paid) -}}
+{{- $next := add $paid 1 -}}
 {{- $pct := 0 }}{{ if gt $threshold 0 }}{{ $pct = math.Min 100 (div (mul $paid 100) $threshold) }}{{ end -}}
 <div class="counter counter--{{ $status }}" data-counter-status="{{ $status }}" data-counter-paid="{{ $paid }}" data-counter-threshold="{{ $threshold }}">
 {{- if eq $status "cancelled" }}
-  <p class="counter-headline">Open Blues {{ $year }} is not happening.</p>
-  <p class="counter-sub">We did not reach {{ $threshold }} by {{ site.Params.goNoGoHuman }}. Every Reservation Payment is refunded in full.</p>
+  <p class="counter-headline"><strong>Open Blues {{ $year }} isn’t happening.</strong></p>
+  <p class="counter-sub">We didn’t reach {{ $threshold }} people by {{ site.Params.goNoGoHuman }}. Reservation payments will be refunded.</p>
 {{- else if eq $status "confirmed" }}
-  <p class="counter-headline">Confirmed! {{ $paid }} people have paid — Open Blues {{ $year }} is happening.</p>
-  <p class="counter-sub">The {{ $threshold }}th Reservation Payment has arrived, so it is going ahead. You can still sign up.</p>
+  <p class="counter-headline"><strong>Open Blues is happening.</strong> {{ $paid }} people are in.</p>
+  <p class="counter-sub">Come be part of it.</p>
 {{- else }}
-  <p class="counter-headline"><strong>{{ $paid }}</strong> of {{ $threshold }} paid</p>
-  <div class="counter-bar" role="progressbar" aria-label="Paid signups towards the threshold" aria-valuemin="0" aria-valuemax="{{ $threshold }}" aria-valuenow="{{ $paid }}"><span style="width:{{ $pct }}%"></span></div>
-  <p class="counter-sub">Open Blues {{ $year }} happens if {{ $threshold }} people have signed up and paid the €50 Reservation Payment by {{ site.Params.goNoGoHuman }}. If we do not reach {{ $threshold }} by {{ site.Params.goNoGoHuman }}, Open Blues {{ $year }} does not happen and every Reservation Payment is refunded in full.</p>
-{{- end }}
-{{- with $c.updated }}
-  <p class="counter-updated">Counter updated {{ . }}</p>
+  <p class="counter-headline"><strong>{{ $paid }} {{ if eq $paid 1 }}person is{{ else }}people are{{ end }} in.</strong>
+    {{ if eq $remaining 1 }}One more and Open Blues happens.{{ else }}{{ $remaining }} more and Open Blues happens.{{ end }}</p>
+  <div class="counter-bar" role="progressbar" aria-label="People signed up towards the threshold" aria-valuemin="0" aria-valuemax="{{ $threshold }}" aria-valuenow="{{ $paid }}" aria-valuetext="{{ $paid }} {{ if eq $paid 1 }}person is{{ else }}people are{{ end }} in; {{ $remaining }} more needed"><span style="width:{{ $pct }}%"></span></div>
+  <p class="counter-sub">You could be number {{ $next }}.</p>
 {{- end }}
 </div>
