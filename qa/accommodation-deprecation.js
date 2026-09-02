@@ -29,11 +29,8 @@ const forbidden = [
   'openBluesAccommodationRosterV1',
   'gviz/tq',
   'rjQKYM',
-  '1yOjUmU7gq6kY8cAurrMCKs9XVa86Ov-_uOTrTgAw8Bc',
-  // 2026 edition leftovers: the 2026 Room Browser workbook, the 2026 Tally form and the old param.
-  '1Cu3Cgi5qpbeqUIpy87-dbzBTXIWrYuWIIHS5Jp1RSV8',
-  'tally.so/r/68Y72P',
-  'tally.so/r/Ek7V4o',
+  // Retired registration providers and the old config param.
+  'tally.so/r/',
   'registerURL'
 ];
 
@@ -65,12 +62,23 @@ assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="hero"\s*>
 assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="final"\s*>\}\}/g) || []).length, 1);
 assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 18, 'every room card needs one room-link shortcode');
 
+const archive2026 = fs.readFileSync(path.join(root, 'content/2026.md'), 'utf8');
+assert.doesNotMatch(archive2026, /docs\.google\.com\/spreadsheets|room-browser-cta|room-link/i,
+  'the past-edition page must not expose a participant-bearing workbook');
+
 const hugoConfig = fs.readFileSync(path.join(root, 'hugo.toml'), 'utf8');
 for (const param of ['signupURL', 'signupsOpen', 'threshold', 'goNoGoHuman', 'roomBrowserURL', 'roomBrowserInstructionsURL', 'eventStart', 'eventEnd', 'eventDatesHuman']) {
   assert.match(hugoConfig, new RegExp(`^\\s*${param}\\s*=`, 'm'), `hugo.toml must define params.${param}`);
 }
 assert.doesNotMatch(hugoConfig, /^\s*close(?:Date|Human)\s*=/m,
   'the removed signup closing date must not remain in hugo.toml');
+const roomBrowserUrls = ['roomBrowserURL', 'roomBrowserInstructionsURL'].map((param) =>
+  (hugoConfig.match(new RegExp(`^\\s*${param}\\s*=\\s*"([^"]+)"`, 'm')) || [])[1] || ''
+);
+assert.equal(roomBrowserUrls.every((url) => /docs\.google\.com\/spreadsheets\/d\/[^/]+\/edit#gid=\d+$/.test(url)), true,
+  'both live Room Browser URLs must be full, configured spreadsheet-tab URLs');
+const roomBrowserIds = roomBrowserUrls.map((url) => url.match(/\/spreadsheets\/d\/([^/]+)/)[1]);
+assert.equal(new Set(roomBrowserIds).size, 1, 'Room Browser and START HERE must use the same live workbook');
 const participantSources = ['content', 'layouts']
   .flatMap((relative) => filesBelow(path.join(root, relative)))
   .filter((filename) => /\.(md|html|ics)$/i.test(filename))
@@ -80,4 +88,4 @@ assert.doesNotMatch(participantSources, /\b20[2-9]\d-\d\d-\d\d\b|\b20[2-9]\d[01]
 assert.doesNotMatch(participantSources, /\bregist(?:er|ration)\b/i, 'participant-facing copy says sign up/signup, not register/registration');
 assert.doesNotMatch(participantSources, /Open Blues 20\d\d/, 'the edition year must come from the event-year partial/shortcode');
 
-process.stdout.write('PASS: legacy picker runtime, roster protocol, claim form, YAML inventory, 2026 Sheet/Tally links and hard-coded dates are absent from active site sources.\n');
+process.stdout.write('PASS: legacy picker runtime, roster protocol, claim form, YAML inventory, retired Room Browser/Tally links and hard-coded dates are absent from active site sources.\n');

@@ -52,7 +52,7 @@ sitemap:
   </div>
   <ol>
     <li><span>1</span><p><strong>Use one green name cell per person.</strong> Two people sharing a double bed or sofa each use their own row.</p></li>
-    <li><span>2</span><p><strong>Never overwrite somebody else.</strong> Use only a public display name you are happy for other participants to see.</p></li>
+    <li><span>2</span><p><strong>Never overwrite somebody else.</strong> Use a public display name of up to 60 characters that you are happy for other participants to see.</p></li>
     <li><span>3</span><p><strong>Move or cancel yourself.</strong> For a move, take the new place and then clear your old one. To cancel, clear only your name.</p></li>
   </ol>
   <p class="stay-rules__recovery"><strong>Mistakes are recoverable.</strong> Google version history is the audit log. If a collision happens, stop and resolve it in the participant chat or with an organiser.</p>

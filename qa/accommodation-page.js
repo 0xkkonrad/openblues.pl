@@ -294,6 +294,8 @@ async function run() {
         const sheetLinks = await page.locator(`a[href*="${sheetId}"]`).evaluateAll((nodes) => nodes.map((node) => node.href));
         assert.equal(sheetLinks.length, roomBrowserInstructionsUrl ? 21 : 20);
         assert.equal(sheetLinks.every((href) => href.includes(sheetId)), true);
+        const allSpreadsheetLinks = await page.locator('a[href*="docs.google.com/spreadsheets"]').evaluateAll((nodes) => nodes.map((node) => node.href));
+        assert.deepEqual(allSpreadsheetLinks, sheetLinks, 'every spreadsheet link must point to the configured live Room Browser');
         const roomSheetLinks = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => node.href));
         assert.equal(roomSheetLinks.length, 18);
         roomSheetLinks.forEach((href, index) => {
@@ -332,9 +334,10 @@ async function run() {
       const bodyText = await page.locator('body').textContent();
       const bodyHtml = await page.locator('body').innerHTML();
       assert.doesNotMatch(bodyText, /accommodation picker|Tally gives the final confirmation/i);
-      assert.doesNotMatch(bodyHtml, /claim_key|data-roster-|gviz\/tq|rjQKYM|1yOjUmU7/);
+      assert.doesNotMatch(bodyHtml, /claim_key|data-roster-|gviz\/tq|rjQKYM|tally\.so\/r\//);
+      assert.match(bodyText, /public display name of up to 60 characters.*other participants to see/is);
       assert.match(bodyText, /phone.*Sheets app.*read-only/is);
-      assert.doesNotMatch(bodyText, /regist(?:er|ration)|68Y72P|Open Blues 2026/i);
+      assert.doesNotMatch(bodyText, /regist(?:er|ration)|Open Blues 2026/i);
 
       const primaryBox = await page.locator('.stay-primary').boundingBox();
       assert.ok(primaryBox && primaryBox.height >= 44, `primary CTA is shorter than 44px at ${width}px`);

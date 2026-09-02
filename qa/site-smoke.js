@@ -63,7 +63,7 @@ async function check(browser) {
     assert.ok((await page.title()).trim(), `${entryPath} has no title`);
 
     const bodyText = await page.locator('body').textContent();
-    assert.doesNotMatch(bodyText, /\bregist(?:er|ration)\b|68Y72P|Open Blues 2026/i, `${entryPath} still carries 2026 registration copy`);
+    assert.doesNotMatch(bodyText, /\bregist(?:er|ration)\b|tally\.so\/r\/|Open Blues 2026/i, `${entryPath} still carries retired registration copy`);
     if (entryPath === '/') {
       assert.equal(await page.locator('header nav a[href$="spread-the-word/"]').count(), 1, 'primary nav must keep Spread the word');
       assert.equal(await page.locator('header nav a[href$="change/"]').count(), 0, 'Change details must be secondary navigation');
