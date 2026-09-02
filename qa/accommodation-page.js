@@ -53,8 +53,8 @@ const expectedRoomRanges = [
   'A46:E48',
   'A49:E52',
   'A53:E54',
-  'A55:E57',
-  'A58:E61'
+  'A55:E56',
+  'A57:E60'
 ];
 
 const expectedPhotoSlugs = [

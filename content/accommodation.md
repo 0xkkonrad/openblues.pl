@@ -238,7 +238,7 @@ sitemap:
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-6" data-room-id="castle-upstairs-6">
         <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-6-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 6"><picture><source srcset="/images/accommodation/castle-upstairs-6-480.webp 480w, /images/accommodation/castle-upstairs-6-960.webp 960w, /images/accommodation/castle-upstairs-6-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img class="stay-room-card__portrait" src="/images/accommodation/castle-upstairs-6-960.webp" alt="Reference photo of Castle upstairs Room 6, listed with a double bed and a single bed." width="960" height="1706" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 6</h4><span>1 double · 1 single</span>{{< room-link range="A55:E57" label="See Castle upstairs Room 6 live in the Sheet" >}}</div>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 6</h4><span>1 double · 1 single</span>{{< room-link range="A55:E56" label="See Castle upstairs Room 6 live in the Sheet" >}}</div>
       </article>
     </div>
   </section>
@@ -248,7 +248,7 @@ sitemap:
     <div class="stay-room-grid">
       <article class="stay-room-card stay-room-card--missing" id="room-opposite-right-upstairs-new" data-room-id="opposite-right-upstairs-new">
         <div class="stay-room-card__missing" role="img" aria-label="No supplied photo or confirmed map position is available for the new Opposite Right upstairs room"><span aria-hidden="true">⌂</span><strong>No supplied photo</strong><small>Added after the floor plan</small></div>
-        <div class="stay-room-card__body"><p>Opposite Right · upstairs</p><h4>New room</h4><span>4 single beds</span>{{< room-link range="A58:E61" label="See the Opposite Right upstairs new room live in the Sheet" >}}</div>
+        <div class="stay-room-card__body"><p>Opposite Right · upstairs</p><h4>New room</h4><span>4 single beds</span>{{< room-link range="A57:E60" label="See the Opposite Right upstairs new room live in the Sheet" >}}</div>
       </article>
     </div>
   </section>
