@@ -1,0 +1,57 @@
+{
+  "groups": [
+    {
+      "id": "opposite-upstairs",
+      "building": "Opposite",
+      "floor": "Upstairs",
+      "rooms": [
+        { "id": "opposite-upstairs-1", "name": "Room 1", "inventory": "1 single bed", "slug": "opposite-upstairs-1", "width": 960, "height": 540 },
+        { "id": "opposite-upstairs-2", "name": "Room 2", "inventory": "2 single beds", "slug": "opposite-upstairs-2", "width": 960, "height": 540 },
+        { "id": "opposite-upstairs-3", "name": "Room 3", "inventory": "1 single bed · 1 small double bed", "slug": "opposite-upstairs-3", "width": 960, "height": 540 }
+      ]
+    },
+    {
+      "id": "opposite-downstairs",
+      "building": "Opposite",
+      "floor": "Downstairs",
+      "rooms": [
+        { "id": "opposite-downstairs-1", "name": "Room 1", "inventory": "1 double bed", "slug": "opposite-downstairs-1", "width": 960, "height": 540 },
+        { "id": "opposite-downstairs-2", "name": "Room 2", "inventory": "1 double bed · 1 single bed", "slug": "opposite-downstairs-2", "width": 960, "height": 540 }
+      ]
+    },
+    {
+      "id": "castle-downstairs",
+      "building": "Castle",
+      "floor": "Downstairs",
+      "rooms": [
+        { "id": "castle-downstairs-a1", "name": "A1", "inventory": "1 double bed", "slug": "castle-downstairs-a1", "width": 960, "height": 532 },
+        { "id": "castle-downstairs-a2", "name": "A2", "inventory": "1 double bed · 2 single beds", "slug": "castle-downstairs-a2", "width": 960, "height": 540 },
+        { "id": "castle-downstairs-a3", "name": "A3", "inventory": "1 double bed · 1 single sofa · 1 double-size sofa (single occupancy)", "slug": "castle-downstairs-a3", "width": 960, "height": 500 },
+        { "id": "castle-downstairs-b1", "name": "B1", "inventory": "1 double bed", "slug": "castle-downstairs-b1", "width": 960, "height": 540 },
+        { "id": "castle-downstairs-b2", "name": "B2", "inventory": "1 double bed", "slug": "castle-downstairs-b2", "width": 960, "height": 540 },
+        { "id": "castle-downstairs-c1", "name": "C1", "inventory": "1 double bed · 2 single beds", "slug": "castle-downstairs-c", "width": 960, "height": 448 }
+      ]
+    },
+    {
+      "id": "castle-upstairs",
+      "building": "Castle",
+      "floor": "Upstairs",
+      "rooms": [
+        { "id": "castle-upstairs-1", "name": "Room 1", "inventory": "1 double bed · 2 single beds", "slug": "castle-upstairs-1", "width": 960, "height": 572 },
+        { "id": "castle-upstairs-2", "name": "Room 2", "inventory": "1 sofa bed · 1 double bed", "slug": "castle-upstairs-2", "width": 960, "height": 564 },
+        { "id": "castle-upstairs-3", "name": "Room 3", "inventory": "2 single beds", "slug": "castle-upstairs-3", "width": 960, "height": 392 },
+        { "id": "castle-upstairs-4", "name": "Room 4", "inventory": "3 single beds", "slug": "castle-upstairs-4", "width": 960, "height": 486 },
+        { "id": "castle-upstairs-5", "name": "Room 5", "inventory": "1 double bed", "slug": "castle-upstairs-5", "width": 960, "height": 1706, "portrait": true },
+        { "id": "castle-upstairs-6", "name": "Room 6", "inventory": "1 double bed", "slug": "castle-upstairs-6", "width": 960, "height": 1706, "portrait": true }
+      ]
+    },
+    {
+      "id": "opposite-right-upstairs",
+      "building": "Opposite Right",
+      "floor": "Upstairs",
+      "rooms": [
+        { "id": "opposite-right-upstairs-new", "name": "New room", "inventory": "4 single beds", "note": "No supplied photo" }
+      ]
+    }
+  ]
+}

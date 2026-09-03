@@ -1,0 +1,155 @@
+.room-inventory-check-page {
+  padding-top: 1rem;
+}
+
+.inventory-intro {
+  max-width: 58rem;
+  margin: 0 auto clamp(2.5rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 5vw, 4rem);
+  border: 1px solid var(--stay-line);
+  border-radius: 1.5rem;
+  background: var(--stay-paper);
+  box-shadow: var(--stay-shadow);
+}
+
+.inventory-intro h1 {
+  max-width: 11ch;
+  margin-bottom: 1rem;
+  font-size: clamp(3.2rem, 8vw, 6rem);
+  line-height: .9;
+  letter-spacing: -.025em;
+}
+
+.inventory-intro .stay-lede {
+  margin-bottom: 1.5rem;
+}
+
+.inventory-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.inventory-summary li {
+  padding: .55rem .75rem;
+  border: 1px solid var(--stay-line);
+  border-radius: 999px;
+  background: #fff;
+  color: #51483e;
+  font-size: .82rem;
+  font-weight: 900;
+}
+
+.inventory-jumps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .55rem;
+  margin-bottom: 2.25rem;
+}
+
+.inventory-jumps a {
+  padding: .55rem .75rem;
+  border: 1px solid var(--stay-line);
+  border-radius: .55rem;
+  color: var(--stay-ink);
+  background: #fff;
+  font-size: .82rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.inventory-jumps a:hover {
+  border-color: var(--stay-terracotta-dark);
+  color: var(--stay-terracotta-dark);
+}
+
+.inventory-group {
+  scroll-margin-top: 1rem;
+  margin-bottom: clamp(2.5rem, 6vw, 4.5rem);
+}
+
+.inventory-card {
+  align-self: start;
+}
+
+.inventory-group > header h2 {
+  margin-bottom: 0;
+  color: var(--stay-ink);
+  font-size: 2.35rem;
+  line-height: 1;
+}
+
+.inventory-photo {
+  height: auto;
+  aspect-ratio: auto;
+  background: #f1ede6;
+}
+
+.inventory-photo picture {
+  height: auto;
+}
+
+.inventory-photo img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  transform: none;
+}
+
+.inventory-photo:hover img {
+  transform: none;
+}
+
+.inventory-card__body h3 {
+  margin: 0 0 .35rem;
+  font-family: inherit;
+  font-size: 1.25rem;
+  font-weight: 900;
+  line-height: 1.15;
+}
+
+.inventory-card__body > span {
+  margin-bottom: 0;
+  color: #433b33;
+  font-size: .98rem;
+  font-weight: 700;
+}
+
+.inventory-photo-missing {
+  aspect-ratio: 16 / 10;
+}
+
+@media (max-width: 720px) {
+  .inventory-intro {
+    padding: 1.35rem;
+    border-radius: 1rem;
+  }
+
+  .inventory-intro h1 {
+    font-size: clamp(3rem, 15vw, 4.8rem);
+  }
+
+  .inventory-jumps a {
+    flex: 1 1 calc(50% - .55rem);
+    text-align: center;
+  }
+}
+
+@media print {
+  .topbar,
+  .footer,
+  .inventory-jumps {
+    display: none;
+  }
+
+  .inventory-intro {
+    margin-bottom: 12mm;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+  }
+}

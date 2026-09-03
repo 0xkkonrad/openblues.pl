@@ -1,0 +1,45 @@
+{{- $inventory := site.Data.room_inventory_check -}}
+<nav class="inventory-jumps" aria-label="Jump to a room group">
+  {{- range $inventory.groups }}
+  <a href="#inventory-{{ .id }}">{{ .building }} · {{ lower .floor }}</a>
+  {{- end }}
+</nav>
+
+<div class="inventory-groups">
+  {{- range $inventory.groups }}
+  <section class="stay-room-group inventory-group" id="inventory-{{ .id }}" aria-label="{{ .building }} · {{ .floor }}">
+    <header>
+      <p>{{ .building }}</p>
+      <h2 id="inventory-{{ .id }}-title">{{ .floor }}</h2>
+    </header>
+    <div class="stay-room-grid">
+      {{- $building := .building -}}
+      {{- $floor := .floor -}}
+      {{- range .rooms }}
+      {{- $room := . -}}
+      <article class="stay-room-card inventory-card{{ if not .slug }} stay-room-card--missing{{ end }}" data-inventory-room="{{ .id }}" data-inventory-label="{{ .inventory }}">
+        {{- with .slug }}
+        {{- $slug := . -}}
+        <a class="stay-room-card__photo inventory-photo" href="/images/accommodation/{{ $slug }}-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size original photo of {{ $building }} {{ lower $floor }} {{ $room.name }}">
+          <picture>
+            <source srcset="/images/accommodation/{{ $slug }}-480.webp 480w, /images/accommodation/{{ $slug }}-960.webp 960w, /images/accommodation/{{ $slug }}-1440.webp 1440w" sizes="(max-width: 720px) 92vw, (max-width: 960px) 46vw, 30vw">
+            <img{{ if $room.portrait }} class="inventory-photo--portrait"{{ end }} src="/images/accommodation/{{ $slug }}-960.webp" alt="Original reference photo of {{ $building }} {{ lower $floor }} {{ $room.name }}." width="{{ $room.width }}" height="{{ $room.height }}" loading="lazy">
+          </picture>
+        </a>
+        {{- else }}
+        <div class="stay-room-card__missing inventory-photo-missing" role="img" aria-label="No supplied photo for {{ $building }} {{ lower $floor }} {{ .name }}">
+          <span aria-hidden="true">⌂</span>
+          <strong>{{ .note }}</strong>
+        </div>
+        {{- end }}
+        <div class="stay-room-card__body inventory-card__body">
+          <p>{{ $building }} · {{ lower $floor }}</p>
+          <h3>{{ .name }}</h3>
+          <span>{{ .inventory }}</span>
+        </div>
+      </article>
+      {{- end }}
+    </div>
+  </section>
+  {{- end }}
+</div>
