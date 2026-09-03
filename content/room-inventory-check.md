@@ -16,11 +16,10 @@ sitemap:
 <section class="inventory-intro" aria-labelledby="inventory-title">
   <p class="stay-eyebrow">Open Blues {{< event-year >}} · venue confirmation</p>
   <h1 id="inventory-title">Room inventory check</h1>
-  <p class="stay-lede">Please confirm that each room name and sleeping-surface list matches the physical room. These are the unchanged photos already used on the Open Blues website; the labels sit underneath rather than inside the images.</p>
+  <p class="stay-lede">Please confirm that each room name and sleeping-surface list matches the physical room. These are the supplied reference photos used on the Open Blues website; the labels sit underneath rather than inside the images.</p>
   <ul class="inventory-summary" aria-label="Inventory summary">
-    <li>17 supplied room photos</li>
-    <li>1 room without a supplied photo</li>
-    <li>50 sleeping places</li>
+    <li>19 supplied room photos</li>
+    <li>53 sleeping places</li>
     <li>No mattresses</li>
   </ul>
 </section>

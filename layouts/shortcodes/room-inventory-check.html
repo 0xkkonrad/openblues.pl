@@ -17,12 +17,13 @@
       {{- $floor := .floor -}}
       {{- range .rooms }}
       {{- $room := . -}}
+      {{- $maxWidth := default 1440 $room.maxWidth -}}
       <article class="stay-room-card inventory-card{{ if not .slug }} stay-room-card--missing{{ end }}" data-inventory-room="{{ .id }}" data-inventory-label="{{ .inventory }}">
         {{- with .slug }}
         {{- $slug := . -}}
         <a class="stay-room-card__photo inventory-photo" href="/images/accommodation/{{ $slug }}-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size original photo of {{ $building }} {{ lower $floor }} {{ $room.name }}">
           <picture>
-            <source srcset="/images/accommodation/{{ $slug }}-480.webp 480w, /images/accommodation/{{ $slug }}-960.webp 960w, /images/accommodation/{{ $slug }}-1440.webp 1440w" sizes="(max-width: 720px) 92vw, (max-width: 960px) 46vw, 30vw">
+            <source srcset="/images/accommodation/{{ $slug }}-480.webp 480w, /images/accommodation/{{ $slug }}-960.webp 960w, /images/accommodation/{{ $slug }}-1440.webp {{ $maxWidth }}w" sizes="(max-width: 720px) 92vw, (max-width: 960px) 46vw, 30vw">
             <img{{ if $room.portrait }} class="inventory-photo--portrait"{{ end }} src="/images/accommodation/{{ $slug }}-960.webp" alt="Original reference photo of {{ $building }} {{ lower $floor }} {{ $room.name }}." width="{{ $room.width }}" height="{{ $room.height }}" loading="lazy">
           </picture>
         </a>

@@ -16,10 +16,10 @@ const maps = [
     labels: ['Kitchen', 'Hall', 'Courtyard', 'ENTRANCE', 'Wing A', 'Wing B', 'Wing C', 'WC', '2 SINGLES', 'DOUBLE-SIZE SOFA', 'SINGLE OCCUPANCY']
   },
   {
-    slug: 'castle-upstairs', width: 1600, height: 850, rooms: 6, places: 17,
+    slug: 'castle-upstairs', width: 1600, height: 850, rooms: 6, places: 20,
     roomCodeFont: 32, secondaryFont: 26,
     roomIds: ['castle-upstairs-1', 'castle-upstairs-2', 'castle-upstairs-3', 'castle-upstairs-4', 'castle-upstairs-5', 'castle-upstairs-6'],
-    labels: ['Storage', 'Balcony', 'WC +', 'bath', 'shower', 'Kitchen', 'Dining', 'Stairs', 'Open space', 'Ballroom', 'Table football', 'Ping pong', 'Hall', '2 SINGLES', '3 SINGLES', '1 DOUBLE']
+    labels: ['Storage', 'Balcony', 'WC +', 'bath', 'shower', 'Kitchen', 'Dining', 'Stairs', 'Open space', 'Ballroom', 'Table football', 'Ping pong', 'Hall', '3 SINGLES', '5 SINGLES', '1 DOUBLE']
   },
   {
     slug: 'opposite-downstairs', width: 1000, height: 440, rooms: 2, places: 5,
@@ -31,7 +31,7 @@ const maps = [
     slug: 'opposite-upstairs', width: 1000, height: 650, rooms: 3, places: 6,
     roomCodeFont: 34, secondaryFont: 20,
     roomIds: ['opposite-upstairs-3', 'opposite-upstairs-2', 'opposite-upstairs-1'],
-    labels: ['Room 3', 'Room 2', 'Room 1', 'Kitchen', 'Stairs', 'Bathroom', 'ENTRANCE', 'SMALL DOUBLE']
+    labels: ['Room 3', 'Room 2', 'Room 1', 'Kitchen', 'Stairs', 'Bathroom', 'ENTRANCE', '1 SINGLE', 'SMALL DOUBLE', 'OPPOSITE LEFT · UPSTAIRS']
   }
 ];
 
@@ -125,17 +125,24 @@ function staticChecks() {
   assert.equal(new Set(allDocumentIds).size, allDocumentIds.length, 'inline maps would introduce duplicate document IDs');
   assert.equal(new Set(allAccessibleLabels).size, 17, 'room-map links need unique accessible labels');
   assert.equal(new Set(allScopeClasses).size, maps.length, 'each inline map needs a unique CSS scope class');
-  assert.equal(allRoomIds.includes('opposite-right-upstairs-new'), false, 'unconfirmed new room must stay unmapped');
-  assert.equal(maps.reduce((sum, map) => sum + map.places, 0), 46);
-  assert.equal(46 + 4, 50, 'mapped plus explicitly unmapped room inventory changed');
+  assert.equal(allRoomIds.includes('opposite-right-upstairs-1'), false, 'Opposite Right upstairs Room 1 must stay unmapped');
+  assert.equal(allRoomIds.includes('opposite-right-upstairs-2'), false, 'Opposite Right upstairs Room 2 must stay unmapped');
+  assert.equal(maps.reduce((sum, map) => sum + map.places, 0), 49);
+  assert.equal(49 + 4, 53, 'mapped plus explicitly unmapped room inventory changed');
 
   const manifest = JSON.parse(fs.readFileSync(path.join(siteRoot, 'static', 'images', 'accommodation', 'manifest.json'), 'utf8'));
-  assert.equal(manifest.version, 5);
+  assert.equal(manifest.version, 6);
   assert.deepEqual(manifest.venueMap.panels, maps.map(({ slug, width, height, rooms, places }) => ({
     src: `/images/accommodation/map-${slug}.svg`, width, height, rooms, places
   })));
   assert.match(manifest.venueMap.redraw, /Door positions, scale and exact furniture placement are intentionally omitted/);
   assert.match(manifest.venueMap.interaction, /17 mapped room regions links? to (?:its|their) matching photo card/i);
+  for (const roomNumber of [1, 2]) {
+    const roomImage = Object.values(manifest.images).find(({ slug }) => slug === `opposite-right-upstairs-${roomNumber}`);
+    assert.ok(roomImage, `manifest is missing Opposite Right upstairs Room ${roomNumber}`);
+    assert.deepEqual(roomImage.source, { width: 1344, height: 756 });
+    assert.deepEqual(roomImage.variants.map(({ width, height }) => [width, height]), [[480, 270], [960, 540], [1344, 756]]);
+  }
 
   const content = fs.readFileSync(path.join(siteRoot, 'content', 'accommodation.md'), 'utf8');
   const inlineMapSlugs = [...content.matchAll(/\{\{<\s*accommodation-map\s+slug=["']([^"']+)["']\s*>\}\}/g)].map((match) => match[1]);
@@ -143,12 +150,12 @@ function staticChecks() {
   assert.equal((content.match(/map-[a-z-]+\.svg/g) || []).length, 8, 'each standalone SVG should remain linked for open and download');
   assert.doesNotMatch(content, /map-(?:castle|opposite)-[a-z-]+\.webp/);
   assert.match(content, /Tap or click a room to jump to its photo and details/i);
-  assert.equal((content.match(/id=["']room-[^"']+["']\s+data-room-id=/g) || []).length, 18, 'every room card needs a stable map target ID');
+  assert.equal((content.match(/id=["']room-[^"']+["']\s+data-room-id=/g) || []).length, 19, 'every room card needs a stable map target ID');
   assert.match(content, /Layout is approximate: no scale or confirmed door and furniture positions/i);
   assert.match(content, /colou?rs and symbols[^<]*types?[^<]*(?:not|never)[^<]*current claims/i, 'map copy must explain that colour and symbols encode type, not current claims');
 
   const roomSummaries = [...content.matchAll(/<div class=["']stay-room-card__body["']>[\s\S]*?<span>([^<]+)<\/span>/g)].map((match) => match[1].trim());
-  assert.equal(roomSummaries.length, 18, 'every room card needs one plain sleeping-surface summary');
+  assert.equal(roomSummaries.length, 19, 'every room card needs one plain sleeping-surface summary');
   roomSummaries.forEach((summary) => {
     assert.doesNotMatch(summary, redundantCapacityCopy, `room summary repeats capacity: ${summary}`);
     assert.doesNotMatch(summary, /\b(?:free|taken|held|not[- ]open|available|availability|reserved|unavailable)\b/i, `room summary leaks mutable availability: ${summary}`);
@@ -158,9 +165,14 @@ function staticChecks() {
   assert.match(a3Summary, /double-size sofa[^<]*single occupancy/i, 'A3 must preserve its non-obvious single-occupancy sofa exception');
   assert.match(content, /data-room-id=["']castle-downstairs-a2["'][\s\S]*?<span>1 double · 2 singles<\/span>[\s\S]*?range=["']A20:E23["']/i);
   assert.match(content, /data-room-id=["']castle-downstairs-b1["'][\s\S]*?<span>1 double bed<\/span>[\s\S]*?range=["']A28:E29["']/i);
-  assert.match(content, /data-room-id=["']castle-upstairs-3["'][\s\S]*?<span>2 single beds<\/span>[\s\S]*?range=["']A46:E48["']/i);
-  assert.match(content, /data-room-id=["']castle-upstairs-4["'][\s\S]*?<span>3 single beds<\/span>[\s\S]*?range=["']A49:E51["']/i);
-  assert.match(content, /data-room-id=["']castle-upstairs-6["'][\s\S]*?<span>1 double bed<\/span>[\s\S]*?range=["']A55:E56["']/i);
+  assert.match(content, /data-room-id=["']opposite-upstairs-1["'][\s\S]*?<span>1 small double bed<\/span>[\s\S]*?range=["']A5:E6["']/i);
+  assert.match(content, /data-room-id=["']opposite-upstairs-2["'][\s\S]*?<span>1 single bed<\/span>[\s\S]*?range=["']A7:E7["']/i);
+  assert.match(content, /data-room-id=["']castle-upstairs-3["'][\s\S]*?<span>3 single beds<\/span>[\s\S]*?range=["']A46:E48["']/i);
+  assert.match(content, /data-room-id=["']castle-upstairs-4["'][\s\S]*?<span>5 single beds<\/span>[\s\S]*?range=["']A49:E53["']/i);
+  assert.match(content, /data-room-id=["']castle-upstairs-5["'][\s\S]*?<span>1 double bed<\/span>[\s\S]*?range=["']A54:E55["']/i);
+  assert.match(content, /data-room-id=["']castle-upstairs-6["'][\s\S]*?<span>1 double bed<\/span>[\s\S]*?range=["']A56:E57["']/i);
+  assert.match(content, /data-room-id=["']opposite-right-upstairs-1["'][\s\S]*?<span>2 single beds<\/span>[\s\S]*?range=["']A58:E59["']/i);
+  assert.match(content, /data-room-id=["']opposite-right-upstairs-2["'][\s\S]*?<span>2 single beds<\/span>[\s\S]*?range=["']A60:E61["']/i);
   assert.match(content, /does not confirm a downstairs bathroom/i);
   assert.match(content, /kitchen[^<]*above (?:the )?entrance and stairs[^<]*bathroom[^<]*(?:right|image-right)/i);
   assert.match(content, /recreation(?: area)? sits above (?:the )?shower\/WC and hall/i);

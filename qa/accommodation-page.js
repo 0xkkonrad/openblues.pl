@@ -33,12 +33,13 @@ const expectedRooms = [
   'castle-upstairs-4',
   'castle-upstairs-5',
   'castle-upstairs-6',
-  'opposite-right-upstairs-new'
+  'opposite-right-upstairs-1',
+  'opposite-right-upstairs-2'
 ];
 
 const expectedRoomRanges = [
-  'A5:E5',
-  'A6:E7',
+  'A5:E6',
+  'A7:E7',
   'A8:E10',
   'A11:E12',
   'A13:E15',
@@ -51,10 +52,11 @@ const expectedRoomRanges = [
   'A38:E41',
   'A42:E45',
   'A46:E48',
-  'A49:E51',
-  'A53:E54',
-  'A55:E56',
-  'A57:E60'
+  'A49:E53',
+  'A54:E55',
+  'A56:E57',
+  'A58:E59',
+  'A60:E61'
 ];
 
 const expectedPhotoSlugs = [
@@ -74,7 +76,9 @@ const expectedPhotoSlugs = [
   'castle-upstairs-3',
   'castle-upstairs-4',
   'castle-upstairs-5',
-  'castle-upstairs-6'
+  'castle-upstairs-6',
+  'opposite-right-upstairs-1',
+  'opposite-right-upstairs-2'
 ];
 
 const expectedMapPaths = [
@@ -181,13 +185,12 @@ async function run() {
 
       const roomIds = await page.locator('[data-room-id]').evaluateAll((nodes) => nodes.map((node) => node.dataset.roomId));
       assert.deepEqual(roomIds, expectedRooms);
-      assert.equal(new Set(roomIds).size, 18);
-      assert.equal(await page.locator('.stay-room-card__photo img').count(), 17);
-      assert.equal(await page.locator('.stay-room-card--missing').count(), 1);
-      assert.match(await page.locator('.stay-room-card--missing').textContent(), /No supplied photo/);
+      assert.equal(new Set(roomIds).size, 19);
+      assert.equal(await page.locator('.stay-room-card__photo img').count(), 19);
+      assert.equal(await page.locator('.stay-room-card--missing').count(), 0);
 
       const roomSummaries = await page.locator('.stay-room-card__body > span').allTextContents();
-      assert.equal(roomSummaries.length, 18, 'every room card needs one sleeping-surface summary');
+      assert.equal(roomSummaries.length, 19, 'every room card needs one sleeping-surface summary');
       roomSummaries.forEach((summary) => {
         assert.doesNotMatch(summary, redundantCapacityCopy, `room summary repeats capacity: ${summary}`);
         assert.doesNotMatch(summary, mutableAvailabilityCopy, `room summary leaks mutable availability: ${summary}`);
@@ -200,9 +203,13 @@ async function run() {
       assert.equal(await page.locator('[data-room-id="castle-downstairs-a1"] .stay-room-card__body > span').textContent(), '1 double bed');
       assert.equal(await page.locator('[data-room-id="castle-downstairs-a2"] .stay-room-card__body > span').textContent(), '1 double · 2 singles');
       assert.equal(await page.locator('[data-room-id="castle-downstairs-b1"] .stay-room-card__body > span').textContent(), '1 double bed');
-      assert.equal(await page.locator('[data-room-id="castle-upstairs-3"] .stay-room-card__body > span').textContent(), '2 single beds');
-      assert.equal(await page.locator('[data-room-id="castle-upstairs-4"] .stay-room-card__body > span').textContent(), '3 single beds');
+      assert.equal(await page.locator('[data-room-id="opposite-upstairs-1"] .stay-room-card__body > span').textContent(), '1 small double bed');
+      assert.equal(await page.locator('[data-room-id="opposite-upstairs-2"] .stay-room-card__body > span').textContent(), '1 single bed');
+      assert.equal(await page.locator('[data-room-id="castle-upstairs-3"] .stay-room-card__body > span').textContent(), '3 single beds');
+      assert.equal(await page.locator('[data-room-id="castle-upstairs-4"] .stay-room-card__body > span').textContent(), '5 single beds');
       assert.equal(await page.locator('[data-room-id="castle-upstairs-6"] .stay-room-card__body > span').textContent(), '1 double bed');
+      assert.equal(await page.locator('[data-room-id="opposite-right-upstairs-1"] .stay-room-card__body > span').textContent(), '2 single beds');
+      assert.equal(await page.locator('[data-room-id="opposite-right-upstairs-2"] .stay-room-card__body > span').textContent(), '2 single beds');
 
       const correctedPhotoAlts = await page.locator([
         '[data-room-id="castle-downstairs-a2"] img',
@@ -214,8 +221,8 @@ async function run() {
       assert.deepEqual(correctedPhotoAlts, [
         'Reference photo of Castle downstairs A2, listed with one double bed and two single beds.',
         'Reference photo of Castle downstairs B1, listed with one double bed.',
-        'Reference photo of Castle upstairs Room 3, listed with two single beds.',
-        'Reference photo of Castle upstairs Room 4, listed with three single beds.',
+        'Reference photo of Castle upstairs Room 3, listed with three single beds.',
+        'Reference photo of Castle upstairs Room 4, listed with five single beds.',
         'Reference photo of Castle upstairs Room 6, listed with one double bed.'
       ]);
 
@@ -296,6 +303,12 @@ async function run() {
         fullPhotoLinks,
         expectedPhotoSlugs.map((slug) => `/images/accommodation/${slug}-1440.webp`)
       );
+      const oppositeRightSrcsets = await page.locator('[data-room-id^="opposite-right-upstairs-"] source').evaluateAll((nodes) => nodes.map((node) => node.getAttribute('srcset')));
+      assert.equal(oppositeRightSrcsets.length, 2);
+      oppositeRightSrcsets.forEach((srcset, index) => {
+        assert.match(srcset, new RegExp(`opposite-right-upstairs-${index + 1}-480\\.webp 480w, .*opposite-right-upstairs-${index + 1}-960\\.webp 960w, .*opposite-right-upstairs-${index + 1}-1440\\.webp 1344w$`));
+        assert.doesNotMatch(srcset, /1440\.webp 1440w/);
+      });
 
       if (roomBrowserUrl) {
         const primaryHref = await page.locator('.stay-primary').getAttribute('href');
@@ -309,12 +322,12 @@ async function run() {
         assert.equal(await page.locator('.stay-actions a').count(), 1);
 
         const sheetLinks = await page.locator(`a[href*="${sheetId}"]`).evaluateAll((nodes) => nodes.map((node) => node.href));
-        assert.equal(sheetLinks.length, roomBrowserInstructionsUrl ? 21 : 20);
+        assert.equal(sheetLinks.length, roomBrowserInstructionsUrl ? 22 : 21);
         assert.equal(sheetLinks.every((href) => href.includes(sheetId)), true);
         const allSpreadsheetLinks = await page.locator('a[href*="docs.google.com/spreadsheets"]').evaluateAll((nodes) => nodes.map((node) => node.href));
         assert.deepEqual(allSpreadsheetLinks, sheetLinks, 'every spreadsheet link must point to the configured live Room Browser');
         const roomSheetLinks = await page.locator('.stay-room-card__body a').evaluateAll((nodes) => nodes.map((node) => node.href));
-        assert.equal(roomSheetLinks.length, 18);
+        assert.equal(roomSheetLinks.length, 19);
         roomSheetLinks.forEach((href, index) => {
           const fragment = new URLSearchParams(new URL(href).hash.slice(1));
           assert.equal(fragment.get('gid'), roomBrowserGid);
@@ -324,7 +337,7 @@ async function run() {
           label: node.getAttribute('aria-label'),
           height: node.getBoundingClientRect().height
         })));
-        assert.equal(new Set(roomLinkA11y.map(({ label }) => label)).size, 18);
+        assert.equal(new Set(roomLinkA11y.map(({ label }) => label)).size, 19);
         assert.equal(roomLinkA11y.every(({ label }) => /availability in the Room Browser$/.test(label || '')), true);
         assert.equal(roomLinkA11y.every(({ height }) => height >= 44), true, `room availability link shorter than 44px at ${width}px`);
       } else {
@@ -337,7 +350,7 @@ async function run() {
         assert.equal(await page.locator('.stay-room-card__body a').count(), 0);
         assert.equal(await page.locator('[data-room-browser="closed"]').count(), 2);
         assert.equal(await page.locator('.stay-final__actions .stay-closed-note').count(), 1);
-        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*chose a bed.*see available places.*choose how their name appears.*claim one/s);
+        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*Claim.*FREE single.*REQUEST by email.*completely FREE double or small double.*both people have signed up/s);
         assert.equal(await page.getByRole('link', { name: /Read the Room Browser instructions first/ }).count(), 0);
       }
       const targetBlankWithoutSafety = await page.locator('a[target="_blank"]').evaluateAll((nodes) => nodes
@@ -353,14 +366,19 @@ async function run() {
       assert.doesNotMatch(bodyText, /accommodation picker|Tally gives the final confirmation/i);
       assert.doesNotMatch(bodyHtml, /claim_key|data-roster-|gviz\/tq|rjQKYM|tally\.so\/r\//);
       assert.match(bodyText, /public, view-only list of sleeping places and the display names shown for claimed places/is);
-      assert.match(bodyText, /full name you used to sign up for private matching/is);
-      assert.match(bodyText, /public display-name field is optional.*leave it blank to show (?:the first name from|your signup first name).*enter any nickname or anonymous label/is);
-      assert.match(bodyText, /everyone can see the resulting display name/is);
+      assert.match(bodyText, /full name you used to sign up.*private matching/is);
+      assert.match(bodyText, /public display names are optional.*leave them blank to show signup first names.*enter nicknames or anonymous labels/is);
+      assert.match(bodyText, /display names ultimately shown in the Room Browser are public/is);
       assert.match(bodyText, /row showing\s+FREE\s+with a Claim link is available/is);
       assert.match(bodyText, /latest submission wins/is);
+      assert.match(bodyText, /single beds? are self-service.*Claim.*FREE single/is);
+      assert.match(bodyText, /double or small[- ]double.*one pair.*both (?:people|sleepers).*signed up/is);
+      assert.match(bodyText, /single-bed Claim links open a short Google Form.*REQUEST links open an email/is);
+      assert.match(bodyText, /both of its rows show\s+FREE.*REQUEST.*second half.*FREE.*no link/is);
+      assert.match(bodyText, /original supplied image and PDF retain older room labels and booking instructions/is);
       assert.doesNotMatch(bodyText, /\bTAKEN\b|Participant names never appear|Only the committee can see names/);
       assert.doesNotMatch(bodyText, /green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i);
-      assert.doesNotMatch(bodyText, /regist(?:er|ration)|Open Blues 2026/i);
+      assert.doesNotMatch(bodyText, /Open Blues 2026/i);
 
       const primaryBox = await page.locator('.stay-primary').boundingBox();
       assert.ok(primaryBox && primaryBox.height >= 44, `primary CTA is shorter than 44px at ${width}px`);
@@ -390,7 +408,7 @@ async function run() {
     const noScriptPage = await noScriptContext.newPage();
     const response = await noScriptPage.goto(pageUrl, { waitUntil: 'networkidle' });
     assert.ok(response && response.ok());
-    assert.equal(await noScriptPage.locator('[data-room-id]').count(), 18);
+    assert.equal(await noScriptPage.locator('[data-room-id]').count(), 19);
     assert.equal(await noScriptPage.locator('.stay-map-panel__scroll > svg.stay-map-art').count(), 4);
     const noScriptMapLinks = await noScriptPage.locator('svg.stay-map-art a[data-room]').evaluateAll((nodes) => nodes.map((node) => {
       const href = node.getAttribute('href');

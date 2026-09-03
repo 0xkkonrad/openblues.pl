@@ -16,12 +16,12 @@ sitemap:
   <div class="stay-hero__copy">
     <p class="stay-eyebrow">Open Blues {{< event-year >}} · sleeping places</p>
     <h1 id="stay-title">See the rooms.<br>Claim an available place.</h1>
-    <p class="stay-lede">Photos and floor plans live here. The Room Browser is a public, view-only list of sleeping places and the display names shown for claimed places. Find an available row, click <strong>Claim</strong>, and give the full name you used to sign up for private matching. The public display-name field is optional: leave it blank to show your signup first name, or enter any nickname or anonymous label.</p>
+    <p class="stay-lede">Photos and floor plans live here. The Room Browser is a public, view-only list of sleeping places and the display names shown for claimed places. Single beds are self-service: after signing up, use <strong>Claim</strong> beside a FREE single. A double or small double can be requested as one pair only when both places are FREE and both sleepers have signed up: use its <strong>REQUEST</strong> email link and include both signup full names. Public display names are optional: leave them blank to show signup first names, or enter nicknames or anonymous labels.</p>
     <div class="stay-actions">
       {{< room-browser-cta variant="hero" >}}
     </div>
     <a class="stay-skip" href="#room-guide">Browse photos first <span aria-hidden="true">↓</span></a>
-    <p class="stay-device-note">Claim links open a short Google Form. The Room Browser itself stays view-only.</p>
+    <p class="stay-device-note">Single-bed Claim links open a short Google Form; two-person-bed REQUEST links open an email. The Room Browser itself stays view-only.</p>
   </div>
   <div class="stay-hero__mosaic" aria-hidden="true">
     <img class="stay-hero__main" src="/images/accommodation/ballroom-960.webp" srcset="/images/accommodation/ballroom-480.webp 480w, /images/accommodation/ballroom-960.webp 960w, /images/accommodation/ballroom-1440.webp 1440w" sizes="(max-width: 760px) 92vw, 42vw" alt="" width="960" height="540" fetchpriority="high">
@@ -41,7 +41,7 @@ sitemap:
     <span class="stay-authority__number" aria-hidden="true">02</span>
     <p class="stay-eyebrow">Claim there</p>
     <h2>The Room Browser</h2>
-    <p>The Room Browser is the public place list. A row showing <strong>FREE</strong> with a Claim link is available; a displayed name means that place is claimed.</p>
+    <p>The Room Browser is the public place list. A single-bed row showing <strong>FREE</strong> with a Claim link is available to claim. A double or small-double bed is available to request only when both of its rows show <strong>FREE</strong>; use the <strong>REQUEST</strong> email link on the first row. The second half of an empty pair also says FREE, but has no link. A displayed name means that place is claimed.</p>
   </div>
 </section>
 
@@ -51,9 +51,9 @@ sitemap:
     <h2 id="rules-title">Three steps</h2>
   </div>
   <ol>
-    <li><span>1</span><p><strong>Choose one available place per person.</strong> Click Claim on that row and give the same full name as in your signup. That full name stays private and lets the committee match your claim.</p></li>
-    <li><span>2</span><p><strong>Choose how your name appears.</strong> The public display-name field is optional. Leave it blank to show the first name from your signup, or enter any nickname or anonymous label. The form makes clear that everyone can see the resulting display name in the Room Browser.</p></li>
-    <li><span>3</span><p><strong>The latest submission wins.</strong> To move, claim a different available place. Your later answer replaces your earlier one; do not submit a row that already shows somebody else's display name.</p></li>
+    <li><span>1</span><p><strong>Claim a single for yourself, or request a two-person bed after both of you have signed up.</strong> Use Claim for an available single with one signup full name. For a double or small double, wait until both rows are FREE, then use REQUEST to email the full names of both people. Full names stay private and let the committee match the request.</p></li>
+    <li><span>2</span><p><strong>Choose how your name appears.</strong> Public display names are optional: leave them blank to show signup first names, or enter nicknames or anonymous labels. Any display names ultimately shown in the Room Browser are public.</p></li>
+    <li><span>3</span><p><strong>For singles, the latest submission wins.</strong> To move between singles, claim a different available single; your later form answer replaces your earlier one. To move a pair, use REQUEST to email the committee. Do not use an option that already shows somebody else's display name.</p></li>
   </ol>
   <p class="stay-rules__recovery"><strong>Need to release a place without choosing another?</strong> Email <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a>. If two claims ever collide, the committee will sort it out with the people involved.</p>
 </section>
@@ -65,11 +65,11 @@ sitemap:
       <h2 id="map-title">Find your bearings</h2>
     </div>
     <div class="stay-map__links">
-      <a href="/images/accommodation/venue-map.webp" target="_blank" rel="noopener noreferrer">Compare the supplied map</a>
-      <a href="/files/open-blues-venue-map.pdf">Download source PDF</a>
+      <a href="/images/accommodation/venue-map.webp" target="_blank" rel="noopener noreferrer">View original supplied map (older labels)</a>
+      <a href="/files/open-blues-venue-map.pdf">Download original source PDF (older labels)</a>
     </div>
   </div>
-  <p class="stay-map__intro">Retraced from the supplied Sheet map. Layout is approximate: no scale or confirmed door and furniture positions. Orange marks beds; green marks sofas and shared rooms. Colours and symbols show stable room and sleeping-surface types, never current claims or exact placement. Current claims and public display names stay in the Room Browser; the full names used for matching stay private with the committee. Tower and Barn are orientation only; the new Opposite Right room is not on the supplied plan.</p>
+  <p class="stay-map__intro">Retraced from the supplied Sheet map. Layout is approximate: no scale or confirmed door and furniture positions. Orange marks beds; green marks sofas and shared rooms. Colours and symbols show stable room and sleeping-surface types, never current claims or exact placement. Current claims and public display names stay in the Room Browser; the full names used for matching stay private with the committee. Tower and Barn are orientation only; the two Opposite Right upstairs rooms are not on the supplied plan. The original supplied image and PDF retain older room labels and booking instructions; use this page and the Room Browser for the current names and rules.</p>
   <p class="stay-map__how" id="map-instructions"><strong>Rooms open their photos.</strong> Tap or click a room to jump to its photo and details. On a narrow screen, swipe sideways; with a keyboard, Tab through rooms and use the arrow keys to pan.</p>
   <ul class="stay-map__legend" aria-label="Map legend">
     <li><span class="legend-room" aria-hidden="true"></span>Sleeping room</li>
@@ -109,19 +109,19 @@ sitemap:
       <p class="stay-map-panel__actions"><a href="/images/accommodation/map-opposite-downstairs.svg" target="_blank" rel="noopener noreferrer">Open Opposite downstairs full-size</a><a href="/images/accommodation/map-opposite-downstairs.svg" download>Download Opposite downstairs SVG</a></p>
     </details>
     <details class="stay-map-panel" id="map-opposite-upstairs" open>
-      <summary><span>Opposite · upstairs</span><small>Rooms 1–3</small></summary>
+      <summary><span>Opposite Left · upstairs</span><small>Rooms 1–3</small></summary>
       <p class="stay-map-panel__swipe" aria-hidden="true">Zoomed for readable type · swipe / scroll sideways when needed <span>→</span></p>
-      <div class="stay-map-panel__scroll" tabindex="0" role="region" aria-label="Scrollable Opposite upstairs floor plan" aria-describedby="map-instructions">
+      <div class="stay-map-panel__scroll" tabindex="0" role="region" aria-label="Scrollable Opposite Left upstairs floor plan" aria-describedby="map-instructions">
         {{< accommodation-map slug="opposite-upstairs" >}}
       </div>
       <p class="stay-map-panel__description">Rooms run image-left to image-right as 3, 2, 1. Below Room 1, the kitchen is directly above the entrance and stairs; the bathroom is to their right.</p>
-      <p class="stay-map-panel__actions"><a href="/images/accommodation/map-opposite-upstairs.svg" target="_blank" rel="noopener noreferrer">Open Opposite upstairs full-size</a><a href="/images/accommodation/map-opposite-upstairs.svg" download>Download Opposite upstairs SVG</a></p>
+      <p class="stay-map-panel__actions"><a href="/images/accommodation/map-opposite-upstairs.svg" target="_blank" rel="noopener noreferrer">Open Opposite Left upstairs full-size</a><a href="/images/accommodation/map-opposite-upstairs.svg" download>Download Opposite Left upstairs SVG</a></p>
     </details>
   </div>
 
   <aside class="stay-unmapped">
     <span aria-hidden="true">⌂</span>
-    <div><strong>Opposite Right · upstairs · new room</strong><p>Four single beds. This room was added after the supplied floor plan and has no confirmed map position or photo.</p></div>
+    <div><strong>Opposite Right · upstairs · Rooms 1–2</strong><p>Two adjoining rooms with two single beds each. Both rooms have supplied photos, but neither has a confirmed position on the floor plan.</p></div>
   </aside>
 </section>
 
@@ -129,38 +129,38 @@ sitemap:
   <div class="stay-section-heading stay-section-heading--split">
     <div>
       <p class="stay-eyebrow">Static room field guide</p>
-      <h2 id="room-guide-title">Browse all 18 rooms</h2>
+      <h2 id="room-guide-title">Browse all 19 rooms</h2>
     </div>
     <p>Photos are references and setups may change. Current claims and public display names are shown only in the Room Browser.</p>
   </div>
   <nav class="stay-jumps" aria-label="Jump to a room group">
-    <a href="#opposite-upstairs">Opposite upstairs</a>
+    <a href="#opposite-upstairs">Opposite Left upstairs</a>
     <a href="#opposite-downstairs">Opposite downstairs</a>
     <a href="#castle-downstairs">Castle downstairs</a>
     <a href="#castle-upstairs">Castle upstairs</a>
-    <a href="#opposite-right">New room</a>
+    <a href="#opposite-right">Opposite Right upstairs</a>
   </nav>
 
   <section class="stay-room-group" id="opposite-upstairs" aria-labelledby="opposite-upstairs-title">
-    <header><p>Opposite building</p><h3 id="opposite-upstairs-title">Upstairs</h3></header>
+    <header><p>Opposite Left</p><h3 id="opposite-upstairs-title">Upstairs</h3></header>
     <div class="stay-room-grid">
       <article class="stay-room-card" id="room-opposite-upstairs-1" data-room-id="opposite-upstairs-1">
-        <a class="stay-room-card__photo" href="/images/accommodation/opposite-upstairs-1-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite upstairs Room 1">
-          <picture><source srcset="/images/accommodation/opposite-upstairs-1-480.webp 480w, /images/accommodation/opposite-upstairs-1-960.webp 960w, /images/accommodation/opposite-upstairs-1-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-upstairs-1-960.webp" alt="Reference photo of Opposite upstairs Room 1, listed with one single bed." width="960" height="540" loading="lazy"></picture>
+        <a class="stay-room-card__photo" href="/images/accommodation/opposite-upstairs-1-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite Left upstairs Room 1">
+          <picture><source srcset="/images/accommodation/opposite-upstairs-1-480.webp 480w, /images/accommodation/opposite-upstairs-1-960.webp 960w, /images/accommodation/opposite-upstairs-1-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-upstairs-1-960.webp" alt="Reference photo of Opposite Left upstairs Room 1, listed with one small double bed." width="960" height="540" loading="lazy"></picture>
         </a>
-        <div class="stay-room-card__body"><p>Opposite · upstairs</p><h4>Room 1</h4><span>1 single bed</span>{{< room-link range="A5:E5" label="See Opposite upstairs Room 1 availability in the Room Browser" >}}</div>
+        <div class="stay-room-card__body"><p>Opposite Left · upstairs</p><h4>Room 1</h4><span>1 small double bed</span>{{< room-link range="A5:E6" label="See Opposite Left upstairs Room 1 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-opposite-upstairs-2" data-room-id="opposite-upstairs-2">
-        <a class="stay-room-card__photo" href="/images/accommodation/opposite-upstairs-2-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite upstairs Room 2">
-          <picture><source srcset="/images/accommodation/opposite-upstairs-2-480.webp 480w, /images/accommodation/opposite-upstairs-2-960.webp 960w, /images/accommodation/opposite-upstairs-2-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-upstairs-2-960.webp" alt="Reference photo of Opposite upstairs Room 2, listed with two single beds." width="960" height="540" loading="lazy"></picture>
+        <a class="stay-room-card__photo" href="/images/accommodation/opposite-upstairs-2-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite Left upstairs Room 2">
+          <picture><source srcset="/images/accommodation/opposite-upstairs-2-480.webp 480w, /images/accommodation/opposite-upstairs-2-960.webp 960w, /images/accommodation/opposite-upstairs-2-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-upstairs-2-960.webp" alt="Reference photo of Opposite Left upstairs Room 2, listed with one single bed." width="960" height="540" loading="lazy"></picture>
         </a>
-        <div class="stay-room-card__body"><p>Opposite · upstairs</p><h4>Room 2</h4><span>2 single beds</span>{{< room-link range="A6:E7" label="See Opposite upstairs Room 2 availability in the Room Browser" >}}</div>
+        <div class="stay-room-card__body"><p>Opposite Left · upstairs</p><h4>Room 2</h4><span>1 single bed</span>{{< room-link range="A7:E7" label="See Opposite Left upstairs Room 2 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-opposite-upstairs-3" data-room-id="opposite-upstairs-3">
-        <a class="stay-room-card__photo" href="/images/accommodation/opposite-upstairs-3-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite upstairs Room 3">
-          <picture><source srcset="/images/accommodation/opposite-upstairs-3-480.webp 480w, /images/accommodation/opposite-upstairs-3-960.webp 960w, /images/accommodation/opposite-upstairs-3-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-upstairs-3-960.webp" alt="Reference photo of Opposite upstairs Room 3, listed with a single bed and a small double bed." width="960" height="540" loading="lazy"></picture>
+        <a class="stay-room-card__photo" href="/images/accommodation/opposite-upstairs-3-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite Left upstairs Room 3">
+          <picture><source srcset="/images/accommodation/opposite-upstairs-3-480.webp 480w, /images/accommodation/opposite-upstairs-3-960.webp 960w, /images/accommodation/opposite-upstairs-3-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-upstairs-3-960.webp" alt="Reference photo of Opposite Left upstairs Room 3, listed with a single bed and a small double bed." width="960" height="540" loading="lazy"></picture>
         </a>
-        <div class="stay-room-card__body"><p>Opposite · upstairs</p><h4>Room 3</h4><span>1 single · 1 small double</span>{{< room-link range="A8:E10" label="See Opposite upstairs Room 3 availability in the Room Browser" >}}</div>
+        <div class="stay-room-card__body"><p>Opposite Left · upstairs</p><h4>Room 3</h4><span>1 single · 1 small double</span>{{< room-link range="A8:E10" label="See Opposite Left upstairs Room 3 availability in the Room Browser" >}}</div>
       </article>
     </div>
   </section>
@@ -225,30 +225,34 @@ sitemap:
         <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 2</h4><span>1 sofa bed · 1 double bed</span>{{< room-link range="A42:E45" label="See Castle upstairs Room 2 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-3" data-room-id="castle-upstairs-3">
-        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-3-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 3"><picture><source srcset="/images/accommodation/castle-upstairs-3-480.webp 480w, /images/accommodation/castle-upstairs-3-960.webp 960w, /images/accommodation/castle-upstairs-3-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-3-960.webp" alt="Reference photo of Castle upstairs Room 3, listed with two single beds." width="960" height="392" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 3</h4><span>2 single beds</span>{{< room-link range="A46:E48" label="See Castle upstairs Room 3 availability in the Room Browser" >}}</div>
+        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-3-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 3"><picture><source srcset="/images/accommodation/castle-upstairs-3-480.webp 480w, /images/accommodation/castle-upstairs-3-960.webp 960w, /images/accommodation/castle-upstairs-3-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-3-960.webp" alt="Reference photo of Castle upstairs Room 3, listed with three single beds." width="960" height="392" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 3</h4><span>3 single beds</span>{{< room-link range="A46:E48" label="See Castle upstairs Room 3 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-4" data-room-id="castle-upstairs-4">
-        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-4-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 4"><picture><source srcset="/images/accommodation/castle-upstairs-4-480.webp 480w, /images/accommodation/castle-upstairs-4-960.webp 960w, /images/accommodation/castle-upstairs-4-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-4-960.webp" alt="Reference photo of Castle upstairs Room 4, listed with three single beds." width="960" height="486" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 4</h4><span>3 single beds</span>{{< room-link range="A49:E51" label="See Castle upstairs Room 4 availability in the Room Browser" >}}</div>
+        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-4-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 4"><picture><source srcset="/images/accommodation/castle-upstairs-4-480.webp 480w, /images/accommodation/castle-upstairs-4-960.webp 960w, /images/accommodation/castle-upstairs-4-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-4-960.webp" alt="Reference photo of Castle upstairs Room 4, listed with five single beds." width="960" height="486" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 4</h4><span>5 single beds</span>{{< room-link range="A49:E53" label="See Castle upstairs Room 4 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-5" data-room-id="castle-upstairs-5">
         <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-5-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 5"><picture><source srcset="/images/accommodation/castle-upstairs-5-480.webp 480w, /images/accommodation/castle-upstairs-5-960.webp 960w, /images/accommodation/castle-upstairs-5-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img class="stay-room-card__portrait" src="/images/accommodation/castle-upstairs-5-960.webp" alt="Reference photo of Castle upstairs Room 5, listed with one double bed." width="960" height="1706" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 5</h4><span>1 double bed</span>{{< room-link range="A53:E54" label="See Castle upstairs Room 5 availability in the Room Browser" >}}</div>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 5</h4><span>1 double bed</span>{{< room-link range="A54:E55" label="See Castle upstairs Room 5 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-6" data-room-id="castle-upstairs-6">
         <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-6-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 6"><picture><source srcset="/images/accommodation/castle-upstairs-6-480.webp 480w, /images/accommodation/castle-upstairs-6-960.webp 960w, /images/accommodation/castle-upstairs-6-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img class="stay-room-card__portrait" src="/images/accommodation/castle-upstairs-6-960.webp" alt="Reference photo of Castle upstairs Room 6, listed with one double bed." width="960" height="1706" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 6</h4><span>1 double bed</span>{{< room-link range="A55:E56" label="See Castle upstairs Room 6 availability in the Room Browser" >}}</div>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 6</h4><span>1 double bed</span>{{< room-link range="A56:E57" label="See Castle upstairs Room 6 availability in the Room Browser" >}}</div>
       </article>
     </div>
   </section>
 
   <section class="stay-room-group" id="opposite-right" aria-labelledby="opposite-right-title">
-    <header><p>Opposite Right</p><h3 id="opposite-right-title">Upstairs · new room</h3></header>
+    <header><p>Opposite Right</p><h3 id="opposite-right-title">Upstairs · Rooms 1–2</h3></header>
     <div class="stay-room-grid">
-      <article class="stay-room-card stay-room-card--missing" id="room-opposite-right-upstairs-new" data-room-id="opposite-right-upstairs-new">
-        <div class="stay-room-card__missing" role="img" aria-label="No supplied photo or confirmed map position is available for the new Opposite Right upstairs room"><span aria-hidden="true">⌂</span><strong>No supplied photo</strong><small>Added after the floor plan</small></div>
-        <div class="stay-room-card__body"><p>Opposite Right · upstairs</p><h4>New room</h4><span>4 single beds</span>{{< room-link range="A57:E60" label="See the Opposite Right upstairs new room availability in the Room Browser" >}}</div>
+      <article class="stay-room-card" id="room-opposite-right-upstairs-1" data-room-id="opposite-right-upstairs-1">
+        <a class="stay-room-card__photo" href="/images/accommodation/opposite-right-upstairs-1-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite Right upstairs Room 1"><picture><source srcset="/images/accommodation/opposite-right-upstairs-1-480.webp 480w, /images/accommodation/opposite-right-upstairs-1-960.webp 960w, /images/accommodation/opposite-right-upstairs-1-1440.webp 1344w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-right-upstairs-1-960.webp" alt="Reference photo of Opposite Right upstairs Room 1, listed with two single beds." width="960" height="540" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Opposite Right · upstairs</p><h4>Room 1</h4><span>2 single beds</span>{{< room-link range="A58:E59" label="See Opposite Right upstairs Room 1 availability in the Room Browser" >}}</div>
+      </article>
+      <article class="stay-room-card" id="room-opposite-right-upstairs-2" data-room-id="opposite-right-upstairs-2">
+        <a class="stay-room-card__photo" href="/images/accommodation/opposite-right-upstairs-2-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Opposite Right upstairs Room 2"><picture><source srcset="/images/accommodation/opposite-right-upstairs-2-480.webp 480w, /images/accommodation/opposite-right-upstairs-2-960.webp 960w, /images/accommodation/opposite-right-upstairs-2-1440.webp 1344w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/opposite-right-upstairs-2-960.webp" alt="Reference photo of Opposite Right upstairs Room 2, listed with two single beds." width="960" height="540" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Opposite Right · upstairs</p><h4>Room 2</h4><span>2 single beds</span>{{< room-link range="A60:E61" label="See Opposite Right upstairs Room 2 availability in the Room Browser" >}}</div>
       </article>
     </div>
   </section>
@@ -271,7 +275,7 @@ sitemap:
   <div>
     <p class="stay-eyebrow">Ready?</p>
     <h2 id="final-title">Claim an available place.</h2>
-    <p>If your signup includes a bed, open the Room Browser, choose an empty display-name row with a Claim link, and submit the form. Give your full signup name privately for matching. The public display-name field is optional: leave it blank to show your signup first name, or enter any nickname or anonymous label. To move, claim another available place; your latest submission wins. The accommodation balance is paid later in cash at the venue. To change the category itself, use <a href="/change/">openblues.pl/change</a>.</p>
+    <p>If your signup includes a bed, open the Room Browser and choose an available option. For a FREE single, click Claim and give the full name you used to sign up for private matching. For a double or small-double bed, wait until both rows are FREE and both people have signed up, then use REQUEST to email both signup names. Public display names are optional: leave them blank to show signup first names, or enter nicknames or anonymous labels. To move between singles, submit another available single; your latest single-bed submission wins. To move a pair, email the committee through REQUEST. The accommodation balance is paid later in cash at the venue. To change the category itself, use <a href="/change/">openblues.pl/change</a>.</p>
   </div>
   <div class="stay-final__actions">
     {{< room-browser-cta variant="final" >}}

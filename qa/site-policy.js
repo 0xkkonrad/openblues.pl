@@ -88,11 +88,12 @@ async function run() {
   const bookletText = rendered.get('/booklet/').text;
   assert.match(bookletText, new RegExp(`${params.threshold} Reservation Payments have arrived by ${params.goNoGoHuman}`));
   assert.match(bookletText, /The transfer details are inside the form/);
-  assert.match(bookletText, /view-only Room Browser.*click(?:ing)? Claim beside an available place/i);
+  assert.match(bookletText, /view-only Room Browser.*use Claim beside a FREE single-bed place/i);
+  assert.match(bookletText, /double or small-double.*both places are FREE.*both people have signed up.*REQUEST email link/i);
   assert.match(bookletText, /public display name for each claimed place/i);
-  assert.match(bookletText, /full name as in your signup for private matching/i);
-  assert.match(bookletText, /public display-name field is optional[^.]*leave it blank to show the first name from your signup/i);
-  assert.match(bookletText, /enter any nickname or anonymous label/i);
+  assert.match(bookletText, /full name you used to sign up for private matching/i);
+  assert.match(bookletText, /public display names are optional[^.]*leave them blank to show signup first names/i);
+  assert.match(bookletText, /enter nicknames or anonymous labels/i);
 
   const changeText = rendered.get('/change/').text;
   assert.match(changeText, /the (?:personal )?edit link in your confirmation email/i);
@@ -103,7 +104,7 @@ async function run() {
   const accommodationText = rendered.get('/accommodation/').text;
   assert.match(accommodationText, /Room Browser is a public, view-only list of sleeping places and the display names shown for claimed places/i);
   assert.match(accommodationText, /full name you used to sign up for private matching/i);
-  assert.match(accommodationText, /public display-name field is optional[^.]*leave it blank to show (?:the first name from|your signup first name)/i);
+  assert.match(accommodationText, /public display names are optional[^.]*leave them blank to show signup first names/i);
   assert.match(accommodationText, /The latest submission wins/i);
 
   const retiredRoomFlow = /green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i;

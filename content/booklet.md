@@ -33,12 +33,12 @@ Please join the [Open Blues transport group on WhatsApp](https://chat.whatsapp.c
 
 Please bring your own towels and toiletries.
 
-- If you chose **a single bed** or **a place in a double bed**, it is prepared for you with fresh sheets and a pillow. It will be in a shared room: a bed does not guarantee a private room. Claim your exact place in the view-only Room Browser by clicking Claim beside an available place; the accommodation balance is paid later in cash at the venue.
+- If you chose **a single bed** or **a place in a double bed**, it is prepared for you with fresh sheets and a pillow. It will be in a shared room: a bed does not guarantee a private room. In the view-only Room Browser, use Claim beside a FREE single-bed place for yourself. Request a double or small-double bed only when both places are FREE and both people have signed up, using its REQUEST email link. The accommodation balance is paid later in cash at the venue.
 - If you chose **tent or floor**, bring the complete setup you need for comfortable sleep, including a mat and sheets or a sleeping bag. There is plenty of space and you choose your own spot when you arrive, which is the advantage: if you snore or sleep lightly, you can find somewhere quiet. Unless you have a dust allergy the barn is a good spot, and it has its own showers.
 
 You can [browse the room photos and venue floor plans](/accommodation/) in the accommodation room guide. The Room Browser linked there shows the public display name for each claimed place, so everyone can tell what remains available.
 
-If your signup includes a bed, [choose or change your exact place through the accommodation room guide](/accommodation/). Give the same full name as in your signup for private matching. The public display-name field is optional: leave it blank to show the first name from your signup, or enter any nickname or anonymous label. The form marks that result as public. Your latest room submission replaces the earlier one. The accommodation balance is paid later in cash at the venue. To ask about changing the category, start with the edit link in your confirmation email; [openblues.pl/change](/change/) explains how it works.
+If your signup includes a bed, [choose or change your exact place through the accommodation room guide](/accommodation/). For a single-bed claim, give the full name you used to sign up for private matching. For a double or small-double request, wait until both places are FREE and both people have signed up, then use REQUEST to email both signup names. Public display names are optional: leave them blank to show signup first names, or enter nicknames or anonymous labels. Any display names shown in the Room Browser are public. Your latest single-bed form submission replaces the earlier one; pair changes are handled by email. The accommodation balance is paid later in cash at the venue. To ask about changing the category, start with the edit link in your confirmation email; [openblues.pl/change](/change/) explains how it works.
 
 All communal food is vegan and included from Thursday dinner through Monday breakfast. There is a small and poorly stocked village shop a 5-minute walk from the venue, and a Dino supermarket in Kałków, the next village over, a few minutes away by car.
 
@@ -73,7 +73,7 @@ The invite is public, and other members can see your phone number and any WhatsA
 
 ## Checklist
 
-- Claimed your exact place through the Room Browser if your signup includes a bed
+- Claimed your single-bed place, or emailed a REQUEST for a completely FREE double/small-double after both people signed up, if your signup includes a bed
 - A mat and sheets or a sleeping bag, if you chose tent or floor
 - Right amount of cash. If you changed any of your answers, recalculate with the [cost calculator](/cost/)
 - Dress-to-impress outfit for Saturday

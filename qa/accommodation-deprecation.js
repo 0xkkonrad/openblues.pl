@@ -65,18 +65,21 @@ assert.doesNotMatch(accommodation, /docs\.google\.com\/spreadsheets/, 'Room Brow
 assert.doesNotMatch(accommodation, /docs\.google\.com\/forms|forms\.gle/, 'Claim Form links belong in the Room Browser, never in site content');
 assert.match(accommodation, /public, view-only list of sleeping places and the display names shown for claimed places/i);
 assert.match(accommodation, /full name you used to sign up for private matching/i);
-assert.match(accommodation, /public display-name field is optional[^.]*leave it blank to show (?:the first name from|your signup first name)/i);
-assert.match(accommodation, /enter any nickname or anonymous label/i);
-assert.match(accommodation, /everyone can see the resulting display name in the Room Browser/i);
+assert.match(accommodation, /public display names are optional[^.]*leave them blank to show signup first names/i);
+assert.match(accommodation, /enter nicknames or anonymous labels/i);
+assert.match(accommodation, /display names ultimately shown in the Room Browser are public/i);
 assert.match(accommodation, /latest submission wins/i);
 assert.match(accommodation, /row showing[^.]*FREE[^.]*Claim link[^.]*available/i);
+assert.match(accommodation, /single-bed Claim links open a short Google Form[^.]*REQUEST links open an email/i);
+assert.match(accommodation, /both of its rows show[^.]*FREE[^.]*REQUEST/i);
+assert.match(accommodation, /second half of an empty pair[^.]*FREE[^.]*no link/i);
 assert.doesNotMatch(accommodation, /\bTAKEN\b|Participant names never appear|Only the committee can see names/,
   'claimed rows must use public display names, not the retired anonymous TAKEN label');
 assert.doesNotMatch(accommodation, /green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i,
   'the retired directly editable Room Browser flow must stay absent');
 assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="hero"\s*>\}\}/g) || []).length, 1);
 assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="final"\s*>\}\}/g) || []).length, 1);
-assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 18, 'every room card needs one room-link shortcode');
+assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 19, 'every room card needs one room-link shortcode');
 
 assert.equal(fs.existsSync(path.join(root, 'content/2026.md')), false,
   'the retired edition page must stay deleted');
