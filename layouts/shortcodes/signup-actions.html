@@ -1,0 +1,8 @@
+{{- /* Signup CTA with an attached secondary link for people who already signed up. */ -}}
+{{- partial "signup-actions.html" (dict
+  "class" (.Get "class")
+  "label" (.Get "label")
+  "closedLabel" (.Get "closedLabel")
+  "changeLabel" (.Get "changeLabel")
+  "wrapperClass" (.Get "wrapperClass")
+) -}}

@@ -287,15 +287,13 @@ for (let i = 0; i < contractForm.questions.length; i += 1) {
   }
 }
 
-// --- 6. the three participant-facing price tables agree, and every example total is right ----
+// --- 6. /cost/ owns the full grid; other pages only route people to it ------------------------
 //
-// Divergence between artifacts is this project's most common bug. The grid is
-// quoted on /cost/, on the front page and in the booklet, so all three are parsed here and must
-// carry identical rows. Every worked example is RECOMPUTED through the calculator rather than
-// trusted: after a price change every example is stale, and a stale example sends somebody to
-// Poland with the wrong cash in their pocket.
+// Repeating the grid across the homepage, booklet and calculator created three sources of truth.
+// Keep the full table, donation menu and PLN rate on /cost/ only. The homepage may show one
+// derived no-donation range, while the booklet sends people straight to the calculator.
 
-const PRICED_PAGES = ['content/_index.md', 'content/booklet.md', 'content/cost.md'];
+const PARTICIPANT_PAGES = ['content/_index.md', 'content/booklet.md', 'content/cost.md'];
 
 const expectedRows = [
   `| Tent or floor | €${GRID.floor} |`,
@@ -319,21 +317,11 @@ const allowed = new Set([
   ...CASES.map(([, , , , total]) => total),
 ]);
 
-for (const relative of PRICED_PAGES) {
+for (const relative of PARTICIPANT_PAGES) {
   const text = fs.readFileSync(path.join(repoRoot, relative), 'utf8');
 
   check(!/\bwednesday\b|early arrivals?/i.test(text),
     `${relative} must not advertise Wednesday or early arrival; reception starts on Thursday.`);
-
-  const rows = text.split('\n').filter((line) => /^\|.*€/.test(line)).map((line) => line.trim());
-  assert.deepEqual(rows, expectedRows,
-    `${relative}'s price table does not match the 2027 grid. All three participant-facing ` +
-    'surfaces must quote the same rows and no others.');
-
-  check(text.includes('€100, €50 or €20'),
-    `${relative} must offer the donation menu as "€100, €50 or €20" — high first, and no other rungs.`);
-  check(text.includes('€1 = 4.50 PLN'),
-    `${relative} must carry the PLN conversion rate next to its prices.`);
 
   for (const figure of text.match(/€\d+/g) || []) {
     const amount = Number(figure.slice(1));
@@ -343,31 +331,33 @@ for (const relative of PRICED_PAGES) {
   }
 }
 
-// The worked examples, recomputed here rather than copied out of the page.
-const totalFor = (tier, sunday, donation) => cost.calculate(config, {
-  accommodation: TIER[tier], sunday: sundayKey(tier, sunday), donation,
-}).total;
-
-const floorOnly = totalFor('floor', 'no', 'none');
-const floorSunday = totalFor('floor', 'yes', 'none');
-const sharedSunday = totalFor('shared', 'yes', 'none');
-const singleSunday = totalFor('single', 'yes', 'none');
-
+const costMd = fs.readFileSync(path.join(repoRoot, 'content/cost.md'), 'utf8');
 const indexMd = fs.readFileSync(path.join(repoRoot, 'content/_index.md'), 'utf8');
 const bookletMd = fs.readFileSync(path.join(repoRoot, 'content/booklet.md'), 'utf8');
 
-check(indexMd.includes(`€${floorOnly} in a tent or on the floor, leaving Sunday · €${sharedSunday} for a place in a double bed, staying Sunday night`),
-  `the front page's "at a glance" example totals are stale: they must read €${floorOnly} and €${sharedSunday}.`);
-check(indexMd.includes(
-  `that is €${floorOnly} for a tent or the floor on Thursday, Friday and Saturday nights, ` +
-  `leaving on Sunday; €${floorSunday} for the same with Sunday night added; €${sharedSunday} for a place in a ` +
-  `double bed with Sunday night; and €${singleSunday} for a single bed with Sunday night.`),
-  `the front page's representative totals are stale: they must read €${floorOnly} / €${floorSunday} / ` +
-  `€${sharedSunday} / €${singleSunday}, in that order.`);
-check(bookletMd.includes(
-  `So a tent or the floor, leaving on Sunday, comes to €${floorOnly} including the €${GRID.reservation} Reservation Payment; ` +
-  `a place in a double bed with Sunday night added comes to €${sharedSunday}.`),
-  `the booklet's worked example is stale: it must read €${floorOnly} and €${sharedSunday}.`);
+const costRows = costMd.split('\n').filter((line) => /^\|.*€/.test(line)).map((line) => line.trim());
+assert.deepEqual(costRows, expectedRows,
+  '/cost/ must carry the one complete price grid and agree with the calculator contract.');
+check(costMd.includes('€100, €50 or €20'),
+  '/cost/ must offer the donation menu as "€100, €50 or €20" — high first, and no other rungs.');
+check(costMd.includes('€1 = 4.50 PLN'), '/cost/ must carry the PLN conversion rate next to its prices.');
+
+for (const [relative, text] of [['content/_index.md', indexMd], ['content/booklet.md', bookletMd]]) {
+  const rows = text.split('\n').filter((line) => /^\|.*€/.test(line));
+  assert.deepEqual(rows, [], `${relative} must link to /cost/ instead of duplicating its price tables.`);
+  check(!text.includes('€100, €50 or €20'), `${relative} must leave the donation menu on /cost/.`);
+  check(!text.includes('€1 = 4.50 PLN'), `${relative} must leave the PLN conversion rate on /cost/.`);
+}
+
+const noDonationTotals = CASES.filter(([, , donation]) => donation === 'none').map(([, , , , total]) => total);
+const rangeMin = Math.min(...noDonationTotals);
+const rangeMax = Math.max(...noDonationTotals);
+const homeCostSection = (indexMd.match(/## Your cost\s+([\s\S]*?)(?=\n## )/) || [])[1] || '';
+check(homeCostSection.includes(`€${rangeMin}–€${rangeMax} before any optional donation`),
+  `the homepage must show the calculator-derived €${rangeMin}–€${rangeMax} no-donation range.`);
+check(/href="\/cost\/"/.test(homeCostSection), 'the homepage Your cost section must lead straight to /cost/.');
+check(bookletMd.includes('Go straight to the [cost calculator](/cost/)'),
+  'the booklet must send people straight to the canonical calculator.');
 
 // --- report -----------------------------------------------------------------------------------
 

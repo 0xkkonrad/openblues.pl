@@ -38,4 +38,4 @@ The €50 Reservation Payment is part of your total and is transferred when you 
 
 [Sleeping options, travel, food and the rest of the practical detail](/booklet/) · [see the rooms](/accommodation/)
 
-<p class="cta-final">{{< signup-cta class="btn" label="Sign up for Open Blues ✒️" closedLabel="Sign up · soon" >}}</p>
+<p class="cta-final">{{< signup-actions class="btn" label="Sign up for Open Blues ✒️" closedLabel="Sign up · soon" >}}</p>

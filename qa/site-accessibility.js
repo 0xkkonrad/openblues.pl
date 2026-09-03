@@ -18,7 +18,7 @@ const { chromium } = require('playwright');
 const origin = (process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118').replace(/\/$/, '');
 const axeSource = fs.readFileSync(require.resolve('axe-core/axe.min.js'), 'utf8');
 
-const paths = ['/', '/cost/', '/change/', '/booklet/', '/spread-the-word/', '/2026/', '/404.html'];
+const paths = ['/', '/cost/', '/change/', '/booklet/', '/spread-the-word/', '/404.html'];
 const viewports = [320, 390, 768, 1440];
 
 const runAxe = (page) => page.evaluate(async () => window.axe.run(document, {

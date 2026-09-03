@@ -145,6 +145,40 @@ img { max-width: 100%; height: auto; }
 
 .btn-small { padding: .4rem 1rem; }
 
+.signup-actions {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .25rem;
+  vertical-align: top;
+}
+
+.signup-actions__change {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.5rem;
+  padding: .15rem .3rem;
+  color: var(--muted);
+  font-size: .86rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.signup-actions__change:hover { color: var(--link); }
+
+.topbar .nav-signup { gap: .05rem; }
+
+.topbar nav .signup-actions__change {
+  min-height: 1.5rem;
+  padding: .15rem .3rem;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.25;
+}
+
+.topbar nav .signup-actions__change:hover { color: var(--link); }
+
 /* Non-link state used while signups are closed (see hugo.toml signupsOpen). */
 .btn-closed,
 .btn-closed:hover { background: var(--muted); cursor: default; }
@@ -178,7 +212,7 @@ img { max-width: 100%; height: auto; }
 
 .hero-cal { color: var(--muted); font-size: .9rem; margin: .1rem 0; }
 
-.hero-cta { display: flex; justify-content: center; flex-wrap: wrap; gap: .8rem; margin: 0 0 .9rem; }
+.hero-cta { display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: .8rem; margin: 0 0 .9rem; }
 
 /* Recovery button on /change/. */
 .cta-change { text-align: center; margin: 1.6rem 0 2rem; }
@@ -395,14 +429,6 @@ img { max-width: 100%; height: auto; }
 
 .footer .support-ua { color: var(--ink); margin-bottom: .5rem; }
 .footer .support-ua a { color: var(--link); }
-
-.footer-nav {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: .25rem 1rem;
-  margin: .45rem 0;
-}
 
 /* ---------- signup counter (partials/counter.html) ---------- */
 .counter {

@@ -68,10 +68,6 @@ enableGitInfo = false
   roomBrowserURL = "https://docs.google.com/spreadsheets/d/1KVgUi0zuvkC0Sd_Sm8Ltg1jIsBGH_lePV50PkDS9Ats/edit#gid=2026080501"
   roomBrowserInstructionsURL = "https://docs.google.com/spreadsheets/d/1KVgUi0zuvkC0Sd_Sm8Ltg1jIsBGH_lePV50PkDS9Ats/edit#gid=2026080404"
 
-  # --- 2026 archive. Participant-bearing coordination files are no longer linked publicly.
-  [params.archive2026]
-    datesHuman = "27–31 August 2026"
-
 [services.youtube]
   privacyEnhanced = true
 

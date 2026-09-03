@@ -65,8 +65,8 @@ sitemap:
       <h2 id="map-title">Find your bearings</h2>
     </div>
     <div class="stay-map__links">
-      <a href="/images/accommodation/venue-map-2026.webp" target="_blank" rel="noopener noreferrer">Compare the supplied map</a>
-      <a href="/files/open-blues-2026-venue-map.pdf">Download source PDF</a>
+      <a href="/images/accommodation/venue-map.webp" target="_blank" rel="noopener noreferrer">Compare the supplied map</a>
+      <a href="/files/open-blues-venue-map.pdf">Download source PDF</a>
     </div>
   </div>
   <p class="stay-map__intro">Retraced from the supplied Sheet map. Layout is approximate: no scale or confirmed door and furniture positions. Orange marks beds; green marks sofas and shared rooms. Colours and symbols show stable room and sleeping-surface types, never live availability or exact placement. Live status stays in the Room Browser; participant names stay private with the committee. Tower and Barn are orientation only; the new Opposite Right room is not on the supplied plan.</p>

@@ -17,7 +17,7 @@ const origin = process.env.OPENBLUES_PREVIEW_ORIGIN || 'http://localhost:3118';
 // /cost/ is the calculator that replaced Tally's live running total, and /spread-the-word/
 // is where the print kit's QR codes land people. Both are participant-facing entry points
 // and both were outside this smoke test before the Google Forms migration.
-const entryPaths = ['/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html'];
+const entryPaths = ['/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/404.html'];
 
 async function run() {
   const browser = await chromium.launch({ headless: true });
@@ -63,13 +63,15 @@ async function check(browser) {
     assert.ok((await page.title()).trim(), `${entryPath} has no title`);
 
     const bodyText = await page.locator('body').textContent();
-    assert.doesNotMatch(bodyText, /\bregist(?:er|ration)\b|tally\.so\/r\/|Open Blues 2026/i, `${entryPath} still carries retired registration copy`);
+    assert.doesNotMatch(bodyText, /\bregist(?:er|ration)\b|tally\.so\/r\//i, `${entryPath} still carries retired registration copy`);
+    assert.doesNotMatch(bodyText, /\b2026\b|Past edition/i, `${entryPath} still mentions the retired edition`);
     if (entryPath === '/') {
       assert.equal(await page.locator('header nav a[href$="spread-the-word/"]').count(), 1, 'primary nav must keep Spread the word');
-      assert.equal(await page.locator('header nav a[href$="change/"]').count(), 0, 'Change details must be secondary navigation');
-      assert.equal(await page.locator('header nav a[href$="2026/"]').count(), 0, 'past editions must be secondary navigation');
-      assert.equal(await page.locator('footer nav a[href$="change/"]').count(), 1, 'footer must retain Change details');
-      assert.equal(await page.locator('footer nav a[href$="2026/"]').count(), 1, 'footer must retain the 2026 archive');
+      assert.equal(await page.locator('header .signup-actions > a[href$="change/"]').count(), 1,
+        'Change details must sit beside the header signup action');
+      assert.equal(await page.locator('footer a[href$="change/"]').count(), 0,
+        'Change details no longer belongs in the footer');
+      assert.equal(await page.locator('a[href$="2026/"]').count(), 0, 'the retired edition must not be linked');
       assert.equal(await page.locator(`.counter[data-counter-threshold="${threshold}"]`).count(), 1, 'home must show the signup counter');
     }
     if (signupsOpen) {
@@ -82,8 +84,19 @@ async function check(browser) {
       // Narrow: the signup form must not be linked while signups are closed. /change/ is a
       // different thing entirely — it is a page on this site, not a form, and it stays reachable
       // for people who already signed up, including after signups close.
-      assert.equal(await page.locator(`a[href="${signupUrl}"]`).count(), 0);
+      assert.equal(await page.locator(`a[href^="${signupUrl}"]`).count(), 0);
     }
+
+    const unpairedSignupActions = await page.locator(`a.btn[href^="${signupUrl}"], .btn-closed`).evaluateAll((buttons) =>
+      buttons.flatMap((button) => {
+        const group = button.closest('.signup-actions');
+        const change = group && group.querySelector('a.signup-actions__change[href$="change/"]');
+        const visibleButton = button.getClientRects().length > 0;
+        const visibleChange = Boolean(change && change.getClientRects().length > 0);
+        return !group || !change || (visibleButton && !visibleChange) ? [button.textContent.trim()] : [];
+      }));
+    assert.deepEqual(unpairedSignupActions, [],
+      `${entryPath} has a signup button without its visible secondary Change details action`);
     if (entryPath === '/') {
       assert.match(await page.locator('.hero-dates').textContent(), new RegExp(eventDatesHuman));
       const jsonLd = JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());
@@ -101,8 +114,11 @@ async function check(browser) {
       assert.equal((await page.locator('.home-hero h1').textContent()).trim(),
         'Blues & fusion. Live music. Five DIY days in a Polish palace');
       const heroCtaText = (await page.locator('.hero-cta').textContent()).replace(/\s+/g, ' ');
-      assert.match(heroCtaText, /Sign up now/);
+      assert.match(heroCtaText, signupsOpen ? /Sign up now/ : /Sign up · soon|Cancelled/i);
       assert.match(heroCtaText, /See what it.s like/);
+      assert.match(heroCtaText, /Change signup details/);
+      assert.equal(await page.locator('.hero-cta .signup-actions > a[href$="change/"]').count(), 1,
+        'the hero signup must carry its secondary Change details action');
       assert.doesNotMatch(bodyText, /One form, once|Nothing is final|Signups close|There is no selection/i);
 
       const paid = Number(counterData.paid || 0);
@@ -140,6 +156,9 @@ async function check(browser) {
       }
     }
   }
+
+  const archiveResponse = await context.request.get(origin + '/2026/');
+  assert.equal(archiveResponse.status(), 404, 'the retired /2026/ route must stay removed');
 
   for (const url of internalUrls) {
     const response = await context.request.get(url);

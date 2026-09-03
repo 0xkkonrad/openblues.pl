@@ -23,8 +23,17 @@ for (const relative of [
     `${relative} must use the shared signup predicate`);
 }
 
+const signupActions = read('layouts/partials/signup-actions.html');
+assert.match(signupActions, /partial "signup-cta\.html"/,
+  'the paired signup action must delegate its primary state to signup-cta');
+assert.match(signupActions, /href=.*change\//,
+  'Change details must remain available beside signup even when new signups close');
+assert.doesNotMatch(signupActions, /signup-is-open\.html/,
+  'the existing-participant Change details link must not inherit the signup-open gate');
+
 const layouts = [
   'layouts/partials/signup-cta.html',
+  'layouts/partials/signup-actions.html',
   'layouts/shortcodes/signup-link.html',
   'layouts/shortcodes/cost-calculator.html',
 ].map((relative) => `${relative}\n${read(relative)}`).join('\n');

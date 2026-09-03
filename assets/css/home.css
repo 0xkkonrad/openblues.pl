@@ -173,6 +173,9 @@
     text-align: center;
   }
 
+  .home-hero .hero-cta .signup-actions { width: 100%; }
+  .home-hero .hero-cta .signup-actions .btn { width: 100%; }
+
   .home-hero__photo img { height: 26rem; }
 
 }

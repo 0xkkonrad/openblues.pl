@@ -63,13 +63,14 @@
     <p class="calc-now">You send <strong>{{ $reservation }}</strong> now, when you sign up.</p>
     <p class="calc-bring">You bring <strong data-cost-cash>€0</strong> in cash at the venue.</p>
     <p class="calc-sum"><span data-cost-total>€0</span> in total — <span data-cost-breakdown></span></p>
-    <p class="calc-cta">
+    <p class="calc-cta"><span class="signup-actions">
       {{- if $prefillReady -}}
       <a class="btn" data-cost-signup href="{{ $data.formURL }}">Sign up with these choices ✒️</a>
       {{- else -}}
       {{ partial "signup-cta.html" (dict "class" "btn" "label" "Sign up for Open Blues ✒️" "closedLabel" "Sign up · soon") }}
       {{- end }}
-    </p>
+      <a class="signup-actions__change" href="{{ "change/" | relURL }}">Change signup details</a>
+    </span></p>
   </div>
 
   <noscript>

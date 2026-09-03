@@ -14,10 +14,4 @@ here. Listing submissions have their own status log in [`LISTINGS.md`](LISTINGS.
 
 ## Open repository work
 
-- [ ] **Remove the public 2026 archive.** Delete `/2026/` and every public-facing link to it;
-  retain the history only in Git, and update the sitemap and QA coverage accordingly.
-- [ ] **Simplify the signup-details UX.** Remove “Change signup details” from the global footer
-  and keep it in a relevant participant-help context, starting with the existing signup FAQ.
-  Reduce `/change/` to 2–3 short sentences covering the confirmation-email edit link and the
-  lost-link email fallback; remove the field inventory, reassurance copy and room-choice explainer,
-  then update the affected QA assertions.
+None.

@@ -51,7 +51,7 @@ workbook deliberately do not live in this repository or on the website. The publ
 show only slot facts and FREE/TAKEN/NOT OPEN status; participant names remain committee-only, and
 the latest room submission for the same normalized signup name is authoritative. Public room facts
 come from the current 2027 accommodation TODO; participant-bearing resources from past editions
-must never be linked from the archive page.
+must never be published on the site.
 
 ## Develop
 

@@ -8,6 +8,8 @@ const removedFiles = [
   'data/accommodation.yaml',
   'layouts/accommodation/single.html',
   'qa/accommodation-browser.js',
+  'static/images/accommodation/venue-map-2026.webp',
+  'static/files/open-blues-2026-venue-map.pdf',
   'static/images/social/facebook-event-cover/sharing-mattress.jpg',
   'static/images/social/facebook-post/sharing-mattress.jpg',
   'static/images/social/instagram-square/sharing-mattress.jpg',
@@ -31,7 +33,9 @@ const forbidden = [
   'rjQKYM',
   // Retired registration providers and the old config param.
   'tally.so/r/',
-  'registerURL'
+  'registerURL',
+  'venue-map-2026',
+  'open-blues-2026-venue-map'
 ];
 
 function filesBelow(directory) {
@@ -69,9 +73,8 @@ assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="hero"\s*>
 assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="final"\s*>\}\}/g) || []).length, 1);
 assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 18, 'every room card needs one room-link shortcode');
 
-const archive2026 = fs.readFileSync(path.join(root, 'content/2026.md'), 'utf8');
-assert.doesNotMatch(archive2026, /docs\.google\.com\/spreadsheets|room-browser-cta|room-link/i,
-  'the past-edition page must not expose a participant-bearing workbook');
+assert.equal(fs.existsSync(path.join(root, 'content/2026.md')), false,
+  'the retired edition page must stay deleted');
 
 const hugoConfig = fs.readFileSync(path.join(root, 'hugo.toml'), 'utf8');
 for (const param of ['signupURL', 'signupsOpen', 'threshold', 'goNoGoHuman', 'roomBrowserURL', 'roomBrowserInstructionsURL', 'eventStart', 'eventEnd', 'eventDatesHuman']) {

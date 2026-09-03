@@ -15,7 +15,7 @@
       <a href="{{ "accommodation/" | relURL }}">Rooms&nbsp;&amp;&nbsp;beds</a>
       <a href="{{ "/" | relURL }}#faq">FAQ</a>
       <a href="{{ "spread-the-word/" | relURL }}">Spread&nbsp;the&nbsp;word</a>
-      {{ partial "signup-cta.html" (dict "class" "btn btn-small" "label" "Sign up") }}
+      {{ partial "signup-actions.html" (dict "class" "btn btn-small" "label" "Sign up" "changeLabel" "Change details" "wrapperClass" "nav-signup") }}
     </nav>
   </header>
 
@@ -31,10 +31,6 @@
     <p>
       <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a>
     </p>
-    <nav class="footer-nav" aria-label="Participant and archive links">
-      <a href="{{ "change/" | relURL }}">Change signup details</a>
-      <a href="{{ "2026/" | relURL }}">Past edition: 2026</a>
-    </nav>
     <p>
       <a href="https://unlicense.org/">UNLICENSE</a> — feel free to use anything found here ·
       Isabella Larsen &amp; Konrad Urban · Hosting sponsored by <a href="https://peanut.me">Peanut</a>

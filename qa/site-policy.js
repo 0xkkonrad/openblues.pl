@@ -27,7 +27,7 @@ const textOf = (html) =>
   );
 
 const paths = [
-  '/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html',
+  '/', '/cost/', '/booklet/', '/change/', '/accommodation/', '/spread-the-word/', '/404.html',
 ];
 const textAssets = ['/openblues-2027.ics', '/sitemap.xml', '/robots.txt'];
 
@@ -48,6 +48,7 @@ async function run() {
     for (const pattern of params.banned) {
       assert.doesNotMatch(text, pattern, `${pagePath} carries rejected or stale wording ${pattern}`);
     }
+    assert.doesNotMatch(text, /\b2026\b|Past edition/i, `${pagePath} mentions the retired edition`);
     assert.doesNotMatch(text, /\bfull\b(?=[^.]*\bplaces?\b)/i, `${pagePath} still talks about a full venue`);
   }
 
@@ -60,7 +61,8 @@ async function run() {
   assert.match(heroText, /Blues & fusion\. Live music\. Five DIY days in a Polish palace/);
   assert.ok(heroText.includes(params.eventDatesHuman), 'first fold must show the configured event dates');
   assert.match(heroText, /Piotrowice Nyskie Palace, Poland/);
-  assert.match(heroText, /Sign up now/);
+  const signupEnabled = params.signupsOpen && counter.status !== 'cancelled';
+  assert.match(heroText, signupEnabled ? /Sign up now/ : /Sign up · soon|Cancelled/i);
   assert.match(heroText, /See what it's like/);
   assert.doesNotMatch(heroText, /Reservation Payment|\bpaid\b/i,
     'the first fold must talk about people, not payment mechanics');
@@ -91,13 +93,9 @@ async function run() {
 
   const changeText = rendered.get('/change/').text;
   assert.match(changeText, /the (?:personal )?edit link in your confirmation email/i);
-  assert.match(changeText, /The form shows which fields remain editable/i);
-  assert.match(changeText, /lost (?:your|the) link/i);
-  assert.match(changeText, /(?:ask for it|email me my link|send (?:it|the link|your link) again)/i);
-  assert.match(changeText, /so it only ever reaches you/i);
-  assert.doesNotMatch(changeText, /(?:prove (?:who you are|your identity)|verify your identity|security question)/i);
-  assert.match(changeText, /same full name as in your signup/i);
-  assert.match(changeText, /latest room submission wins/i);
+  assert.match(changeText, /change any available answers/i);
+  assert.match(changeText, /Lost it\?/i);
+  assert.match(changeText, /ask us to (?:resend it|email the link again)/i);
 
   const accommodationText = rendered.get('/accommodation/').text;
   assert.match(accommodationText, /Room Browser is a view-only list of free and taken places/i);
@@ -111,6 +109,9 @@ async function run() {
   }
 
   const changePage = rendered.get('/change/').raw;
+  const changeMain = (changePage.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i) || [])[1] || '';
+  assert.doesNotMatch(changeMain, /<(?:h2|ul|table)\b/i,
+    '/change/ must stay a short edit-link and recovery note, not become another guide');
   if (params.recoveryOpen) {
     assert.ok(changePage.includes(params.recoveryURL), '/change/ must link to recoveryURL while recovery is open');
   } else {

@@ -12,8 +12,8 @@
     "redraw": "Hand-drawn SVG plans preserve confirmed image-left/image-right room relationships. Door positions, scale and exact furniture placement are intentionally omitted; sleeping-surface labels follow the current 2027 room TODO.",
     "interaction": "Each of the 17 mapped room regions links to its matching photo card; the new 4-place Opposite Right room remains explicitly unmapped and unphotographed.",
     "wholeMap": [
-      { "src": "/images/accommodation/venue-map-2026.webp", "width": 2400, "height": 914 },
-      { "src": "/files/open-blues-2026-venue-map.pdf", "format": "pdf" }
+      { "src": "/images/accommodation/venue-map.webp", "width": 2400, "height": 914 },
+      { "src": "/files/open-blues-venue-map.pdf", "format": "pdf" }
     ],
     "panels": [
       { "src": "/images/accommodation/map-castle-downstairs.svg", "width": 1200, "height": 900, "rooms": 6, "places": 19 },

@@ -1,0 +1,7 @@
+{{- /* A primary signup CTA with the existing-participant action kept visibly secondary. */ -}}
+{{- $wrapperClass := .wrapperClass | default "" -}}
+{{- $changeLabel := .changeLabel | default "Change signup details" -}}
+<span class="signup-actions{{ with $wrapperClass }} {{ . }}{{ end }}">
+  {{- partial "signup-cta.html" (dict "class" .class "label" .label "closedLabel" .closedLabel) -}}
+  <a class="signup-actions__change" href="{{ "change/" | relURL }}">{{ $changeLabel }}</a>
+</span>

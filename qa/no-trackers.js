@@ -36,7 +36,7 @@ const isOwn = (url) =>
   url.startsWith(origin) || url.startsWith('data:') || url.startsWith('about:') || url.startsWith('blob:') ||
   Boolean(siteOrigin && url.startsWith(siteOrigin));
 
-const pages = ['/', '/cost/', '/change/', '/booklet/', '/accommodation/', '/spread-the-word/', '/2026/', '/404.html'];
+const pages = ['/', '/cost/', '/change/', '/booklet/', '/accommodation/', '/spread-the-word/', '/404.html'];
 const textAssets = ['/sitemap.xml', '/robots.txt', '/openblues-2027.ics'];
 
 // Hostnames and snippet fingerprints. Matched against the raw served bytes of every page and

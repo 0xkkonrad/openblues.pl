@@ -13,7 +13,7 @@ styles:
 <div><strong>When</strong><span>{{< param eventDatesHuman >}}</span></div>
 <div><strong>Where</strong><span>Piotrowice Nyskie Palace, Poland</span></div>
 <div><strong>Format</strong><span>Blues & fusion, live music and a community-led programme</span></div>
-<div><strong>Example totals</strong><span>€120 in a tent or on the floor, leaving Sunday · €210 for a place in a double bed, staying Sunday night — both including the €50 Reservation Payment. <a href="/cost/">Work yours out</a></span></div>
+<div><strong>Cost</strong><span>Based on where you sleep and whether you stay Sunday night. <a href="/cost/">Calculate yours</a></span></div>
 <div><strong>Staying over</strong><span>A single bed, a place in a double bed, or a tent or floor</span></div>
 <div><strong>Getting there</strong><span>Ride share, or train/taxi via Nysa</span></div>
 </div>
@@ -32,28 +32,9 @@ Open Blues may not be the right fit if you prefer a fixed schedule, classes sort
 
 ## Your cost
 
-Open Blues is a private, cost-shared gathering made by its participants. Nobody is paid and nobody profits. Everyone covers their own share of the real expenses: their sleeping arrangement and communal food, and a slice of fixed costs such as the venue and bands.
+Your total is **€120–€260 before any optional donation**, depending on where you sleep and whether you stay Sunday night. That range includes the €50 Reservation Payment.
 
-Your total is the **€50 Reservation Payment plus the cash choices below**. Before any optional donation that is €120 for a tent or the floor on Thursday, Friday and Saturday nights, leaving on Sunday; €145 for the same with Sunday night added; €210 for a place in a double bed with Sunday night; and €260 for a single bed with Sunday night.
-
-**[Work out your own number on the cost calculator](/cost/)** — three choices, and it tells you what you send now and what you bring in cash.
-
-The first table covers three nights: **Thursday, Friday and Saturday**. Add the Sunday-night line only if you are sleeping at the venue on Sunday night and leaving on Monday; what Sunday costs depends on where you sleep.
-
-| Thursday, Friday & Saturday nights | Your cost |
-|---|---:|
-| Tent or floor | €70 |
-| A place in a double bed, per person | €110 |
-| A single bed | €160 |
-
-| Sunday night, if you stay | Your cost |
-|---|---:|
-| Tent or floor | €25 |
-| Any bed | €50 |
-
-An optional donation of €100, €50 or €20 is welcome on top, and entirely optional. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**.
-
-There is also a **€50 Reservation Payment** for shared fixed costs, transferred when you sign up; the transfer details are inside the form. It is what makes the gathering happen, and it comes back in exactly one case: if we do not reach {{< param threshold >}} by {{< param goNoGoHuman >}}, which is what the counter at the top of this page is counting. The Reservation Payment is not refunded for any other reason. If you cannot come, you may pass your place to someone else — email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com). Everything except the €50 Reservation Payment is brought in cash to the venue.
+<p><a class="btn" href="/cost/">Calculate your cost →</a></p>
 
 ## Food and accommodation
 
@@ -130,7 +111,7 @@ The place is a farm, so there are lots of animals and some places are dusty. How
 
 ### Can I change my details after signing up?
 
-Your confirmation email carries a personal edit link. It shows which signup fields can still be updated. [openblues.pl/change](/change/) explains the link and how to recover it if you lose it.
+Use the [Change details](/change/) option beside Sign up. Your confirmation email carries the personal edit link, and the page tells you what to do if you lose it.
 
 ### What are the accommodation options like?
 
@@ -154,4 +135,4 @@ The venue is [Piotrowice Nyskie Palace, Piotrowice Nyskie 54, Poland](https://go
 
 The nearest rail hub is Nysa, about a 20-minute drive from the palace. From there, arrange a participant pickup in the transport group or take a taxi (usually around €30–50). If you are driving, use the palace map pin rather than only the village name, and ask in the transport group or email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) for the current on-site parking instructions before setting off.
 
-<p class="cta-final">{{< signup-cta class="btn" label="Sign up for Open Blues ✒️" closedLabel="Sign up · soon" >}}</p>
+<p class="cta-final">{{< signup-actions class="btn" label="Sign up for Open Blues ✒️" closedLabel="Sign up · soon" >}}</p>

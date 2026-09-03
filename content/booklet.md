@@ -65,22 +65,7 @@ The programme grows from the participants. Mark “yes” or “maybe” when th
 
 Open Blues {{< event-year >}} happens when **{{< param threshold >}} Reservation Payments have arrived by {{< param goNoGoHuman >}}**. If fewer than {{< param threshold >}} people commit by then, every €50 Reservation Payment is refunded. The live people count is on the [front page](/).
 
-Work out your total on the [cost calculator](/cost/), then continue to {{< signup-link >}}the signup form{{< /signup-link >}}. The transfer details are inside the form.
-
-Everything except the €50 Reservation Payment is brought in cash to the venue.
-
-| Thursday, Friday & Saturday nights | Your cost |
-|---|---:|
-| Tent or floor | €70 |
-| A place in a double bed, per person | €110 |
-| A single bed | €160 |
-
-| Sunday night, if you stay | Your cost |
-|---|---:|
-| Tent or floor | €25 |
-| Any bed | €50 |
-
-An optional donation of €100, €50 or €20 is welcome on top, and entirely optional. If you bring Polish złoty instead of euros, use **€1 = 4.50 PLN**. So a tent or the floor, leaving on Sunday, comes to €120 including the €50 Reservation Payment; a place in a double bed with Sunday night added comes to €210.
+Go straight to the [cost calculator](/cost/) to choose your stay and see your exact total, then continue to {{< signup-link >}}the signup form{{< /signup-link >}}. The calculator separates the €50 Reservation Payment you transfer at signup from the cash you bring to the venue. The transfer details are inside the form.
 
 [Join the festival WhatsApp group](https://chat.whatsapp.com/FpBbIsZpV18LRja8wNhFdX).
 
@@ -90,7 +75,7 @@ The invite is public, and other members can see your phone number and any WhatsA
 
 - Claimed your exact place through the Room Browser if your signup includes a bed
 - A mat and sheets or a sleeping bag, if you chose tent or floor
-- Right amount of cash. If you changed any of your answers, recalculate on the [cost calculator](/cost/)
+- Right amount of cash. If you changed any of your answers, recalculate with the [cost calculator](/cost/)
 - Dress-to-impress outfit for Saturday
 - Earplugs
 - Towel and toiletries
