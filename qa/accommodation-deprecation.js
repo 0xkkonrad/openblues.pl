@@ -63,12 +63,17 @@ for (const needle of forbidden) {
 const accommodation = fs.readFileSync(path.join(root, 'content/accommodation.md'), 'utf8');
 assert.doesNotMatch(accommodation, /docs\.google\.com\/spreadsheets/, 'Room Browser links must come from hugo.toml roomBrowserURL, never be hard-coded');
 assert.doesNotMatch(accommodation, /docs\.google\.com\/forms|forms\.gle/, 'Claim Form links belong in the Room Browser, never in site content');
-assert.match(accommodation, /view-only list of free and taken places/i);
-assert.match(accommodation, /same full name you used to sign up/i);
-assert.match(accommodation, /Only the committee can see names/i);
+assert.match(accommodation, /public, view-only list of sleeping places and the display names shown for claimed places/i);
+assert.match(accommodation, /full name you used to sign up for private matching/i);
+assert.match(accommodation, /public display-name field is optional[^.]*leave it blank to show (?:the first name from|your signup first name)/i);
+assert.match(accommodation, /enter any nickname or anonymous label/i);
+assert.match(accommodation, /everyone can see the resulting display name in the Room Browser/i);
 assert.match(accommodation, /latest submission wins/i);
-assert.doesNotMatch(accommodation, /public display name|green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i,
-  'the retired directly editable public-name flow must stay absent');
+assert.match(accommodation, /row showing[^.]*FREE[^.]*Claim link[^.]*available/i);
+assert.doesNotMatch(accommodation, /\bTAKEN\b|Participant names never appear|Only the committee can see names/,
+  'claimed rows must use public display names, not the retired anonymous TAKEN label');
+assert.doesNotMatch(accommodation, /green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i,
+  'the retired directly editable Room Browser flow must stay absent');
 assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="hero"\s*>\}\}/g) || []).length, 1);
 assert.equal((accommodation.match(/\{\{<\s*room-browser-cta\s+variant="final"\s*>\}\}/g) || []).length, 1);
 assert.equal((accommodation.match(/\{\{<\s*room-link\s+range="[A-Z]\d+:[A-Z]\d+"\s+label="[^"]+"\s*>\}\}/g) || []).length, 18, 'every room card needs one room-link shortcode');
@@ -98,4 +103,4 @@ assert.doesNotMatch(participantSources, /\b20[2-9]\d-\d\d-\d\d\b|\b20[2-9]\d[01]
 assert.doesNotMatch(participantSources, /\bregist(?:er|ration)\b/i, 'participant-facing copy says sign up/signup, not register/registration');
 assert.doesNotMatch(participantSources, /Open Blues 20\d\d/, 'the edition year must come from the event-year partial/shortcode');
 
-process.stdout.write('PASS: view-only Room Browser copy keeps claims private, while legacy picker/runtime, editable public names, retired links and hard-coded dates remain absent.\n');
+process.stdout.write('PASS: view-only Room Browser copy exposes resolved display names while keeping full signup names private; retired status/edit flows, links and hard-coded dates remain absent.\n');

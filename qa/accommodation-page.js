@@ -43,15 +43,15 @@ const expectedRoomRanges = [
   'A11:E12',
   'A13:E15',
   'A16:E17',
-  'A20:E22',
+  'A20:E23',
   'A24:E27',
-  'A28:E31',
+  'A28:E29',
   'A32:E33',
   'A34:E37',
   'A38:E41',
   'A42:E45',
   'A46:E48',
-  'A49:E52',
+  'A49:E51',
   'A53:E54',
   'A55:E56',
   'A57:E60'
@@ -173,7 +173,7 @@ async function run() {
       const response = await page.goto(pageUrl, { waitUntil: 'networkidle' });
       assert.ok(response && response.ok(), `${pageUrl} returned ${response && response.status()}`);
       assert.equal(await page.locator('h1').count(), 1);
-      assert.match(await page.locator('h1').textContent(), /See the rooms.*Claim a free place/s);
+      assert.match(await page.locator('h1').textContent(), /See the rooms.*Claim an available place/s);
       assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'), 'noindex, nofollow, noarchive, nosnippet');
       assert.equal(await page.locator('meta[name="referrer"]').getAttribute('content'), 'no-referrer');
       assert.equal(await page.locator('script[src*="accommodation"]').count(), 0);
@@ -198,9 +198,26 @@ async function run() {
         'A3 must preserve its non-obvious single-occupancy sofa exception'
       );
       assert.equal(await page.locator('[data-room-id="castle-downstairs-a1"] .stay-room-card__body > span').textContent(), '1 double bed');
-      assert.equal(await page.locator('[data-room-id="castle-downstairs-a2"] .stay-room-card__body > span').textContent(), '1 double · 1 single');
-      assert.equal(await page.locator('[data-room-id="castle-upstairs-3"] .stay-room-card__body > span').textContent(), '3 single beds');
-      assert.equal(await page.locator('[data-room-id="castle-upstairs-4"] .stay-room-card__body > span').textContent(), '4 single beds');
+      assert.equal(await page.locator('[data-room-id="castle-downstairs-a2"] .stay-room-card__body > span').textContent(), '1 double · 2 singles');
+      assert.equal(await page.locator('[data-room-id="castle-downstairs-b1"] .stay-room-card__body > span').textContent(), '1 double bed');
+      assert.equal(await page.locator('[data-room-id="castle-upstairs-3"] .stay-room-card__body > span').textContent(), '2 single beds');
+      assert.equal(await page.locator('[data-room-id="castle-upstairs-4"] .stay-room-card__body > span').textContent(), '3 single beds');
+      assert.equal(await page.locator('[data-room-id="castle-upstairs-6"] .stay-room-card__body > span').textContent(), '1 double bed');
+
+      const correctedPhotoAlts = await page.locator([
+        '[data-room-id="castle-downstairs-a2"] img',
+        '[data-room-id="castle-downstairs-b1"] img',
+        '[data-room-id="castle-upstairs-3"] img',
+        '[data-room-id="castle-upstairs-4"] img',
+        '[data-room-id="castle-upstairs-6"] img'
+      ].join(', ')).evaluateAll((images) => images.map((image) => image.getAttribute('alt')));
+      assert.deepEqual(correctedPhotoAlts, [
+        'Reference photo of Castle downstairs A2, listed with one double bed and two single beds.',
+        'Reference photo of Castle downstairs B1, listed with one double bed.',
+        'Reference photo of Castle upstairs Room 3, listed with two single beds.',
+        'Reference photo of Castle upstairs Room 4, listed with three single beds.',
+        'Reference photo of Castle upstairs Room 6, listed with one double bed.'
+      ]);
 
       assert.equal(await page.locator('.stay-map-panel img').count(), 0, 'floor plans must not contain raster placeholders');
       assert.equal(await page.locator('.stay-map-panel__scroll > svg.stay-map-art').count(), 4);
@@ -231,7 +248,7 @@ async function run() {
       assert.equal(mapLabelCopy.filter((label) => /\bSINGLE OCCUPANCY\b/i.test(label)).length, 1, 'A3 needs exactly one concise single-occupancy exception');
 
       const mapIntro = await page.locator('.stay-map__intro').textContent();
-      assert.match(mapIntro, /colou?rs and symbols.*types?.*(?:not|never).*availability/i, 'map intro must explain that colour and symbols encode type, not live availability');
+      assert.match(mapIntro, /colou?rs and symbols.*types?.*(?:not|never).*current claims/i, 'map intro must explain that colour and symbols encode type, not current claims');
 
       const mapRoomLinks = await page.locator('svg.stay-map-art a[data-room]').evaluateAll((nodes) => nodes.map((node) => {
         const href = node.getAttribute('href');
@@ -320,7 +337,7 @@ async function run() {
         assert.equal(await page.locator('.stay-room-card__body a').count(), 0);
         assert.equal(await page.locator('[data-room-browser="closed"]').count(), 2);
         assert.equal(await page.locator('.stay-final__actions .stay-closed-note').count(), 1);
-        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*chose a bed.*see availability and claim a place/s);
+        assert.match(await page.locator('.stay-actions .stay-primary').textContent(), /Room Browser is not open yet.*chose a bed.*see available places.*choose how their name appears.*claim one/s);
         assert.equal(await page.getByRole('link', { name: /Read the Room Browser instructions first/ }).count(), 0);
       }
       const targetBlankWithoutSafety = await page.locator('a[target="_blank"]').evaluateAll((nodes) => nodes
@@ -335,10 +352,14 @@ async function run() {
       const bodyHtml = await page.locator('body').innerHTML();
       assert.doesNotMatch(bodyText, /accommodation picker|Tally gives the final confirmation/i);
       assert.doesNotMatch(bodyHtml, /claim_key|data-roster-|gviz\/tq|rjQKYM|tally\.so\/r\//);
-      assert.match(bodyText, /view-only list of free and taken places/is);
-      assert.match(bodyText, /same full name you used to sign up.*Only the committee can see names/is);
+      assert.match(bodyText, /public, view-only list of sleeping places and the display names shown for claimed places/is);
+      assert.match(bodyText, /full name you used to sign up for private matching/is);
+      assert.match(bodyText, /public display-name field is optional.*leave it blank to show (?:the first name from|your signup first name).*enter any nickname or anonymous label/is);
+      assert.match(bodyText, /everyone can see the resulting display name/is);
+      assert.match(bodyText, /row showing\s+FREE\s+with a Claim link is available/is);
       assert.match(bodyText, /latest submission wins/is);
-      assert.doesNotMatch(bodyText, /public display name|green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i);
+      assert.doesNotMatch(bodyText, /\bTAKEN\b|Participant names never appear|Only the committee can see names/);
+      assert.doesNotMatch(bodyText, /green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i);
       assert.doesNotMatch(bodyText, /regist(?:er|ration)|Open Blues 2026/i);
 
       const primaryBox = await page.locator('.stay-primary').boundingBox();

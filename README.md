@@ -45,11 +45,14 @@ file is edited by hand. `status` is `open`, `confirmed` or `cancelled`. Confirma
 automatically and is one-way; only the operator-set `cancelled` state turns signup buttons into
 non-links.
 The 2027 Room Browser and its Start Here tab are wired through `roomBrowserURL` and
-`roomBrowserInstructionsURL`. It is a public, view-only availability board: each free row owns
-its prefilled Claim link to one external Google Form. The Form URL and its private response/status
-workbook deliberately do not live in this repository or on the website. The public workbook may
-show only slot facts and FREE/TAKEN/NOT OPEN status; participant names remain committee-only, and
-the latest room submission for the same normalized signup name is authoritative. Public room facts
+`roomBrowserInstructionsURL`. It is a public, view-only place list: each available row owns
+its prefilled Claim link to one external Google Form. The Form URL and its private response
+workbook deliberately do not live in this repository or on the website. The public workbook shows
+slot facts and the participant's public display name for each claimed place. That optional Form
+field overrides the participant's signup first name; a blank response uses the signup first name,
+and existing claims are backfilled with first names. The participant's full signup name stays in
+the private responses for reconciliation, and the latest room submission for the same normalized
+full signup name is authoritative. Public room facts
 come from the current 2027 accommodation TODO; participant-bearing resources from past editions
 must never be published on the site.
 

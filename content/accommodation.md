@@ -1,6 +1,6 @@
 ---
 title: "Accommodation"
-description: "Browse the Open Blues rooms and floor plans, check live availability, and claim a sleeping place through the view-only Room Browser."
+description: "Browse the Open Blues rooms and floor plans, see which sleeping places are available, and claim one through the view-only Room Browser."
 url: /accommodation/
 pageClass: accommodation-page
 hideTitle: true
@@ -15,8 +15,8 @@ sitemap:
 <section class="stay-hero" aria-labelledby="stay-title">
   <div class="stay-hero__copy">
     <p class="stay-eyebrow">Open Blues {{< event-year >}} · sleeping places</p>
-    <h1 id="stay-title">See the rooms.<br>Claim a free place.</h1>
-    <p class="stay-lede">Photos and floor plans live here. The Room Browser is a view-only list of free and taken places. Find a free place, click <strong>Claim</strong>, and submit the same full name you used to sign up. Only the committee can see names.</p>
+    <h1 id="stay-title">See the rooms.<br>Claim an available place.</h1>
+    <p class="stay-lede">Photos and floor plans live here. The Room Browser is a public, view-only list of sleeping places and the display names shown for claimed places. Find an available row, click <strong>Claim</strong>, and give the full name you used to sign up for private matching. The public display-name field is optional: leave it blank to show your signup first name, or enter any nickname or anonymous label.</p>
     <div class="stay-actions">
       {{< room-browser-cta variant="hero" >}}
     </div>
@@ -41,7 +41,7 @@ sitemap:
     <span class="stay-authority__number" aria-hidden="true">02</span>
     <p class="stay-eyebrow">Claim there</p>
     <h2>The Room Browser</h2>
-    <p>The Room Browser is the public availability board. Choose a place marked FREE and click its Claim link. Participant names never appear there.</p>
+    <p>The Room Browser is the public place list. A row showing <strong>FREE</strong> with a Claim link is available; a displayed name means that place is claimed.</p>
   </div>
 </section>
 
@@ -51,9 +51,9 @@ sitemap:
     <h2 id="rules-title">Three steps</h2>
   </div>
   <ol>
-    <li><span>1</span><p><strong>Choose one FREE place per person.</strong> Click Claim on that row and use the same full name as in your signup.</p></li>
-    <li><span>2</span><p><strong>The latest submission wins.</strong> To move, claim a different free place. Your later answer replaces your earlier one.</p></li>
-    <li><span>3</span><p><strong>Trust the live status.</strong> Do not claim a place marked TAKEN or NOT OPEN. The committee checks the private claims before the festival.</p></li>
+    <li><span>1</span><p><strong>Choose one available place per person.</strong> Click Claim on that row and give the same full name as in your signup. That full name stays private and lets the committee match your claim.</p></li>
+    <li><span>2</span><p><strong>Choose how your name appears.</strong> The public display-name field is optional. Leave it blank to show the first name from your signup, or enter any nickname or anonymous label. The form makes clear that everyone can see the resulting display name in the Room Browser.</p></li>
+    <li><span>3</span><p><strong>The latest submission wins.</strong> To move, claim a different available place. Your later answer replaces your earlier one; do not submit a row that already shows somebody else's display name.</p></li>
   </ol>
   <p class="stay-rules__recovery"><strong>Need to release a place without choosing another?</strong> Email <a href="mailto:openbluespoland@gmail.com">openbluespoland@gmail.com</a>. If two claims ever collide, the committee will sort it out with the people involved.</p>
 </section>
@@ -69,7 +69,7 @@ sitemap:
       <a href="/files/open-blues-venue-map.pdf">Download source PDF</a>
     </div>
   </div>
-  <p class="stay-map__intro">Retraced from the supplied Sheet map. Layout is approximate: no scale or confirmed door and furniture positions. Orange marks beds; green marks sofas and shared rooms. Colours and symbols show stable room and sleeping-surface types, never live availability or exact placement. Live status stays in the Room Browser; participant names stay private with the committee. Tower and Barn are orientation only; the new Opposite Right room is not on the supplied plan.</p>
+  <p class="stay-map__intro">Retraced from the supplied Sheet map. Layout is approximate: no scale or confirmed door and furniture positions. Orange marks beds; green marks sofas and shared rooms. Colours and symbols show stable room and sleeping-surface types, never current claims or exact placement. Current claims and public display names stay in the Room Browser; the full names used for matching stay private with the committee. Tower and Barn are orientation only; the new Opposite Right room is not on the supplied plan.</p>
   <p class="stay-map__how" id="map-instructions"><strong>Rooms open their photos.</strong> Tap or click a room to jump to its photo and details. On a narrow screen, swipe sideways; with a keyboard, Tab through rooms and use the arrow keys to pan.</p>
   <ul class="stay-map__legend" aria-label="Map legend">
     <li><span class="legend-room" aria-hidden="true"></span>Sleeping room</li>
@@ -131,7 +131,7 @@ sitemap:
       <p class="stay-eyebrow">Static room field guide</p>
       <h2 id="room-guide-title">Browse all 18 rooms</h2>
     </div>
-    <p>Photos are references and setups may change. Live free/taken status is shown only in the Room Browser.</p>
+    <p>Photos are references and setups may change. Current claims and public display names are shown only in the Room Browser.</p>
   </div>
   <nav class="stay-jumps" aria-label="Jump to a room group">
     <a href="#opposite-upstairs">Opposite upstairs</a>
@@ -191,8 +191,8 @@ sitemap:
         <div class="stay-room-card__body"><p>Castle · downstairs</p><h4>A1</h4><span>1 double bed</span>{{< room-link range="A16:E17" label="See Castle downstairs A1 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-downstairs-a2" data-room-id="castle-downstairs-a2">
-        <a class="stay-room-card__photo" href="/images/accommodation/castle-downstairs-a2-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle downstairs A2"><picture><source srcset="/images/accommodation/castle-downstairs-a2-480.webp 480w, /images/accommodation/castle-downstairs-a2-960.webp 960w, /images/accommodation/castle-downstairs-a2-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-downstairs-a2-960.webp" alt="Reference photo of Castle downstairs A2, listed with one double bed and one single bed." width="960" height="540" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · downstairs</p><h4>A2</h4><span>1 double · 1 single</span>{{< room-link range="A20:E22" label="See Castle downstairs A2 availability in the Room Browser" >}}</div>
+        <a class="stay-room-card__photo" href="/images/accommodation/castle-downstairs-a2-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle downstairs A2"><picture><source srcset="/images/accommodation/castle-downstairs-a2-480.webp 480w, /images/accommodation/castle-downstairs-a2-960.webp 960w, /images/accommodation/castle-downstairs-a2-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-downstairs-a2-960.webp" alt="Reference photo of Castle downstairs A2, listed with one double bed and two single beds." width="960" height="540" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Castle · downstairs</p><h4>A2</h4><span>1 double · 2 singles</span>{{< room-link range="A20:E23" label="See Castle downstairs A2 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-downstairs-a3" data-room-id="castle-downstairs-a3">
         <a class="stay-room-card__photo" href="/images/accommodation/castle-downstairs-a3-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle downstairs A3"><picture><source srcset="/images/accommodation/castle-downstairs-a3-480.webp 480w, /images/accommodation/castle-downstairs-a3-960.webp 960w, /images/accommodation/castle-downstairs-a3-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-downstairs-a3-960.webp" alt="Reference photo of Castle downstairs A3, listed with a double bed, single sofa and double-size sofa." width="960" height="500" loading="lazy"></picture></a>
@@ -200,7 +200,7 @@ sitemap:
       </article>
       <article class="stay-room-card" id="room-castle-downstairs-b1" data-room-id="castle-downstairs-b1">
         <a class="stay-room-card__photo" href="/images/accommodation/castle-downstairs-b1-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle downstairs B1"><picture><source srcset="/images/accommodation/castle-downstairs-b1-480.webp 480w, /images/accommodation/castle-downstairs-b1-960.webp 960w, /images/accommodation/castle-downstairs-b1-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-downstairs-b1-960.webp" alt="Reference photo of Castle downstairs B1, listed with one double bed." width="960" height="540" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · downstairs</p><h4>B1</h4><span>1 double bed</span>{{< room-link range="A28:E31" label="See Castle downstairs B1 availability in the Room Browser" >}}</div>
+        <div class="stay-room-card__body"><p>Castle · downstairs</p><h4>B1</h4><span>1 double bed</span>{{< room-link range="A28:E29" label="See Castle downstairs B1 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-downstairs-b2" data-room-id="castle-downstairs-b2">
         <a class="stay-room-card__photo" href="/images/accommodation/castle-downstairs-b2-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle downstairs B2"><picture><source srcset="/images/accommodation/castle-downstairs-b2-480.webp 480w, /images/accommodation/castle-downstairs-b2-960.webp 960w, /images/accommodation/castle-downstairs-b2-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-downstairs-b2-960.webp" alt="Reference photo of Castle downstairs B2, listed with one double bed." width="960" height="540" loading="lazy"></picture></a>
@@ -225,20 +225,20 @@ sitemap:
         <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 2</h4><span>1 sofa bed · 1 double bed</span>{{< room-link range="A42:E45" label="See Castle upstairs Room 2 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-3" data-room-id="castle-upstairs-3">
-        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-3-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 3"><picture><source srcset="/images/accommodation/castle-upstairs-3-480.webp 480w, /images/accommodation/castle-upstairs-3-960.webp 960w, /images/accommodation/castle-upstairs-3-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-3-960.webp" alt="Reference photo of Castle upstairs Room 3, listed with three single beds." width="960" height="392" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 3</h4><span>3 single beds</span>{{< room-link range="A46:E48" label="See Castle upstairs Room 3 availability in the Room Browser" >}}</div>
+        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-3-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 3"><picture><source srcset="/images/accommodation/castle-upstairs-3-480.webp 480w, /images/accommodation/castle-upstairs-3-960.webp 960w, /images/accommodation/castle-upstairs-3-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-3-960.webp" alt="Reference photo of Castle upstairs Room 3, listed with two single beds." width="960" height="392" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 3</h4><span>2 single beds</span>{{< room-link range="A46:E48" label="See Castle upstairs Room 3 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-4" data-room-id="castle-upstairs-4">
-        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-4-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 4"><picture><source srcset="/images/accommodation/castle-upstairs-4-480.webp 480w, /images/accommodation/castle-upstairs-4-960.webp 960w, /images/accommodation/castle-upstairs-4-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-4-960.webp" alt="Reference photo of Castle upstairs Room 4, listed with four single beds." width="960" height="486" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 4</h4><span>4 single beds</span>{{< room-link range="A49:E52" label="See Castle upstairs Room 4 availability in the Room Browser" >}}</div>
+        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-4-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 4"><picture><source srcset="/images/accommodation/castle-upstairs-4-480.webp 480w, /images/accommodation/castle-upstairs-4-960.webp 960w, /images/accommodation/castle-upstairs-4-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img src="/images/accommodation/castle-upstairs-4-960.webp" alt="Reference photo of Castle upstairs Room 4, listed with three single beds." width="960" height="486" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 4</h4><span>3 single beds</span>{{< room-link range="A49:E51" label="See Castle upstairs Room 4 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-5" data-room-id="castle-upstairs-5">
         <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-5-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 5"><picture><source srcset="/images/accommodation/castle-upstairs-5-480.webp 480w, /images/accommodation/castle-upstairs-5-960.webp 960w, /images/accommodation/castle-upstairs-5-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img class="stay-room-card__portrait" src="/images/accommodation/castle-upstairs-5-960.webp" alt="Reference photo of Castle upstairs Room 5, listed with one double bed." width="960" height="1706" loading="lazy"></picture></a>
         <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 5</h4><span>1 double bed</span>{{< room-link range="A53:E54" label="See Castle upstairs Room 5 availability in the Room Browser" >}}</div>
       </article>
       <article class="stay-room-card" id="room-castle-upstairs-6" data-room-id="castle-upstairs-6">
-        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-6-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 6"><picture><source srcset="/images/accommodation/castle-upstairs-6-480.webp 480w, /images/accommodation/castle-upstairs-6-960.webp 960w, /images/accommodation/castle-upstairs-6-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img class="stay-room-card__portrait" src="/images/accommodation/castle-upstairs-6-960.webp" alt="Reference photo of Castle upstairs Room 6, listed with a double bed and a single bed." width="960" height="1706" loading="lazy"></picture></a>
-        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 6</h4><span>1 double · 1 single</span>{{< room-link range="A55:E56" label="See Castle upstairs Room 6 availability in the Room Browser" >}}</div>
+        <a class="stay-room-card__photo" href="/images/accommodation/castle-upstairs-6-1440.webp" target="_blank" rel="noopener noreferrer" aria-label="Open the full-size photo of Castle upstairs Room 6"><picture><source srcset="/images/accommodation/castle-upstairs-6-480.webp 480w, /images/accommodation/castle-upstairs-6-960.webp 960w, /images/accommodation/castle-upstairs-6-1440.webp 1440w" sizes="(max-width: 700px) 92vw, 30vw"><img class="stay-room-card__portrait" src="/images/accommodation/castle-upstairs-6-960.webp" alt="Reference photo of Castle upstairs Room 6, listed with one double bed." width="960" height="1706" loading="lazy"></picture></a>
+        <div class="stay-room-card__body"><p>Castle · upstairs</p><h4>Room 6</h4><span>1 double bed</span>{{< room-link range="A55:E56" label="See Castle upstairs Room 6 availability in the Room Browser" >}}</div>
       </article>
     </div>
   </section>
@@ -270,8 +270,8 @@ sitemap:
 <section class="stay-final" aria-labelledby="final-title">
   <div>
     <p class="stay-eyebrow">Ready?</p>
-    <h2 id="final-title">Claim a free place.</h2>
-    <p>If your signup includes a bed, open the Room Browser, choose a FREE row and click Claim. Use the same full name as in your signup. To move, claim another free place; your latest submission wins. The accommodation balance is paid later in cash at the venue. To change the category itself, use <a href="/change/">openblues.pl/change</a>.</p>
+    <h2 id="final-title">Claim an available place.</h2>
+    <p>If your signup includes a bed, open the Room Browser, choose an empty display-name row with a Claim link, and submit the form. Give your full signup name privately for matching. The public display-name field is optional: leave it blank to show your signup first name, or enter any nickname or anonymous label. To move, claim another available place; your latest submission wins. The accommodation balance is paid later in cash at the venue. To change the category itself, use <a href="/change/">openblues.pl/change</a>.</p>
   </div>
   <div class="stay-final__actions">
     {{< room-browser-cta variant="final" >}}

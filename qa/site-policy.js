@@ -88,8 +88,11 @@ async function run() {
   const bookletText = rendered.get('/booklet/').text;
   assert.match(bookletText, new RegExp(`${params.threshold} Reservation Payments have arrived by ${params.goNoGoHuman}`));
   assert.match(bookletText, /The transfer details are inside the form/);
-  assert.match(bookletText, /view-only Room Browser.*click(?:ing)? Claim beside a free place/i);
-  assert.match(bookletText, /participant names are visible only to the committee/i);
+  assert.match(bookletText, /view-only Room Browser.*click(?:ing)? Claim beside an available place/i);
+  assert.match(bookletText, /public display name for each claimed place/i);
+  assert.match(bookletText, /full name as in your signup for private matching/i);
+  assert.match(bookletText, /public display-name field is optional[^.]*leave it blank to show the first name from your signup/i);
+  assert.match(bookletText, /enter any nickname or anonymous label/i);
 
   const changeText = rendered.get('/change/').text;
   assert.match(changeText, /the (?:personal )?edit link in your confirmation email/i);
@@ -98,14 +101,20 @@ async function run() {
   assert.match(changeText, /ask us to (?:resend it|email the link again)/i);
 
   const accommodationText = rendered.get('/accommodation/').text;
-  assert.match(accommodationText, /Room Browser is a view-only list of free and taken places/i);
-  assert.match(accommodationText, /Only the committee can see names/i);
+  assert.match(accommodationText, /Room Browser is a public, view-only list of sleeping places and the display names shown for claimed places/i);
+  assert.match(accommodationText, /full name you used to sign up for private matching/i);
+  assert.match(accommodationText, /public display-name field is optional[^.]*leave it blank to show (?:the first name from|your signup first name)/i);
   assert.match(accommodationText, /The latest submission wins/i);
 
-  const retiredRoomFlow = /public display name|green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i;
+  const retiredRoomFlow = /green name cells?|Sheets app|signup order|edit in your browser|type, move or clear|clear only your name/i;
   for (const pagePath of ['/', '/booklet/', '/change/', '/accommodation/']) {
     assert.doesNotMatch(rendered.get(pagePath).text, retiredRoomFlow,
       `${pagePath} still describes the retired directly editable Room Browser`);
+  }
+  assert.match(accommodationText, /row showing\s+FREE\s+with a Claim link is available/i);
+  for (const pagePath of ['/', '/booklet/', '/accommodation/']) {
+    assert.doesNotMatch(rendered.get(pagePath).text, /\bTAKEN\b|Participant names never appear|Only the committee can see names/,
+      `${pagePath} still describes claimed places with the retired anonymous TAKEN label`);
   }
 
   const changePage = rendered.get('/change/').raw;

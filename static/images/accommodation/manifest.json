@@ -8,16 +8,16 @@
   },
   "venueMap": {
     "source": "Klaudia-owned self-service workbook; geometry independently verified against an authenticated PDF export of the preserved private pre-replacement backup",
-    "privacy": "The published source layout replaces live availability with neutral room labels and contains no participant names",
-    "redraw": "Hand-drawn SVG plans preserve confirmed image-left/image-right room relationships. Door positions, scale and exact furniture placement are intentionally omitted; sleeping-surface labels follow the current 2027 room TODO.",
+    "privacy": "The published static source layout contains neutral room labels and no participant display names or private full names",
+    "redraw": "Hand-drawn SVG plans preserve confirmed image-left/image-right room relationships. Door positions, scale and exact furniture placement are intentionally omitted; sleeping-surface labels follow the organizer's current room corrections.",
     "interaction": "Each of the 17 mapped room regions links to its matching photo card; the new 4-place Opposite Right room remains explicitly unmapped and unphotographed.",
     "wholeMap": [
       { "src": "/images/accommodation/venue-map.webp", "width": 2400, "height": 914 },
       { "src": "/files/open-blues-venue-map.pdf", "format": "pdf" }
     ],
     "panels": [
-      { "src": "/images/accommodation/map-castle-downstairs.svg", "width": 1200, "height": 900, "rooms": 6, "places": 19 },
-      { "src": "/images/accommodation/map-castle-upstairs.svg", "width": 1600, "height": 850, "rooms": 6, "places": 20 },
+      { "src": "/images/accommodation/map-castle-downstairs.svg", "width": 1200, "height": 900, "rooms": 6, "places": 18 },
+      { "src": "/images/accommodation/map-castle-upstairs.svg", "width": 1600, "height": 850, "rooms": 6, "places": 17 },
       { "src": "/images/accommodation/map-opposite-downstairs.svg", "width": 1000, "height": 440, "rooms": 2, "places": 5 },
       { "src": "/images/accommodation/map-opposite-upstairs.svg", "width": 1000, "height": 650, "rooms": 3, "places": 6 }
     ]
