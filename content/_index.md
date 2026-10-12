@@ -99,7 +99,7 @@ This is a DIY gathering and all activities are community-led, so the programme t
 
 ### When should I arrive and leave?
 
-Standard reception opens on Thursday at 18:00, followed by the welcome at 18:30, dinner at 19:00 and the party at 20:00. If you expect to arrive later, email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before travelling so the organisers know when to expect you. Monday includes breakfast and communal cleaning; the programme finishes at **12:00 noon**, followed by departures.
+Standard reception opens on Thursday at 18:00; the rest of the day, and every day after it, is in the [preliminary schedule](/booklet/#preliminary-schedule). If you expect to arrive later, email [openbluespoland@gmail.com](mailto:openbluespoland@gmail.com) before travelling so the organisers know when to expect you. Monday includes breakfast and communal cleaning; the programme finishes at **12:00 noon**, followed by departures.
 
 ### Can I bring pets or children?
 

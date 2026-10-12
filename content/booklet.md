@@ -46,6 +46,18 @@ Showers and toilets can be used throughout the castle.
 
 There is generally decent Wi-Fi in several rooms.
 
+## Preliminary schedule
+
+| Day | Programme |
+|---|---|
+| Thursday | Reception 18:00 · Welcome 18:30 · Dinner 19:00 · Party 20:00 · Nibbles & wine in the ballroom 20:30 |
+| Friday | Activities · Brunch · Activities · Dinner · Late Party |
+| Saturday | Activities · Brunch · Activities · **FANCY DINNER** · Late Party |
+| Sunday | Brunch · Activities · Dinner · Late Party |
+| Monday | Breakfast · Communal cleaning · Finish 12:00 · Departures |
+
+It is preliminary and community-led, so it changes. The days fill up with whatever people bring.
+
 ## DIY, tasks & chores {#diy-tasks-chores}
 
 This is a DIY festival: participants make the music, workshops, cooking and day-to-day running of the event happen. Please take initiative and actively look for things to help with. This might mean carrying speakers, rearranging chairs, helping in the kitchen, washing up or replacing toilet paper rolls.
