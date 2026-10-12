@@ -1,0 +1,25 @@
+{{- /*
+  Fills one string from data/citykit.yaml and returns it as HTML.
+
+  Two different kinds of substitution happen here, and the difference matters:
+
+    · {dates}, {year}, {threshold}, {url} are resolved NOW, at build time, from hugo.toml — the
+      same rule the rest of the site follows, so a date lives in exactly one place.
+    · {city} becomes a <span data-city-slot>, which assets/js/city.js rewrites as the reader
+      types. With JavaScript off it keeps the literal slot text and the block still makes sense.
+
+  Everything from the data file is escaped before the span is spliced in: this returns
+  safeHTML, so nothing may reach it unescaped.
+
+  Call: {{ partial "city-text.html" (dict "text" $s "subs" $subs "slot" $slot) }}
+*/ -}}
+{{- $text := .text -}}
+{{- range $token, $value := .subs }}{{ $text = replace $text $token $value }}{{ end -}}
+{{- $out := slice -}}
+{{- range $i, $part := split $text "{city}" -}}
+  {{- if gt $i 0 -}}
+    {{- $out = $out | append (printf `<span class="city-slot" data-city-slot>%s</span>` (htmlEscape $.slot)) -}}
+  {{- end -}}
+  {{- $out = $out | append (htmlEscape $part) -}}
+{{- end -}}
+{{- return (delimit $out "" | safeHTML) -}}

@@ -1,0 +1,85 @@
+{{- /*
+  "Bring your city" — the part of /spread-the-word/ that asks for something specific.
+
+  Copy lives in data/citykit.yaml (adding a step is a data edit); dates, the threshold, the
+  edition year and the site's own address are substituted from hugo.toml by city-text.html, so
+  nothing here can drift from the front page.
+
+  The DOM contract qa/spread-city.js drives, and assets/js/city.js depends on:
+    [data-city-kit]    the whole block
+    [data-city-form]   the name field, shipped `hidden` and unhidden by JS — without JS it
+                       would be a control that does nothing
+    [data-city-input]  the field itself
+    [data-city-slot]   every place the city name appears
+    [data-city-copy]   one paste block; its value is the label a Copy button announces
+    [data-city-line]   one paragraph of a paste block; the copied text is these, joined by
+                       blank lines, which is what somebody expects to land in their clipboard
+  Do not rename them without changing both.
+*/ -}}
+{{- $d := site.Data.citykit -}}
+{{- $subs := dict
+      "{dates}" site.Params.eventDatesHuman
+      "{threshold}" (string site.Params.threshold)
+      "{year}" (partial "event-year.html" .)
+      "{url}" (strings.TrimSuffix "/" site.BaseURL) -}}
+{{- $slot := $d.slot -}}
+{{- $ctx := dict "subs" $subs "slot" $slot -}}
+
+<div class="city" data-city-kit>
+  {{- range $d.intro }}
+  <p>{{ partial "city-text.html" (merge $ctx (dict "text" .)) }}</p>
+  {{- end }}
+
+  {{- with $d.examples }}
+  <ul class="city-examples" role="list">
+    {{- range . }}
+    <li>{{ . }}</li>
+    {{- end }}
+  </ul>
+  {{- end }}
+
+  {{- with $d.lead }}
+  <p class="city-lead">{{ partial "city-text.html" (merge $ctx (dict "text" .)) }}</p>
+  {{- end }}
+
+  <div class="city-name" data-city-form hidden>
+    <label for="ob-city">Your city</label>
+    <input id="ob-city" type="text" placeholder="{{ $d.placeholder }}" autocomplete="off" spellcheck="false" data-city-input>
+    <p class="city-hint">{{ $d.hint }}</p>
+  </div>
+
+  <ol class="steps">
+  {{- range $d.steps }}
+    <li class="step">
+      <h3>{{ .title }}</h3>
+      {{- range .body }}
+      <p>{{ partial "city-text.html" (merge $ctx (dict "text" .)) }}</p>
+      {{- end }}
+      {{- range .copies }}
+      <div class="copy" data-city-copy="{{ .label }}">
+        <div class="copy-head"><p class="copy-label">{{ .label }}</p></div>
+        <div class="copy-text">
+          {{- range .lines }}
+          <p data-city-line>{{ partial "city-text.html" (merge $ctx (dict "text" .)) }}</p>
+          {{- end }}
+        </div>
+      </div>
+      {{- end }}
+      {{- with .links }}
+      <p class="step-links">
+        {{- range . }}<a class="btn btn-outline btn-small" href="{{ .href }}">{{ .label }}</a>{{ end }}
+      </p>
+      {{- end }}
+    </li>
+  {{- end }}
+  </ol>
+
+  {{- with $d.outro }}
+  <p class="city-outro">{{ partial "city-text.html" (merge $ctx (dict "text" .)) }}</p>
+  {{- end }}
+</div>
+
+{{- with resources.Get "js/city.js" }}
+{{- $js := . | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{- end }}

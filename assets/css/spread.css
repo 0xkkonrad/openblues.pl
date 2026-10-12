@@ -1,4 +1,4 @@
-/* /spread-the-word/ — the print kit and how to hand it out. */
+/* /spread-the-word/ — the city kit, the print kit and how to hand them out. */
 
 .kit { list-style: none; margin: 2rem 0 0; padding: 0; display: grid; gap: 1.75rem; }
 @media (min-width: 700px) { .kit { grid-template-columns: repeat(2, 1fr); } }
@@ -29,6 +29,103 @@
   font-size: .92rem;
 }
 .print-note strong { color: var(--ink); }
+
+/* ---------- "Bring your city": the ask, the name field, the three steps ---------- */
+
+.city { margin-top: 1.5rem; }
+
+/* The three example names. Set big and quiet, because their job is to make the reader
+   see their own city in the pattern before they read another word. */
+.city-examples {
+  list-style: none; margin: 1.5rem 0; padding: 0;
+  display: grid; gap: .5rem;
+}
+.city-examples li {
+  font-family: "Annie Use Your Telescope", cursive;
+  font-size: clamp(1.35rem, 5vw, 1.9rem); line-height: 1.2;
+  color: var(--link);
+}
+
+.city-lead { font-weight: 700; }
+
+/* The name field. Ships `hidden`; assets/js/city.js unhides it, so it never appears as a
+   control that does nothing. */
+.city-name {
+  margin: 1.5rem 0 0; padding: 1rem 1.15rem;
+  background: var(--cream); border: 1px solid var(--line); border-radius: 10px;
+}
+.city-name label { display: block; font-weight: 900; margin-bottom: .35rem; }
+.city-name input {
+  width: 100%; max-width: 22rem;
+  font-family: inherit; font-size: 1.06rem; color: var(--ink);
+  padding: .55rem .8rem;
+  background: #fff; border: 1px solid var(--line); border-radius: 8px;
+}
+.city-name input:focus-visible { outline: 2px solid var(--orange); outline-offset: 1px; }
+.city-hint { margin: .5rem 0 0; font-size: .88rem; color: var(--muted); }
+
+/* The steps. Numbered by CSS off the <ol> so the markup stays an ordered list. */
+.steps { list-style: none; counter-reset: step; margin: 2rem 0 0; padding: 0; }
+.step {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 0 3rem;
+  margin-top: 2.25rem;
+}
+.step::before {
+  content: counter(step);
+  position: absolute; left: 0; top: .1rem;
+  width: 2.1rem; height: 2.1rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: var(--orange); color: #fff;
+  font-weight: 900; font-size: 1.05rem; line-height: 1;
+}
+.step h3 { margin: 0 0 .4rem; }
+.step p { margin: .5rem 0; }
+@media (max-width: 480px) {
+  .step { padding-left: 2.6rem; }
+  .step::before { width: 1.85rem; height: 1.85rem; font-size: .95rem; }
+}
+
+/* A paste block: the words somebody is about to put in a Facebook event or a group chat. */
+.copy {
+  margin: 1.1rem 0;
+  border: 1px solid var(--line); border-radius: 10px; background: #fff;
+  overflow: hidden;
+}
+.copy-head {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
+  padding: .6rem .9rem; background: var(--cream); border-bottom: 1px solid var(--line);
+}
+.copy-label {
+  margin: 0; flex: 1 1 auto;
+  font-family: "Lato", sans-serif; font-size: .82rem; font-weight: 900;
+  letter-spacing: .06em; text-transform: uppercase; color: var(--muted);
+}
+.copy-btn { flex: 0 0 auto; font: inherit; font-weight: 900; cursor: pointer; }
+.copy-status { flex: 0 0 auto; font-size: .85rem; color: var(--link); }
+.copy-text { padding: .85rem .9rem; }
+.copy-text p { margin: 0 0 .75rem; }
+.copy-text p:last-child { margin-bottom: 0; }
+
+/* The city name itself, wherever it appears. While it is still the empty slot it is marked as
+   something to fill in — a dashed underline rather than the link colour, because it is not a
+   link and nothing here should invite a click. Once the reader has typed their city it goes
+   completely plain: the text on screen then matches the text the Copy button hands over, and a
+   highlight sitting on your own city reads as an error. */
+.city-slot {
+  font-weight: 700;
+  background: #fff2e2;
+  border-bottom: 1px dashed var(--orange);
+  border-radius: 3px;
+  padding: 0 .15em;
+}
+.city-named .city-slot {
+  font-weight: inherit; background: none; border-bottom: 0; padding: 0;
+}
+
+.city-outro { margin-top: 2.5rem; }
 
 /* Anchor links to the sections below. */
 .toc {

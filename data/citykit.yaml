@@ -1,0 +1,76 @@
+# The "Bring your city" block on /spread-the-word/, rendered by layouts/shortcodes/city-kit.html.
+#
+# WHY IT EXISTS. The print kit and the social images are assets. This is the instruction that
+# turns a reader into somebody who uses them. The ask is deliberately ONE concrete thing with a
+# name — an event called "Krakow going to Open Blues" — because "share this" converts nobody and
+# "open a Facebook event with this title and this text, here they are, copy them" converts
+# somebody. Everything a would-be spreader has to write is already written below.
+#
+# PLACEHOLDERS. Replaced at BUILD time from hugo.toml, so no date, threshold or address is
+# written twice anywhere on this site:
+#   {dates} eventDatesHuman  ·  {year} the edition year  ·  {threshold} the go-ahead number
+#   {url} the site's own address
+# {city} is the only one that survives into the HTML: assets/js/city.js swaps it for whatever the
+# reader types, and with JavaScript off it renders as the literal slot below, which anybody can
+# overwrite after pasting.
+#
+# TRUTHFULNESS (the load-bearing lens for every Open Blues asset). Every claim in the paste
+# blocks has to survive somebody arriving at the palace with it in their head: no staff, DIY,
+# vegan food cooked by us, from EUR 120, it only happens at the threshold. All of it is on the
+# front page. Nothing here may promise a programme, a line-up or a service — and the event
+# description says in its own words that a city event is NOT the festival, because an event
+# listing otherwise implies a confirmed, staffed, ticketed thing that this is not.
+
+slot: "[your city]"
+placeholder: Kraków
+hint: Type it once and every line below fills in.
+
+intro:
+  - Forty people are unlikely to come out of any one city. They come in twos and threes out of a dozen of them, and each of those little groups exists because one person decided it should. Be that person for yours.
+  - "Give it a name and it stops being a link you forwarded and starts being a thing that is happening:"
+
+examples:
+  - Kraków going to Open Blues
+  - Berlin going to Open Blues
+  - Warszawa jedzie na Open Blues
+
+lead: Your city, your language, your people. Then three small jobs.
+
+steps:
+  - title: Print a few and carry them
+    body:
+      - Eight cards to an A4 sheet and any printer will do. Keep some in your wallet and hand one over at the next social, the next class, the exchange you are already going to. A card in somebody's hand outlives a post in their feed.
+    links:
+      - href: "#print"
+        label: Get the cards and the poster
+
+  - title: Make an event for your city
+    body:
+      - "Open one where your scene already looks: a Facebook event, a Luma page, a Meetup, a thread in the group chat. It is not a copy of this website and it is not a ticket — it is the {city} corner of the week, somewhere the people going can find each other months before anybody books a train."
+    copies:
+      - label: Event name
+        lines:
+          - "{city} going to Open Blues"
+      - label: Event description
+        lines:
+          - "Open Blues is a do-it-yourself blues and fusion dance gathering at a slightly broken palace in Poland, {dates}. There is no staff and no line-up sold to you: whoever comes cooks the food, teaches the workshops, DJs and plays. Five days, from €120 with all the food included, and all of it vegan. A bed if you want one, your tent or the floor if you don't."
+          - "This event is not the festival — it is the {city} people going to it. Join if you are going, or if you are one conversation away from going. We can share the drive, learn something together first, and turn up already knowing each other."
+          - "Everything true about it is at {url} — what it costs, where it is, and how many people have signed up so far. It only happens if {threshold} of us do, so that page is the part that counts. This one is just us."
+    links:
+      - href: "#event-cover"
+        label: Cover image, sized for Facebook
+
+  - title: Post it where your scene actually talks
+    body:
+      - One message in the chat everybody reads beats ten posts on a page nobody opens. Send it to the blues group, the fusion group, the three friends you already know would love it — then send it again in the spring, when it has stopped being an idea and started being a plan.
+    copies:
+      - label: A message for the group chat
+        lines:
+          - "Anyone fancy a palace in Poland? Open Blues, {dates} — five days of blues and fusion, completely DIY: we cook, we teach, we DJ, we play. From €120 with food included. I'm going, and I'd love company from {city}."
+          - "{url}"
+          - "I made a page for the {city} people going — join it here: [your event link]"
+    links:
+      - href: "#chats"
+        label: An image to send with it
+
+outro: Three people doing this in three different cities is most of the distance between an idea and a palace full of people. If you make one, we would love to see it — openbluespoland@gmail.com.
